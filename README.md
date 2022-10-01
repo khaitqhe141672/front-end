@@ -75,6 +75,10 @@ Add Bootstrap
 ```bash
  "node_modules/bootstrap/dist/css/bootstrap.min.css"
 ```
+- Go to `style.css`  -> add 
+```bash
+ @import "~bootstrap/dist/css/bootstrap.css";
+```
 Install RxJS
 ```bash
 npm install --save rxjs@6
