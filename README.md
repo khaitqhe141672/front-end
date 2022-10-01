@@ -75,10 +75,18 @@ Add Bootstrap
 ```bash
  "node_modules/bootstrap/dist/css/bootstrap.min.css"
 ```
-
+Install RxJS
+```bash
+npm install --save rxjs@6
+```
+```bash
+npm install --save rxjs-compat
+```
 More
 - [Complete guide](https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655614/)
 - [Help problem](https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/17862130#questions/10444944)
 
 ## Start project :exclamation:
 - `ng serve`
+
+
