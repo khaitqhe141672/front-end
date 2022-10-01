@@ -69,7 +69,7 @@ ng g c + [fileName]
 
 Add Bootstrap3
  ```bash
- npm install --save bootstrap@3
+ npm install --save bootstrap@5.2.1
  ```
 - Go to `angular.json`  -> Edit `styles` to add 
 ```bash
