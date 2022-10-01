@@ -67,7 +67,7 @@ ng g c + [fileName]
      }
 ```
 
-Add Bootstrap3
+Add Bootstrap
  ```bash
  npm install --save bootstrap@5.2.1
  ```
