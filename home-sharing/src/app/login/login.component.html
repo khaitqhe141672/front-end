@@ -1,29 +1,44 @@
-<section class="vh-100 gradient-custom">
+<section class="vh-100 gradient-custom"
+         [ngStyle]="{background: 'url(/bg-login.jpg)'}"
+>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-end align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="col-7"><img class="img-logo" src="assets/images/logo-trans.png"></div>
+
+      <div class="col-5 col-md-8 col-lg-6 col-xl-5">
+
         <div class="card text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <form [formGroup]="formLoginGroup" class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
               <h2 class="fw-bold pb-5 main-text-color text-uppercase ">Đăng nhập</h2>
 
               <div class="form-group mb-4 text-start">
-                <label for="projectName" class="mb-2 main-text-color">Tên đăng nhập</label>
+                <label for="username" class="mb-2 main-text-color">Tên đăng nhập</label>
                 <input class="form-control"
-                       formControlName="username"
+                       formControlName="userName"
                        id="username"
                        type="text">
+                <span *ngIf="!formLoginGroup.get('userName').valid&&formLoginGroup.get('userName').touched">
+                    <span class="text-danger" *ngIf="formLoginGroup.get('userName').errors['required']">
+                        Hãy điền tên đăng nhập
+                    </span>
+                </span>
               </div>
 
               <div class="form-group mb-4 text-start">
-                <label for="projectName" class="main-text-color mb-2">Mật khẩu</label>
+                <label for="password" class="main-text-color mb-2">Mật khẩu</label>
                 <input class="form-control"
-                       formControlName="projectName2"
-                       id="projectName"
+                       formControlName="passWord"
+                       id="password"
                        type="text"
                 >
+                <span *ngIf="!formLoginGroup.get('passWord').valid&&formLoginGroup.get('passWord').touched">
+                    <span class="text-danger" *ngIf="formLoginGroup.get('passWord').errors['required']">
+                        Hãy điền mật khẩu
+                    </span>
+                </span>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
@@ -36,7 +51,7 @@
               </p>
             </div>
 
-          </div>
+          </form>
         </div>
       </div>
     </div>
