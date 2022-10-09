@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   constructor() { }
   formLoginGroup:FormGroup
@@ -17,4 +17,9 @@ export class LoginComponent implements OnInit {
       })
   }
 
+  onSubmit() {
+    const useName = this.formLoginGroup.get('userName').value;
+    const password = this.formLoginGroup.get('passWord').value;
+    console.log(useName + ' ' + password)
+  }
 }

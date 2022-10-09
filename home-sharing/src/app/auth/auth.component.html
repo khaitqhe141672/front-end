@@ -1,5 +1,5 @@
 <section class="vh-100 gradient-custom"
-         [ngStyle]="{background: 'url(/bg-login.jpg)'}"
+         [ngStyle]="{background: 'url(/bg-auth.jpg)'}"
 >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-end align-items-center h-100">
@@ -8,7 +8,7 @@
       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
 
         <div class="card text-white" style="border-radius: 1rem;">
-          <form [formGroup]="formLoginGroup" class="card-body p-5 text-center">
+          <form [formGroup]="formLoginGroup" class="card-body p-5 text-center" (ngSubmit)="onSubmit()">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
@@ -32,7 +32,7 @@
                 <input class="form-control"
                        formControlName="passWord"
                        id="password"
-                       type="text"
+                       type="password"
                 >
                 <span *ngIf="!formLoginGroup.get('passWord').valid&&formLoginGroup.get('passWord').touched">
                     <span class="text-danger" *ngIf="formLoginGroup.get('passWord').errors['required']">
@@ -43,7 +43,7 @@
 
               <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
 
-              <button class="btn text-white btn-lg px-5" type="submit">Đăng nhập</button>
+              <button [disabled]="!formLoginGroup.valid" style="cursor: pointer"  class="btn text-white btn-lg px-5" type="submit">Đăng nhập</button>
             </div>
 
             <div class="main-text-color">
