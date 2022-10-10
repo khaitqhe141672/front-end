@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
-import {AuthService} from "./auth/auth.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
     HomeComponent,
     HeaderComponent,
     LoginComponent,
+    RegisterComponent,
 
   ],
   imports: [
