@@ -1,6 +1,14 @@
 .card{
   background: rgba(247, 236, 236, 0.8);
 }
+.bg-login{
+  background-image: url(../../assets/images/bg-login.png);
+  background-size: auto;
+  background-attachment: local;
+  height: auto;
+  width: 100%;
+}
+
 .btn{
   color: #F36B08 !important;
   background-color: white;

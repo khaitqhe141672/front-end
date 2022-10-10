@@ -1,14 +1,13 @@
-<section class="vh-100 gradient-custom"
-         [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
->
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-end align-items-center h-100">
-      <div class="col-7"><img class="img-logo" src="assets/images/logo-trans.png"></div>
+  <div class="min-vh-100 bg-login container-fluid">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-6">
+        <img class="img-logo" src="assets/images/logo-trans.png">
+      </div>
 
-      <div class="col-5 col-md-8 col-lg-6 col-xl-5">
+      <div class="col-12  col-sm-12 col-md-7 col-lg-6 col-xl-5 mt-5 mb-5">
 
-        <div class="card text-white" style="border-radius: 1rem;">
-          <form [formGroup]="formLoginGroup" class="card-body p-5 text-center" (ngSubmit)="onSubmit()">
+        <div class="card text-white col-sm-5 col-sm-8" style="border-radius: 1rem;">
+          <form [formGroup]="formLoginGroup" class="card-body  p-5 text-center" (ngSubmit)="onSubmit()">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
@@ -56,4 +55,3 @@
       </div>
     </div>
   </div>
-</section>
