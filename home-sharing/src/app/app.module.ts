@@ -9,6 +9,7 @@ import {AuthService} from "./auth/auth.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
     AuthComponent,
     HomeComponent,
     HeaderComponent,
+    LoginComponent,
 
   ],
   imports: [
