@@ -1,5 +1,5 @@
 <section [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
-         class="vh-100 gradient-custom"
+         class="vh-80 gradient-custom"
 >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-end align-items-center h-100">
@@ -8,7 +8,7 @@
       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
 
         <div class="card text-white" style="border-radius: 1rem;">
-          <form (ngSubmit)="onSubmit()" [formGroup]="formRegisterGroup" class="card-body p-5 text-center">
+          <form (ngSubmit)="onSubmit()" [formGroup]="formRegister" class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
@@ -22,18 +22,17 @@
                            formControlName="userName"
                            id="username"
                            type="text">
-                    <span *ngIf="!formRegisterGroup.get('userName').valid&&formRegisterGroup.get('userName').touched">
-                    <span *ngIf="formRegisterGroup.get('userName').errors['required']" class="text-danger">
+                    <span *ngIf="!formRegister.get('userName').valid&&formRegister.get('userName').touched">
+                    <span *ngIf="formRegister.get('userName').errors['required']" class="text-danger">
                         Hãy điền tên đăng nhập
                     </span>
-                       <span *ngIf="formRegisterGroup.get('userName').errors['minLength']" class="text-danger">
+                       <span *ngIf="formRegister.get('userName').errors['minLength']" class="text-danger">
                         Tên đăng nhâp cần có ít nhất 6 ký tự
                         </span>
-                      <span *ngIf="formRegisterGroup.get('userName').errors['pattern']" class="text-danger">
+                      <span *ngIf="formRegister.get('userName').errors['pattern']" class="text-danger">
                         Tên đăng nhâp cần có cả chữ và số
                         </span>
                    </span>
-
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -44,9 +43,12 @@
                            id="phoneNumber"
                            type="text">
                     <span
-                      *ngIf="!formRegisterGroup.get('phoneNumber').valid&&formRegisterGroup.get('phoneNumber').touched">
-                    <span *ngIf="formRegisterGroup.get('phoneNumber').errors['phoneNumber']" class="text-danger">
+                      *ngIf="!formRegister.get('phoneNumber').valid&&formRegister.get('phoneNumber').touched">
+                    <span *ngIf="formRegister.get('phoneNumber').errors['required']" class="text-danger">
                         Hãy điền số điện thoại
+                    </span>
+                      <span *ngIf="formRegister.get('phoneNumber').errors['pattern']" class="text-danger">
+                        Số điện thoại không hợp lệ
                     </span>
                    </span>
                   </div>
@@ -56,15 +58,18 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group mb-4 text-start">
-                    <label class="main-text-color mb-2" for="password">Mật khẩu</label>
+                    <label class="main-text-color mb-2" for="passWord">Mật khẩu</label>
                     <input class="form-control"
                            formControlName="passWord"
-                           id="password"
+                           id="passWord"
                            type="password"
                     >
-                    <span *ngIf="!formRegisterGroup.get('passWord').valid&&formRegisterGroup.get('passWord').touched">
-                    <span *ngIf="formRegisterGroup.get('passWord').errors['required']" class="text-danger">
+                    <span *ngIf="!formRegister.get('passWord').valid&&formRegister.get('passWord').touched">
+                    <span *ngIf="formRegister.get('passWord').errors['required']" class="text-danger">
                         Hãy điền mật khẩu
+                    </span>
+                       <span *ngIf="formRegister.get('passWord').errors['pattern']" class="text-danger">
+                        Mật khẩu phải có ít nhất 8 ký tự và chứa cả số và chữ
                     </span>
                 </span>
                   </div>
@@ -78,15 +83,55 @@
                            type="password"
                     >
                     <span
-                      *ngIf="!formRegisterGroup.get('confirmPassword').valid&&formRegisterGroup.get('confirmPassword').touched">
-                    <span *ngIf="formRegisterGroup.get('confirmPassword').errors['required']" class="text-danger">
+                      *ngIf="!formRegister.get('confirmPassword').valid&&formRegister.get('confirmPassword').touched">
+                    <span *ngIf="formRegister.get('confirmPassword').errors['required']" class="text-danger">
                         Hãy nhập lại mật khẩu
+                    </span>
+                    <span *ngIf="formRegister.get('confirmPassword').errors['passwordMismatch']"
+                    class="text-danger">
+                        Mật khẩu không khớp
                     </span>
                     </span>
                   </div>
                 </div>
               </div>
-
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="fullName">Họ và tên</label>
+                    <input class="form-control"
+                           formControlName="fullName"
+                           id="fullName"
+                           type="text"
+                    >
+                    <span
+                      *ngIf="!formRegister.get('fullName').valid&&formRegister.get('fullName').touched">
+                      Hãy nhập tên
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <div class="col-lg-12">
+                      <label class="main-text-color mb-2" for="dob">Ngày sinh</label>
+                      <input class="form-control"
+                             formControlName="dob"
+                             id="dob"
+                             type="date"
+                      >
+                    </div>
+                    <span
+                      *ngIf="!formRegister.get('dob').valid&&formRegister.get('dob').touched">
+                      <span *ngIf="formRegister.get('dob').errors['required']" class="text-danger">
+                        Hãy chọn ngày sinh
+                    </span>
+                    <span class="text-danger" *ngIf="formRegister.get('dob').errors['errorDate']">
+                      Ngày sinh không hợp lệ
+                    </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group mb-4 text-start">
@@ -97,8 +142,8 @@
                            type="text"
                     >
                     <span
-                      *ngIf="!formRegisterGroup.get('address').valid&&formRegisterGroup.get('address').touched">
-                    <span *ngIf="formRegisterGroup.get('address').errors['required']" class="text-danger">
+                      *ngIf="!formRegister.get('address').valid&&formRegister.get('address').touched">
+                    <span *ngIf="formRegister.get('address').errors['required']" class="text-danger">
                         Hãy nhập lại mật khẩu
                     </span>
                     </span>
@@ -106,7 +151,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                   <div class="form-group mb-4 text-start">
                     <label class="main-text-color mb-2" for="email">Mail</label>
                     <input class="form-control"
@@ -115,34 +160,37 @@
                            type="text"
                     >
                     <span
-                      *ngIf="!formRegisterGroup.get('email').valid&&formRegisterGroup.get('email').touched">
-                    <span *ngIf="formRegisterGroup.get('email').errors['required']" class="text-danger">
+                      *ngIf="!formRegister.get('email').valid&&formRegister.get('email').touched">
+                    <span *ngIf="formRegister.get('email').errors['required']" class="text-danger">
                         Địa chỉ email không hợp lệ
                     </span>
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="form-group mb-4 text-start">
+                <div class="col-lg-5">
+                  <div class=" mb-4 text-start">
                     <label class="main-text-color mb-2" for="role">Chọn vai trò</label>
-                    <select class="form-select" id="role" aria-label="Chọn vai trò">
-                      <option selected>Open this select menu</option>
-                      <option value="1">Người dùng</option>
-                      <option value="2">Chủ hộ</option>
+                    <select class="form-select" formControlName="role" id="role">
+                      <option [ngValue]="null" disabled selected>--Vai trò--</option>
+                      <option *ngFor="let s of roleOptions" [value]="s">{{s}}</option>
                     </select>
                     <span
-                      *ngIf="!formRegisterGroup.get('role').valid&&formRegisterGroup.get('role').touched">
-                    <span *ngIf="formRegisterGroup.get('role').errors['required']" class="text-danger">
+                      *ngIf="!formRegister.get('role').valid&&formRegister.get('role').touched">
+                      <span *ngIf="formRegister.get('role').errors['required']" class="text-danger">
                         Hãy chọn vai trò
                     </span>
                     </span>
                   </div>
                 </div>
               </div>
+
+
+
+
               <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
 
-              <button [disabled]="!formRegisterGroup.valid" class="btn text-white btn-lg px-5" style="cursor: pointer"
-                      type="submit">Đăng nhập
+              <button [disabled]="!formRegister.valid" class="btn text-white btn-lg px-5" style="cursor: pointer"
+                      type="submit">Đăng Ký
               </button>
             </div>
 
