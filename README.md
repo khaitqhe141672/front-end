@@ -93,4 +93,7 @@ More
 ## Start project :exclamation:
 - `ng serve`
 
-
+Angular material design
+```bash
+ng add @angular/material
+```
