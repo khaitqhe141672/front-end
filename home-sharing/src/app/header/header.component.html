@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
-
-<body>
 <header>
-  <div class="contairner">
-    <div class="nav">
+  <div class="container-header">
+    <div class="nav-header">
       <div class="logo">
         <a href="#">
           <svg width="279" height="117" viewBox="0 0 279 117" fill="none"
@@ -28,7 +18,7 @@
           </svg>
         </a>
       </div>
-      <div class="fliter">
+      <div class="filter">
         <form action="">
           <div class="wrap">
             <div class="search">
@@ -43,14 +33,6 @@
               </button>
             </div>
           </div>
-          <!-- <div class="search">
-              <div class="title-search">
-                  <h5>Tìm kiếm...</h5>
-              </div>
-              <div class="icon-search">
-
-              </div>
-          </div> -->
         </form>
       </div>
       <div class="profile">
@@ -89,7 +71,7 @@
               </svg>
               Đăng ký
             </a>
-            <a href="#">
+            <a routerLink="/login">
               <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -157,23 +139,3 @@
   <hr>
 </header>
 
-<script src="header.js"></script>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-    $(".dropdown").click(function () {
-      $(this).find(".dropdown-content").slideToggle("fast");
-    });
-  });
-  $(document).on("click", function (event) {
-    var $trigger = $(".dropdown");
-    if ($trigger !== event.target && !$trigger.has(event.target).length) {
-      $(".dropdown-content").slideUp("fast");
-    }
-  });
-</script>
-</body>
-
-</html>
