@@ -13,7 +13,7 @@ export interface AuthResponseData{
       username:string,
       email:string,
       role:string,
-      status:numbersrc/app/auth/auth.service.ts
+      status:number
     },
     token:string,
   }
@@ -21,5 +21,5 @@ export interface AuthResponseData{
 
 @Injectable({providedIn:'root'})
 export class AuthService{
-  
+
 }

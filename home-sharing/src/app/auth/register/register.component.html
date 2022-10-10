@@ -1,1 +1,159 @@
-<p>register works!</p>
+<section [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
+         class="vh-100 gradient-custom"
+>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-end align-items-center h-100">
+      <div class="col-7"><img class="img-logo" src="assets/images/logo-trans.png"></div>
+
+      <div class="col-5 col-md-8 col-lg-6 col-xl-5">
+
+        <div class="card text-white" style="border-radius: 1rem;">
+          <form (ngSubmit)="onSubmit()" [formGroup]="formRegisterGroup" class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold pb-5 main-text-color text-uppercase ">Đăng ký</h2>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="mb-2 main-text-color" for="username">Tên đăng nhập</label>
+                    <input class="form-control"
+                           formControlName="userName"
+                           id="username"
+                           type="text">
+                    <span *ngIf="!formRegisterGroup.get('userName').valid&&formRegisterGroup.get('userName').touched">
+                    <span *ngIf="formRegisterGroup.get('userName').errors['required']" class="text-danger">
+                        Hãy điền tên đăng nhập
+                    </span>
+                       <span *ngIf="formRegisterGroup.get('userName').errors['minLength']" class="text-danger">
+                        Tên đăng nhâp cần có ít nhất 6 ký tự
+                        </span>
+                      <span *ngIf="formRegisterGroup.get('userName').errors['pattern']" class="text-danger">
+                        Tên đăng nhâp cần có cả chữ và số
+                        </span>
+                   </span>
+
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="mb-2 main-text-color" for="phoneNumber">Số điện thoại</label>
+                    <input class="form-control"
+                           formControlName="phoneNumber"
+                           id="phoneNumber"
+                           type="text">
+                    <span
+                      *ngIf="!formRegisterGroup.get('phoneNumber').valid&&formRegisterGroup.get('phoneNumber').touched">
+                    <span *ngIf="formRegisterGroup.get('phoneNumber').errors['phoneNumber']" class="text-danger">
+                        Hãy điền số điện thoại
+                    </span>
+                   </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="password">Mật khẩu</label>
+                    <input class="form-control"
+                           formControlName="passWord"
+                           id="password"
+                           type="password"
+                    >
+                    <span *ngIf="!formRegisterGroup.get('passWord').valid&&formRegisterGroup.get('passWord').touched">
+                    <span *ngIf="formRegisterGroup.get('passWord').errors['required']" class="text-danger">
+                        Hãy điền mật khẩu
+                    </span>
+                </span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="confirmPassword">Nhập lại mật khẩu</label>
+                    <input class="form-control"
+                           formControlName="confirmPassword"
+                           id="confirmPassword"
+                           type="password"
+                    >
+                    <span
+                      *ngIf="!formRegisterGroup.get('confirmPassword').valid&&formRegisterGroup.get('confirmPassword').touched">
+                    <span *ngIf="formRegisterGroup.get('confirmPassword').errors['required']" class="text-danger">
+                        Hãy nhập lại mật khẩu
+                    </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="address">Địa chỉ</label>
+                    <input class="form-control"
+                           formControlName="address"
+                           id="address"
+                           type="text"
+                    >
+                    <span
+                      *ngIf="!formRegisterGroup.get('address').valid&&formRegisterGroup.get('address').touched">
+                    <span *ngIf="formRegisterGroup.get('address').errors['required']" class="text-danger">
+                        Hãy nhập lại mật khẩu
+                    </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="email">Mail</label>
+                    <input class="form-control"
+                           formControlName="email"
+                           id="email"
+                           type="text"
+                    >
+                    <span
+                      *ngIf="!formRegisterGroup.get('email').valid&&formRegisterGroup.get('email').touched">
+                    <span *ngIf="formRegisterGroup.get('email').errors['required']" class="text-danger">
+                        Địa chỉ email không hợp lệ
+                    </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-4 text-start">
+                    <label class="main-text-color mb-2" for="role">Chọn vai trò</label>
+                    <select class="form-select" id="role" aria-label="Chọn vai trò">
+                      <option selected>Open this select menu</option>
+                      <option value="1">Người dùng</option>
+                      <option value="2">Chủ hộ</option>
+                    </select>
+                    <span
+                      *ngIf="!formRegisterGroup.get('role').valid&&formRegisterGroup.get('role').touched">
+                    <span *ngIf="formRegisterGroup.get('role').errors['required']" class="text-danger">
+                        Hãy chọn vai trò
+                    </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
+
+              <button [disabled]="!formRegisterGroup.valid" class="btn text-white btn-lg px-5" style="cursor: pointer"
+                      type="submit">Đăng nhập
+              </button>
+            </div>
+
+            <div class="main-text-color">
+              <p class=" mb-0">Bạn chưa có tài khoản? <a class="main-text-color fw-bold" href="#!">Tạo tài khoản</a>
+              </p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
