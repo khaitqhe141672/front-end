@@ -15,7 +15,7 @@ export class LoginService{
       const urlLogin = 'http://localhost:8080/api/auth/signin'
       return this.http.post<AuthResponseData>(urlLogin,{username:username,password:password})
         .pipe(catchError(this.handleError),tap(responseData=>{
-          const message = this.handleAuthentication(
+         this.handleAuthentication(
             responseData.message,
             responseData.data.customerID,
             responseData.data.userID,
@@ -35,7 +35,7 @@ export class LoginService{
       const user = new User(userID,username,role,token)
       this.user.next(user)
       localStorage.setItem('userData',JSON.stringify(user))
-      return message
+
     }
     private handleError(errorResponse:HttpErrorResponse){
       let errorMessage = 'An unknown error occurred!'
@@ -46,7 +46,7 @@ export class LoginService{
       // console.log(errorResponse.error.status)
       switch (errorResponse.error.status){
         case 'EXPECTATION_FAILED':
-          errorMessage = 'Do thằng backend lười code nên méo biết lỗi gì'
+          errorMessage = 'Do thằng backend lười code nên ko biết lỗi gì'
           break;
       }
       console.log(errorMessage)
