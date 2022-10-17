@@ -1,9 +1,10 @@
 <section class="vh-100 gradient-custom"
-         [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
->
+         [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-end align-items-center h-100">
-      <div class="col-7"><img class="img-logo" src="assets/images/logo-trans.png"></div>
+      <div class="col-7">
+        <a href=""><img class="img-logo" src="assets/images/logo-trans.png"></a>
+      </div>
 
       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
 
@@ -41,7 +42,7 @@
                 </span>
               </div>
 
-              <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
+              <p class="small"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
 
               <button [disabled]="!formLoginGroup.valid" style="cursor: pointer"  class="btn text-white btn-lg px-5" type="submit">Đăng nhập</button>
             </div>

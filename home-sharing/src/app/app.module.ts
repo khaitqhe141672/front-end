@@ -12,6 +12,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
+import { FooterComponent } from './footer/footer.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatSliderModule} from "@angular/material/slider";
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
+    FooterComponent,
+    DetailComponent,
 
   ],
   imports: [
