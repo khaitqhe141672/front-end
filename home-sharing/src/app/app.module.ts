@@ -16,9 +16,10 @@ import { FooterComponent } from './footer/footer.component';
 import { DetailComponent } from './detail/detail.component';
 import {DatePipe} from "@angular/common";
 import { PostsComponent } from './posts/posts.component';
-import { PostListComponent } from './post/post-list/post-list.component';
-import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import {CoreModule} from "./core.module";
+import {PostListComponent} from "./posts/post-list/post-list.component";
+import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    CoreModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

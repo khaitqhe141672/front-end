@@ -6,7 +6,6 @@ import {Observable, timer} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import {DatePipe} from "@angular/common";
 import {AuthService} from "../auth.service";
-import * as api from "../../constant/api.constant"
 
 @Component({
   selector: 'app-register',
