@@ -95,5 +95,11 @@ More
 
 Angular material design
 ```bash
-ng add @angular/material
+npm install angular-material --save
 ```
+
+Font-Awsome
+```bash
+npm install font-awesome --save
+```
+- @import "~font-awesome/css/font-awesome.css";

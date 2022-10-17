@@ -1,167 +1,308 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300|Oswald');
 
-/* Form fields */
-#booking-form {
-  font-family: 'Merriweather', serif;
-  max-width: 540px;
-  margin: 40px auto;
+h1, h2, h3, h4, h5, h6, p, span, ul, li, hr {
+  margin: 0;
+  padding: 0;
 }
-#booking-form ul {
-  padding-left: 0;
-}
-#booking-form li {
+
+ul{
   list-style: none;
 }
-#booking-form input,
-#booking-form textarea,
-#booking-form select {
-  font-size: 18px;
-  padding: 0 28px;
+
+img, iframe{
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid rgb(233,233,233);
-  text-align: left;
-  border-radius: 35px;
-  color: #000000;
-
-  letter-spacing: normal;
-  height: 50px;
-  line-height: 50px;
-  font-family: 'Merriweather', serif;
-  background: #fff;
-  margin-bottom: 20px;
-}
-#booking-form select {
-  background: url('https://seashineadventures.com/wp-content/uploads/2017/08/grey-chevron.png') no-repeat;
-  -webkit-appearance: none;
-  appearance: none;
-  background-size: 15px;
-  background-position: 97% 50%;
-
-}
-#booking-form textarea {
-  height: 120px;
-  line-height: 1.5;
-  padding: 15px 28px;
-}
-#booking-form input:focus,
-#booking-form textarea:focus,
-#booking-form select:focus {
-  outline: 0;
-  border: 1px solid rgb(211,211,211);
-}
-#booking-form label {
-  font-size: 18px;
-  font-weight: 300;
-  display: block;
-  margin-bottom: 10px;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Buttons */
-#booking-form .next-btn,
-#booking-form .submit-btn {
-  background: #82CCC8;
-  padding: 13px 20px;
-  color: #fff;
-  font-family: oswald, sans-serif;
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: 1px;
-  min-width: 400px;
-  display: inline-block;
-  text-align: center;
-  font-weight: 400;
-  border-radius: 0;
-  border: 0;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  width: 100%;
-  cursor: pointer;
-}
-
-#booking-form .next-btn:hover,
-#booking-form .submit-btn:hover {
-  background-color: #444b5d;
-  color: #fff;
-}
-
-/* Progress Bar */
-.progress-wrap {
-  margin: auto;
-  display: table;
-}
-.line-progress-bar {
-  display: flex;
+.container-detail {
+  max-width: 1230px;
   margin: auto;
   width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
-.line {
-  height: 1px;
-  width: 250px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(217, 217, 217);
-  position: absolute;
-  margin-top: 8px;
+
+.container-detail .title h2 {
+  font-size: 48px;
+  font-family: 'Abhaya Libre';
 }
-.progress-wrap div ul {
-  display: flex;
-  width: 250px;
-  list-style: none;
-  padding: 0px;
-  margin: initial;
-  justify-content: space-between;
-  z-index: 1;
+
+.container-detail .title p {
+  font-family: 'Actor';
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
-.progressbar-dots {
-  display: inline-flex;
-  border: #949494 solid 4px;
-  background: #333333;
-  height: 20px;
+
+.container-detail .title p svg {
   width: 20px;
-  border-radius: 50%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  color: #d4d4d4;
-  font-size: 20px;
-  margin-left: 0px;
-  color: #d4d4d4;
-  border: 0px solid rgb(217,217,217);
-  background: rgb(217, 217, 217);
+  height: 20px;
 }
-.progressbar-dots span {
-  font-size: 12px;
-  line-height: 12px;
+
+.container-detail .title .star_detail {
   position: absolute;
-  margin-top: 60px;
-  /* width: 75px; */
-  float: left;
-  margin-left: -30px;
-  display: none;
-}
-.progressbar-dots.active {
-  color: #fff;
-  border: 0px solid rgb(38,163,134);
-  background: #82CCC8;
+  top: 12%;
+  left: 34%;
 }
 
-/*  Tab */
-.tab-pane {
-  display: none;
-}
-.tab-pane:first-child {
-  display: block;
+.container-detail .detail-content {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  padding-top: 20px;
+  column-gap: 20px;
 }
 
-/* Error */
-span.error {
+.container-detail .detail-content .detail-content-one .detail-card-img {
+  display: grid;
+  row-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-img .detail-card-img-first {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one .detail-card-img
+.detail-card-img-first .detail-card-img-item-childs {
+  display: grid;
+  row-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-img .detail-card-img-second {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  column-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-two .detail-content-intro{
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  column-gap: 10px;
+}
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities,
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host,
+.container-detail .detail-content .detail-content-two
+.detail-content-info
+{
+  border-radius: 20px;
+  box-shadow: 0px 0px 7px #909090;
+  padding: 10px 15px 10px 15px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities .utility-content ul{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities .utility-content ul li{
+  line-height: 40px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host{
+  display: grid;
+  grid-template-columns: 70px 1fr;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host span{
+  position: absolute;
+  top: 25.5%;
+  right: 10.5%;
+}
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host .host-name h2{
+  font-family: 'actor';
+  font-size: 28px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host span svg{
+  width: 20px;
+  height: 20px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .map .image-map{
+  width: 490px;
+  height: 188px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img .type-other-img-item{
+  width: 110px;
+  height: 80px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img .type-other-img-item img{
+  border-radius: 10px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item{
+  display: grid;
+}
+
+.container-detail .detail-content .detail-content-third
+.title-rate h2{
+  font-size: 48px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  column-gap: 10px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .rate-item-image{
+  width: 80px;
+  height: 75px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name{
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate:nth-child(n+1){
+  padding-top: 25px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name h2{
+  font-family: Actor;
+  font-size: 32px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name svg{
+  width: 25px;
+  height: 25px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .rate-date p{
   font-size: 12px;
-  font-family: "helvetica neue", arial, sans-serif;
-  color: #D6041D;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 10px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-second {
+  padding-top: 10px;
+  font-family: Actor;
+  font-size: 20px;
+}
+
+.container-detail .detail-content .detail-content-four,
+.container-detail .detail-content .detail-content-third
+{
+  border-radius: 20px;
+  box-shadow: 0px 0px 7px #909090;
+  padding: 20px 25px 20px 25px;
+  margin-top: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-title h3{
+  font-family: Actor;
+  font-size: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type{
+  border-radius: 20px;
+  border: 1px solid #D9D9D9;
+}
+
+.detail-card-price-type-first{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type input{
+  border: none;
+  background-color: #F36B08;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type span{
+  font-size: 17px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type {
+  margin-bottom: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price h3{
+  font-family: Actor;
+  font-size: 24px;
+  padding-bottom: 15px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price h4{
+  font-family: Actor;
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final{
+  display: grid;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final .price-final-pay,
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final .total-vat{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .price-button{
+  padding-top: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .price-button button{
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 25px;
+  border: none;
+  background-color: #24E589;
+  color: #FFFFFF;
+  font-size: 36px;
+  font-family: Actor;
 }
