@@ -14,6 +14,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import { FooterComponent } from './footer/footer.component';
 import { DetailComponent } from './detail/detail.component';
+import {DatePipe} from "@angular/common";
+import { PostsComponent } from './posts/posts.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import {CoreModule} from "./core.module";
+import {PostListComponent} from "./posts/post-list/post-list.component";
+import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +31,10 @@ import { DetailComponent } from './detail/detail.component';
     RegisterComponent,
     FooterComponent,
     DetailComponent,
+    PostsComponent,
+    PostListComponent,
+    PostDetailComponent,
+    PostEditComponent,
 
   ],
   imports: [
@@ -33,9 +43,10 @@ import { DetailComponent } from './detail/detail.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
