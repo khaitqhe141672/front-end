@@ -47,7 +47,7 @@ img, iframe{
 
 .container-detail .detail-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 520px;
   padding-top: 20px;
   column-gap: 20px;
 }
@@ -77,46 +77,6 @@ img, iframe{
   column-gap: 5px;
 }
 
-.container-detail .detail-content .detail-content-one
-.detail-card-price{
-  border: 1px solid #000000;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding: 10px 10px 10px 10px;
-}
-
-.container-detail .detail-content .detail-content-one
-.detail-card-price .detail-card-price-type{
-  display: grid;
-  grid-template-columns: 1fr 90px;
-  column-gap: 15px;
-}
-
-
-.container-detail .detail-content .detail-content-one
-.detail-card-price .detail-card-price-type .detail-card-price-type-first{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1px solid #000000;
-  border-radius: 20px;
-}
-
-.container-detail .detail-content .detail-content-one
-.detail-card-price .detail-card-price-type .detail-card-price-type-first .detail-card-price-type-first-child{
-  display: grid;
-}
-
-.container-detail .detail-content .detail-content-one
-.detail-card-price .detail-card-price-type .detail-card-price-type-second button{
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 20px;
-  background-color: #24E589;
-  color: #FFFFFF;
-  font-size: 20px;
-}
-
 .container-detail .detail-content .detail-content-two .detail-content-intro{
   display: grid;
   grid-template-columns: 1fr 270px;
@@ -127,7 +87,8 @@ img, iframe{
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host,
 .container-detail .detail-content .detail-content-two
-.detail-content-info{
+.detail-content-info
+{
   border-radius: 20px;
   box-shadow: 0px 0px 7px #909090;
   padding: 10px 15px 10px 15px;
@@ -154,7 +115,7 @@ img, iframe{
 .detail-content-intro .info-host .host span{
   position: absolute;
   top: 25.5%;
-  right: 9%;
+  right: 10.5%;
 }
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host .host .host-name h2{
@@ -170,18 +131,177 @@ img, iframe{
 
 .container-detail .detail-content .detail-content-two
 .detail-content-info .map .image-map{
-  width: 600px;
+  width: 490px;
   height: 188px;
 }
 
 .container-detail .detail-content .detail-content-two
 .detail-content-info .type-other .type-other-img .type-other-img-item{
-  width: 150px;
+  width: 110px;
   height: 80px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img .type-other-img-item img{
+  border-radius: 10px;
 }
 
 .container-detail .detail-content .detail-content-two
 .detail-content-info .type-other .type-other-img{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item{
+  display: grid;
+}
+
+.container-detail .detail-content .detail-content-third
+.title-rate h2{
+  font-size: 48px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  column-gap: 10px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .rate-item-image{
+  width: 80px;
+  height: 75px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name{
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate:nth-child(n+1){
+  padding-top: 25px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name h2{
+  font-family: Actor;
+  font-size: 32px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .customer-name svg{
+  width: 25px;
+  height: 25px;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .rate-date p{
+  font-size: 12px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-second {
+  padding-top: 10px;
+  font-family: Actor;
+  font-size: 20px;
+}
+
+.container-detail .detail-content .detail-content-four,
+.container-detail .detail-content .detail-content-third
+{
+  border-radius: 20px;
+  box-shadow: 0px 0px 7px #909090;
+  padding: 20px 25px 20px 25px;
+  margin-top: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-title h3{
+  font-family: Actor;
+  font-size: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type{
+  border-radius: 20px;
+  border: 1px solid #D9D9D9;
+}
+
+.detail-card-price-type-first{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type input{
+  border: none;
+  background-color: #F36B08;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type span{
+  font-size: 17px;
+  font-family: Actor;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .detail-card-price-type {
+  margin-bottom: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price h3{
+  font-family: Actor;
+  font-size: 24px;
+  padding-bottom: 15px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price h4{
+  font-family: Actor;
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final{
+  display: grid;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final .price-final-pay,
+.container-detail .detail-content .detail-content-four
+.detail-card-price .info-price .price-final .total-vat{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .price-button{
+  padding-top: 30px;
+}
+
+.container-detail .detail-content .detail-content-four
+.detail-card-price .price-button button{
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 25px;
+  border: none;
+  background-color: #24E589;
+  color: #FFFFFF;
+  font-size: 36px;
+  font-family: Actor;
 }
