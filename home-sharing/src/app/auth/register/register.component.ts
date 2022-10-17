@@ -1,22 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  AbstractControl,
-  AsyncValidatorFn,
-  FormArray,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  Validators
-} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {RegisterResponse, RegisterService} from "./register.service";
 import {Router} from "@angular/router";
-import {Observable, Subject, timer} from "rxjs";
-import {filter, map, startWith, switchMap, take, tap} from "rxjs/operators";
+import {Observable, timer} from "rxjs";
+import {map, switchMap} from "rxjs/operators";
+import {DatePipe} from "@angular/common";
+import {AuthService} from "../auth.service";
+import * as api from "../../constant/api.constant"
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -24,7 +19,7 @@ export class RegisterComponent implements OnInit {
   formRegister: FormGroup
   roleOptions = ['Người thuê', 'Chủ hộ']
 
-  constructor(private registerService: RegisterService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
   }
 
   get registerForm() {
@@ -69,20 +64,20 @@ export class RegisterComponent implements OnInit {
       },
       {
         validators: [
-          this.registerService.MatchPassword('passWord', 'confirmPassword'),
-          this.registerService.checkDob('dob'),
+          this.authService.MatchPassword('passWord', 'confirmPassword'),
+          this.authService.checkDob('dob'),
         ]
       }
     )
-    this.formRegister.controls['email'].setValidators(this.validateUserNameFromApi(this.registerService))
-
+    this.formRegister.controls['email'].setValidators(this.validateUserNameFromApi())
   }
 
-  validateUserNameFromApi = (api: RegisterService) => {
+
+  validateUserNameFromApi = () => {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return timer(300).pipe(
         switchMap(() =>
-          api.checkEmailExist(control.value).pipe(
+          this.authService.checkEmailExist(control.value).pipe(
             map((isValid) => {
               if (isValid) {
                 return null;
@@ -108,7 +103,7 @@ export class RegisterComponent implements OnInit {
     const dob = this.formRegister.get('dob').value
     const fullName = this.formRegister.get('fullName').value
     // console.log(username+' '+password+' '+address+' '+email+' '+role+' '+dob)
-    let registerObservable: Observable<RegisterResponse> = this.registerService.register(username, password, mobile, address, email, role, dob, fullName)
+    let registerObservable: Observable<RegisterResponse> = this.authService.register(username, password, mobile, address, email, role, dob, fullName)
     registerObservable.subscribe({
       next: responseData => {
         console.log(responseData)
