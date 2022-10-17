@@ -1,7 +1,7 @@
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {NgModule} from "@angular/core";
 import {PostEditComponent} from "./posts/post-edit/post-edit.component";
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 
 @NgModule({
   providers: [ PostEditComponent,{
