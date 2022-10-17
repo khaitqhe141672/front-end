@@ -1,0 +1,187 @@
+
+h1, h2, h3, h4, h5, h6, p, span, ul, li, hr {
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  list-style: none;
+}
+
+img, iframe{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container-detail {
+  max-width: 1230px;
+  margin: auto;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.container-detail .title h2 {
+  font-size: 48px;
+  font-family: 'Abhaya Libre';
+}
+
+.container-detail .title p {
+  font-family: 'Actor';
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.container-detail .title p svg {
+  width: 20px;
+  height: 20px;
+}
+
+.container-detail .title .star_detail {
+  position: absolute;
+  top: 12%;
+  left: 34%;
+}
+
+.container-detail .detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 20px;
+  column-gap: 20px;
+}
+
+.container-detail .detail-content .detail-content-one .detail-card-img {
+  display: grid;
+  row-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-img .detail-card-img-first {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one .detail-card-img
+.detail-card-img-first .detail-card-img-item-childs {
+  display: grid;
+  row-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-img .detail-card-img-second {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  column-gap: 5px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-price{
+  border: 1px solid #000000;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-price .detail-card-price-type{
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  column-gap: 15px;
+}
+
+
+.container-detail .detail-content .detail-content-one
+.detail-card-price .detail-card-price-type .detail-card-price-type-first{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-price .detail-card-price-type .detail-card-price-type-first .detail-card-price-type-first-child{
+  display: grid;
+}
+
+.container-detail .detail-content .detail-content-one
+.detail-card-price .detail-card-price-type .detail-card-price-type-second button{
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+  background-color: #24E589;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.container-detail .detail-content .detail-content-two .detail-content-intro{
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  column-gap: 10px;
+}
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities,
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host,
+.container-detail .detail-content .detail-content-two
+.detail-content-info{
+  border-radius: 20px;
+  box-shadow: 0px 0px 7px #909090;
+  padding: 10px 15px 10px 15px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities .utility-content ul{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .utilities .utility-content ul li{
+  line-height: 40px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host{
+  display: grid;
+  grid-template-columns: 70px 1fr;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host span{
+  position: absolute;
+  top: 25.5%;
+  right: 9%;
+}
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host .host-name h2{
+  font-family: 'actor';
+  font-size: 28px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-intro .info-host .host span svg{
+  width: 20px;
+  height: 20px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .map .image-map{
+  width: 600px;
+  height: 188px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img .type-other-img-item{
+  width: 150px;
+  height: 80px;
+}
+
+.container-detail .detail-content .detail-content-two
+.detail-content-info .type-other .type-other-img{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
