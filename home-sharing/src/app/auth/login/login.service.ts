@@ -35,7 +35,6 @@ export class LoginService{
       const user = new User(userID,username,role,token)
       this.user.next(user)
       localStorage.setItem('userData',JSON.stringify(user))
-
     }
     private handleError(errorResponse:HttpErrorResponse){
       let errorMessage = 'An unknown error occurred!'

@@ -1,9 +1,11 @@
 <section [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
-         class="vh-80 gradient-custom"
+         class="vh-100 gradient-custom"
 >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-end align-items-center h-100">
-      <div class="col-7"><img class="img-logo" src="assets/images/logo-trans.png"></div>
+      <div class="col-7">
+        <a href=""><img class="img-logo" src="assets/images/logo-trans.png"></a>
+      </div>
 
       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
 
@@ -184,21 +186,14 @@
                 </div>
               </div>
 
-
-
-
-              <p class="small mb-5 pb-lg-2"><a class="main-text-color" href="#!">Quên mật khẩu?</a></p>
-
               <button [disabled]="!formRegister.valid" class="btn text-white btn-lg px-5" style="cursor: pointer"
                       type="submit">Đăng Ký
               </button>
             </div>
-
             <div class="main-text-color">
-              <p class=" mb-0">Bạn chưa có tài khoản? <a class="main-text-color fw-bold" href="#!">Tạo tài khoản</a>
+              <p class="">Bạn đã có tài khoản? <a class="main-text-color fw-bold" href="#!">Vui lòng đăng nhập</a>
               </p>
             </div>
-
           </form>
         </div>
       </div>
