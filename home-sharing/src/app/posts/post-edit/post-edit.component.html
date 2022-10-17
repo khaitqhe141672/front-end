@@ -1,1 +1,163 @@
-<p>post-edit works!</p>
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col">
+      <form [formGroup]="formGroupPost" class="text-center">
+        <mat-stepper #stepper headerPosition="bottom">
+          <mat-step [stepControl]="formGroupPost">
+            <div>
+              <button mat-button matStepperNext>Tiếp</button>
+            </div>
+           <div class="container-fluid">
+             <div class="row">
+               <div class="col-6 ps-0">
+                 <ng-template matStepLabel>Tên HomeStay</ng-template>
+
+                 <mat-form-field appearance="outline">
+                   <mat-label>Nhập tên homestay</mat-label>
+
+
+                   <input formControlName="name" matInput placeholder="" required>
+
+
+                 </mat-form-field>
+               </div>
+
+               <div class="col-6" style="padding: 0px">
+                 <mat-form-field appearance="outline">
+                   <mat-label>Loại HomeStay</mat-label>
+                   <mat-select>
+                     <mat-option disabled selected>--Chọn--</mat-option>
+                     <mat-option *ngFor="let type of typeHomeStay" value="{{type}}">{{type}}</mat-option>
+                   </mat-select>
+                   <mat-hint align="end">Chọn duy nhất 1 kiểu</mat-hint>
+                 </mat-form-field>
+               </div>
+             </div>
+           </div>
+
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Địa chỉ</mat-label>
+
+
+                <input formControlName="description" matInput placeholder="" required>
+
+
+              </mat-form-field>
+            </div>
+
+
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Mô tả</mat-label>
+                <textarea rows="20" formControlName="description" matInput placeholder="" required>
+                </textarea>
+
+              </mat-form-field>
+            </div>
+          </mat-step>
+
+
+          <mat-step [stepControl]="formGroupPost">
+            <ng-template matStepLabel>Giá thuê và Dịch Vụ</ng-template>
+            <div>
+              <button mat-button matStepperPrevious>Quay lại</button>
+              <button mat-button matStepperNext>Tiếp</button>
+            </div>
+            <mat-form-field appearance="outline" style="width: 60%;">
+              <mat-label>Giá thuê</mat-label>
+              <input formControlName="priceHS" matInput placeholder="" required type="number">
+            </mat-form-field>
+            <h3 class="text-center">Thêm dịch vụ</h3>
+            <div formArrayName="servicePost" class="row d-flex justify-content-center align-self-center align-items-center" *ngFor="let s of ServicesPost.controls;let i = index" [formGroupName]="i">
+
+
+                <div class="col-4">
+                  <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>Tên dịch vụ</mat-label>
+                    <input formControlName="serviceName" matInput placeholder="" required>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-3 p-0">
+                  <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>Giá dịch vụ</mat-label>
+                    <input formControlName="servicePrice" matInput placeholder="" required>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-1 p-0">
+                  <div class="example-button-container">
+                    <button type="button" (click)="onAddService()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+            </div>
+          </mat-step>
+
+
+          <div class="img-uploader">
+            <mat-step>
+              <ng-template matStepLabel>
+                Chọn ảnh
+              </ng-template>
+              <div>
+                <button mat-button matStepperPrevious>Quay lại</button>
+                <button mat-button matStepperNext>Tiếp</button>
+              </div>
+              <div *ngFor="let progressInfo of progressInfos">
+                <span>{{ progressInfo.fileName }}</span>
+                <mat-toolbar class="progress-bar">
+                  <mat-progress-bar
+                    [value]="progressInfo.value"
+                    color="accent"
+                  ></mat-progress-bar>
+                  <span class="progress">{{ progressInfo.value }}%</span>
+                </mat-toolbar>
+              </div>
+              <mat-form-field style="width: 50%;"  appearance="outline">
+                <div>
+                  <mat-toolbar>
+                    <input [value]="'Select Images'" matInput/>
+                    <button
+                      (click)="uploadFiles()"
+                      [disabled]="!selectedFiles"
+                      color="primary"
+                      mat-flat-button
+                    >
+                      Upload
+                    </button>
+                  </mat-toolbar>
+
+                  <input
+                    (change)="selectFiles($event)"
+                    accept="image/*"
+                    id="fileInput"
+                    multiple name="fileInput"
+                    type="file"
+                  />
+                </div>
+              </mat-form-field>
+              <div class="img-preview">
+                <img *ngFor='let preview of previews' [src]="preview" class="preview">
+              </div>
+
+            </mat-step>
+
+          </div>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <div>
+              <button mat-button matStepperPrevious>Trở lại</button>
+              <button (click)="stepper.reset()" mat-button>Khôi phục</button>
+            </div>
+            You are now done.
+          </mat-step>
+        </mat-stepper>
+      </form>
+    </div>
+  </div>
+
+</div>

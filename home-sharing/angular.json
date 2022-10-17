@@ -55,7 +55,10 @@
               "src/custom-theme.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.js",
+              "src/app/posts/post-edit/post-edit.js"
+            ]
           },
           "configurations": {
             "production": {
