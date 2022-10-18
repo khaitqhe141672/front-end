@@ -1,28 +1,26 @@
 <div class="container">
   <div class="row d-flex justify-content-center align-items-center h-100">
     <div class="col">
+
       <form [formGroup]="formGroupPost" class="text-center">
-        <mat-stepper #stepper headerPosition="bottom">
+        <mat-stepper #stepper headerPosition="bottom" >
           <mat-step [stepControl]="formGroupPost">
             <div>
               <button mat-button matStepperNext>Tiếp</button>
             </div>
            <div class="container-fluid">
-             <div class="row">
-               <div class="col-6 ps-0">
-                 <ng-template matStepLabel>Tên HomeStay</ng-template>
+             <div class="row p-0">
+               <div class="text-start ps-0" style="width: 100%"><h2 class="m-0">Thông tin Homestay</h2></div>
+               <div class="col-4 ps-0">
+                 <ng-template matStepLabel>Giới thiệu</ng-template>
 
                  <mat-form-field appearance="outline">
                    <mat-label>Nhập tên homestay</mat-label>
-
-
-                   <input formControlName="name" matInput placeholder="" required>
-
-
+                   <input formControlName="name" matInput placeholder="" >
                  </mat-form-field>
                </div>
 
-               <div class="col-6" style="padding: 0px">
+               <div class="col-4">
                  <mat-form-field appearance="outline">
                    <mat-label>Loại HomeStay</mat-label>
                    <mat-select>
@@ -32,27 +30,55 @@
                    <mat-hint align="end">Chọn duy nhất 1 kiểu</mat-hint>
                  </mat-form-field>
                </div>
+               <div class="col-4 pe-0" >
+                 <mat-form-field appearance="outline">
+                   <mat-label>Giá cho thuê</mat-label>
+                   <input type="number" formControlName="priceHS" matInput placeholder="" >
+                   <mat-hint align="end">Vui lòng chỉ nhập số tiền đơn vị VND</mat-hint>
+                 </mat-form-field>
+               </div>
              </div>
            </div>
 
             <div>
               <mat-form-field appearance="outline">
                 <mat-label>Địa chỉ</mat-label>
-
-
-                <input formControlName="description" matInput placeholder="" required>
-
-
+                <input formControlName="address" matInput placeholder="" >
               </mat-form-field>
             </div>
 
 
+
+            <div class="row ">
+              <div class="text-start" style="width: 100%"><h2 class="m-0">Chi tiết phòng</h2></div>
+              <div style="width: 100%" class="pe-0 row d-flex justify-content-start align-self-start align-items-center">
+
+                  <div class="col-4 pe-0">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nhập số giường</mat-label>
+                      <input type="number" formControlName="description" matInput placeholder="" >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4 pe-0">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nhập số phòng ngủ</mat-label>
+                      <input type="number" formControlName="description" matInput placeholder="" >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4 pe-0">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nhập số phòng tắm</mat-label>
+                      <input type="number" formControlName="description" matInput placeholder="" >
+                    </mat-form-field>
+                  </div>
+              </div>
+            </div>
+
             <div>
               <mat-form-field appearance="outline">
                 <mat-label>Mô tả</mat-label>
-                <textarea rows="20" formControlName="description" matInput placeholder="" required>
+                <textarea rows="20" formControlName="description" matInput placeholder="" >
                 </textarea>
-
               </mat-form-field>
             </div>
           </mat-step>
@@ -64,35 +90,63 @@
               <button mat-button matStepperPrevious>Quay lại</button>
               <button mat-button matStepperNext>Tiếp</button>
             </div>
-            <mat-form-field appearance="outline" style="width: 60%;">
-              <mat-label>Giá thuê</mat-label>
-              <input formControlName="priceHS" matInput placeholder="" required type="number">
-            </mat-form-field>
-            <h3 class="text-center">Thêm dịch vụ</h3>
-            <div formArrayName="servicePost" class="row d-flex justify-content-center align-self-center align-items-center" *ngFor="let s of ServicesPost.controls;let i = index" [formGroupName]="i">
+<!--            <div class="row d-flex justify-content-center">-->
+<!--              <div class="col-5">-->
+<!--                <div class="d-flex justify-content-start ">-->
+<!--                  <div class="align-self-center">Giá cho thuê</div>-->
+<!--                  <div class="align-self-center">-->
+<!--                    <mat-form-field appearance="outline" style="width: 60%;">-->
+<!--                      <mat-label>Nhập giá</mat-label>-->
+<!--                      <input formControlName="priceHS" matInput placeholder="" type="number">-->
+<!--                    </mat-form-field>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div class="row mt-4 d-flex justify-content-center align-self-start">
+              <div class="col-6">
+                <div class="row  ">
+                  <div class="text-start p-0 d-flex justify-content-start align-items-end">
+                    <h2>Thêm dịch vụ</h2>
+                  </div>
+                  <div formArrayName="servicePost" *ngFor="let s of ServicesPost.controls;let i = index" >
+                    <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
+                      <div class="col-7 p-0">
+                        <mat-form-field style="width: 100%" appearance="outline">
+                          <mat-label>Tên dịch vụ {{i+1}}</mat-label>
+                          <input formControlName="serviceName" matInput placeholder="" >
+                        </mat-form-field>
+                      </div>
 
+                      <div class="col-3 pe-0">
+                        <mat-form-field style="width: 100%" appearance="outline">
+                          <mat-label>Giá dịch vụ</mat-label>
+                          <input type="number" formControlName="servicePrice" matInput placeholder="" >
+                        </mat-form-field>
+                      </div>
 
-                <div class="col-4">
-                  <mat-form-field style="width: 100%" appearance="outline">
-                    <mat-label>Tên dịch vụ</mat-label>
-                    <input formControlName="serviceName" matInput placeholder="" required>
-                  </mat-form-field>
+                      <div class="col-2  align-self-center">
+                        <div class="example-button-container">
+                          <button type="button" (click)="onDeleteService(i)" mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="!isServicePost" class="text-start p-0 d-flex justify-content-start align-items-end"><span style="color: red">Cần ích nhất một dịch vụ</span></div>
+
                 </div>
-
-                <div class="col-3 p-0">
-                  <mat-form-field style="width: 100%" appearance="outline">
-                    <mat-label>Giá dịch vụ</mat-label>
-                    <input formControlName="servicePrice" matInput placeholder="" required>
-                  </mat-form-field>
-                </div>
-
-                <div class="col-1 p-0">
+                <div class="col">
                   <div class="example-button-container">
                     <button type="button" (click)="onAddService()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
                 </div>
+              </div>
 
             </div>
           </mat-step>
