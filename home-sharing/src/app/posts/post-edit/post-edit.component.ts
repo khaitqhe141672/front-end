@@ -72,7 +72,7 @@ export class PostEditComponent implements OnInit {
   }
 
   onDeleteService(i:number){
-    
+
     if(this.ServicesPost.length<=1){
       this.isServicePost = false
       return
