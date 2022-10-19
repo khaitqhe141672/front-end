@@ -33,6 +33,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { ProfileComponent } from './profile/profile.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { ProfileComponent } from './profile/profile.component';
         MatToolbarModule,
         MatProgressBarModule,
         MatSelectModule,
-        MatIconModule
+        MatIconModule,
+        MatMenuModule,
+      NgbPaginationModule, NgbAlertModule, NgbModule
     ],
   providers: [DatePipe,AuthInterceptorService],
   bootstrap: [AppComponent]
