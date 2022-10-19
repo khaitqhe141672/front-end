@@ -20,6 +20,19 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import {CoreModule} from "./core.module";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,18 +48,30 @@ import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
     PostListComponent,
     PostDetailComponent,
     PostEditComponent,
+    ProfileComponent
 
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    CoreModule
-  ],
-  providers: [DatePipe],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        CoreModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatIconModule
+    ],
+  providers: [DatePipe,AuthInterceptorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

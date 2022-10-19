@@ -1,0 +1,80 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.card{
+  background: rgba(247, 236, 236, 0.8);
+}
+/*img upload*/
+.progress-bar {
+  padding: 0;
+}
+
+.progress {
+  width: 50px;
+}
+
+.img-uploader.mat-input-element {
+  font-size: medium;
+  font-weight: 200;
+}
+
+#fileInput {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.img-uploader.mat-toolbar-single-row {
+  height: auto !important;
+  background: transparent;
+  padding: 0;
+}
+
+.img-uploader.mat-toolbar-single-row button {
+  width: 100px;
+}
+
+.img-uploader.mat-form-field {
+  width: 100%;
+}
+
+.img-uploader.message {
+  background-color: #FFFFFF;
+  color: #333;
+  border: #aaa solid 1px;
+  border-radius: 14px;
+}
+
+.img-uploader.preview {
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+.img-uploader.list-card {
+  margin-top: 20px;
+}
+
+.img-uploader.list-item {
+  margin-bottom: 20px;
+}
+
+/*end img upload*/
+
+/*bg-img-carousel*/
+.div-img-carousel{
+  width: 10em;
+  height: 57em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 14px;
+}
