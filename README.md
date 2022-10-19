@@ -106,7 +106,7 @@ npm install font-awesome --save
 
 PoperJS
 ```bash
-npm install @popperjs/core
+npm install --save popper.js angular-popper
 ```
 - Add to angular.json/scripts
 ```bash
