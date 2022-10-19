@@ -30,8 +30,8 @@
   z-index: 10;
   opacity: 0;
   height: 100%;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
 }
 
 .img-uploader.mat-toolbar-single-row {
@@ -77,4 +77,32 @@
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: 14px;
+}
+.div-img-post-1,.div-img-post-2,.div-img-post-3,.div-img-post-4,.div-img-post-5{
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.div-img-post-1{
+  width: 400px;
+  height: 254px;
+  border-top-left-radius: 24px;
+}
+.div-img-post-2{
+  width: 200px;
+  height: 125px;
+  border-top-right-radius: 24px;
+}
+.div-img-post-3{
+  width: 200px;
+  height: 125px;
+}
+.div-img-post-4{
+  width: 200px;
+  height: 250px;
+  border-bottom-left-radius: 24px;
+}
+.div-img-post-5{
+  width: 400px;
+  height: 250px;
+  border-bottom-right-radius: 24px;
 }

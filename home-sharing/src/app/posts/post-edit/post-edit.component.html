@@ -1,35 +1,41 @@
 <div class="container">
-  <div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-6">
+  <div class="row d-flex">
+    <div class="col-6 mt-5">
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img  src="assets/images/bg-create-post/b1.jpg" class="d-block w-100 div-img-carousel" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="assets/images/bg-create-post/b2.jpg" class="d-block w-100 div-img-carousel" alt="...">
+          <img src="assets/images/bg-create-post/b4.jpg" class="d-block w-100 div-img-carousel" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="assets/images/bg-create-post/b3.jpg" class="d-block w-100 div-img-carousel" alt="...">
+          <img src="assets/images/bg-create-post/b2.jpg" class="d-block w-100 div-img-carousel" alt="...">
         </div>
       </div>
+    </div>
+    </div>
 
-    </div>
-    </div>
     <div class="col-6 d-flex align-self-start">
-
       <form [formGroup]="formGroupPost" class="text-center">
         <mat-stepper #stepper headerPosition="bottom" >
           <mat-step [stepControl]="formGroupPost">
             <div>
-              <button mat-button matStepperNext>Tiếp</button>
+              <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+                Tiếp theo
+                <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
+              </button>
             </div>
+
            <div class="container-fluid">
              <div class="row p-0">
-               <div class="text-start ps-0" style="width: 100%"><h2 class="m-0">Thông tin Homestay</h2></div>
+
+               <div class="text-start ps-0" style="width: 100%">
+                 <h2 class="m-0">Thông tin Homestay</h2>
+               </div>
+
                <div class="col-4 ps-0">
                  <ng-template matStepLabel>Giới thiệu</ng-template>
-
                  <mat-form-field appearance="outline">
                    <mat-label>Nhập tên homestay</mat-label>
                    <input formControlName="name" matInput placeholder="" >
@@ -46,6 +52,7 @@
                    <mat-hint align="end">Chọn duy nhất 1 kiểu</mat-hint>
                  </mat-form-field>
                </div>
+
                <div class="col-4 pe-0" >
                  <mat-form-field appearance="outline">
                    <mat-label>Giá cho thuê</mat-label>
@@ -53,6 +60,7 @@
                    <mat-hint align="end">Vui lòng chỉ nhập số tiền đơn vị VND</mat-hint>
                  </mat-form-field>
                </div>
+
              </div>
            </div>
 
@@ -62,8 +70,6 @@
                 <input formControlName="address" matInput placeholder="" >
               </mat-form-field>
             </div>
-
-
 
             <div class="row ">
               <div class="text-start" style="width: 100%"><h2 class="m-0">Chi tiết phòng</h2></div>
@@ -75,18 +81,21 @@
                       <input type="number" formControlName="description" matInput placeholder="" >
                     </mat-form-field>
                   </div>
+
                   <div class="col-4 pe-0">
                     <mat-form-field appearance="outline">
                       <mat-label>Nhập số phòng ngủ</mat-label>
                       <input type="number" formControlName="description" matInput placeholder="" >
                     </mat-form-field>
                   </div>
+
                   <div class="col-4 pe-0">
                     <mat-form-field appearance="outline">
                       <mat-label>Nhập số phòng tắm</mat-label>
                       <input type="number" formControlName="description" matInput placeholder="" >
                     </mat-form-field>
                   </div>
+
               </div>
             </div>
 
@@ -102,31 +111,30 @@
 
           <mat-step [stepControl]="formGroupPost">
             <ng-template matStepLabel>Giá thuê và Dịch Vụ</ng-template>
+
             <div>
-              <button mat-button matStepperPrevious>Quay lại</button>
-              <button mat-button matStepperNext>Tiếp</button>
+              <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+                <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
+                Quay lại
+              </button>
+
+              <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+                Tiếp theo
+                <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
+              </button>
             </div>
-<!--            <div class="row d-flex justify-content-center">-->
-<!--              <div class="col-5">-->
-<!--                <div class="d-flex justify-content-start ">-->
-<!--                  <div class="align-self-center">Giá cho thuê</div>-->
-<!--                  <div class="align-self-center">-->
-<!--                    <mat-form-field appearance="outline" style="width: 60%;">-->
-<!--                      <mat-label>Nhập giá</mat-label>-->
-<!--                      <input formControlName="priceHS" matInput placeholder="" type="number">-->
-<!--                    </mat-form-field>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+
             <div class="row mt-4 d-flex justify-content-center align-self-start">
               <div class="col-6">
                 <div class="row  ">
+
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
                     <h2>Thêm dịch vụ</h2>
                   </div>
+
                   <div formArrayName="servicePost" *ngFor="let s of ServicesPost.controls;let i = index" >
                     <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
+
                       <div class="col-7 p-0">
                         <mat-form-field style="width: 100%" appearance="outline">
                           <mat-label>Tên dịch vụ {{i+1}}</mat-label>
@@ -148,13 +156,12 @@
                           </button>
                         </div>
                       </div>
+
                     </div>
-
                   </div>
-
                   <div *ngIf="!isServicePost" class="text-start p-0 d-flex justify-content-start align-items-end"><span style="color: red">Cần ích nhất một dịch vụ</span></div>
-
                 </div>
+
                 <div class="col">
                   <div class="example-button-container">
                     <button type="button" (click)="onAddService()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
@@ -162,8 +169,8 @@
                     </button>
                   </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </mat-step>
 
@@ -174,8 +181,15 @@
                 Chọn ảnh
               </ng-template>
               <div>
-                <button mat-button matStepperPrevious>Quay lại</button>
-                <button mat-button matStepperNext>Tiếp</button>
+                <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+                  <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
+                  Quay lại
+                </button>
+
+                <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+                  Tiếp theo
+                  <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
+                </button>
               </div>
               <div *ngFor="let progressInfo of progressInfos">
                 <span>{{ progressInfo.fileName }}</span>
@@ -187,17 +201,14 @@
                   <span class="progress">{{ progressInfo.value }}%</span>
                 </mat-toolbar>
               </div>
-              <mat-form-field style="width: 50%;"  appearance="outline">
+              <mat-form-field style="width: 50%;"  appearance="none">
                 <div>
                   <mat-toolbar>
-                    <input [value]="'Select Images'" matInput/>
-                    <button
-                      (click)="uploadFiles()"
-                      [disabled]="!selectedFiles"
-                      color="primary"
-                      mat-flat-button
-                    >
-                      Upload
+                    <input style="caret-color: transparent;font-size: 1rem" [value]="'Chọn ảnh'" matInput/>
+                    <button class="p-0" (click)="uploadFiles()" [disabled]="!selectedFiles"
+                            color="primary" mat-flat-button>
+                      <span class="btn-label"><i class="fa fa-upload"></i></span>
+                      Tải lên
                     </button>
                   </mat-toolbar>
 
@@ -210,18 +221,47 @@
                   />
                 </div>
               </mat-form-field>
-              <div class="img-preview">
-                <img *ngFor='let preview of previews' [src]="preview" class="preview">
+
+              <div *ngIf="previews.length>0">
+              <div class="row">
+                <div class="col-8">
+                  <img [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" class="d-block  div-img-post-1" alt="...">
+                </div>
+                <div class="col-4 mb-1">
+                  <div class="row">
+                    <div class="col-12 p-0 ps-2 mb-1">
+                      <img [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" class="d-block div-img-post-2" alt="...">
+                    </div>
+                    <div class="col-12 p-0 ps-2">
+                      <img [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" class="d-block  div-img-post-3" alt="...">
+                    </div>
+                  </div>
+                </div>
               </div>
 
+              <div class="row">
+                <div class="col-4">
+                  <img [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" class="d-block  div-img-post-4" alt="...">
+                </div>
+                <div class="col-8">
+                  <img [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" class="d-block div-img-post-5" alt="...">
+                </div>
+              </div>
+              </div>
             </mat-step>
-
           </div>
           <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
+            <ng-template matStepLabel>Hoàn thành</ng-template>
             <div>
-              <button mat-button matStepperPrevious>Trở lại</button>
-              <button (click)="stepper.reset()" mat-button>Khôi phục</button>
+              <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+                <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
+                Quay lại
+              </button>
+
+              <button type="button" matStepperNext class=" btn btn-outline-success">
+                Hoàn thành
+                <span class="btn-label"><i class="fa fa-check"></i></span>
+              </button>
             </div>
             You are now done.
           </mat-step>
