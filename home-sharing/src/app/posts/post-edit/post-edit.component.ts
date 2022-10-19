@@ -79,7 +79,16 @@ export class PostEditComponent implements OnInit {
     }
     this.ServicesPost.removeAt(i)
   }
+  moveImgUp(index: number) {
+    console.log('Move Up index: '+index)
 
+    // if(index<=0){
+    //   return
+    // }
+    // let previousIndex:number = index - 1;
+    // [this.previews[index], this.previews[previousIndex]] = [this.previews[index], this.previews[previousIndex]];
+    // console.log('Move Up')
+  }
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];
@@ -141,6 +150,7 @@ export class PostEditComponent implements OnInit {
       }
     }
   }
+
 
 
 }
