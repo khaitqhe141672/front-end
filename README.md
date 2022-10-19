@@ -103,3 +103,13 @@ Font-Awsome
 npm install font-awesome --save
 ```
 - @import "~font-awesome/css/font-awesome.css";
+
+PoperJS
+```bash
+npm install @popperjs/core
+```
+- Add to angular.json/scripts
+```bash
+  "/node_modules/@popperjs/core/dist/umd/popper.min.js",
+  "/node_modules/bootstrap/dist/js/bootstrap.min.js"
+```
