@@ -69,3 +69,12 @@
 }
 
 /*end img upload*/
+
+/*bg-img-carousel*/
+.div-img-carousel{
+  width: 10em;
+  height: 57em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 14px;
+}

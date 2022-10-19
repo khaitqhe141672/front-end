@@ -32,6 +32,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatIconModule} from "@angular/material/icon";
     PostsComponent,
     PostListComponent,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    ProfileComponent
 
   ],
     imports: [
