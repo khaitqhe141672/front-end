@@ -1,0 +1,18 @@
+.container-search{
+  max-width: 1230px;
+  margin: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  column-gap: 20px;
+  padding-top: 30px;
+}
+
+img{
+  width: 100%;
+}
+
+.container-search .menu-search .map{
+  width: 350px;
+  border-radius: 15px;
+}

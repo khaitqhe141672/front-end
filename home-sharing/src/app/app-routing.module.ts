@@ -8,6 +8,7 @@ import {PostsComponent} from "./posts/posts.component";
 import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
 import {PostEditComponent} from "./posts/post-edit/post-edit.component";
 import {PostListComponent} from "./posts/post-list/post-list.component";
+import {SearchComponent} from "./search/search.component";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -29,7 +30,8 @@ const appRoute: Routes = [
       {path: 'post-edit',component: PostEditComponent},
       {path: 'post-list',component: PostListComponent}
 
-    ]}
+    ]},
+  {path: 'search', component: SearchComponent}
 ]
 
 @NgModule({
