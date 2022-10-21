@@ -1,13 +1,13 @@
 <div class="container-detail">
   <div class="title">
-    <h2>Village Home Stay</h2>
+    <h2>{{postDetail.title}}</h2>
     <p>
       <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
           fill="#F36B08"/>
       </svg>
-      4.5 | 2 phòng ngủ - 4 giường - 2 vệ sinh
+      phần này chưa có (rate *) |{{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường - {{postDetail.numberOfBathrooms}} vệ sinh
     </p>
     <span class="star_detail">
       <svg width="36" height="35" viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,23 +38,23 @@
       <div class="detail-card-img">
         <div class="detail-card-img-first">
           <div class="detail-card-img-item" style="width: 450px; height: 345px;">
-            <img src="assets/images/image%201.png" alt="" style="border-top-left-radius: 28px;">
+            <img src="{{postDetail.imageDtoList[0].imageUrl}}" alt="" style="border-top-left-radius: 28px;">
           </div>
           <div class="detail-card-img-item-childs">
             <div class="detail-card-img-item-child" style="width: 235px; height: 170px;">
-              <img src="assets/images/image%202.png" alt="" style="border-top-right-radius: 28px;">
+              <img src="{{postDetail.imageDtoList[1].imageUrl}}" alt="" style="border-top-right-radius: 28px;">
             </div>
             <div class="detail-card-img-item-child" style="width: 235px; height: 170px;">
-              <img src="assets/images/image%203.png" alt="">
+              <img src="{{postDetail.imageDtoList[2].imageUrl}}" alt="">
             </div>
           </div>
         </div>
         <div class="detail-card-img-second">
           <div class="detail-card-img-item" style="width: 240px; height: 335px;">
-            <img src="assets/images/image%205.png" alt="" style="border-bottom-left-radius: 28px;">
+            <img src="{{postDetail.imageDtoList[3].imageUrl}}" alt="" style="border-bottom-left-radius: 28px;">
           </div>
           <div class="detail-card-img-item" style="width: 445px; height: 335px;">
-            <img src="assets/images/image%204.png" alt="" style="border-bottom-right-radius: 28px;">
+            <img src="{{postDetail.imageDtoList[4].imageUrl}}" alt="" style="border-bottom-right-radius: 28px;">
           </div>
         </div>
       </div>
@@ -114,11 +114,11 @@
         <div class="info-host">
           <div class="host">
             <div class="host-image" style="width: 55px; height: 55px;">
-              <img src="assets/images/image%206.png" alt="">
+              <img src="{{postDetail.imageUrlHost}}" alt="">
             </div>
             <div class="host-name">
-              <h2>Chủ nhà San</h2>
-              <p style="font-size: 11px;">Tham gia vào ngày 5/9/2022</p>
+              <h2>Chủ nhà {{postDetail.hostName}}</h2>
+              <p style="font-size: 11px;">Tham gia vào ngày {{postDetail.createDate}}</p>
             </div>
             <span>
               <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@
             </span>
           </div>
           <div class="host-intro">
-            <p style="font-size: 14px; font-family: 'actor'; padding-top: 5px;">San là chủ nhà tích cực, luôn mang lại
+            <p style="font-size: 14px; font-family: 'actor'; padding-top: 5px;">{{postDetail.hostName}} là chủ nhà tích cực, luôn mang lại
               hài lòng cho khác hàng.</p>
           </div>
         </div>
@@ -144,7 +144,7 @@
               d="M6.25001 19.7305H9.375V13.4998H15.625V19.7305H18.75V10.3845L12.5 5.71142L6.25001 10.3845V19.7305ZM6.25001 21.8074C5.67709 21.8074 5.18681 21.6042 4.77917 21.1979C4.37084 20.7908 4.16667 20.3017 4.16667 19.7305V10.3845C4.16667 10.0556 4.24063 9.74408 4.38855 9.44985C4.53577 9.15562 4.73959 8.91332 5.00001 8.72293L11.25 4.0499C11.441 3.91144 11.6406 3.8076 11.849 3.73837C12.0573 3.66914 12.2743 3.63452 12.5 3.63452C12.7257 3.63452 12.9427 3.66914 13.151 3.73837C13.3594 3.8076 13.559 3.91144 13.75 4.0499L20 8.72293C20.2604 8.91332 20.4646 9.15562 20.6125 9.44985C20.7597 9.74408 20.8333 10.0556 20.8333 10.3845V19.7305C20.8333 20.3017 20.6295 20.7908 20.2219 21.1979C19.8135 21.6042 19.3229 21.8074 18.75 21.8074H13.5417V15.5767H11.4583V21.8074H6.25001Z"
               fill="black"/>
           </svg>
-          <span>Ba vì, Hà Nội</span>
+          <span>{{postDetail.address}}, {{postDetail.districtDto.districtName}},{{postDetail.districtDto.provinceName}}</span>
         </div>
         <div class="mobile">
           <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,17 +152,11 @@
               d="M15.1964 13.4583C15.1964 13.2159 15.2792 12.9835 15.4266 12.8121C15.5739 12.6407 15.7738 12.5445 15.9821 12.5445H20.6964C20.9048 12.5445 21.1047 12.6407 21.252 12.8121C21.3994 12.9835 21.4821 13.2159 21.4821 13.4583C21.4821 13.7007 21.3994 13.9331 21.252 14.1045C21.1047 14.2759 20.9048 14.3721 20.6964 14.3721H15.9821C15.7738 14.3721 15.5739 14.2759 15.4266 14.1045C15.2792 13.9331 15.1964 13.7007 15.1964 13.4583ZM15.9821 17.1137C15.7738 17.1137 15.5739 17.2099 15.4266 17.3813C15.2792 17.5527 15.1964 17.7851 15.1964 18.0275C15.1964 18.2699 15.2792 18.5023 15.4266 18.6737C15.5739 18.845 15.7738 18.9413 15.9821 18.9413H20.6964C20.9048 18.9413 21.1047 18.845 21.252 18.6737C21.3994 18.5023 21.4821 18.2699 21.4821 18.0275C21.4821 17.7851 21.3994 17.5527 21.252 17.3813C21.1047 17.2099 20.9048 17.1137 20.6964 17.1137H15.9821ZM11.2679 13.4583C11.2679 13.943 11.1023 14.4079 10.8076 14.7507C10.5129 15.0934 10.1132 15.286 9.69643 15.286C9.27966 15.286 8.87996 15.0934 8.58526 14.7507C8.29056 14.4079 8.125 13.943 8.125 13.4583C8.125 12.9736 8.29056 12.5087 8.58526 12.1659C8.87996 11.8232 9.27966 11.6306 9.69643 11.6306C10.1132 11.6306 10.5129 11.8232 10.8076 12.1659C11.1023 12.5087 11.2679 12.9736 11.2679 13.4583ZM6.55357 17.5706C6.55357 17.207 6.67774 16.8584 6.89877 16.6013C7.11979 16.3442 7.41957 16.1998 7.73214 16.1998H11.6607C11.9733 16.1998 12.2731 16.3442 12.4941 16.6013C12.7151 16.8584 12.8393 17.207 12.8393 17.5706C12.8393 17.5706 12.8393 20.769 9.69643 20.769C6.55357 20.769 6.55357 17.5706 6.55357 17.5706ZM2.625 8.20374C2.625 7.41605 2.89404 6.66063 3.37292 6.10365C3.85181 5.54667 4.50132 5.23376 5.17857 5.23376H22.0714C22.7487 5.23376 23.3982 5.54667 23.8771 6.10365C24.356 6.66063 24.625 7.41605 24.625 8.20374V24.1959C24.625 24.5859 24.559 24.9721 24.4306 25.3325C24.3023 25.6928 24.1142 26.0202 23.8771 26.296C23.64 26.5718 23.3585 26.7905 23.0486 26.9398C22.7388 27.089 22.4068 27.1659 22.0714 27.1659H5.17857C4.84323 27.1659 4.51118 27.089 4.20136 26.9398C3.89155 26.7905 3.61004 26.5718 3.37292 26.296C3.1358 26.0202 2.94771 25.6928 2.81938 25.3325C2.69105 24.9721 2.625 24.5859 2.625 24.1959V8.20374ZM5.17857 7.06144C4.63643 7.06144 4.19643 7.57319 4.19643 8.20374V24.1959C4.19643 24.8264 4.63643 25.3382 5.17857 25.3382H22.0714C22.6136 25.3382 23.0536 24.8264 23.0536 24.1959V8.20374C23.0536 7.57319 22.6136 7.06144 22.0714 7.06144H5.17857Z"
               fill="black"/>
           </svg>
-          <span>0999999999</span>
+          <span>chưa có</span>
         </div>
         <hr>
         <div class="desription">
-          <p>Hãy để chuyến đi của quý khách có một khởi đầu tuyệt vời khi ở lại khách sạn này, nơi có Wi-Fi miễn phí
-            trong tất cả các phòng.
-            Nằm ở vị trí chiến lược tại Quận 1, cho phép quý khách lui tới và gần với các điểm thu hút và tham quan địa
-            phương.
-            Đừng rời đi trước khi ghé thăm Bảo tàng Chứng tích chiến tranh nổi tiếng. Chỗ nghỉ 3 sao này được trang bị
-            các
-            tiện nghi ngay trong khuôn viên để nâng cao chất lượng và niềm vui cho kỳ nghỉ của quý khách.</p>
+          <p>, {{postDetail.description}}</p>
         </div>
         <hr>
         <div class="map">
@@ -519,21 +513,21 @@
     <div class="detail-content-four" >
       <div class="detail-card-price">
         <div class="detail-card-price-title" style="padding-bottom: 30px;">
-          <h3>Giá phòng: <span style="padding-left: 25px;">1.000.000 VNĐ/đêm</span></h3>
+          <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price}} VND</span></h3>
         </div>
         <div class="detail-card-price-type">
           <div class="detail-card-price-type-first">
             <div class="detail-card-price-type-first-child" style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
               <span>Ngày nhận phòng</span>
-              <input id="dob" type="date">
+              <input id="date1" type="date">
             </div>
             <div class="detail-card-price-type-first-child" style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
               <span>Ngày trả phòng</span>
-              <input id="dob" type="date">
+              <input id="date2" type="date">
             </div>
             <div class="detail-card-price-type-first-child" style="padding: 10px 15px 10px 15px; text-align: center; display: grid;">
               <span>Số người</span>
-              <input id="dob" type="text" disabled>
+              <input id="date3" type="text" disabled>
             </div>
           </div>
         </div>
