@@ -9,6 +9,7 @@ import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
 import {PostEditComponent} from "./posts/post-edit/post-edit.component";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {PostResolverService} from "./posts/post-resolver.service";
+import {SearchComponent} from "./search/search.component";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
