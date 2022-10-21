@@ -16,11 +16,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
     $('.abc').owlCarousel({
       items: 1,
       animateOut: 'fadeOut',
       loop: true,
-      margin: 10,
       nav: true,
       navText: [`<div class='nav-btn prev-slide' style="position: absolute; top: 120px !important; left: 30px;">
               <svg width="51" height="65" viewBox="0 0 51 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,80 +36,80 @@ export class HomeComponent implements OnInit {
           </div>`],
     });
 
-    $('.container-home .slider .abc .owl-dots').css({'position': 'absolute', 'top': '290px', 'right' : '50%'});
-
-    $('.place-carousel').owlCarousel({
-      stagePadding: 50,
-      dots: false,
-      loop: true,
-      margin: 10,
-      nav: true,
-      navText: [`<div class='nav-btn prev-slide' style="position: absolute; top: 50px !important; left: 0px;">
-            <svg width="75" height="69" viewBox="0 0 75 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="37.3604" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
-            <path d="M43.2313 43.5L31.4895 34L43.2313 24.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>`,
-        `<div class='nav-btn next-slide' style="position: absolute; top: 50px !important; right: 0px;">
-            <svg width="76" height="69" viewBox="0 0 76 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="38.3025" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
-            <path d="M37.8805 24.8052L49.7344 34.1822L38.1061 43.804" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>`],
-      responsiveClass:true,
-      responsive:{
-        0:{
-          items:1,
-        },
-        600:{
-          items:3,
-        },
-        1000:{
-          items:4,
-        }
-      }
-    });
-
-    $('.top_room-carousel').owlCarousel({
-      stagePadding: 50,
-      dots: false,
-      loop: true,
-      margin: 10,
-      nav: true,
-      navText: [`<div class='nav-btn prev-slide' style="position: absolute; top: 50px !important; left: 0px;">
-            <svg width="75" height="69" viewBox="0 0 75 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="37.3604" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
-            <path d="M43.2313 43.5L31.4895 34L43.2313 24.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>`,
-        `<div class='nav-btn next-slide' style="position: absolute; top: 50px !important; right: 0px;">
-            <svg width="76" height="69" viewBox="0 0 76 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="38.3025" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
-            <path d="M37.8805 24.8052L49.7344 34.1822L38.1061 43.804" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>`],
-      responsiveClass:true,
-      responsive:{
-        0:{
-          items:1,
-        },
-        600:{
-          items:3,
-        },
-        1000:{
-          items:4,
-        }
-      }
-    });
-
-    $('.container-home .experience_place .owl-stage-outer').css({'max-width': '1100px', 'margin': 'auto'});
-    $('.container-home .experience_place .nav-btn svg').css({'width': '50px'});
-    $('.container-home .experience_place .owl-nav').css({'margin-top': '0'});
-    $('.container-home .experience_place .owl-item').css({'width': '265px', 'height': '229px'});
-    $('.container-home .top_room-carousel .owl-stage-outer').css({'max-width': '1100px', 'margin': 'auto'});
-    $('.container-home .top_room-carousel .nav-btn svg').css({'width': '50px'});
-    $('.container-home .top_room-carousel .owl-nav').css({'margin-top': '0'});
-    $('.container-home .top_room-carousel .owl-item').css({'width': '265px', 'height': '229px'});
+    // $('.container-home .slider .abc .owl-dots').css({'position': 'absolute', 'top': '290px', 'right' : '50%'});
+    //
+    // $('.place-carousel').owlCarousel({
+    //   stagePadding: 50,
+    //   dots: false,
+    //   loop: true,
+    //   margin: 10,
+    //   nav: true,
+    //   navText: [`<div class='nav-btn prev-slide' style="position: absolute; top: 50px !important; left: 0px;">
+    //         <svg width="75" height="69" viewBox="0 0 75 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <ellipse cx="37.3604" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
+    //         <path d="M43.2313 43.5L31.4895 34L43.2313 24.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //       </div>`,
+    //     `<div class='nav-btn next-slide' style="position: absolute; top: 50px !important; right: 0px;">
+    //         <svg width="76" height="69" viewBox="0 0 76 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <ellipse cx="38.3025" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
+    //         <path d="M37.8805 24.8052L49.7344 34.1822L38.1061 43.804" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //       </div>`],
+    //   responsiveClass:true,
+    //   responsive:{
+    //     0:{
+    //       items:1,
+    //     },
+    //     600:{
+    //       items:3,
+    //     },
+    //     1000:{
+    //       items:4,
+    //     }
+    //   }
+    // });
+    //
+    // $('.top_room-carousel').owlCarousel({
+    //   stagePadding: 50,
+    //   dots: false,
+    //   loop: true,
+    //   margin: 10,
+    //   nav: true,
+    //   navText: [`<div class='nav-btn prev-slide' style="position: absolute; top: 50px !important; left: 0px;">
+    //         <svg width="75" height="69" viewBox="0 0 75 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <ellipse cx="37.3604" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
+    //         <path d="M43.2313 43.5L31.4895 34L43.2313 24.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //       </div>`,
+    //     `<div class='nav-btn next-slide' style="position: absolute; top: 50px !important; right: 0px;">
+    //         <svg width="76" height="69" viewBox="0 0 76 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <ellipse cx="38.3025" cy="34.5" rx="37.3604" ry="34.5" fill="#F3F1F1"/>
+    //         <path d="M37.8805 24.8052L49.7344 34.1822L38.1061 43.804" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //       </div>`],
+    //   responsiveClass:true,
+    //   responsive:{
+    //     0:{
+    //       items:1,
+    //     },
+    //     600:{
+    //       items:3,
+    //     },
+    //     1000:{
+    //       items:4,
+    //     }
+    //   }
+    // });
+    //
+    // $('.container-home .experience_place .owl-stage-outer').css({'max-width': '1100px', 'margin': 'auto'});
+    // $('.container-home .experience_place .nav-btn svg').css({'width': '50px'});
+    // $('.container-home .experience_place .owl-nav').css({'margin-top': '0'});
+    // $('.container-home .experience_place .owl-item').css({'width': '265px', 'height': '229px'});
+    // $('.container-home .top_room-carousel .owl-stage-outer').css({'max-width': '1100px', 'margin': 'auto'});
+    // $('.container-home .top_room-carousel .nav-btn svg').css({'width': '50px'});
+    // $('.container-home .top_room-carousel .owl-nav').css({'margin-top': '0'});
+    // $('.container-home .top_room-carousel .owl-item').css({'width': '265px', 'height': '229px'});
   }
 
 }
