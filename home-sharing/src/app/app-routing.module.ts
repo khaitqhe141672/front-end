@@ -32,7 +32,8 @@ const appRoute: Routes = [
       {path: 'post-edit',component: PostEditComponent},
       {path: 'post-list',component: PostListComponent}
 
-    ]}
+    ]},
+  {path: 'search', component: SearchComponent}
 ]
 
 @NgModule({
