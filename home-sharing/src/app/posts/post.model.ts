@@ -10,6 +10,7 @@ export class Post {
   price: number
   createDate: string
   hostName: string
+  mobileHost: string
   imageUrlHost: string
   address: string
   description: string
@@ -22,6 +23,7 @@ export class Post {
   imageDtoList: ImageDtoList[]
   postUtilityDtoList: PostUtilityDtoList[]
   districtDto: DistrictDto
+  avgRate: number
   status: number
 }
 
