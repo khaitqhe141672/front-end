@@ -23,18 +23,6 @@ export class PostDetailComponent implements OnInit {
       console.log(this.id)
       console.log(this.postDetailService.postDetail)
       this.postDetail = this.postDetailService.postDetail
-      // this.dataStorage.fetchPostDetailData(this.id).subscribe(
-      //   responseData=>{
-      //     console.log(responseData)
-      //     this.postDetailResponse = responseData
-      //     console.log(this.postDetailResponse.object)
-      //     this.postDetail = (<Post>this.postDetailResponse.object)
-      //     console.log(this.postDetail.title)
-      //     this.postDetail.title = 'a'
-      //   }
-      // )
     })
-    // this.id = this.route.snapshot.paramMap.get('id')
-    // console.log('id='+this.id)
   }
 }
