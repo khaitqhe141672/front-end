@@ -4,6 +4,7 @@ import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
+declare var $: any;
 
 @Component({
   selector: 'app-post-edit',
@@ -150,7 +151,31 @@ export class PostEditComponent implements OnInit {
       }
     }
   }
+  ngAfterViewInit(){
 
+    // $(document).ready(function(){
+    //   $(document).on('click','.dropdown_swap',function(){
+    //     console.log("a");
+    //     $('.dropdown_swap').not(this).next().removeClass('show');
+    //     $(this).next().toggleClass('show');
+    //   });
+    //   $(document).on('click',function(e){
+    //     if(!$(e.target).closest('.dropdown_swap').length)
+    //       console.log("as")
+    //       $('.dropdown_swap').next().removeClass('show');
+    //   });
+    // });
+    $(document).ready(function(){
+      $(document).on('click','.dropbtn2',function(){
+        $('.dropbtn2').not(this).next().removeClass('show');
+        $(this).next().toggleClass('show');
+      });
+      $(document).on('click',function(e){
+        if(!$(e.target).closest('.dropbtn2').length)
+          $('.dropbtn2').next().removeClass('show');
+      });
+    });
+  }
 
 
 }
