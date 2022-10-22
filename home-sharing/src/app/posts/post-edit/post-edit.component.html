@@ -74,19 +74,19 @@
               </div>
               <div class="col-3">
                 <mat-form-field appearance="outline">
-                  <mat-label>Quận/Huyện</mat-label>
-                  <mat-select>
+                  <mat-label>Tỉnh/Thành Phố</mat-label>
+                  <mat-select  formControlName="province" (selectionChange)="onSelectedProvince($event)">
                     <mat-option>None</mat-option>
-                    <mat-option *ngFor="let district of districts" [value]="district">{{district}}</mat-option>
+                    <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <div class="col-3">
                 <mat-form-field appearance="outline">
-                  <mat-label>Tỉnh/Thành Phố</mat-label>
-                  <mat-select>
+                  <mat-label>Quận/Huyện</mat-label>
+                  <mat-select formControlName="district" (selectionChange)="onSelectedDistrict($event)">
                     <mat-option>None</mat-option>
-                    <mat-option *ngFor="let districts of districts" [value]="districts">{{districts}}</mat-option>
+                    <mat-option *ngFor="let district of districts" [value]="district.name">{{district.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -510,7 +510,12 @@
             </div>
             <div class="row">
               <div class="col">
-                <h2>Đây là title</h2>
+                <h2>Điều khoản dịch vụ</h2>
+              </div>
+              <div class="row">
+                <div class="text-start p-0 d-flex justify-content-start align-items-end">
+                  <h2>Thêm dịch vụ</h2>
+                </div>
               </div>
             </div>
           </mat-step>
