@@ -20,8 +20,6 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
       this.id = +params['id']
-      console.log(this.id)
-      console.log(this.postDetailService.postDetail)
       this.postDetail = this.postDetailService.postDetail
     })
   }

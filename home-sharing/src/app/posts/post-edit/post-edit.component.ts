@@ -3,7 +3,8 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
+
 declare var $: any;
 
 @Component({
@@ -31,6 +32,10 @@ export class PostEditComponent implements OnInit {
   previews: string[] = [];
   imageInfos?: Observable<any>;
   isServicePost = true
+
+  imgPositionChanged = new Subject<FileList>()
+  imgPreviewPositionChanged = new Subject<string[]>()
+
   constructor(private fb: FormBuilder, private postEditService: PostEditService) {
 
   }
@@ -72,24 +77,15 @@ export class PostEditComponent implements OnInit {
     this.isServicePost = true
   }
 
-  onDeleteService(i:number){
+  onDeleteService(i: number) {
 
-    if(this.ServicesPost.length<=1){
+    if (this.ServicesPost.length <= 1) {
       this.isServicePost = false
       return
     }
     this.ServicesPost.removeAt(i)
   }
-  moveImgUp(index: number) {
-    console.log('Move Up index: '+index)
 
-    // if(index<=0){
-    //   return
-    // }
-    // let previousIndex:number = index - 1;
-    // [this.previews[index], this.previews[previousIndex]] = [this.previews[index], this.previews[previousIndex]];
-    // console.log('Move Up')
-  }
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];
@@ -113,7 +109,7 @@ export class PostEditComponent implements OnInit {
       }
     }
     for (let i of this.previews) {
-      console.log('preview' + i)
+      // console.log('preview' + i)
     }
   }
 
@@ -151,31 +147,68 @@ export class PostEditComponent implements OnInit {
       }
     }
   }
-  ngAfterViewInit(){
 
-    // $(document).ready(function(){
-    //   $(document).on('click','.dropdown_swap',function(){
-    //     console.log("a");
-    //     $('.dropdown_swap').not(this).next().removeClass('show');
-    //     $(this).next().toggleClass('show');
-    //   });
-    //   $(document).on('click',function(e){
-    //     if(!$(e.target).closest('.dropdown_swap').length)
-    //       console.log("as")
-    //       $('.dropdown_swap').next().removeClass('show');
-    //   });
-    // });
-    $(document).ready(function(){
-      $(document).on('click','.dropbtn2',function(){
+  ngAfterViewInit() {
+    $(document).ready(function () {
+      $(document).on('click', '.dropbtn2', function () {
         $('.dropbtn2').not(this).next().removeClass('show');
         $(this).next().toggleClass('show');
       });
-      $(document).on('click',function(e){
-        if(!$(e.target).closest('.dropbtn2').length)
+      $(document).on('click', function (e) {
+        if (!$(e.target).closest('.dropbtn2').length)
           $('.dropbtn2').next().removeClass('show');
       });
     });
+    $('#img4').click(function () {
+      $('#fileInput2').trigger('click');
+    });
+
   }
 
 
+  // selectedFiles?: FileList;
+  // selectedFileNames: string[] = [];
+  // progressInfos: any[] = [];
+  // message: string[] = [];
+  // previews: string[] = [];
+  // imageInfos?: Observable<any>;
+  // isServicePost = true
+
+  onChangePositionImg(event, pos1: number, pos2: number) {
+    // console.log(this.previews[pos1]);
+    // console.log(this.previews[pos2]);
+    if (!this.previews[pos2]) return
+
+    [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
+    [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
+    [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
+
+    this.imgPreviewPositionChanged.next(this.previews.slice())
+    this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
+    // console.log(this.previews[pos1]);
+    // console.log(this.previews[pos2]);
+  }
+
+  onDeleteImg($event, position: number) {
+    // this.imgPreviewPositionChanged.next(this.previews.splice(position, 1)) xoa anh va day arr len
+    this.previews[position] = undefined
+    this.imgPreviewPositionChanged.next(this.previews.slice())
+
+  }
+
+
+  selectSingleFiles(event, position: number) {
+    this.selectedFiles = event.target.files
+    if (event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        console.log(e.target.result);
+        // this.previews.push(e.target.result);
+        this.previews[position] = e.target.result
+      };
+      reader.readAsDataURL(this.selectedFiles[0]);
+      this.selectedFileNames[position] = this.selectedFiles[0].name
+    }
+
+  }
 }

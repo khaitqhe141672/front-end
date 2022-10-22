@@ -7,7 +7,7 @@ import {PostDetailService} from "./post-detail/post-detail.service";
 import {Injectable} from "@angular/core";
 @Injectable({providedIn:'root'})
 export class PostResolverService implements  Resolve<ReponsePost>{
-  constructor(private dataStorage:DataStorageService,private postDetailService:PostDetailService,private route:ActivatedRoute) {
+  constructor(private dataStorage:DataStorageService,private postDetailService:PostDetailService) {
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 

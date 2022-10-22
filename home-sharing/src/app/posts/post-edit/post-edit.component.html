@@ -228,10 +228,12 @@
 
               <div *ngIf="previews.length>0">
                 <div class="row">
-                  <div class="col-8 div-img-1 number_custom">
+                  <div class="col-8 div-img-1 number_custom" >
                     <div style="height: 250px; width: 400px;">
                       <img [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'"
-                           class="d-block  div-img-post-1" alt="...">
+                           class="d-block  div-img-post-1" alt="..." (click)="file0.click()">
+                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,0)" type="file" accept="image/*" #file0>
+
                     </div>
                     <div class="div-btn-menu-post-1">
                       <div class="dropdown2">
@@ -245,9 +247,9 @@
                         </div>
                         <div id="m5" class="dropdown2-content">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button>Vị trí 2</button>
-                            <button>Vị trí 5</button>
-                            <button>Xóa</button>
+                            <button type="button" (click)="onChangePositionImg($event,0,1)">Chuyển sang vị trí 2</button>
+                            <button type="button" (click)="onChangePositionImg($event,0,4)">Chuyển sang vị trí 5</button>
+                            <button  type="button" (click)="onDeleteImg($event,0)">Xóa</button>
                           </div>
                         </div>
                       </div>
@@ -256,10 +258,11 @@
                   </div>
                   <div class="col-4 mb-1">
                     <div class="row">
-                      <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom">
+                      <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom" >
                         <div style="height: 125px; width: 200px;">
                           <img [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'"
-                               class="d-block div-img-post-2" alt="...">
+                               class="d-block div-img-post-2" alt="..."(click)="file1.click()">
+                          <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,1)" type="file" accept="image/*" #file1>
                         </div>
                         <div class="div-btn-menu-post-2">
                           <div class="dropdown2">
@@ -273,19 +276,20 @@
                             </div>
                             <div id="m4" class="dropdown2-content">
                               <div class="dropdown_swap_content_grid" style="display: grid;">
-                                <button>Vị trí 2</button>
-                                <button>Vị trí 5</button>
-                                <button>Xóa</button>
+                                <button type="button" (click)="onChangePositionImg($event,1,0)">Vị trí 1</button>
+                                <button type="button" (click)="onChangePositionImg($event,1,2)">Vị trí 3</button>
+                                <button type="button" (click)="onDeleteImg($event,1)">Xóa</button>
                               </div>
                             </div>
                           </div>
                         </div>
                         <span style="top: 60%; left: 15%;">2</span>
                       </div>
-                      <div class="col-12 p-0 ps-2  div-img-1 number_custom">
+                      <div class="col-12 p-0 ps-2  div-img-1 number_custom" >
                         <div style="height: 125px; width: 200px;">
                           <img [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'"
-                               class="d-block  div-img-post-3" alt="...">
+                               class="d-block  div-img-post-3" alt="..." (click)="file2.click()">
+                          <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,2)" type="file" accept="image/*" #file2>
                         </div>
                         <div class="div-btn-menu-post-2">
                           <div class="dropdown2">
@@ -299,9 +303,9 @@
                             </div>
                             <div id="m3" class="dropdown2-content">
                               <div class="dropdown_swap_content_grid" style="display: grid;">
-                                <button>Vị trí 2</button>
-                                <button>Vị trí 5</button>
-                                <button>Xóa</button>
+                                <button type="button" (click)="onChangePositionImg($event,2,1)">Vị trí 2</button>
+                                <button type="button" (click)="onChangePositionImg($event,2,3)">Vị trí 4</button>
+                                <button  type="button" (click)="onDeleteImg($event,2)">Xóa</button>
                               </div>
                             </div>
                           </div>
@@ -313,10 +317,11 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-4  div-img-1 number_custom">
+                  <div class="col-4  div-img-1 number_custom" >
                     <div style="width: 200px; height: 250px;">
                       <img [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'"
-                           class="d-block  div-img-post-4" alt="...">
+                           class="d-block  div-img-post-4" alt="..." (click)="file3.click()">
+                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,3)" type="file" accept="image/*" #file3>
                     </div>
                     <div class="div-btn-menu-post-3">
                       <div class="dropdown2">
@@ -330,9 +335,9 @@
                         </div>
                         <div id="m1" class="dropdown2-content">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button>Vị trí 2</button>
-                            <button>Vị trí 5</button>
-                            <button>Xóa</button>
+                            <button type="button" (click)="onChangePositionImg($event,3,2)">Vị trí 3</button>
+                            <button type="button" (click)="onChangePositionImg($event,3,4)">Vị trí 5</button>
+                            <button  type="button" (click)="onDeleteImg($event,3)">Xóa</button>
                           </div>
                         </div>
                       </div>
@@ -341,8 +346,19 @@
                   </div>
                   <div class="col-8  div-img-1 number_custom">
                     <div style="width: 400px; height: 250px;">
-                      <img [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'"
-                           class="d-block div-img-post-5" alt="...">
+                        <img [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'"
+                             class="d-block div-img-post-5" alt="..." id="img4" (click)="file4.click()" >
+<!--                      <input *ngIf="!previews[4]"-->
+<!--                        (change)="selectSingleFiles($event)"-->
+<!--                        accept="image/*"-->
+<!--                        #fileInput2-->
+<!--                        type="file"-->
+
+<!--                      />-->
+                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,4)" type="file" accept="image/*" #file4>
+<!--                      <a></a>-->
+
+<!--                      <button (click)="file.click()">Upload file</button>-->
                     </div>
                     <div class="div-btn-menu-post-4">
                       <div class="dropdown2">
@@ -356,9 +372,9 @@
                         </div>
                         <div id="m2" class="dropdown2-content">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button>Vị trí 2</button>
-                            <button>Vị trí 5</button>
-                            <button>Xóa</button>
+                            <button type="button" (click)="onChangePositionImg($event,4,3)">Vị trí 4</button>
+                            <button type="button" (click)="onChangePositionImg($event,4,0)">Vị trí 1</button>
+                            <button  type="button" (click)="onDeleteImg($event,4)">Xóa</button>
                           </div>
                         </div>
                       </div>
