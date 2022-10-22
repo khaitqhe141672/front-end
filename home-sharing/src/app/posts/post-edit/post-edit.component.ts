@@ -7,7 +7,9 @@ import {Observable, of, Subject} from "rxjs";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {map, startWith} from "rxjs/operators";
+import {map, startWith, tap} from "rxjs/operators";
+import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
+import {$e} from "@angular/compiler/src/chars";
 
 declare var $: any;
 
@@ -40,6 +42,9 @@ export class PostEditComponent implements OnInit {
   isServicePost = true
   isVoucherPost = true
 
+  //address
+  districts:District[] = []
+  provinces:Province[] = []
   // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
 
@@ -56,6 +61,8 @@ export class PostEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.getAllDistrict()
+    this.getAllProvince()
     // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
     //   startWith(null),
     //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
@@ -64,12 +71,21 @@ export class PostEditComponent implements OnInit {
    //    map(voucher => voucher ? this._filter(voucher) : this.allVouchers.slice())
    //  );
    //  this.imageInfos = this.postEditService.getFiles();
+   //  this.formGroupPost.get('district').valueChanges.subscribe(v=>{
+   //      console.log(v)
+   //    let a = this.districts.filter(district =>{
+   //      district.name === "Quận Hoàn kiếm"
+   //    })
+   //    console.log(a)
+   //  })
   }
 
   initForm() {
     this.formGroupPost = this.fb.group({
       name: [''],
       address: [''],
+      district:[''],
+      province:[''],
       type: [''],
       description: [''],
       priceHS: [''],
@@ -196,7 +212,6 @@ export class PostEditComponent implements OnInit {
   // previews: string[] = [];
   // imageInfos?: Observable<any>;
   // isServicePost = true
-  districts=['Hà Nội','Hải Phòng', 'Thái Bình','Nam Định','Bắc Giang','Hải Dương'];
 
   onChangePositionImg(event, pos1: number, pos2: number) {
     // console.log(this.previews[pos1]);
@@ -236,7 +251,34 @@ export class PostEditComponent implements OnInit {
 
   }
 
+  //LOAD ADDRESS
+  getAllDistrict(){
+    let districtObj:ResponseDistrict
+    this.postEditService.getDistricts().subscribe(responseDistrict =>{
+      districtObj = responseDistrict as ResponseDistrict
+      // console.log(districtObj)
+      this.districts = districtObj.object
+      // console.log(districtObj.object)
+    })
+  }
 
+  getAllProvince(){
+    let provinceObj: ResponseProvince
+    this.postEditService.getProvince().subscribe(responseProvince =>{
+      provinceObj = responseProvince as ResponseProvince
+      this.provinces = provinceObj.object
+      // console.log(this.provinces)
+    })
+  }
+
+  onSelectedProvince($event) {
+
+  }
+
+  onSelectedDistrict($event) {
+      console.log($event)
+    let districtName = $event.value
+  }
   //Voucher
   onDeleteVoucher(i: number) {
 
@@ -291,6 +333,7 @@ export class PostEditComponent implements OnInit {
   //   const filterValue = value.toLowerCase();
   //   return this.allVouchers.filter(voucher => voucher.toLowerCase().includes(filterValue));
   // }
+
 
 
 }
