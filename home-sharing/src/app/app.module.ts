@@ -35,6 +35,8 @@ import {MatIconModule} from "@angular/material/icon";
 import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -53,28 +55,28 @@ import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-b
     ProfileComponent
 
   ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        CoreModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatIconModule,
-        MatMenuModule,
-      NgbPaginationModule, NgbAlertModule, NgbModule
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    CoreModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatIconModule,
+    MatMenuModule,
+    NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule
+  ],
   providers: [DatePipe,AuthInterceptorService],
   bootstrap: [AppComponent]
 })
