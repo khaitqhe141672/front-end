@@ -1,9 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Observable, Subject} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {map, startWith} from "rxjs/operators";
 
 declare var $: any;
 
@@ -19,6 +23,7 @@ declare var $: any;
   ]
 })
 export class PostEditComponent implements OnInit {
+  @ViewChild('vouchersInput') voucherInput: ElementRef<HTMLInputElement>;
   formGroupPost: FormGroup;
   typeHomeStay = [
     'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
@@ -31,9 +36,11 @@ export class PostEditComponent implements OnInit {
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
-  isServicePost = true
 
-  imgPositionChanged = new Subject<FileList>()
+  isServicePost = true
+  isVoucherPost = true
+
+  // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
 
   constructor(private fb: FormBuilder, private postEditService: PostEditService) {
@@ -43,14 +50,23 @@ export class PostEditComponent implements OnInit {
   get ServicesPost(): FormArray {
     return this.formGroupPost.get('servicePost') as FormArray
   }
+  get VoucherPost(): FormArray {
+    return this.formGroupPost.get('voucherPost') as FormArray
+  }
 
   ngOnInit(): void {
     this.initForm();
-    this.imageInfos = this.postEditService.getFiles();
+    // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
+    //   startWith(null),
+    //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
+    // );
+   // this.filteredVouchers = of(this.formGroupPost.controls['vouchersCtrl'].value).pipe(
+   //    map(voucher => voucher ? this._filter(voucher) : this.allVouchers.slice())
+   //  );
+   //  this.imageInfos = this.postEditService.getFiles();
   }
 
   initForm() {
-    let servicePost = new FormArray([])
     this.formGroupPost = this.fb.group({
       name: [''],
       address: [''],
@@ -66,7 +82,14 @@ export class PostEditComponent implements OnInit {
         ]
       ),
       image: [''],
+      voucherPost:this.fb.array([
+        this.fb.group({
+          voucherName:[''],
+          pctDiscout:['']
+        })
+      ])
     })
+
   }
 
   onAddService() {
@@ -173,6 +196,7 @@ export class PostEditComponent implements OnInit {
   // previews: string[] = [];
   // imageInfos?: Observable<any>;
   // isServicePost = true
+  districts=['Hà Nội','Hải Phòng', 'Thái Bình','Nam Định','Bắc Giang','Hải Dương'];
 
   onChangePositionImg(event, pos1: number, pos2: number) {
     // console.log(this.previews[pos1]);
@@ -211,4 +235,62 @@ export class PostEditComponent implements OnInit {
     }
 
   }
+
+
+  //Voucher
+  onDeleteVoucher(i: number) {
+
+  }
+
+  onAddVoucher() {
+    this.VoucherPost.push(this.fb.group({
+      voucherName: [''],
+      pctDiscout: ['']
+    }))
+    this.isVoucherPost = true
+  }
+
+
+
+  // vouchers = ['Voucher 1','Voucher 2']
+  // allVouchers = ['Voucher 1','Voucher 2','Voucher 3','Voucher 4','Voucher 5']
+  // filteredVouchers: Observable<string[]>;
+  // separatorKeysCodes: number[] = [ENTER, COMMA];
+  // addVoucher(event: MatChipInputEvent): void {
+  //   const value = (event.value || '').trim();
+  //
+  //   // Add our fruit
+  //   if (value) {
+  //     if(!this.vouchers.includes(value.trim())) {
+  //       this.vouchers.push(value);
+  //       this.allVouchers.filter(v =>v!== value)
+  //     }
+  //   }
+  //
+  //   // Clear the input value
+  //   event.chipInput!.clear();
+  //
+  //   this.formGroupPost.controls['vouchersCtrl'].setValue(null);
+  // }
+  //
+  // removeVoucher(fruit: string): void {
+  //   const index = this.vouchers.indexOf(fruit);
+  //
+  //   if (index >= 0) {
+  //     this.vouchers.splice(index, 1);
+  //   }
+  // }
+  //
+  // selected(event: MatAutocompleteSelectedEvent): void {
+  //   this.vouchers.push(event.option.viewValue);
+  //   this.voucherInput.nativeElement.value = '';
+  //   this.formGroupPost.controls['vouchersCtrl'].setValue(null);
+  // }
+  //
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   return this.allVouchers.filter(voucher => voucher.toLowerCase().includes(filterValue));
+  // }
+
+
 }

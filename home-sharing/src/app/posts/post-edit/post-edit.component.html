@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row d-flex">
-    <div class="col-6 mt-5">
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="col-5 mt-5">
+      <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carouselExampleFade">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="assets/images/bg-create-post/b1.jpg" class="d-block w-100 div-img-carousel" alt="...">
+            <img alt="..." class="d-block w-100 div-img-carousel" src="assets/images/bg-create-post/b1.jpg">
           </div>
           <div class="carousel-item">
-            <img src="assets/images/bg-create-post/b4.jpg" class="d-block w-100 div-img-carousel" alt="...">
+            <img alt="..." class="d-block w-100 div-img-carousel" src="assets/images/bg-create-post/b4.jpg">
           </div>
           <div class="carousel-item">
-            <img src="assets/images/bg-create-post/b2.jpg" class="d-block w-100 div-img-carousel" alt="...">
+            <img alt="..." class="d-block w-100 div-img-carousel" src="assets/images/bg-create-post/b2.jpg">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-6 d-flex align-self-start">
+    <div class="col-7 d-flex align-self-start">
       <form [formGroup]="formGroupPost" class="text-center">
         <mat-stepper #stepper headerPosition="bottom">
           <mat-step [stepControl]="formGroupPost">
             <div>
-              <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+              <button class="btn btn-outline-primary" matStepperNext style="width: 130px" type="button">
                 Tiếp theo
                 <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
               </button>
@@ -56,7 +56,8 @@
                 <div class="col-4 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Giá cho thuê</mat-label>
-                    <input type="number" formControlName="priceHS" matInput placeholder="">
+                    <input formControlName="priceHS" matInput placeholder="" type="number">
+                    <span matSuffix>VND</span>
                     <mat-hint align="end">Vui lòng chỉ nhập số tiền đơn vị VND</mat-hint>
                   </mat-form-field>
                 </div>
@@ -64,36 +65,56 @@
               </div>
             </div>
 
-            <div>
-              <mat-form-field appearance="outline">
-                <mat-label>Địa chỉ</mat-label>
-                <input formControlName="address" matInput placeholder="">
-              </mat-form-field>
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Địa chỉ</mat-label>
+                  <input formControlName="address" matInput placeholder="">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Quận/Huyện</mat-label>
+                  <mat-select>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let district of districts" [value]="district">{{district}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Tỉnh/Thành Phố</mat-label>
+                  <mat-select>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let districts of districts" [value]="districts">{{districts}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
 
             <div class="row ">
               <div class="text-start" style="width: 100%"><h2 class="m-0">Chi tiết phòng</h2></div>
-              <div style="width: 100%"
-                   class="pe-0 row d-flex justify-content-start align-self-start align-items-center">
+              <div class="pe-0 row d-flex justify-content-start align-self-start align-items-center"
+                   style="width: 100%">
 
                 <div class="col-4 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số giường</mat-label>
-                    <input type="number" formControlName="description" matInput placeholder="">
+                    <input formControlName="description" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
 
                 <div class="col-4 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng ngủ</mat-label>
-                    <input type="number" formControlName="description" matInput placeholder="">
+                    <input formControlName="description" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
 
                 <div class="col-4 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng tắm</mat-label>
-                    <input type="number" formControlName="description" matInput placeholder="">
+                    <input formControlName="description" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
 
@@ -103,7 +124,7 @@
             <div>
               <mat-form-field appearance="outline">
                 <mat-label>Mô tả</mat-label>
-                <textarea rows="20" formControlName="description" matInput placeholder="">
+                <textarea formControlName="description" matInput placeholder="" rows="20">
                 </textarea>
               </mat-form-field>
             </div>
@@ -114,46 +135,47 @@
             <ng-template matStepLabel>Giá thuê và Dịch Vụ</ng-template>
 
             <div>
-              <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
                 <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                 Quay lại
               </button>
 
-              <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+              <button class="btn btn-outline-primary" matStepperNext style="width: 130px" type="button">
                 Tiếp theo
                 <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
               </button>
             </div>
 
             <div class="row mt-4 d-flex justify-content-center align-self-start">
-              <div class="col-6">
+              <div class="col-8">
                 <div class="row  ">
 
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
                     <h2>Thêm dịch vụ</h2>
                   </div>
 
-                  <div formArrayName="servicePost" *ngFor="let s of ServicesPost.controls;let i = index">
+                  <div *ngFor="let s of ServicesPost.controls;let i = index" formArrayName="servicePost">
                     <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
 
-                      <div class="col-7 p-0">
-                        <mat-form-field style="width: 100%" appearance="outline">
+                      <div class="col-6 p-0">
+                        <mat-form-field appearance="outline" style="width: 100%">
                           <mat-label>Tên dịch vụ {{i + 1}}</mat-label>
                           <input formControlName="serviceName" matInput placeholder="">
                         </mat-form-field>
                       </div>
 
-                      <div class="col-3 pe-0">
-                        <mat-form-field style="width: 100%" appearance="outline">
+                      <div class="col-4 pe-0">
+                        <mat-form-field appearance="outline" style="width: 100%">
                           <mat-label>Giá dịch vụ</mat-label>
-                          <input type="number" formControlName="servicePrice" matInput placeholder="">
+                          <input formControlName="servicePrice" matInput placeholder="" type="number">
+                          <span matSuffix>VND</span>
                         </mat-form-field>
                       </div>
 
                       <div class="col-2  align-self-center">
                         <div class="example-button-container">
-                          <button type="button" (click)="onDeleteService(i)" mat-mini-fab color="warn"
-                                  aria-label="Example icon button with a menu icon">
+                          <button (click)="onDeleteService(i)" aria-label="Example icon button with a menu icon" color="warn" mat-mini-fab
+                                  type="button">
                             <mat-icon>delete</mat-icon>
                           </button>
                         </div>
@@ -164,16 +186,97 @@
                   <div *ngIf="!isServicePost" class="text-start p-0 d-flex justify-content-start align-items-end"><span
                     style="color: red">Cần ích nhất một dịch vụ</span></div>
                 </div>
-
                 <div class="col">
                   <div class="example-button-container">
-                    <button type="button" (click)="onAddService()" mat-mini-fab color="primary"
-                            aria-label="Example icon button with a menu icon">
+                    <button (click)="onAddService()" aria-label="Example icon button with a menu icon" color="primary" mat-mini-fab
+                            type="button">
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
                 </div>
 
+              </div>
+            </div>
+
+            <div class="row mt-4 d-flex justify-content-center align-self-start">
+              <div class="col-8">
+                <div class="row  ">
+
+                  <div class="text-start p-0 d-flex justify-content-start align-items-end">
+                    <h2>Thêm mã giảm giá</h2>
+                  </div>
+
+                  <div >
+                    <div class="row p-0 align-items-start d-flex">
+
+                      <div class="col p-0">
+                        <div *ngFor="let voucher of VoucherPost.controls;let i = index" formArrayName="voucherPost">
+                          <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
+
+                            <div class="col-6 p-0">
+                              <mat-form-field appearance="outline" style="width: 100%">
+                                <mat-label>Mã giảm giá vụ {{i + 1}}</mat-label>
+                                <input formControlName="voucherName" matInput placeholder="">
+                              </mat-form-field>
+                            </div>
+
+                            <div class="col-4 pe-0">
+                              <mat-form-field appearance="outline" style="width: 100%">
+                                <mat-label>Phần trăm giảm giá</mat-label>
+                                <input formControlName="pctDiscout" matInput placeholder="" type="number" #voucherDct>
+                                <span matSuffix>%</span>
+                              </mat-form-field>
+                            </div>
+
+                            <div class="col-2  align-self-center">
+                              <div class="example-button-container">
+                                <button (click)="onDeleteVoucher(i)" aria-label="Example icon button with a menu icon" color="warn" mat-mini-fab
+                                        type="button">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+<!--                          <mat-label>Mã giảm giá sẵn có</mat-label>-->
+<!--                          <mat-chip-list #chipList aria-label="Fruit selection">-->
+<!--                            <mat-chip-->
+<!--                              *ngFor="let voucher of vouchers"-->
+<!--                              (removed)="removeVoucher(voucher)">-->
+<!--                              {{voucher}}-->
+<!--                              <button matChipRemove>-->
+<!--                                <mat-icon>cancel</mat-icon>-->
+<!--                              </button>-->
+<!--                            </mat-chip>-->
+<!--                            <input-->
+<!--                              placeholder="Thêm mã..."-->
+<!--                              #vouchersInput-->
+<!--                              formControlName="vouchersCtrl"-->
+<!--                              [matAutocomplete]="auto"-->
+<!--                              [matChipInputFor]="chipList"-->
+<!--                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"-->
+<!--                              (matChipInputTokenEnd)="addVoucher($event)">-->
+<!--                          </mat-chip-list>-->
+<!--                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">-->
+<!--                            <mat-option *ngFor="let voucher of filteredVouchers | async" [value]="voucher">-->
+<!--                              {{voucher}}-->
+<!--                            </mat-option>-->
+<!--                          </mat-autocomplete>-->
+<!--                        </mat-form-field>-->
+                      </div>
+
+                    </div>
+                    <div class="col">
+                      <div class="example-button-container">
+                        <button (click)="onAddVoucher()" aria-label="Example icon button with a menu icon" color="primary" mat-mini-fab
+                                type="button">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </mat-step>
@@ -185,12 +288,12 @@
                 Chọn ảnh
               </ng-template>
               <div>
-                <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+                <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
                   <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                   Quay lại
                 </button>
 
-                <button style="width: 130px" type="button" matStepperNext class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary" matStepperNext style="width: 130px" type="button">
                   Tiếp theo
                   <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
                 </button>
@@ -205,11 +308,11 @@
                   <span class="progress">{{ progressInfo.value }}%</span>
                 </mat-toolbar>
               </div>
-              <mat-form-field style="width: 50%;" appearance="none">
+              <mat-form-field appearance="none" style="width: 50%;">
                 <div>
                   <mat-toolbar>
-                    <input style="caret-color: transparent;font-size: 1rem" [value]="'Chọn ảnh'" matInput/>
-                    <button class="p-0" (click)="uploadFiles()" [disabled]="!selectedFiles"
+                    <input [value]="'Chọn ảnh'" matInput style="caret-color: transparent;font-size: 1rem"/>
+                    <button (click)="uploadFiles()" [disabled]="!selectedFiles" class="p-0"
                             color="primary" mat-flat-button>
                       <span class="btn-label"><i class="fa fa-upload"></i></span>
                       Tải lên
@@ -228,28 +331,31 @@
 
               <div *ngIf="previews.length>0">
                 <div class="row">
-                  <div class="col-8 div-img-1 number_custom" >
+                  <div class="col-8 div-img-1 number_custom">
                     <div style="height: 250px; width: 400px;">
-                      <img [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'"
-                           class="d-block  div-img-post-1" alt="..." (click)="file0.click()">
-                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,0)" type="file" accept="image/*" #file0>
+                      <img (click)="file0.click()"
+                           [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-1">
+                      <input #file0 (change)="selectSingleFiles($event,0)" accept="image/*"
+                             style="display: none;visibility: hidden" type="file">
 
                     </div>
                     <div class="div-btn-menu-post-1">
                       <div class="dropdown2">
                         <div class="dropbtn2">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M12 7C12.3956 7 12.7822 6.8827 13.1111 6.66294C13.44 6.44318 13.6964 6.13082 13.8478 5.76537C13.9991 5.39992 14.0387 4.99778 13.9616 4.60982C13.8844 4.22186 13.6939 3.86549 13.4142 3.58579C13.1345 3.30608 12.7781 3.1156 12.3902 3.03843C12.0022 2.96126 11.6001 3.00087 11.2346 3.15224C10.8692 3.30362 10.5568 3.55996 10.3371 3.88886C10.1173 4.21776 10 4.60444 10 5C10 5.53043 10.2107 6.03914 10.5858 6.41421C10.9609 6.78929 11.4696 7 12 7ZM12 17C11.6044 17 11.2178 17.1173 10.8889 17.3371C10.56 17.5568 10.3036 17.8692 10.1522 18.2346C10.0009 18.6001 9.96126 19.0022 10.0384 19.3902C10.1156 19.7781 10.3061 20.1345 10.5858 20.4142C10.8655 20.6939 11.2219 20.8844 11.6098 20.9616C11.9978 21.0387 12.3999 20.9991 12.7654 20.8478C13.1308 20.6964 13.4432 20.44 13.6629 20.1111C13.8827 19.7822 14 19.3956 14 19C14 18.4696 13.7893 17.9609 13.4142 17.5858C13.0391 17.2107 12.5304 17 12 17ZM12 10C11.6044 10 11.2178 10.1173 10.8889 10.3371C10.56 10.5568 10.3036 10.8692 10.1522 11.2346C10.0009 11.6001 9.96126 12.0022 10.0384 12.3902C10.1156 12.7781 10.3061 13.1345 10.5858 13.4142C10.8655 13.6939 11.2219 13.8844 11.6098 13.9616C11.9978 14.0387 12.3999 13.9991 12.7654 13.8478C13.1308 13.6964 13.4432 13.44 13.6629 13.1111C13.8827 12.7822 14 12.3956 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
                               fill="black"/>
                           </svg>
                         </div>
-                        <div id="m5" class="dropdown2-content">
+                        <div class="dropdown2-content" id="m5">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button type="button" (click)="onChangePositionImg($event,0,1)">Chuyển sang vị trí 2</button>
-                            <button type="button" (click)="onChangePositionImg($event,0,4)">Chuyển sang vị trí 5</button>
-                            <button  type="button" (click)="onDeleteImg($event,0)">Xóa</button>
+                            <button (click)="onChangePositionImg($event,0,1)" type="button">Chuyển sang vị trí 2
+                            </button>
+                            <button (click)="onChangePositionImg($event,0,4)" type="button">Chuyển sang vị trí 5
+                            </button>
+                            <button (click)="onDeleteImg($event,0)" type="button">Xóa</button>
                           </div>
                         </div>
                       </div>
@@ -258,54 +364,56 @@
                   </div>
                   <div class="col-4 mb-1">
                     <div class="row">
-                      <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom" >
+                      <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom">
                         <div style="height: 125px; width: 200px;">
-                          <img [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'"
-                               class="d-block div-img-post-2" alt="..."(click)="file1.click()">
-                          <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,1)" type="file" accept="image/*" #file1>
+                          <img (click)="file1.click()"
+                               [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block div-img-post-2">
+                          <input #file1 (change)="selectSingleFiles($event,1)"
+                                 accept="image/*" style="display: none;visibility: hidden" type="file">
                         </div>
                         <div class="div-btn-menu-post-2">
                           <div class="dropdown2">
                             <div class="dropbtn2">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                              <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                    xmlns="http://www.w3.org/2000/svg">
                                 <path
                                   d="M12 7C12.3956 7 12.7822 6.8827 13.1111 6.66294C13.44 6.44318 13.6964 6.13082 13.8478 5.76537C13.9991 5.39992 14.0387 4.99778 13.9616 4.60982C13.8844 4.22186 13.6939 3.86549 13.4142 3.58579C13.1345 3.30608 12.7781 3.1156 12.3902 3.03843C12.0022 2.96126 11.6001 3.00087 11.2346 3.15224C10.8692 3.30362 10.5568 3.55996 10.3371 3.88886C10.1173 4.21776 10 4.60444 10 5C10 5.53043 10.2107 6.03914 10.5858 6.41421C10.9609 6.78929 11.4696 7 12 7ZM12 17C11.6044 17 11.2178 17.1173 10.8889 17.3371C10.56 17.5568 10.3036 17.8692 10.1522 18.2346C10.0009 18.6001 9.96126 19.0022 10.0384 19.3902C10.1156 19.7781 10.3061 20.1345 10.5858 20.4142C10.8655 20.6939 11.2219 20.8844 11.6098 20.9616C11.9978 21.0387 12.3999 20.9991 12.7654 20.8478C13.1308 20.6964 13.4432 20.44 13.6629 20.1111C13.8827 19.7822 14 19.3956 14 19C14 18.4696 13.7893 17.9609 13.4142 17.5858C13.0391 17.2107 12.5304 17 12 17ZM12 10C11.6044 10 11.2178 10.1173 10.8889 10.3371C10.56 10.5568 10.3036 10.8692 10.1522 11.2346C10.0009 11.6001 9.96126 12.0022 10.0384 12.3902C10.1156 12.7781 10.3061 13.1345 10.5858 13.4142C10.8655 13.6939 11.2219 13.8844 11.6098 13.9616C11.9978 14.0387 12.3999 13.9991 12.7654 13.8478C13.1308 13.6964 13.4432 13.44 13.6629 13.1111C13.8827 12.7822 14 12.3956 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
                                   fill="black"/>
                               </svg>
                             </div>
-                            <div id="m4" class="dropdown2-content">
+                            <div class="dropdown2-content" id="m4">
                               <div class="dropdown_swap_content_grid" style="display: grid;">
-                                <button type="button" (click)="onChangePositionImg($event,1,0)">Vị trí 1</button>
-                                <button type="button" (click)="onChangePositionImg($event,1,2)">Vị trí 3</button>
-                                <button type="button" (click)="onDeleteImg($event,1)">Xóa</button>
+                                <button (click)="onChangePositionImg($event,1,0)" type="button">Vị trí 1</button>
+                                <button (click)="onChangePositionImg($event,1,2)" type="button">Vị trí 3</button>
+                                <button (click)="onDeleteImg($event,1)" type="button">Xóa</button>
                               </div>
                             </div>
                           </div>
                         </div>
                         <span style="top: 60%; left: 15%;">2</span>
                       </div>
-                      <div class="col-12 p-0 ps-2  div-img-1 number_custom" >
+                      <div class="col-12 p-0 ps-2  div-img-1 number_custom">
                         <div style="height: 125px; width: 200px;">
-                          <img [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'"
-                               class="d-block  div-img-post-3" alt="..." (click)="file2.click()">
-                          <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,2)" type="file" accept="image/*" #file2>
+                          <img (click)="file2.click()"
+                               [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-3">
+                          <input #file2 (change)="selectSingleFiles($event,2)"
+                                 accept="image/*" style="display: none;visibility: hidden" type="file">
                         </div>
                         <div class="div-btn-menu-post-2">
                           <div class="dropdown2">
                             <div class="dropbtn2">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                              <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                    xmlns="http://www.w3.org/2000/svg">
                                 <path
                                   d="M12 7C12.3956 7 12.7822 6.8827 13.1111 6.66294C13.44 6.44318 13.6964 6.13082 13.8478 5.76537C13.9991 5.39992 14.0387 4.99778 13.9616 4.60982C13.8844 4.22186 13.6939 3.86549 13.4142 3.58579C13.1345 3.30608 12.7781 3.1156 12.3902 3.03843C12.0022 2.96126 11.6001 3.00087 11.2346 3.15224C10.8692 3.30362 10.5568 3.55996 10.3371 3.88886C10.1173 4.21776 10 4.60444 10 5C10 5.53043 10.2107 6.03914 10.5858 6.41421C10.9609 6.78929 11.4696 7 12 7ZM12 17C11.6044 17 11.2178 17.1173 10.8889 17.3371C10.56 17.5568 10.3036 17.8692 10.1522 18.2346C10.0009 18.6001 9.96126 19.0022 10.0384 19.3902C10.1156 19.7781 10.3061 20.1345 10.5858 20.4142C10.8655 20.6939 11.2219 20.8844 11.6098 20.9616C11.9978 21.0387 12.3999 20.9991 12.7654 20.8478C13.1308 20.6964 13.4432 20.44 13.6629 20.1111C13.8827 19.7822 14 19.3956 14 19C14 18.4696 13.7893 17.9609 13.4142 17.5858C13.0391 17.2107 12.5304 17 12 17ZM12 10C11.6044 10 11.2178 10.1173 10.8889 10.3371C10.56 10.5568 10.3036 10.8692 10.1522 11.2346C10.0009 11.6001 9.96126 12.0022 10.0384 12.3902C10.1156 12.7781 10.3061 13.1345 10.5858 13.4142C10.8655 13.6939 11.2219 13.8844 11.6098 13.9616C11.9978 14.0387 12.3999 13.9991 12.7654 13.8478C13.1308 13.6964 13.4432 13.44 13.6629 13.1111C13.8827 12.7822 14 12.3956 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
                                   fill="black"/>
                               </svg>
                             </div>
-                            <div id="m3" class="dropdown2-content">
+                            <div class="dropdown2-content" id="m3">
                               <div class="dropdown_swap_content_grid" style="display: grid;">
-                                <button type="button" (click)="onChangePositionImg($event,2,1)">Vị trí 2</button>
-                                <button type="button" (click)="onChangePositionImg($event,2,3)">Vị trí 4</button>
-                                <button  type="button" (click)="onDeleteImg($event,2)">Xóa</button>
+                                <button (click)="onChangePositionImg($event,2,1)" type="button">Vị trí 2</button>
+                                <button (click)="onChangePositionImg($event,2,3)" type="button">Vị trí 4</button>
+                                <button (click)="onDeleteImg($event,2)" type="button">Xóa</button>
                               </div>
                             </div>
                           </div>
@@ -317,27 +425,28 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-4  div-img-1 number_custom" >
+                  <div class="col-4  div-img-1 number_custom">
                     <div style="width: 200px; height: 250px;">
-                      <img [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'"
-                           class="d-block  div-img-post-4" alt="..." (click)="file3.click()">
-                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,3)" type="file" accept="image/*" #file3>
+                      <img (click)="file3.click()"
+                           [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-4">
+                      <input #file3 (change)="selectSingleFiles($event,3)" accept="image/*"
+                             style="display: none;visibility: hidden" type="file">
                     </div>
                     <div class="div-btn-menu-post-3">
                       <div class="dropdown2">
                         <div class="dropbtn2">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M12 7C12.3956 7 12.7822 6.8827 13.1111 6.66294C13.44 6.44318 13.6964 6.13082 13.8478 5.76537C13.9991 5.39992 14.0387 4.99778 13.9616 4.60982C13.8844 4.22186 13.6939 3.86549 13.4142 3.58579C13.1345 3.30608 12.7781 3.1156 12.3902 3.03843C12.0022 2.96126 11.6001 3.00087 11.2346 3.15224C10.8692 3.30362 10.5568 3.55996 10.3371 3.88886C10.1173 4.21776 10 4.60444 10 5C10 5.53043 10.2107 6.03914 10.5858 6.41421C10.9609 6.78929 11.4696 7 12 7ZM12 17C11.6044 17 11.2178 17.1173 10.8889 17.3371C10.56 17.5568 10.3036 17.8692 10.1522 18.2346C10.0009 18.6001 9.96126 19.0022 10.0384 19.3902C10.1156 19.7781 10.3061 20.1345 10.5858 20.4142C10.8655 20.6939 11.2219 20.8844 11.6098 20.9616C11.9978 21.0387 12.3999 20.9991 12.7654 20.8478C13.1308 20.6964 13.4432 20.44 13.6629 20.1111C13.8827 19.7822 14 19.3956 14 19C14 18.4696 13.7893 17.9609 13.4142 17.5858C13.0391 17.2107 12.5304 17 12 17ZM12 10C11.6044 10 11.2178 10.1173 10.8889 10.3371C10.56 10.5568 10.3036 10.8692 10.1522 11.2346C10.0009 11.6001 9.96126 12.0022 10.0384 12.3902C10.1156 12.7781 10.3061 13.1345 10.5858 13.4142C10.8655 13.6939 11.2219 13.8844 11.6098 13.9616C11.9978 14.0387 12.3999 13.9991 12.7654 13.8478C13.1308 13.6964 13.4432 13.44 13.6629 13.1111C13.8827 12.7822 14 12.3956 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
                               fill="black"/>
                           </svg>
                         </div>
-                        <div id="m1" class="dropdown2-content">
+                        <div class="dropdown2-content" id="m1">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button type="button" (click)="onChangePositionImg($event,3,2)">Vị trí 3</button>
-                            <button type="button" (click)="onChangePositionImg($event,3,4)">Vị trí 5</button>
-                            <button  type="button" (click)="onDeleteImg($event,3)">Xóa</button>
+                            <button (click)="onChangePositionImg($event,3,2)" type="button">Vị trí 3</button>
+                            <button (click)="onChangePositionImg($event,3,4)" type="button">Vị trí 5</button>
+                            <button (click)="onDeleteImg($event,3)" type="button">Xóa</button>
                           </div>
                         </div>
                       </div>
@@ -346,35 +455,36 @@
                   </div>
                   <div class="col-8  div-img-1 number_custom">
                     <div style="width: 400px; height: 250px;">
-                        <img [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'"
-                             class="d-block div-img-post-5" alt="..." id="img4" (click)="file4.click()" >
-<!--                      <input *ngIf="!previews[4]"-->
-<!--                        (change)="selectSingleFiles($event)"-->
-<!--                        accept="image/*"-->
-<!--                        #fileInput2-->
-<!--                        type="file"-->
+                      <img (click)="file4.click()"
+                           [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block div-img-post-5" id="img4">
+                      <!--                      <input *ngIf="!previews[4]"-->
+                      <!--                        (change)="selectSingleFiles($event)"-->
+                      <!--                        accept="image/*"-->
+                      <!--                        #fileInput2-->
+                      <!--                        type="file"-->
 
-<!--                      />-->
-                      <input style="display: none;visibility: hidden"  (change)="selectSingleFiles($event,4)" type="file" accept="image/*" #file4>
-<!--                      <a></a>-->
+                      <!--                      />-->
+                      <input #file4 (change)="selectSingleFiles($event,4)" accept="image/*"
+                             style="display: none;visibility: hidden" type="file">
+                      <!--                      <a></a>-->
 
-<!--                      <button (click)="file.click()">Upload file</button>-->
+                      <!--                      <button (click)="file.click()">Upload file</button>-->
                     </div>
                     <div class="div-btn-menu-post-4">
                       <div class="dropdown2">
                         <div class="dropbtn2">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M12 7C12.3956 7 12.7822 6.8827 13.1111 6.66294C13.44 6.44318 13.6964 6.13082 13.8478 5.76537C13.9991 5.39992 14.0387 4.99778 13.9616 4.60982C13.8844 4.22186 13.6939 3.86549 13.4142 3.58579C13.1345 3.30608 12.7781 3.1156 12.3902 3.03843C12.0022 2.96126 11.6001 3.00087 11.2346 3.15224C10.8692 3.30362 10.5568 3.55996 10.3371 3.88886C10.1173 4.21776 10 4.60444 10 5C10 5.53043 10.2107 6.03914 10.5858 6.41421C10.9609 6.78929 11.4696 7 12 7ZM12 17C11.6044 17 11.2178 17.1173 10.8889 17.3371C10.56 17.5568 10.3036 17.8692 10.1522 18.2346C10.0009 18.6001 9.96126 19.0022 10.0384 19.3902C10.1156 19.7781 10.3061 20.1345 10.5858 20.4142C10.8655 20.6939 11.2219 20.8844 11.6098 20.9616C11.9978 21.0387 12.3999 20.9991 12.7654 20.8478C13.1308 20.6964 13.4432 20.44 13.6629 20.1111C13.8827 19.7822 14 19.3956 14 19C14 18.4696 13.7893 17.9609 13.4142 17.5858C13.0391 17.2107 12.5304 17 12 17ZM12 10C11.6044 10 11.2178 10.1173 10.8889 10.3371C10.56 10.5568 10.3036 10.8692 10.1522 11.2346C10.0009 11.6001 9.96126 12.0022 10.0384 12.3902C10.1156 12.7781 10.3061 13.1345 10.5858 13.4142C10.8655 13.6939 11.2219 13.8844 11.6098 13.9616C11.9978 14.0387 12.3999 13.9991 12.7654 13.8478C13.1308 13.6964 13.4432 13.44 13.6629 13.1111C13.8827 12.7822 14 12.3956 14 12C14 11.4696 13.7893 10.9609 13.4142 10.5858C13.0391 10.2107 12.5304 10 12 10Z"
                               fill="black"/>
                           </svg>
                         </div>
-                        <div id="m2" class="dropdown2-content">
+                        <div class="dropdown2-content" id="m2">
                           <div class="dropdown_swap_content_grid" style="display: grid;">
-                            <button type="button" (click)="onChangePositionImg($event,4,3)">Vị trí 4</button>
-                            <button type="button" (click)="onChangePositionImg($event,4,0)">Vị trí 1</button>
-                            <button  type="button" (click)="onDeleteImg($event,4)">Xóa</button>
+                            <button (click)="onChangePositionImg($event,4,3)" type="button">Vị trí 4</button>
+                            <button (click)="onChangePositionImg($event,4,0)" type="button">Vị trí 1</button>
+                            <button (click)="onDeleteImg($event,4)" type="button">Xóa</button>
                           </div>
                         </div>
                       </div>
@@ -388,17 +498,21 @@
           <mat-step>
             <ng-template matStepLabel>Hoàn thành</ng-template>
             <div>
-              <button style="width: 130px" type="button" matStepperPrevious class="me-5 btn btn-outline-warning">
+              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
                 <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                 Quay lại
               </button>
 
-              <button type="button" matStepperNext class=" btn btn-outline-success">
+              <button class=" btn btn-outline-success" matStepperNext type="button">
                 Hoàn thành
                 <span class="btn-label"><i class="fa fa-check"></i></span>
               </button>
             </div>
-            You are now done.
+            <div class="row">
+              <div class="col">
+                <h2>Đây là title</h2>
+              </div>
+            </div>
           </mat-step>
         </mat-stepper>
       </form>
