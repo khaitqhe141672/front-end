@@ -2,8 +2,9 @@ import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
-import {API_DISTRICT, API_PROVINCE} from "../../constant/api.constant";
+import {API_DISTRICT, API_PROVINCE, API_ROOM_TYPE} from "../../constant/api.constant";
 import {map} from "rxjs/operators";
+import {ResponseRoom} from "../../shared/model/room-type.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,8 @@ export class PostEditService{
   }
   getProvince():Observable<ResponseProvince>{
     return this.http.get<ResponseProvince>(API_PROVINCE)
+  }
+  getRoomType():Observable<ResponseRoom>{
+    return this.http.get<ResponseRoom>(API_ROOM_TYPE)
   }
 }
