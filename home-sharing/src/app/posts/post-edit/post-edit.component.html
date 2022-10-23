@@ -47,7 +47,7 @@
                     <mat-label>Loại HomeStay</mat-label>
                     <mat-select>
                       <mat-option disabled selected>--Chọn--</mat-option>
-                      <mat-option *ngFor="let type of typeHomeStay" value="{{type}}">{{type}}</mat-option>
+                      <mat-option *ngFor="let type of roomTypes" value="{{type.id}}">{{type.name}}</mat-option>
                     </mat-select>
                     <mat-hint align="end">Chọn duy nhất 1 kiểu</mat-hint>
                   </mat-form-field>

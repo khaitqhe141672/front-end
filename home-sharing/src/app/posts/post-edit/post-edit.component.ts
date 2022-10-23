@@ -10,6 +10,7 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, startWith, tap} from "rxjs/operators";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
 import {$e} from "@angular/compiler/src/chars";
+import {RoomType} from "../../shared/model/room-type.model";
 
 declare var $: any;
 
@@ -27,10 +28,10 @@ declare var $: any;
 export class PostEditComponent implements OnInit {
   @ViewChild('vouchersInput') voucherInput: ElementRef<HTMLInputElement>;
   formGroupPost: FormGroup;
-  typeHomeStay = [
-    'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
-    'Nhà thôn dã', 'Nhà cabin', 'Căn hộ cao cấp'
-  ]
+  // typeHomeStay = [
+  //   'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
+  //   'Nhà thôn dã', 'Nhà cabin', 'Căn hộ cao cấp'
+  // ]
   //Upload Image
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
@@ -45,6 +46,7 @@ export class PostEditComponent implements OnInit {
   //address
   districts:District[] = []
   provinces:Province[] = []
+  roomTypes:RoomType[] = []
   // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
 
@@ -63,6 +65,7 @@ export class PostEditComponent implements OnInit {
     this.initForm();
     this.getAllDistrict()
     this.getAllProvince()
+    this.getAllRoomTypes()
     // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
     //   startWith(null),
     //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
@@ -279,6 +282,19 @@ export class PostEditComponent implements OnInit {
       console.log($event)
     let districtName = $event.value
   }
+
+
+  //Room type
+  getAllRoomTypes(){
+    this.postEditService.getRoomType().subscribe(response =>{
+      this.roomTypes = response.data.roomTypes
+      console.log(this.roomTypes)
+    })
+  }
+
+
+
+
   //Voucher
   onDeleteVoucher(i: number) {
     if (this.VoucherPost.length <= 1) {
