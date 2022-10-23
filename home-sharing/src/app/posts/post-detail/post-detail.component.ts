@@ -38,7 +38,4 @@ export class PostDetailComponent implements OnInit {
       error => console.log(error)
     )
   }
-  counterRate(i: number){
-    return new Array(i)
-  }
 }

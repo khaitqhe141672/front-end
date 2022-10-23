@@ -21,4 +21,7 @@ export class PostDetailService{
   {
       return this.http.get<RateResponse>(API_RATE+id)
   }
+  // getUtilitysByPostID(id:number):Observable<any>{
+  //
+  // }
 }
