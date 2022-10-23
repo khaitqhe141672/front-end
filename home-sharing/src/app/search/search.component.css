@@ -1,4 +1,4 @@
-.container-search{
+.container-search {
   max-width: 1230px;
   margin: auto;
   width: 100%;
@@ -8,11 +8,32 @@
   padding-top: 30px;
 }
 
-img{
+img, iframe {
   width: 100%;
+  height: 100%;
 }
 
-.container-search .menu-search .map{
+.container-search .menu-search .map {
   width: 350px;
+  height: 210px;
   border-radius: 15px;
+  border: 1px solid #F36B08;
+}
+
+.container-search .content-search .intro_image {
+  width: 860px;
+  height: 210px;
+  border: 1px solid #F36B08;
+  border-radius: 25px;
+}
+
+.container-search .menu-search,
+.container-search .content-search{
+  display: grid;
+  row-gap: 10px;
+}
+
+.container-search .menu-search .menu-type{
+  border-radius: 15px;
+  border: 1px solid #F36B08;
 }
