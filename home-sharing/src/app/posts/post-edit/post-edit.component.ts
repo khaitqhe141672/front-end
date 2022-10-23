@@ -99,10 +99,10 @@ export class PostEditComponent implements OnInit {
       ),
       image: [''],
       voucherPost:this.fb.array([
-        this.fb.group({
-          voucherName:[''],
-          pctDiscout:['']
-        })
+        // this.fb.group({
+        //   voucherName:[''],
+        //   pctDiscout:['']
+        // })
       ])
     })
 
@@ -281,7 +281,11 @@ export class PostEditComponent implements OnInit {
   }
   //Voucher
   onDeleteVoucher(i: number) {
-
+    if (this.VoucherPost.length <= 1) {
+      this.isVoucherPost = false
+      return
+    }
+    this.VoucherPost.removeAt(i)
   }
 
   onAddVoucher() {
