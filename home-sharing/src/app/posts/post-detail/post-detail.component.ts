@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PostService} from "../post.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Post, ReponsePost} from "../post.model";
@@ -13,12 +13,16 @@ import {PostDetailService} from "./post-detail.service";
 })
 export class PostDetailComponent implements OnInit {
   id
-  postDetail:Post
-  postDetailResponse:ReponsePost
-  constructor(private postService:PostService,private router:Router,private route:ActivatedRoute, private dataStorage:DataStorageService,private postDetailService:PostDetailService) { }
+  postDetail: Post
+  postDetailResponse: ReponsePost
+
+  constructor(private postService: PostService, private router: Router,
+              private route: ActivatedRoute, private dataStorage: DataStorageService,
+              private postDetailService: PostDetailService) {
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params:Params)=>{
+    this.route.params.subscribe((params: Params) => {
       this.id = +params['id']
       console.log(this.id)
       console.log(this.postDetailService.postDetail)
