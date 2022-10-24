@@ -37,6 +37,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatListModule} from "@angular/material/list";
     PostListComponent,
     PostDetailComponent,
     PostEditComponent,
-    ProfileComponent
+    ProfileComponent,
+    ErrorPageComponent
 
   ],
   imports: [

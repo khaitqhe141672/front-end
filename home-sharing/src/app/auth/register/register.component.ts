@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
         ]
       }
     )
-    this.formRegister.controls['email'].setValidators(this.validateUserNameFromApi())
+    // this.formRegister.controls['email'].setValidators(this.validateUserNameFromApi())
   }
 
 
@@ -98,7 +98,10 @@ export class RegisterComponent implements OnInit {
     const password = this.formRegister.get('passWord').value
     const address = this.formRegister.get('address').value
     const email = this.formRegister.get('email').value
-    const role = this.formRegister.get('role').value
+    let role = this.formRegister.get('role').value
+    if(role==='Người thuê') role = 'customer'
+    else if(role==='Chủ hộ') role = 'host'
+    console.log('role register: '+role)
     const dob = this.formRegister.get('dob').value
     const fullName = this.formRegister.get('fullName').value
     // console.log(username+' '+password+' '+address+' '+email+' '+role+' '+dob)
@@ -109,7 +112,7 @@ export class RegisterComponent implements OnInit {
       },
       error: errorMessageResponse => {
       }, complete: () => {
-        console.log('Request complete')
+        this.router.navigate(['auth/login'])
       }
     })
 

@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'home-sharing';
 
   showHead: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private authService:AuthService) {
     // on route change to '/login', set the variable showHead to false
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
@@ -26,4 +27,9 @@ export class AppComponent {
       }
     });
   }
+
+  ngOnInit(): void {
+    this.authService.autoLogin()
+  }
+
 }
