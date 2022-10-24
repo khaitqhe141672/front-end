@@ -33,7 +33,10 @@ export interface ImageDtoList {
 }
 
 export interface PostUtilityDtoList {
-  postUtilityID: number
+  postUtilityID:number
+  iconUtility: string
+  nameUtility: string
+  description: string
   price: number
   utilityID: number
   status: number
@@ -43,3 +46,4 @@ export interface DistrictDto {
   districtName: string
   provinceName: string
 }
+
