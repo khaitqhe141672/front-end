@@ -10,6 +10,10 @@ import {PostEditComponent} from "./posts/post-edit/post-edit.component";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {PostResolverService} from "./posts/post-resolver.service";
 import {SearchComponent} from "./search/search.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {ErrorPageComponent} from "./error-page/error-page.component";
+import {HasRoleCusGuard} from "./guard/has-role-cus.guard";
+import {HasRoleHostGuard} from "./guard/has-role-host.guard";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -22,6 +26,10 @@ const appRoute: Routes = [
 
   },
   {path: 'home', component: HomeComponent},
+  {path:'profile',component:ProfileComponent,
+    canActivate:[HasRoleCusGuard,HasRoleHostGuard],
+
+  },
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
   {path:'posts',children:[
@@ -30,11 +38,13 @@ const appRoute: Routes = [
       // children:[
         //   {path: ':id',component: PostDetailComponent}
         // ]
-      {path: 'post-edit',component: PostEditComponent},
+      {path: 'post-edit',component: PostEditComponent,canActivate:[HasRoleHostGuard]},
       {path: 'post-list',component: PostListComponent}
 
     ]},
-  {path: 'search', component: SearchComponent}
+  {path: 'search', component: SearchComponent},
+  {path:'error',component:ErrorPageComponent},
+  {path:'**',component:ErrorPageComponent}
 ]
 
 @NgModule({
