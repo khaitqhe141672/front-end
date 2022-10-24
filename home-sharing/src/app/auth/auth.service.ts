@@ -25,7 +25,7 @@ export interface AuthResponseData{
 @Injectable({providedIn:'root'})
 export class AuthService {
   user = new BehaviorSubject<User>(null)
-
+  role:string
   constructor( private router: Router, private http: HttpClient) {
   }
   login(username:string,password:string){
@@ -45,12 +45,28 @@ export class AuthService {
         }
       ))
   }
+  autoLogin(){
+    console.log("auto login")
+    const userData:User = JSON.parse(localStorage.getItem('userData'))
+    this.role = JSON.parse(localStorage.getItem('role'))
+    console.log("userName: "+userData.username+"/nRole: "+this.role)
+    if(!userData){
+      return;
+    }
+    console.log(userData.username+' '+userData.role)
+    const loadUser = new User(userData.id,userData.username,userData.role,userData.token)
+    if(loadUser.token){
+      this.user.next(loadUser)
+    }
+  }
   private handleAuthentication(
     message:string,customerID:number,userID:number,username:string,email:string,role:string,status:number,
     token:string
   ){
     const user = new User(userID,username,role,token)
+    console.log("user info: "+user)
     this.user.next(user)
+    localStorage.setItem('role',JSON.stringify(user.role))
     localStorage.setItem('userData',JSON.stringify(user))
   }
   private handleError(errorResponse:HttpErrorResponse){
@@ -113,6 +129,10 @@ export class AuthService {
     // if (message === 'EMAIL_NOT_EXIST') return true
     // else return false
     return of(message==='EMAIL_NOT_EXIST').pipe()
+  }
+
+  getRole(){
+    return this.role
   }
   // private handleErrorEmail(errorResponse:HttpErrorResponse){
   //   let errorMessage = 'An unknown error occurred!'
@@ -179,4 +199,5 @@ export class AuthService {
       }
     }
   }
+
 }
