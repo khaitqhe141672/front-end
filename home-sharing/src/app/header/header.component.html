@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="dropdown-content">
-            <a routerLink="/login" *ngIf="token == null">
+            <a routerLink="/auth/login" *ngIf="token == null">
               <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -70,7 +70,7 @@
               </svg>
               Đăng nhập
             </a>
-            <a routerLink="/register" *ngIf="token == null">
+            <a routerLink="/auth/register" *ngIf="token == null">
               <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path

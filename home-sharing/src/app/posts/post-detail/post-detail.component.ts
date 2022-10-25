@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PostService} from "../post.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Post, ReponsePost} from "../post.model";
@@ -13,15 +13,17 @@ import {Rate, RateResponse} from "../../shared/model/rate.model";
   styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
+
   id:number;
   postDetail:Post;
   postDetailResponse:ReponsePost;
   rateResponse:RateResponse
   rates:Rate[] = []
-  constructor(private postService:PostService,private router:Router,private route:ActivatedRoute, private dataStorage:DataStorageService,private postDetailService:PostDetailService) { }
+  constructor(private postService:PostService,private router:Router,private route:ActivatedRoute,
+              private dataStorage:DataStorageService,private postDetailService:PostDetailService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params:Params)=>{
+    this.route.params.subscribe((params: Params) => {
       this.id = +params['id']
       this.postDetail = this.postDetailService.postDetail
     })
