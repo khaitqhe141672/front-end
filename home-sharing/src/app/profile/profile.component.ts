@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   initForm(){
     this.infoFormGroup = this._formBuilder.group(
       {
-        firstName:[''],
+        userName:[''],
         secondName:[''],
         gender:[''],
         phoneNumber:[''],
@@ -41,8 +41,16 @@ export class ProfileComponent implements OnInit {
     this.profileService.getUserInfo().subscribe(responseUserInfo=>{
       this.userInfoResponse = responseUserInfo
       this.userInfo = this.userInfoResponse.object
+      this.bindData(this.userInfo)
       console.log(this.userInfo)
     })
+  }
+  bindData(userInfo:UserInfo){
+    this.infoFormGroup.controls['userName'].patchValue(this.userInfo.username)
+    this.infoFormGroup.controls['secondName'].patchValue(this.userInfo.fullName)
+    this.infoFormGroup.controls['phoneNumber'].patchValue(this.userInfo.mobile)
+    this.infoFormGroup.controls['email'].patchValue(this.userInfo.email)
+    this.infoFormGroup.controls['address'].patchValue(this.userInfo.address)
 
   }
 }

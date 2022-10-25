@@ -33,29 +33,29 @@
                 <div class="row">
                   <div class="col-2  w-50">
                     <mat-form-field class="w-100" appearance="outline">
-                      <mat-label>Họ</mat-label>
-                      <input formControlName="firstName" matInput >
+                      <mat-label>Tên tài khoản</mat-label>
+                      <input readonly formControlName="userName" matInput>
                     </mat-form-field>
                   </div>
                   <div class="col-3  w-50">
                     <mat-form-field  class="w-100"  appearance="outline">
-                      <mat-label>Tên</mat-label>
+                      <mat-label>Họ và Tên</mat-label>
                       <input formControlName="secondName" matInput
                              placeholder="" >
                     </mat-form-field>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-2 w-50">
-                    <mat-form-field  class="w-100"  appearance="outline">                  <mat-label></mat-label>
-                      <mat-label>Giới tính</mat-label>
-                      <mat-select formControlName="gender">
-                        <mat-option selected disabled>--chọn--</mat-option>
-                        <mat-option value="male">Nam</mat-option>
-                        <mat-option value="female">Nữ</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+<!--                  <div class="col-2 w-50">-->
+<!--                    <mat-form-field  class="w-100"  appearance="outline">                  <mat-label></mat-label>-->
+<!--                      <mat-label>Giới tính</mat-label>-->
+<!--                      <mat-select formControlName="gender">-->
+<!--                        <mat-option selected disabled>&#45;&#45;chọn&#45;&#45;</mat-option>-->
+<!--                        <mat-option value="male">Nam</mat-option>-->
+<!--                        <mat-option value="female">Nữ</mat-option>-->
+<!--                      </mat-select>-->
+<!--                    </mat-form-field>-->
+<!--                  </div>-->
                   <div class="col-3  w-50">
                     <mat-form-field  class="w-100"  appearance="outline">
                       <mat-label>Số điện thoại</mat-label>
@@ -63,17 +63,18 @@
                              placeholder="" >
                     </mat-form-field>
                   </div>
-
-                </div>
-                <div class="row">
-                  <div class="col-5  w-100">
+                  <div class="col-2  w-50">
                     <mat-form-field  class="w-100"  appearance="outline">
                       <mat-label>Địa chỉ email</mat-label>
-                      <input formControlName="email" matInput
+                      <input readonly formControlName="email" matInput
                              placeholder="" >
                     </mat-form-field>
                   </div>
+
                 </div>
+<!--                <div class="row">-->
+<!--                  -->
+<!--                </div>-->
                 <hr>
 
                 <div class="row">

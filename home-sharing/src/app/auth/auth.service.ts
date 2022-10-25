@@ -49,7 +49,7 @@ export class AuthService {
     console.log("auto login")
     const userData:User = JSON.parse(localStorage.getItem('userData'))
     this.role = JSON.parse(localStorage.getItem('role'))
-    console.log("userName: "+userData.username+"/nRole: "+this.role)
+    // console.log("userName: "+userData.username+"/nRole: "+this.role)
     if(!userData){
       return;
     }
@@ -58,6 +58,9 @@ export class AuthService {
     if(loadUser.token){
       this.user.next(loadUser)
     }
+  }
+  getToken():string{
+    return  JSON.parse(localStorage.getItem('token'))
   }
   private handleAuthentication(
     message:string,customerID:number,userID:number,username:string,email:string,role:string,status:number,
@@ -68,6 +71,7 @@ export class AuthService {
     this.user.next(user)
     localStorage.setItem('role',JSON.stringify(user.role))
     localStorage.setItem('userData',JSON.stringify(user))
+    localStorage.setItem('token',JSON.stringify(user.token))
   }
   private handleError(errorResponse:HttpErrorResponse){
     let errorMessage = 'An unknown error occurred!'

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../auth/auth.service";
 
 declare var $: any;
 
@@ -9,10 +10,12 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private authService:AuthService) {
+
   }
 
   ngOnInit(): void {
+    console.log(this.authService.getToken())
   }
 
   ngAfterViewInit() {
