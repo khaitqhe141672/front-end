@@ -11,6 +11,7 @@ import {map, startWith, tap} from "rxjs/operators";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
 import {$e} from "@angular/compiler/src/chars";
 import {RoomType} from "../../shared/model/room-type.model";
+import {DistrictByProvince} from "./district.model";
 
 declare var $: any;
 
@@ -44,12 +45,16 @@ export class PostEditComponent implements OnInit {
   isVoucherPost = true
 
   //address
-  districts:District[] = []
+  districts:DistrictByProvince[] = []
   provinces:Province[] = []
   roomTypes:RoomType[] = []
   // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
 
+  //post attribute
+  provinceID:number
+  districtID:number
+  typeHsID:number
   constructor(private fb: FormBuilder, private postEditService: PostEditService) {
 
   }
@@ -63,7 +68,7 @@ export class PostEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.getAllDistrict()
+    // this.getAllDistrict()
     this.getAllProvince()
     this.getAllRoomTypes()
     // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
@@ -110,7 +115,31 @@ export class PostEditComponent implements OnInit {
     })
 
   }
+  onSubmit() {
+    console.log('clicked')
+      let postName = this.formGroupPost.controls['name'].value
+    let address = this.formGroupPost.controls['address'].value
+    // let district = this.formGroupPost.controls['district'].value
+    let province =this.formGroupPost.controls['province'].value
+    let type = this.formGroupPost.controls['type'].value
+    let description  = this.formGroupPost.controls['description'].value
+    let priceHS = this.formGroupPost.controls['priceHS'].value
+    let servicePost:{serviceName:string,servicePrice:string}[]=this.formGroupPost.controls['servicePost'].value
+    let image =this.formGroupPost.controls['image'].value
+    let voucher:{pctDiscout:number,voucherName: string}[] = this.formGroupPost.controls['voucherPost'].value
 
+    console.log('post name: '+postName)
+    console.log('address: '+address)
+    console.log('district: ' +this.districtID)
+    console.log('province: '+this.provinceID)
+    console.log('type: '+this.typeHsID)
+    console.log('description: '+description)
+    console.log('priceHS: '+priceHS)
+
+    console.log('service post: '+JSON.stringify(servicePost))
+    console.log('image: '+image)
+    console.log('voucher: '+JSON.stringify(voucher))
+  }
   onAddService() {
     this.ServicesPost.push(this.fb.group({
       serviceName: [''],
@@ -141,7 +170,7 @@ export class PostEditComponent implements OnInit {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+          // console.log(e.target.result);
           this.previews.push(e.target.result);
         };
 
@@ -190,22 +219,6 @@ export class PostEditComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    $(document).ready(function () {
-      $(document).on('click', '.dropbtn2', function () {
-        $('.dropbtn2').not(this).next().removeClass('show');
-        $(this).next().toggleClass('show');
-      });
-      $(document).on('click', function (e) {
-        if (!$(e.target).closest('.dropbtn2').length)
-          $('.dropbtn2').next().removeClass('show');
-      });
-    });
-    $('#img4').click(function () {
-      $('#fileInput2').trigger('click');
-    });
-
-  }
 
 
   // selectedFiles?: FileList;
@@ -244,7 +257,7 @@ export class PostEditComponent implements OnInit {
     if (event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        console.log(e.target.result);
+        // console.log(e.target.result);
         // this.previews.push(e.target.result);
         this.previews[position] = e.target.result
       };
@@ -259,9 +272,7 @@ export class PostEditComponent implements OnInit {
     let districtObj:ResponseDistrict
     this.postEditService.getDistricts().subscribe(responseDistrict =>{
       districtObj = responseDistrict as ResponseDistrict
-      // console.log(districtObj)
       this.districts = districtObj.object
-      // console.log(districtObj.object)
     })
   }
 
@@ -270,17 +281,20 @@ export class PostEditComponent implements OnInit {
     this.postEditService.getProvince().subscribe(responseProvince =>{
       provinceObj = responseProvince as ResponseProvince
       this.provinces = provinceObj.object
-      // console.log(this.provinces)
     })
   }
 
   onSelectedProvince($event) {
-
+    let province:{id:number,name:string} = $event.value
+    console.log(province.id)
+    // console.log('district value: '+$event.value)
+    this.getDistrictByProvinceID(province.id)
+    this.provinceID =  province.id
   }
 
   onSelectedDistrict($event) {
-      console.log($event)
-    let districtName = $event.value
+    console.log($event.value)
+    this.districtID = $event.value
   }
 
 
@@ -288,12 +302,17 @@ export class PostEditComponent implements OnInit {
   getAllRoomTypes(){
     this.postEditService.getRoomType().subscribe(response =>{
       this.roomTypes = response.data.roomTypes
-      console.log(this.roomTypes)
     })
   }
 
-
-
+  getDistrictByProvinceID(provinceID:number){
+    this.postEditService.getDistrictsByProvinceID(provinceID).subscribe(responseDistrict=>{
+      this.districts = responseDistrict.object
+    })
+  }
+  onSelectedTypeHS($event) {
+    this.typeHsID = $event.value
+  }
 
   //Voucher
   onDeleteVoucher(i: number) {
@@ -312,48 +331,21 @@ export class PostEditComponent implements OnInit {
     this.isVoucherPost = true
   }
 
+  ngAfterViewInit() {
+    $(document).ready(function () {
+      $(document).on('click', '.dropbtn2', function () {
+        $('.dropbtn2').not(this).next().removeClass('show');
+        $(this).next().toggleClass('show');
+      });
+      $(document).on('click', function (e) {
+        if (!$(e.target).closest('.dropbtn2').length)
+          $('.dropbtn2').next().removeClass('show');
+      });
+    });
+    $('#img4').click(function () {
+      $('#fileInput2').trigger('click');
+    });
 
-
-  // vouchers = ['Voucher 1','Voucher 2']
-  // allVouchers = ['Voucher 1','Voucher 2','Voucher 3','Voucher 4','Voucher 5']
-  // filteredVouchers: Observable<string[]>;
-  // separatorKeysCodes: number[] = [ENTER, COMMA];
-  // addVoucher(event: MatChipInputEvent): void {
-  //   const value = (event.value || '').trim();
-  //
-  //   // Add our fruit
-  //   if (value) {
-  //     if(!this.vouchers.includes(value.trim())) {
-  //       this.vouchers.push(value);
-  //       this.allVouchers.filter(v =>v!== value)
-  //     }
-  //   }
-  //
-  //   // Clear the input value
-  //   event.chipInput!.clear();
-  //
-  //   this.formGroupPost.controls['vouchersCtrl'].setValue(null);
-  // }
-  //
-  // removeVoucher(fruit: string): void {
-  //   const index = this.vouchers.indexOf(fruit);
-  //
-  //   if (index >= 0) {
-  //     this.vouchers.splice(index, 1);
-  //   }
-  // }
-  //
-  // selected(event: MatAutocompleteSelectedEvent): void {
-  //   this.vouchers.push(event.option.viewValue);
-  //   this.voucherInput.nativeElement.value = '';
-  //   this.formGroupPost.controls['vouchersCtrl'].setValue(null);
-  // }
-  //
-  // private _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.allVouchers.filter(voucher => voucher.toLowerCase().includes(filterValue));
-  // }
-
-
+  }
 
 }

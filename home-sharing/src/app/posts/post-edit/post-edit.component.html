@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-6 d-flex align-self-start">
-      <form [formGroup]="formGroupPost" class="text-center">
+      <form [formGroup]="formGroupPost" class="text-center" (ngSubmit)="onSubmit()" #formone="ngForm">
         <mat-stepper #stepper headerPosition="bottom">
           <mat-step [stepControl]="formGroupPost">
             <div>
@@ -45,7 +45,7 @@
                 <div class="col-4">
                   <mat-form-field appearance="outline">
                     <mat-label>Loại HomeStay</mat-label>
-                    <mat-select>
+                    <mat-select  (selectionChange)="onSelectedTypeHS($event)">
                       <mat-option disabled selected>--Chọn--</mat-option>
                       <mat-option *ngFor="let type of roomTypes" value="{{type.id}}">{{type.name}}</mat-option>
                     </mat-select>
@@ -86,7 +86,7 @@
                   <mat-label>Quận/Huyện</mat-label>
                   <mat-select formControlName="district" (selectionChange)="onSelectedDistrict($event)">
                     <mat-option>None</mat-option>
-                    <mat-option *ngFor="let district of districts" [value]="district.name">{{district.name}}</mat-option>
+                    <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -498,12 +498,12 @@
           <mat-step>
             <ng-template matStepLabel>Hoàn thành</ng-template>
             <div>
-              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
+              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="submit">
                 <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                 Quay lại
               </button>
 
-              <button class=" btn btn-outline-success" matStepperNext type="button">
+              <button class=" btn btn-outline-success" matStepperNext type="button" (click)="formone.ngSubmit.emit()">
                 Hoàn thành
                 <span class="btn-label"><i class="fa fa-check"></i></span>
               </button>

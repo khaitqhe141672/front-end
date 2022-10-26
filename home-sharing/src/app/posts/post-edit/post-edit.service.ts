@@ -2,9 +2,17 @@ import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
-import {API_DISTRICT, API_PROVINCE, API_ROOM_TYPE} from "../../constant/api.constant";
+import {
+  API_DISTRICT,
+  API_GET_DISTRICT_BY_PROVINCE,
+  API_POSTING,
+  API_PROVINCE,
+  API_ROOM_TYPE
+} from "../../constant/api.constant";
 import {map} from "rxjs/operators";
 import {ResponseRoom} from "../../shared/model/room-type.model";
+import {ResponseDistrictByProvince} from "./district.model";
+import {Post} from "../post.model";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +50,25 @@ export class PostEditService{
   }
   getRoomType():Observable<ResponseRoom>{
     return this.http.get<ResponseRoom>(API_ROOM_TYPE)
+  }
+  getDistrictsByProvinceID(id:number):Observable<ResponseDistrictByProvince>{
+    return this.http.get<ResponseDistrictByProvince>(API_GET_DISTRICT_BY_PROVINCE+id)
+  }
+  pushPost(roomTypeID:number,districtID:number,provinceID:number,post:Post){
+    return this.http.post(API_POSTING,{
+      roomTypeID:roomTypeID,
+      address:post.address,
+      districtID: districtID,
+      guestNumber:post.guestNumber,
+      numberOfBathrooms:post.numberOfBathrooms,
+      numberOfBedrooms:post.numberOfBedrooms,
+      numberOfBeds:post.numberOfBeds,
+      title:post.title,
+      description: post.description,
+      price: post.price,
+      utilityRequests: post.postUtilityDtoList,
+      voucherID: post.postID,
+      paymentPackageID: 1
+    })
   }
 }
