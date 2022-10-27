@@ -58,7 +58,7 @@ export class PostEditComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredUtility: Observable<UtilitiesData[]>;
   utilitys: string[] = [];
-  utilitysID: number[]
+  utilitiesDisplay: UtilitiesData[]
   allUtilitys: UtilitiesData[] = [];
   saveUtilities:UtilitiesData[]=[]
   @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
@@ -366,8 +366,8 @@ export class PostEditComponent implements OnInit {
         startWith(null),
         debounceTime(500),
         map((utility: string | null) => {
-            console.log('this is filter: ' + JSON.stringify(this.allUtilitys))
-            console.log('filter utilityID: ' + utility)
+            // console.log('this is filter: ' + JSON.stringify(this.allUtilitys))
+            // console.log('filter utilityID: ' + utility)
             if (utility) return this._filter(utility)
             else return this.allUtilitys.slice()
             //   return (utility ? this._filter(utility) : this.allUtilitys.slice())
@@ -420,12 +420,13 @@ export class PostEditComponent implements OnInit {
 
   removeUtilitys(utility: UtilitiesData): void {
     const index = this.utilitys.indexOf(utility.name);
-    const index2 = this.allUtilitys.indexOf(utility)
+    const index2 = this.saveUtilities.indexOf(utility)
     if (index >= 0) {
       this.utilitys.splice(index, 1);
-      this.allUtilitys.splice(index2,1)
+      this.saveUtilities.splice(index2,1)
     }
-    console.log('remove utility '+JSON.stringify(this.allUtilitys))
+    console.log('size save utility: '+this.saveUtilities.length)
+    console.log('remove utility '+JSON.stringify(this.saveUtilities))
   }
 
   selectedUtility(event: MatAutocompleteSelectedEvent): void {
@@ -433,11 +434,11 @@ export class PostEditComponent implements OnInit {
     // console.log('selected2: '+JSON.stringify(event.option.value))
     // if(this.saveUtilities.indexOf(event.option.value as UtilitiesData)!==-1) return
     this.utilitys.push(event.option.viewValue);
-    this.saveUtilities = event.option.value
+    this.saveUtilities.push(event.option.value)
     this.utilityInput.nativeElement.value = '';
     this.utilityInput.nativeElement.blur();
     this.formGroupPost.controls['utilitys'].setValue(null);
-    console.log('remove utility '+JSON.stringify(this.allUtilitys))
+    console.log('selected utility '+JSON.stringify(this.saveUtilities))
 
   }
 

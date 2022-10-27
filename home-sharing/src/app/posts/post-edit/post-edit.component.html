@@ -158,7 +158,7 @@
                     <mat-chip-list #chipList aria-label="">
                       <mat-chip
                         (removed)="removeUtilitys(utility)"
-                        *ngFor="let utility of allUtilitys">
+                        *ngFor="let utility of saveUtilities">
                         {{utility.name}}
                         <button matChipRemove>
                           <mat-icon>cancel</mat-icon>
