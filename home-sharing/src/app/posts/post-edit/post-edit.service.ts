@@ -7,12 +7,13 @@ import {
   API_GET_DISTRICT_BY_PROVINCE,
   API_POSTING,
   API_PROVINCE,
-  API_ROOM_TYPE
+  API_ROOM_TYPE, API_UTILITYS
 } from "../../constant/api.constant";
 import {map} from "rxjs/operators";
 import {ResponseRoom} from "../../shared/model/room-type.model";
 import {ResponseDistrictByProvince} from "./district.model";
 import {Post} from "../post.model";
+import {UtilitiesResponse} from "../../shared/model/utility.model";
 
 @Injectable({
   providedIn: 'root'
@@ -66,9 +67,13 @@ export class PostEditService{
       title:post.title,
       description: post.description,
       price: post.price,
-      utilityRequests: post.postUtilityDtoList,
+      utilityRequests: JSON.stringify(post.postUtilityDtoList),
       voucherID: post.postID,
       paymentPackageID: 1
     })
+  }
+  getUtility():Observable<UtilitiesResponse>
+  {
+    return this.http.get<UtilitiesResponse>(API_UTILITYS)
   }
 }

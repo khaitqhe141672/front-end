@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-6 d-flex align-self-start">
-      <form [formGroup]="formGroupPost" class="text-center" (ngSubmit)="onSubmit()" #formone="ngForm">
+      <form #formone="ngForm" (ngSubmit)="onSubmit()" [formGroup]="formGroupPost" class="text-center">
         <mat-stepper #stepper headerPosition="bottom">
           <mat-step [stepControl]="formGroupPost">
             <div>
@@ -45,7 +45,7 @@
                 <div class="col-4">
                   <mat-form-field appearance="outline">
                     <mat-label>Loại HomeStay</mat-label>
-                    <mat-select  (selectionChange)="onSelectedTypeHS($event)">
+                    <mat-select (selectionChange)="onSelectedTypeHS($event)">
                       <mat-option disabled selected>--Chọn--</mat-option>
                       <mat-option *ngFor="let type of roomTypes" value="{{type.id}}">{{type.name}}</mat-option>
                     </mat-select>
@@ -75,8 +75,8 @@
               <div class="col-3">
                 <mat-form-field appearance="outline">
                   <mat-label>Tỉnh/Thành Phố</mat-label>
-                  <mat-select  formControlName="province" (selectionChange)="onSelectedProvince($event)">
-                    <mat-option>None</mat-option>
+                  <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">
+                    <mat-option disabled>-Chọn-</mat-option>
                     <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -84,8 +84,8 @@
               <div class="col-3">
                 <mat-form-field appearance="outline">
                   <mat-label>Quận/Huyện</mat-label>
-                  <mat-select formControlName="district" (selectionChange)="onSelectedDistrict($event)">
-                    <mat-option>None</mat-option>
+                  <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">
+                    <mat-option disabled>--Chọn--</mat-option>
                     <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -145,9 +145,61 @@
                 <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
               </button>
             </div>
-
             <div class="row mt-4 d-flex justify-content-center align-self-start">
-              <div class="col-8">
+              <div class="col-12">
+                <div class="row  ">
+                  <div class="text-start p-0 d-flex justify-content-start align-items-end">
+                    <h2>Tiện ích</h2>
+                  </div>
+                </div>
+                <div class="col-12 text-start">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Chọn tiện ích</mat-label>
+                    <mat-chip-list #chipList aria-label="">
+                      <mat-chip
+                        (removed)="removeUtilitys(utility)"
+                        *ngFor="let utility of allUtilitys">
+                        {{utility.name}}
+                        <button matChipRemove>
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip>
+
+                      <input
+                        #utilityInput
+                        (matChipInputTokenEnd)="addUtilitys($event)"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        formControlName="utilitys"
+                        placeholder="Chọn tiện ích">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUtility($event)" [displayWith]="displayUtility">
+<!--                      <ng-container >-->
+<!--                        <mat-option *ngIf="!utilitys.includes(.name)"  [value]="utility.id">-->
+<!--                        <mat-option  *ngFor="let utility of filteredUtility | async " [value]="utility">-->
+<!--                          {{utility.name}}-->
+<!--                        </mat-option>-->
+<!--                      </ng-container>-->
+<!--                      <mat-select>-->
+
+<!--                      *ngIf="!saveUtilities.includes(utility)"-->
+                      <ng-container *ngFor="let utility of filteredUtility | async">
+<!--                        <ng-template [ngIf]="checkUtilityExist(utility!)">-->
+                        <mat-option *ngIf="!utilitys.includes(utility.name)" [value]="utility">
+                          {{utility.name}}
+                        </mat-option>
+<!--                        </ng-template>-->
+                      </ng-container>
+
+<!--                      </mat-select>-->
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4 d-flex justify-content-center align-self-start">
+              <div class="col-12">
                 <div class="row  ">
 
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
@@ -174,7 +226,8 @@
 
                       <div class="col-2  align-self-center">
                         <div class="example-button-container">
-                          <button (click)="onDeleteService(i)" aria-label="Example icon button with a menu icon" color="warn" mat-mini-fab
+                          <button (click)="onDeleteService(i)" aria-label="Example icon button with a menu icon"
+                                  color="warn" mat-mini-fab
                                   type="button">
                             <mat-icon>delete</mat-icon>
                           </button>
@@ -188,7 +241,8 @@
                 </div>
                 <div class="col">
                   <div class="example-button-container">
-                    <button (click)="onAddService()" aria-label="Example icon button with a menu icon" color="primary" mat-mini-fab
+                    <button (click)="onAddService()" aria-label="Example icon button with a menu icon" color="primary"
+                            mat-mini-fab
                             type="button">
                       <mat-icon>add</mat-icon>
                     </button>
@@ -199,14 +253,14 @@
             </div>
 
             <div class="row mt-4 d-flex justify-content-center align-self-start">
-              <div class="col-8">
+              <div class="col-12">
                 <div class="row  ">
 
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
                     <h2>Thêm mã giảm giá</h2>
                   </div>
 
-                  <div >
+                  <div>
                     <div class="row p-0 align-items-start d-flex">
 
                       <div class="col p-0">
@@ -223,14 +277,15 @@
                             <div class="col-4 pe-0">
                               <mat-form-field appearance="outline" style="width: 100%">
                                 <mat-label>Phần trăm giảm giá</mat-label>
-                                <input formControlName="pctDiscout" matInput placeholder="" type="number" #voucherDct>
+                                <input #voucherDct formControlName="pctDiscout" matInput placeholder="" type="number">
                                 <span matSuffix>%</span>
                               </mat-form-field>
                             </div>
 
                             <div class="col-2  align-self-center">
                               <div class="example-button-container">
-                                <button (click)="onDeleteVoucher(i)" aria-label="Example icon button with a menu icon" color="warn" mat-mini-fab
+                                <button (click)="onDeleteVoucher(i)" aria-label="Example icon button with a menu icon"
+                                        color="warn" mat-mini-fab
                                         type="button">
                                   <mat-icon>delete</mat-icon>
                                 </button>
@@ -239,37 +294,38 @@
 
                           </div>
                         </div>
-<!--                          <mat-label>Mã giảm giá sẵn có</mat-label>-->
-<!--                          <mat-chip-list #chipList aria-label="Fruit selection">-->
-<!--                            <mat-chip-->
-<!--                              *ngFor="let voucher of vouchers"-->
-<!--                              (removed)="removeVoucher(voucher)">-->
-<!--                              {{voucher}}-->
-<!--                              <button matChipRemove>-->
-<!--                                <mat-icon>cancel</mat-icon>-->
-<!--                              </button>-->
-<!--                            </mat-chip>-->
-<!--                            <input-->
-<!--                              placeholder="Thêm mã..."-->
-<!--                              #vouchersInput-->
-<!--                              formControlName="vouchersCtrl"-->
-<!--                              [matAutocomplete]="auto"-->
-<!--                              [matChipInputFor]="chipList"-->
-<!--                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"-->
-<!--                              (matChipInputTokenEnd)="addVoucher($event)">-->
-<!--                          </mat-chip-list>-->
-<!--                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">-->
-<!--                            <mat-option *ngFor="let voucher of filteredVouchers | async" [value]="voucher">-->
-<!--                              {{voucher}}-->
-<!--                            </mat-option>-->
-<!--                          </mat-autocomplete>-->
-<!--                        </mat-form-field>-->
+                        <!--                          <mat-label>Mã giảm giá sẵn có</mat-label>-->
+                        <!--                          <mat-chip-list #chipList aria-label="Fruit selection">-->
+                        <!--                            <mat-chip-->
+                        <!--                              *ngFor="let voucher of vouchers"-->
+                        <!--                              (removed)="removeVoucher(voucher)">-->
+                        <!--                              {{voucher}}-->
+                        <!--                              <button matChipRemove>-->
+                        <!--                                <mat-icon>cancel</mat-icon>-->
+                        <!--                              </button>-->
+                        <!--                            </mat-chip>-->
+                        <!--                            <input-->
+                        <!--                              placeholder="Thêm mã..."-->
+                        <!--                              #vouchersInput-->
+                        <!--                              formControlName="vouchersCtrl"-->
+                        <!--                              [matAutocomplete]="auto"-->
+                        <!--                              [matChipInputFor]="chipList"-->
+                        <!--                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"-->
+                        <!--                              (matChipInputTokenEnd)="addVoucher($event)">-->
+                        <!--                          </mat-chip-list>-->
+                        <!--                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">-->
+                        <!--                            <mat-option *ngFor="let voucher of filteredVouchers | async" [value]="voucher">-->
+                        <!--                              {{voucher}}-->
+                        <!--                            </mat-option>-->
+                        <!--                          </mat-autocomplete>-->
+                        <!--                        </mat-form-field>-->
                       </div>
 
                     </div>
                     <div class="col">
                       <div class="example-button-container">
-                        <button (click)="onAddVoucher()" aria-label="Example icon button with a menu icon" color="primary" mat-mini-fab
+                        <button (click)="onAddVoucher()" aria-label="Example icon button with a menu icon"
+                                color="primary" mat-mini-fab
                                 type="button">
                           <mat-icon>add</mat-icon>
                         </button>
@@ -334,7 +390,8 @@
                   <div class="col-8 div-img-1 number_custom">
                     <div style="height: 250px; width: 400px;">
                       <img (click)="file0.click()"
-                           [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-1">
+                           [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" alt="..."
+                           class="d-block  div-img-post-1">
                       <input #file0 (change)="selectSingleFiles($event,0)" accept="image/*"
                              style="display: none;visibility: hidden" type="file">
 
@@ -367,7 +424,8 @@
                       <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom">
                         <div style="height: 125px; width: 200px;">
                           <img (click)="file1.click()"
-                               [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block div-img-post-2">
+                               [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" alt="..."
+                               class="d-block div-img-post-2">
                           <input #file1 (change)="selectSingleFiles($event,1)"
                                  accept="image/*" style="display: none;visibility: hidden" type="file">
                         </div>
@@ -395,7 +453,8 @@
                       <div class="col-12 p-0 ps-2  div-img-1 number_custom">
                         <div style="height: 125px; width: 200px;">
                           <img (click)="file2.click()"
-                               [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-3">
+                               [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" alt="..."
+                               class="d-block  div-img-post-3">
                           <input #file2 (change)="selectSingleFiles($event,2)"
                                  accept="image/*" style="display: none;visibility: hidden" type="file">
                         </div>
@@ -428,7 +487,8 @@
                   <div class="col-4  div-img-1 number_custom">
                     <div style="width: 200px; height: 250px;">
                       <img (click)="file3.click()"
-                           [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block  div-img-post-4">
+                           [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" alt="..."
+                           class="d-block  div-img-post-4">
                       <input #file3 (change)="selectSingleFiles($event,3)" accept="image/*"
                              style="display: none;visibility: hidden" type="file">
                     </div>
@@ -456,7 +516,8 @@
                   <div class="col-8  div-img-1 number_custom">
                     <div style="width: 400px; height: 250px;">
                       <img (click)="file4.click()"
-                           [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" alt="..." class="d-block div-img-post-5" id="img4">
+                           [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" alt="..."
+                           class="d-block div-img-post-5" id="img4">
                       <!--                      <input *ngIf="!previews[4]"-->
                       <!--                        (change)="selectSingleFiles($event)"-->
                       <!--                        accept="image/*"-->
@@ -503,7 +564,7 @@
                 Quay lại
               </button>
 
-              <button class=" btn btn-outline-success" matStepperNext type="button" (click)="formone.ngSubmit.emit()">
+              <button (click)="formone.ngSubmit.emit()" class=" btn btn-outline-success" matStepperNext type="button">
                 Hoàn thành
                 <span class="btn-label"><i class="fa fa-check"></i></span>
               </button>

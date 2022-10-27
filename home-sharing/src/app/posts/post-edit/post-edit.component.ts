@@ -3,15 +3,14 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Observable, of, Subject} from "rxjs";
-import {MatChipInputEvent} from "@angular/material/chips";
+import {Observable, Subject} from "rxjs";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {map, startWith, tap} from "rxjs/operators";
-import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
-import {$e} from "@angular/compiler/src/chars";
+import {debounceTime, map, shareReplay, startWith} from "rxjs/operators";
+import {Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
 import {RoomType} from "../../shared/model/room-type.model";
 import {DistrictByProvince} from "./district.model";
+import {UtilitiesData, UtilitiesResponse} from "../../shared/model/utility.model";
 
 declare var $: any;
 
@@ -45,16 +44,29 @@ export class PostEditComponent implements OnInit {
   isVoucherPost = true
 
   //address
-  districts:DistrictByProvince[] = []
-  provinces:Province[] = []
-  roomTypes:RoomType[] = []
+  districts: DistrictByProvince[] = []
+  provinces: Province[] = []
+  roomTypes: RoomType[] = []
   // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
 
   //post attribute
-  provinceID:number
-  districtID:number
-  typeHsID:number
+  provinceID: number
+  districtID: number
+  typeHsID: number
+  //Ultility
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredUtility: Observable<UtilitiesData[]>;
+  utilitys: string[] = [];
+  utilitysID: number[]
+  allUtilitys: UtilitiesData[] = [];
+  saveUtilities:UtilitiesData[]=[]
+  @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
+  // @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
+  loadUtility$ = this.postEditService.getUtility().pipe(shareReplay())
+  utilityResponse: UtilitiesResponse
+  arrUtility: UtilitiesData[]
+
   constructor(private fb: FormBuilder, private postEditService: PostEditService) {
 
   }
@@ -62,6 +74,16 @@ export class PostEditComponent implements OnInit {
   get ServicesPost(): FormArray {
     return this.formGroupPost.get('servicePost') as FormArray
   }
+
+
+  // selectedFiles?: FileList;
+  // selectedFileNames: string[] = [];
+  // progressInfos: any[] = [];
+  // message: string[] = [];
+  // previews: string[] = [];
+  // imageInfos?: Observable<any>;
+  // isServicePost = true
+
   get VoucherPost(): FormArray {
     return this.formGroupPost.get('voucherPost') as FormArray
   }
@@ -75,25 +97,28 @@ export class PostEditComponent implements OnInit {
     //   startWith(null),
     //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
     // );
-   // this.filteredVouchers = of(this.formGroupPost.controls['vouchersCtrl'].value).pipe(
-   //    map(voucher => voucher ? this._filter(voucher) : this.allVouchers.slice())
-   //  );
-   //  this.imageInfos = this.postEditService.getFiles();
-   //  this.formGroupPost.get('district').valueChanges.subscribe(v=>{
-   //      console.log(v)
-   //    let a = this.districts.filter(district =>{
-   //      district.name === "Quận Hoàn kiếm"
-   //    })
-   //    console.log(a)
-   //  })
+    // this.filteredVouchers = of(this.formGroupPost.controls['vouchersCtrl'].value).pipe(
+    //    map(voucher => voucher ? this._filter(voucher) : this.allVouchers.slice())
+    //  );
+    //  this.imageInfos = this.postEditService.getFiles();
+    //  this.formGroupPost.get('district').valueChanges.subscribe(v=>{
+    //      console.log(v)
+    //    let a = this.districts.filter(district =>{
+    //      district.name === "Quận Hoàn kiếm"
+    //    })
+    //    console.log(a)
+    //  })
+    this.getUtility()
+    // this.filterUtility()
+
   }
 
   initForm() {
     this.formGroupPost = this.fb.group({
       name: [''],
       address: [''],
-      district:[''],
-      province:[''],
+      district: [''],
+      province: [''],
       type: [''],
       description: [''],
       priceHS: [''],
@@ -105,41 +130,43 @@ export class PostEditComponent implements OnInit {
           })
         ]
       ),
+      utilitys: [''],
       image: [''],
-      voucherPost:this.fb.array([
+      voucherPost: this.fb.array([
         // this.fb.group({
         //   voucherName:[''],
         //   pctDiscout:['']
         // })
       ])
     })
-
   }
+
   onSubmit() {
     console.log('clicked')
-      let postName = this.formGroupPost.controls['name'].value
+    let postName = this.formGroupPost.controls['name'].value
     let address = this.formGroupPost.controls['address'].value
     // let district = this.formGroupPost.controls['district'].value
-    let province =this.formGroupPost.controls['province'].value
+    let province = this.formGroupPost.controls['province'].value
     let type = this.formGroupPost.controls['type'].value
-    let description  = this.formGroupPost.controls['description'].value
+    let description = this.formGroupPost.controls['description'].value
     let priceHS = this.formGroupPost.controls['priceHS'].value
-    let servicePost:{serviceName:string,servicePrice:string}[]=this.formGroupPost.controls['servicePost'].value
-    let image =this.formGroupPost.controls['image'].value
-    let voucher:{pctDiscout:number,voucherName: string}[] = this.formGroupPost.controls['voucherPost'].value
+    let servicePost: { serviceName: string, servicePrice: string }[] = this.formGroupPost.controls['servicePost'].value
+    let image = this.formGroupPost.controls['image'].value
+    let voucher: { pctDiscout: number, voucherName: string }[] = this.formGroupPost.controls['voucherPost'].value
 
-    console.log('post name: '+postName)
-    console.log('address: '+address)
-    console.log('district: ' +this.districtID)
-    console.log('province: '+this.provinceID)
-    console.log('type: '+this.typeHsID)
-    console.log('description: '+description)
-    console.log('priceHS: '+priceHS)
+    console.log('post name: ' + postName)
+    console.log('address: ' + address)
+    console.log('district: ' + this.districtID)
+    console.log('province: ' + this.provinceID)
+    console.log('type: ' + this.typeHsID)
+    console.log('description: ' + description)
+    console.log('priceHS: ' + priceHS)
 
-    console.log('service post: '+JSON.stringify(servicePost))
-    console.log('image: '+image)
-    console.log('voucher: '+JSON.stringify(voucher))
+    console.log('service post: ' + JSON.stringify(servicePost))
+    console.log('image: ' + image)
+    console.log('voucher: ' + JSON.stringify(voucher))
   }
+
   onAddService() {
     this.ServicesPost.push(this.fb.group({
       serviceName: [''],
@@ -219,16 +246,6 @@ export class PostEditComponent implements OnInit {
     }
   }
 
-
-
-  // selectedFiles?: FileList;
-  // selectedFileNames: string[] = [];
-  // progressInfos: any[] = [];
-  // message: string[] = [];
-  // previews: string[] = [];
-  // imageInfos?: Observable<any>;
-  // isServicePost = true
-
   onChangePositionImg(event, pos1: number, pos2: number) {
     // console.log(this.previews[pos1]);
     // console.log(this.previews[pos2]);
@@ -251,7 +268,6 @@ export class PostEditComponent implements OnInit {
 
   }
 
-
   selectSingleFiles(event, position: number) {
     this.selectedFiles = event.target.files
     if (event.target.files[0]) {
@@ -268,28 +284,28 @@ export class PostEditComponent implements OnInit {
   }
 
   //LOAD ADDRESS
-  getAllDistrict(){
-    let districtObj:ResponseDistrict
-    this.postEditService.getDistricts().subscribe(responseDistrict =>{
+  getAllDistrict() {
+    let districtObj: ResponseDistrict
+    this.postEditService.getDistricts().subscribe(responseDistrict => {
       districtObj = responseDistrict as ResponseDistrict
       this.districts = districtObj.object
     })
   }
 
-  getAllProvince(){
+  getAllProvince() {
     let provinceObj: ResponseProvince
-    this.postEditService.getProvince().subscribe(responseProvince =>{
+    this.postEditService.getProvince().subscribe(responseProvince => {
       provinceObj = responseProvince as ResponseProvince
       this.provinces = provinceObj.object
     })
   }
 
   onSelectedProvince($event) {
-    let province:{id:number,name:string} = $event.value
+    let province: { id: number, name: string } = $event.value
     console.log(province.id)
     // console.log('district value: '+$event.value)
     this.getDistrictByProvinceID(province.id)
-    this.provinceID =  province.id
+    this.provinceID = province.id
   }
 
   onSelectedDistrict($event) {
@@ -297,24 +313,31 @@ export class PostEditComponent implements OnInit {
     this.districtID = $event.value
   }
 
-
   //Room type
-  getAllRoomTypes(){
-    this.postEditService.getRoomType().subscribe(response =>{
+  getAllRoomTypes() {
+    this.postEditService.getRoomType().subscribe(response => {
       this.roomTypes = response.data.roomTypes
     })
   }
 
-  getDistrictByProvinceID(provinceID:number){
-    this.postEditService.getDistrictsByProvinceID(provinceID).subscribe(responseDistrict=>{
+  getDistrictByProvinceID(provinceID: number) {
+    this.postEditService.getDistrictsByProvinceID(provinceID).subscribe(responseDistrict => {
       this.districts = responseDistrict.object
     })
   }
+
+  //UTILITY
+  // separatorKeysCodes: number[] = [ENTER, COMMA];
+  // filteredUtility: Observable<string[]>;
+  // utilitys: string[] = ['Nhà hàng'];
+  // allUtilitys: string[] = ['Giặt nà', 'ATM', 'Hồ bơ', 'Công viên', 'Siêu thị'];
+
   onSelectedTypeHS($event) {
     this.typeHsID = $event.value
   }
 
   //Voucher
+  // getOptionText: any;
   onDeleteVoucher(i: number) {
     if (this.VoucherPost.length <= 1) {
       this.isVoucherPost = false
@@ -329,6 +352,109 @@ export class PostEditComponent implements OnInit {
       pctDiscout: ['']
     }))
     this.isVoucherPost = true
+  }
+
+  filterUtility() {
+    // this.postEditService.getUtility().pipe(shareReplay()).subscribe(responseUtility => {
+    //   this.utilityResponse = responseUtility
+    //   this.arrUtility = this.utilityResponse.data.utilities
+    //   this.allUtilitys = this.arrUtility.map(utility => utility.name)
+    //
+    // })
+    this.filteredUtility =
+      this.formGroupPost.controls['utilitys'].valueChanges.pipe(
+        startWith(null),
+        debounceTime(500),
+        map((utility: string | null) => {
+            console.log('this is filter: ' + JSON.stringify(this.allUtilitys))
+            console.log('filter utilityID: ' + utility)
+            if (utility) return this._filter(utility)
+            else return this.allUtilitys.slice()
+            //   return (utility ? this._filter(utility) : this.allUtilitys.slice())
+          }
+        ),
+      )
+
+    // this.filteredUtility = this.formGroupPost.get('utilitys').valueChanges.pipe(
+    //   startWith(''),
+    //   switchMap((inputData) =>{
+    //      return this.loadUtility$.pipe(
+    //       map((response) => {
+    //         return response.data.utilities.map(utility=>utility.name).filter((utility) =>
+    //           utility.toLowerCase().includes(inputData?.toLowerCase())
+    //         );
+    //       })
+    //     )}
+    //   )
+    // );
+    // this.filteredUtility = this.formGroupPost
+    //   .get('utilitys')
+    //   .valueChanges.pipe(
+    //     startWith(''),
+    //     switchMap((term) => {
+    //       return this.loadUtility$.pipe(
+    //         map((response) => {
+    //           return response.data.utilities.filter((utility) =>
+    //             utility.name.toLowerCase().includes(term.toLowerCase())
+    //           );
+    //         })
+    //       );
+    //     })
+    //   )
+  }
+
+  addUtilitys(event): void {
+    const value = (event.value || '').trim();
+
+    // Add our utility
+    if (value) {
+      this.utilitys.push(value);
+      // this.utilitysID.push(+value)
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+    console.log('add ' + value)
+    this.formGroupPost.controls['utilitys'].setValue(null);
+  }
+
+  removeUtilitys(utility: UtilitiesData): void {
+    const index = this.utilitys.indexOf(utility.name);
+    const index2 = this.allUtilitys.indexOf(utility)
+    if (index >= 0) {
+      this.utilitys.splice(index, 1);
+      this.allUtilitys.splice(index2,1)
+    }
+    console.log('remove utility '+JSON.stringify(this.allUtilitys))
+  }
+
+  selectedUtility(event: MatAutocompleteSelectedEvent): void {
+    // console.log('selected: ' + event.option.viewValue)
+    // console.log('selected2: '+JSON.stringify(event.option.value))
+    // if(this.saveUtilities.indexOf(event.option.value as UtilitiesData)!==-1) return
+    this.utilitys.push(event.option.viewValue);
+    this.saveUtilities = event.option.value
+    this.utilityInput.nativeElement.value = '';
+    this.utilityInput.nativeElement.blur();
+    this.formGroupPost.controls['utilitys'].setValue(null);
+    console.log('remove utility '+JSON.stringify(this.allUtilitys))
+
+  }
+
+  getUtility() {
+
+    this.postEditService.getUtility().subscribe(responseUtility => {
+      this.utilityResponse = responseUtility
+      this.arrUtility = this.utilityResponse.data.utilities
+      this.allUtilitys = this.arrUtility
+      // console.log(this.allUtilitys)
+      this.filterUtility()
+    })
+
+  }
+
+  displayUtility(utility: UtilitiesData) {
+    return utility ? utility.name : ''
   }
 
   ngAfterViewInit() {
@@ -348,4 +474,26 @@ export class PostEditComponent implements OnInit {
 
   }
 
+  toLowerCaseNonAccentVietnamese(str) {
+    str = str.toLowerCase();
+    str = str.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, "a");
+    str = str.replace(/[èéẹẻẽêềếệểễ]/g, "e");
+    str = str.replace(/[ìíịỉĩ]/g, "i");
+    str = str.replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, "o");
+    str = str.replace(/[ùúụủũưừứựửữ]/g, "u");
+    str = str.replace(/[ỳýỵỷỹ]/g, "y");
+    str = str.replace(/đ/g, "d");
+    // Some system encode vietnamese combining accent as individual utf-8 characters
+    str = str.replace(/[\u0300\u0301\u0303\u0309\u0323]/g, ""); // Huyền sắc hỏi ngã nặng
+    str = str.replace(/[\u02C6\u0306\u031B]/g, ""); // Â, Ê, Ă, Ơ, Ư
+    return str;
+  }
+
+  private _filter(value: any): UtilitiesData[] {
+    const filterValue = value.name || value;
+    return this.allUtilitys.filter(utility => this.toLowerCaseNonAccentVietnamese(utility.name).includes(this.toLowerCaseNonAccentVietnamese(filterValue.toLowerCase())));
+  }
+  checkUtilityExist(utility?:UtilitiesData):boolean{
+    return !this.saveUtilities.find(data => data.id = utility.id);
+  }
 }
