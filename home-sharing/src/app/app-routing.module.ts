@@ -13,7 +13,7 @@ import {SearchComponent} from "./search/search.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {HasRoleCusGuard} from "./guard/has-role-cus.guard";
-import {HasRoleHostGuard} from "./guard/has-role-host.guard";
+import {HasRoleGuard} from "./guard/has-role.guard";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -27,7 +27,7 @@ const appRoute: Routes = [
   },
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
-    canActivate:[HasRoleCusGuard,HasRoleHostGuard],
+    canActivate:[HasRoleCusGuard,HasRoleGuard],
 
   },
   // {path: 'login', component: LoginComponent},
@@ -38,7 +38,7 @@ const appRoute: Routes = [
       // children:[
         //   {path: ':id',component: PostDetailComponent}
         // ]
-      {path: 'post-edit',component: PostEditComponent,canActivate:[HasRoleHostGuard]},
+      {path: 'post-edit',component: PostEditComponent,canActivate:[HasRoleGuard]},
       {path: 'post-list',component: PostListComponent}
 
     ]},

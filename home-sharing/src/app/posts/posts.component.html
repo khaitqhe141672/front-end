@@ -1,10 +1,11 @@
-<mat-menu #appMenu="matMenu">
-  <ng-template matMenuContent let-name="name">
-    <button (click)="print()" mat-menu-item>Settings</button>
-    <button mat-menu-item>Log off {{name}}</button>
-  </ng-template>
-</mat-menu>
 
-<button  mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: 'Sally'}">
-  <mat-icon>more_vert</mat-icon>
-</button>
+<p>
+  Start editing to see some magic happen :)
+</p>
+
+<form [formGroup]="sampleForm">
+  <input formControlName="fc_dmanager" />
+  <select formControlName="data">
+    <option *ngFor="let user of filteredDMOptions | async">{{user.name}}</option>
+  </select>
+</form>
