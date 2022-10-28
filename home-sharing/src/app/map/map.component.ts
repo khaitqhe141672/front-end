@@ -21,8 +21,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
     // this.getLocation()
   }
+  marker:any
   createMarker(lng:number,lat:number){
-    const marker = new Mapboxgl.Marker({
+    this.marker = new Mapboxgl.Marker({
       draggable:true
     }).setLngLat([lat,lng]).addTo(this.map)
     // marker.on('drag',()=>{
@@ -39,17 +40,20 @@ export class MapComponent implements OnInit, AfterViewInit {
     //   let coordinate = marker.getLngLat();
     //   console.log(coordinate.lng)
     // })
-    marker.on('dragend',()=>{
+    this.marker.on('dragend',()=>{
       console.log('dropped')
-      let coordinate = marker.getLngLat();
+      let coordinate =  this.marker.getLngLat();
       this.mapService.markerLat = coordinate.lat
       this.mapService.markerLng = coordinate.lng
       this.getLocation()
       console.log(this.mapService.markerLat+"/"+this.mapService.markerLng)
     })
-    // this.map.on('mouseup',()=>{
-    //
-    // })
+    this.map.on('click',(e)=>{
+      console.log(e.lngLat.lng)
+      let lat = e.lngLat.lat
+      let lng = e.lngLat.lng
+      this.marker.setLngLat([lng,lat]).addTo(this.map)
+    })
   }
 
   getLocation(){
@@ -73,8 +77,16 @@ export class MapComponent implements OnInit, AfterViewInit {
     // this.getLocation()
     this.map.addControl(new MapboxGeocoder({
       accessToken: Mapboxgl.accessToken,
+      marker:false,
       mapboxgl: Mapboxgl
     }))
+    this.map.addControl(new Mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserHeading: true
+    }));
 
   }
 }
