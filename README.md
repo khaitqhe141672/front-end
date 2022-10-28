@@ -120,3 +120,7 @@ ng add @ng-bootstrap/ng-bootstrap@12
 ```bash
 import to app.module.ts imports:[NgbPaginationModule, NgbAlertModule]
 ```
+MapBoxGeocode
+```bash
+npm install --save @mapbox/mapbox-gl-geocoder
+```
