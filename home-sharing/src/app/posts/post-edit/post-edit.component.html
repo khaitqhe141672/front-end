@@ -65,32 +65,6 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-6">
-                <mat-form-field appearance="outline">
-                  <mat-label>Địa chỉ</mat-label>
-                  <input formControlName="address" matInput placeholder="">
-                </mat-form-field>
-              </div>
-              <div class="col-3">
-                <mat-form-field appearance="outline">
-                  <mat-label>Tỉnh/Thành Phố</mat-label>
-                  <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">
-                    <mat-option disabled>-Chọn-</mat-option>
-                    <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-3">
-                <mat-form-field appearance="outline">
-                  <mat-label>Quận/Huyện</mat-label>
-                  <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">
-                    <mat-option disabled>--Chọn--</mat-option>
-                    <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
 
             <div class="row ">
               <div class="text-start" style="width: 100%"><h2 class="m-0">Chi tiết phòng</h2></div>
@@ -174,25 +148,26 @@
                         formControlName="utilitys"
                         placeholder="Chọn tiện ích">
                     </mat-chip-list>
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUtility($event)" [displayWith]="displayUtility">
-<!--                      <ng-container >-->
-<!--                        <mat-option *ngIf="!utilitys.includes(.name)"  [value]="utility.id">-->
-<!--                        <mat-option  *ngFor="let utility of filteredUtility | async " [value]="utility">-->
-<!--                          {{utility.name}}-->
-<!--                        </mat-option>-->
-<!--                      </ng-container>-->
-<!--                      <mat-select>-->
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUtility($event)"
+                                      [displayWith]="displayUtility">
+                      <!--                      <ng-container >-->
+                      <!--                        <mat-option *ngIf="!utilitys.includes(.name)"  [value]="utility.id">-->
+                      <!--                        <mat-option  *ngFor="let utility of filteredUtility | async " [value]="utility">-->
+                      <!--                          {{utility.name}}-->
+                      <!--                        </mat-option>-->
+                      <!--                      </ng-container>-->
+                      <!--                      <mat-select>-->
 
-<!--                      *ngIf="!saveUtilities.includes(utility)"-->
+                      <!--                      *ngIf="!saveUtilities.includes(utility)"-->
                       <ng-container *ngFor="let utility of filteredUtility | async">
-<!--                        <ng-template [ngIf]="checkUtilityExist(utility!)">-->
+                        <!--                        <ng-template [ngIf]="checkUtilityExist(utility!)">-->
                         <mat-option *ngIf="!utilitys.includes(utility.name)" [value]="utility">
                           {{utility.name}}
                         </mat-option>
-<!--                        </ng-template>-->
+                        <!--                        </ng-template>-->
                       </ng-container>
 
-<!--                      </mat-select>-->
+                      <!--                      </mat-select>-->
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -337,21 +312,70 @@
             </div>
           </mat-step>
 
+          <mat-step>
+            <ng-template matStepLabel>Địa chỉ</ng-template>
+            <div>
+              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
+                <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
+                Quay lại
+              </button>
 
+              <button class="btn btn-outline-primary" matStepperNext style="width: 130px" type="button">
+                Tiếp theo
+                <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
+              </button>
+
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="text-start d-flex justify-content-start align-items-end">
+                  <div class="col-6 p-1">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Địa chỉ</mat-label>
+                      <input formControlName="address" matInput placeholder="">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3 p-1">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Tỉnh/Thành Phố</mat-label>
+                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">
+                        <mat-option disabled>-Chọn-</mat-option>
+                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3 p-1">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Quận/Huyện</mat-label>
+                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">
+                        <mat-option disabled>--Chọn--</mat-option>
+                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <app-map></app-map>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
           <div class="img-uploader">
             <mat-step>
               <ng-template matStepLabel>
                 Chọn ảnh
               </ng-template>
               <div>
-                <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
+                <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="submit">
                   <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                   Quay lại
                 </button>
 
-                <button class="btn btn-outline-primary" matStepperNext style="width: 130px" type="button">
-                  Tiếp theo
-                  <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
+                <button (click)="formone.ngSubmit.emit()" class=" btn btn-outline-success" matStepperNext type="button">
+                  Hoàn thành
+                  <span class="btn-label"><i class="fa fa-check"></i></span>
                 </button>
               </div>
               <div *ngFor="let progressInfo of progressInfos">
@@ -556,30 +580,7 @@
               </div>
             </mat-step>
           </div>
-          <mat-step>
-            <ng-template matStepLabel>Hoàn thành</ng-template>
-            <div>
-              <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="submit">
-                <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
-                Quay lại
-              </button>
 
-              <button (click)="formone.ngSubmit.emit()" class=" btn btn-outline-success" matStepperNext type="button">
-                Hoàn thành
-                <span class="btn-label"><i class="fa fa-check"></i></span>
-              </button>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h2>Điều khoản dịch vụ</h2>
-              </div>
-              <div class="row">
-                <div class="text-start p-0 d-flex justify-content-start align-items-end">
-                  <h2>Thêm dịch vụ</h2>
-                </div>
-              </div>
-            </div>
-          </mat-step>
         </mat-stepper>
       </form>
     </div>

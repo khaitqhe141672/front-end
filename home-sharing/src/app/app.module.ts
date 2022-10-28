@@ -38,6 +38,8 @@ import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-b
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {AgmCoreModule} from "@agm/core";
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     PostDetailComponent,
     PostEditComponent,
     ProfileComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    MapComponent
 
   ],
   imports: [
@@ -77,7 +80,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     MatSelectModule,
     MatIconModule,
     MatMenuModule,
-    NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule
+    NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+    })
   ],
   providers: [DatePipe,AuthInterceptorService],
   bootstrap: [AppComponent]

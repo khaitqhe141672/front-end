@@ -14,6 +14,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {HasRoleCusGuard} from "./guard/has-role-cus.guard";
 import {HasRoleGuard} from "./guard/has-role.guard";
+import {MapComponent} from "./map/map.component";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const appRoute: Routes = [
     ]
 
   },
+  {path:'test',component:MapComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
     canActivate:[HasRoleCusGuard,HasRoleGuard],
