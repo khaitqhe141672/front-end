@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
@@ -11,7 +11,10 @@ import {Province, ResponseDistrict, ResponseProvince} from "../../shared/model/d
 import {RoomType} from "../../shared/model/room-type.model";
 import {DistrictByProvince} from "./district.model";
 import {UtilitiesData, UtilitiesResponse} from "../../shared/model/utility.model";
-
+import {API_MAP_GEO} from "../../constant/api.constant";
+import {environment} from "../../../environments/environment.prod";
+import * as mapboxgl from 'mapbox-gl'
+import {MapService} from "../../map/map.service";
 declare var $: any;
 
 @Component({
@@ -25,7 +28,7 @@ declare var $: any;
     }
   ]
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit,AfterViewInit {
   @ViewChild('vouchersInput') voucherInput: ElementRef<HTMLInputElement>;
   formGroupPost: FormGroup;
   // typeHomeStay = [
@@ -67,7 +70,7 @@ export class PostEditComponent implements OnInit {
   utilityResponse: UtilitiesResponse
   arrUtility: UtilitiesData[]
 
-  constructor(private fb: FormBuilder, private postEditService: PostEditService) {
+  constructor(private fb: FormBuilder, private postEditService: PostEditService,private mapService:MapService) {
 
   }
 
@@ -93,6 +96,7 @@ export class PostEditComponent implements OnInit {
     // this.getAllDistrict()
     this.getAllProvince()
     this.getAllRoomTypes()
+    // this.initMap()
     // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
     //   startWith(null),
     //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
@@ -459,20 +463,19 @@ export class PostEditComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    $(document).ready(function () {
-      $(document).on('click', '.dropbtn2', function () {
-        $('.dropbtn2').not(this).next().removeClass('show');
-        $(this).next().toggleClass('show');
-      });
-      $(document).on('click', function (e) {
-        if (!$(e.target).closest('.dropbtn2').length)
-          $('.dropbtn2').next().removeClass('show');
-      });
-    });
-    $('#img4').click(function () {
-      $('#fileInput2').trigger('click');
-    });
-
+    // $(document).ready(function () {
+    //   $(document).on('click', '.dropbtn2', function () {
+    //     $('.dropbtn2').not(this).next().removeClass('show');
+    //     $(this).next().toggleClass('show');
+    //   });
+    //   $(document).on('click', function (e) {
+    //     if (!$(e.target).closest('.dropbtn2').length)
+    //       $('.dropbtn2').next().removeClass('show');
+    //   });
+    // });
+    // $('#img4').click(function () {
+    //   $('#fileInput2').trigger('click');
+    // });
   }
 
   toLowerCaseNonAccentVietnamese(str) {
@@ -490,6 +493,7 @@ export class PostEditComponent implements OnInit {
     return str;
   }
 
+
   private _filter(value: any): UtilitiesData[] {
     const filterValue = value.name || value;
     return this.allUtilitys.filter(utility => this.toLowerCaseNonAccentVietnamese(utility.name).includes(this.toLowerCaseNonAccentVietnamese(filterValue.toLowerCase())));
@@ -497,4 +501,5 @@ export class PostEditComponent implements OnInit {
   checkUtilityExist(utility?:UtilitiesData):boolean{
     return !this.saveUtilities.find(data => data.id = utility.id);
   }
+
 }

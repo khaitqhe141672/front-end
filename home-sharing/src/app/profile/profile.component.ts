@@ -10,47 +10,49 @@ import {UserInfo, UserInfoResponse} from "./profile.model";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private _formBuilder: FormBuilder,private profileService:ProfileService) {}
-  infoFormGroup: FormGroup
-  historyFormGroup: FormGroup
-  secureFormGroup: FormGroup
-  userInfoResponse:UserInfoResponse
-  userInfo:UserInfo
+  // constructor(private _formBuilder: FormBuilder,private profileService:ProfileService) {}
+  // infoFormGroup: FormGroup
+  // historyFormGroup: FormGroup
+  // secureFormGroup: FormGroup
+  // userInfoResponse:UserInfoResponse
+  // userInfo:UserInfo
+  constructor() {
+  }
   ngOnInit(): void {
-    this.initForm()
-    this.getUserInfo()
+    // this.initForm()
+    // this.getUserInfo()
   }
-  initForm(){
-    this.infoFormGroup = this._formBuilder.group(
-      {
-        userName:[''],
-        secondName:[''],
-        gender:[''],
-        phoneNumber:[''],
-        email:[''],
-        province:[''],
-        district:[''],
-        address:['']
-      }
-    )
-    this.historyFormGroup = this._formBuilder.group({
-      secondCtrl:['']
-    })
-  }
-  getUserInfo(){
-    this.profileService.getUserInfo().subscribe(responseUserInfo=>{
-      this.userInfoResponse = responseUserInfo
-      this.userInfo = this.userInfoResponse.object
-      this.bindData(this.userInfo)
-      console.log(this.userInfo)
-    })
-  }
-  bindData(userInfo:UserInfo){
-    this.infoFormGroup.controls['userName'].patchValue(this.userInfo.username)
-    this.infoFormGroup.controls['secondName'].patchValue(this.userInfo.fullName)
-    this.infoFormGroup.controls['phoneNumber'].patchValue(this.userInfo.mobile)
-    this.infoFormGroup.controls['email'].patchValue(this.userInfo.email)
-    this.infoFormGroup.controls['address'].patchValue(this.userInfo.address)
-
-  }
+  // initForm(){
+  //   this.infoFormGroup = this._formBuilder.group(
+  //     {
+  //       userName:[''],
+  //       secondName:[''],
+  //       gender:[''],
+  //       phoneNumber:[''],
+  //       email:[''],
+  //       province:[''],
+  //       district:[''],
+  //       address:['']
+  //     }
+  //   )
+  //   this.historyFormGroup = this._formBuilder.group({
+  //     secondCtrl:['']
+  //   })
+  // }
+  // getUserInfo(){
+  //   this.profileService.getUserInfo().subscribe(responseUserInfo=>{
+  //     this.userInfoResponse = responseUserInfo
+  //     this.userInfo = this.userInfoResponse.object
+  //     this.bindData(this.userInfo)
+  //     console.log(this.userInfo)
+  //   })
+  // }
+  // bindData(userInfo:UserInfo){
+  //   this.infoFormGroup.controls['userName'].patchValue(this.userInfo.username)
+  //   this.infoFormGroup.controls['secondName'].patchValue(this.userInfo.fullName)
+  //   this.infoFormGroup.controls['phoneNumber'].patchValue(this.userInfo.mobile)
+  //   this.infoFormGroup.controls['email'].patchValue(this.userInfo.email)
+  //   this.infoFormGroup.controls['address'].patchValue(this.userInfo.address)
+  //
+  // }
 }

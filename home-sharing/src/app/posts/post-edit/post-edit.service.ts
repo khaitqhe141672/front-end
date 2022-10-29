@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
 import {
   API_DISTRICT,
-  API_GET_DISTRICT_BY_PROVINCE,
+  API_GET_DISTRICT_BY_PROVINCE, API_MAP_GEO,
   API_POSTING,
   API_PROVINCE,
   API_ROOM_TYPE, API_UTILITYS
@@ -14,6 +14,7 @@ import {ResponseRoom} from "../../shared/model/room-type.model";
 import {ResponseDistrictByProvince} from "./district.model";
 import {Post} from "../post.model";
 import {UtilitiesResponse} from "../../shared/model/utility.model";
+import {environment} from "../../../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +76,9 @@ export class PostEditService{
   getUtility():Observable<UtilitiesResponse>
   {
     return this.http.get<UtilitiesResponse>(API_UTILITYS)
+  }
+  getGeoLocation(lat:number,lng:number) {
+    console.log(API_MAP_GEO+lat+","+lng+".json?access_token="+environment.mapboxKey)
+    return this.http.get<any>(API_MAP_GEO+lng+","+lat+".json?access_token="+environment.mapboxKey)
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {HomeService} from "./home.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -13,7 +13,7 @@ import {PostTopRate, ResponsePostTopRate} from "../shared/model/PostYopRate.mode
   styleUrls: ['./home.component.css'],
   providers: [NgbCarouselConfig]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit {
 
   recommendedPlaceResponse: RecommendedPlaceResponse
   interestingPlaceResponse: InterestingPlaceResponse
