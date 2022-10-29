@@ -7,6 +7,7 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import {MapService} from "./map.service";
 import {debounceTime} from "rxjs/operators";
 import {ResponseCoordinateInfo} from "../shared/model/location.model";
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -87,6 +88,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       trackUserLocation: true,
       showUserHeading: true
     }));
+    const language = new MapboxLanguage();
+    this.map.addControl(language);
 
   }
 }

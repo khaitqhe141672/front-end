@@ -15,6 +15,10 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 import {HasRoleCusGuard} from "./guard/has-role-cus.guard";
 import {HasRoleGuard} from "./guard/has-role.guard";
 import {MapComponent} from "./map/map.component";
+import {AuthGuard} from "./guard/auth.guard";
+import {UserInfoComponent} from "./profile/user-info/user-info.component";
+import {PasswordComponent} from "./profile/password/password.component";
+import {HistoryBookingComponent} from "./history-booking/history-booking.component";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -29,7 +33,11 @@ const appRoute: Routes = [
   {path:'test',component:MapComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
-    canActivate:[HasRoleCusGuard,HasRoleGuard],
+    canActivate:[HasRoleGuard],children:[
+      {path: '',component: UserInfoComponent},
+      {path: 'password',component: PasswordComponent},
+      {path: 'history-booking',component: HistoryBookingComponent}
+    ]
 
   },
   // {path: 'login', component: LoginComponent},

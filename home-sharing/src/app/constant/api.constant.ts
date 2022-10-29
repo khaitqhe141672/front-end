@@ -10,3 +10,4 @@ export const API_GET_DISTRICT_BY_PROVINCE ='http://localhost:8080/api/address/di
 export const API_POSTING =  'http://localhost:8080/api/posting/create-posting'
 export const API_UTILITYS = 'http://localhost:8080/api/utility'
 export const API_MAP_GEO = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
+export const API_CHANGE_PASSWORD = 'http://localhost:8080/api/auth/change-password'

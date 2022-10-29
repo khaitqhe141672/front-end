@@ -24,7 +24,7 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatNativeDateModule} from "@angular/material/core";
+import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatButtonModule} from "@angular/material/button";
@@ -40,6 +40,11 @@ import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {AgmCoreModule} from "@agm/core";
 import { MapComponent } from './map/map.component';
+import {SearchComponent} from "./search/search.component";
+import { UserInfoComponent } from './profile/user-info/user-info.component';
+import { HistoryBookingComponent } from './history-booking/history-booking.component';
+import { PasswordComponent } from './profile/password/password.component';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -57,8 +62,11 @@ import { MapComponent } from './map/map.component';
     PostEditComponent,
     ProfileComponent,
     ErrorPageComponent,
-    MapComponent
-
+    MapComponent,
+    SearchComponent,
+    UserInfoComponent,
+    HistoryBookingComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -83,9 +91,15 @@ import { MapComponent } from './map/map.component';
     NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-    })
+    }),
+    MatSnackBarModule
   ],
-  providers: [DatePipe,AuthInterceptorService],
+  providers: [
+    DatePipe,
+    AuthInterceptorService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
