@@ -6,7 +6,7 @@
   padding-top: 30px;
 }
 
-.container-home a{
+.container-home a {
   color: #000000;
 }
 
@@ -15,9 +15,34 @@ img {
   height: 100%;
 }
 
-.container-home .slider .owl-carousel .item {
+.container-home .slider .carousel-item {
   width: 1230px;
   height: 318px;
+  border-radius: 20px;
+}
+
+.container-home .slider .carousel-item img {
+  border-radius: 20px;
+}
+
+.container-home .slider .button_now {
+  position: absolute;
+  margin-top: -7%;
+  margin-left: 12%;
+}
+
+.container-home .slider .button_now button {
+  background-color: #F36B08;
+  border: none;
+  padding: 10px 15px 10px 15px;
+}
+
+.container-home .slider .button_now button:hover {
+  background-color: #F4B689;
+}
+
+.container-home .welcome {
+  padding-top: 30px;
 }
 
 .container-home .welcome .span-welcome-0 {
@@ -56,7 +81,7 @@ img {
 
 .container-home .interesting_place .title h2,
 .container-home .experience_place .title h2,
-.container-home .top_room .title h2{
+.container-home .top_room .title h2 {
   font-size: 32px;
   font-family: 'Baloo';
 }
@@ -65,23 +90,74 @@ img {
   padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 30px;
 }
 
-.container-home .experience_place{
+.container-home .experience_place {
   padding-top: 30px;
 }
 
-.container-home .top_room .item_star{
+.container-home .carousel-wap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+}
+
+.container-home .top_room .item_star {
   position: absolute;
-  top: 50%;
-  right: 5%;
+  margin-top: -7.5%;
+  margin-left: 16%;
   background-color: #a9a9a9;
-  padding: 3px 7px 3px 7px;
+  padding: 3px 9px 3px 9px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.container-home .top_room .item_star span{
+  padding: 3px 8px 3px 8px;
+}
+
+.container-home .top_room .item_star svg {
+  width: 22px;
+  height: 22px;
+}
+
+.container-home .top_room .item_image,
+.container-home .experience_place .item_image,
+.container-home .interesting_place .card_interesting_place
+.card_item_image{
+  width: 280px;
+  height: 220px;
   border-radius: 10px;
 }
 
-.container-home .top_room .item_star svg{
-  width: 22px;
-  height: 22px;
+.container-home .top_room .item_image img,
+.container-home .experience_place .item_image img,
+.container-home .interesting_place .card_interesting_place img{
+  border-radius: 10px;
+}
+
+.container-home .top_room{
+  padding-bottom: 30px;
+}
+
+ngb-carousel .wrapper {
+  position: relative;
+  height: 0;
+  padding-top: 55%; /* Keep ratio for 900x500 images */
+}
+
+ngb-carousel .wrapper > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.container-home .interesting_place h3,
+.container-home .experience_place h4,
+.container-home .top_room h4 {
+  font-size: 24px;
+  font-family: 'Inder';
+  padding-top: 15px;
 }
