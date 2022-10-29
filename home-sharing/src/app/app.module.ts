@@ -34,7 +34,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
-import {NgbAlertModule, NgbPaginationModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';

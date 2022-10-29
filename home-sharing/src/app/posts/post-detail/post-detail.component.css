@@ -42,7 +42,8 @@ img, iframe{
 
 .container-detail .title .star_detail {
   position: absolute;
-  top: 11%;
+  margin-top: -1%;
+  /*margin-left: 87%;*/
 }
 
 .container-detail .detail-content {
@@ -114,8 +115,8 @@ img, iframe{
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host .host span{
   position: absolute;
-  top: 25.5%;
-  right: 10.5%;
+  margin-top: 0.3%;
+  margin-left: 13%;
 }
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host .host .host-name h2{
