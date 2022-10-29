@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject, Subscription} from "rxjs";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {debounceTime, map, shareReplay, startWith} from "rxjs/operators";
@@ -15,6 +15,7 @@ import {API_MAP_GEO} from "../../constant/api.constant";
 import {environment} from "../../../environments/environment.prod";
 import * as mapboxgl from 'mapbox-gl'
 import {MapService} from "../../map/map.service";
+import {Post} from "../post.model";
 declare var $: any;
 
 @Component({
@@ -28,7 +29,7 @@ declare var $: any;
     }
   ]
 })
-export class PostEditComponent implements OnInit,AfterViewInit {
+export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   @ViewChild('vouchersInput') voucherInput: ElementRef<HTMLInputElement>;
   formGroupPost: FormGroup;
   // typeHomeStay = [
@@ -64,6 +65,10 @@ export class PostEditComponent implements OnInit,AfterViewInit {
   utilitiesDisplay: UtilitiesData[]
   allUtilitys: UtilitiesData[] = [];
   saveUtilities:UtilitiesData[]=[]
+
+  address:string  = null
+  private isChangeAddress!:Subscription
+
   @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   // @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   loadUtility$ = this.postEditService.getUtility().pipe(shareReplay())
@@ -94,7 +99,7 @@ export class PostEditComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
     this.initForm();
     // this.getAllDistrict()
-    this.getAllProvince()
+    // this.getAllProvince()
     this.getAllRoomTypes()
     // this.initMap()
     // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
@@ -113,6 +118,10 @@ export class PostEditComponent implements OnInit,AfterViewInit {
     //    console.log(a)
     //  })
     this.getUtility()
+    this.isChangeAddress = this.mapService.addressChanged.subscribe(address=>{
+      this.address = address
+      // console.log('this is address post edit: '+this.address)
+    })
     // this.filterUtility()
 
   }
@@ -121,8 +130,8 @@ export class PostEditComponent implements OnInit,AfterViewInit {
     this.formGroupPost = this.fb.group({
       name: [''],
       address: [''],
-      district: [''],
-      province: [''],
+      // district: [''],
+      // province: [''],
       type: [''],
       description: [''],
       priceHS: [''],
@@ -134,6 +143,9 @@ export class PostEditComponent implements OnInit,AfterViewInit {
           })
         ]
       ),
+      numbersOfBed:[''],
+      numbersOfRoom:[''],
+      numbersOfBath:[''],
       utilitys: [''],
       image: [''],
       voucherPost: this.fb.array([
@@ -150,27 +162,58 @@ export class PostEditComponent implements OnInit,AfterViewInit {
     let postName = this.formGroupPost.controls['name'].value
     let address = this.formGroupPost.controls['address'].value
     // let district = this.formGroupPost.controls['district'].value
-    let province = this.formGroupPost.controls['province'].value
-    let type = this.formGroupPost.controls['type'].value
+    // let province = this.formGroupPost.controls['province'].value
+    let typeID = this.formGroupPost.controls['type'].value
     let description = this.formGroupPost.controls['description'].value
     let priceHS = this.formGroupPost.controls['priceHS'].value
+    let numbersOfBed = this.formGroupPost.controls['numbersOfBed'].value
+    let numbersOfRoom = this.formGroupPost.controls['numbersOfRoom'].value
+    let numbersOfBath = this.formGroupPost.controls['numbersOfBath'].value
+    let guestNumber = this.formGroupPost.controls['guestNumber'].value
     let servicePost: { serviceName: string, servicePrice: string }[] = this.formGroupPost.controls['servicePost'].value
     let image = this.formGroupPost.controls['image'].value
     let voucher: { pctDiscout: number, voucherName: string }[] = this.formGroupPost.controls['voucherPost'].value
+    let lat = this.mapService.markerLat
+    let lng = this.mapService.markerLng
+    console.log('number of bed: '+numbersOfBed)
+    console.log('number of Room: '+numbersOfRoom)
+    console.log('number of Bath: '+numbersOfBath)
 
-    console.log('post name: ' + postName)
-    console.log('address: ' + address)
-    console.log('district: ' + this.districtID)
-    console.log('province: ' + this.provinceID)
-    console.log('type: ' + this.typeHsID)
-    console.log('description: ' + description)
-    console.log('priceHS: ' + priceHS)
 
-    console.log('service post: ' + JSON.stringify(servicePost))
-    console.log('image: ' + image)
-    console.log('voucher: ' + JSON.stringify(voucher))
+    //
+    // console.log('post name: ' + postName)
+    // // console.log('address: ' + this.mapService)
+    // console.log('district: ' + this.address)
+    // // console.log('province: ' + this.provinceID)
+    // console.log('type: ' + type)
+    // console.log('type 2: ' + this.typeHsID)
+    //
+    // console.log('description: ' + description)
+    // console.log('priceHS: ' + priceHS)
+    // console.log('utility: '+JSON.stringify(this.saveUtilities))
+    // console.log('service post: ' + JSON.stringify(servicePost))
+    // console.log('image: ' + image)
+    // console.log('voucher: ' + JSON.stringify(voucher))
+    // console.log('lat: '+lat)
+    // console.log('lng: '+lng)
+    let post = new Post()
+    post.guestNumber = guestNumber
+    post.numberOfBathrooms = numbersOfBath
+    post.numberOfBedrooms = numbersOfRoom
+    post.numberOfBeds = numbersOfBed
+
+    post.title = postName
+    post.description = description
+    post.price = priceHS
+
+
+    post.roomTypeID = typeID
+    post.address = address
+    // this.postEditService.pushPost(type)
   }
+  onPushPost(){
 
+  }
   onAddService() {
     this.ServicesPost.push(this.fb.group({
       serviceName: [''],
@@ -338,6 +381,7 @@ export class PostEditComponent implements OnInit,AfterViewInit {
 
   onSelectedTypeHS($event) {
     this.typeHsID = $event.value
+    console.log('this is type onSelected: '+this.typeHsID)
   }
 
   //Voucher
@@ -500,6 +544,10 @@ export class PostEditComponent implements OnInit,AfterViewInit {
   }
   checkUtilityExist(utility?:UtilitiesData):boolean{
     return !this.saveUtilities.find(data => data.id = utility.id);
+  }
+
+  ngOnDestroy(): void {
+    this.isChangeAddress.unsubscribe()
   }
 
 }

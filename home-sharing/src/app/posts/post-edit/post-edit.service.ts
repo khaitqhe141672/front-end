@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {District, Province, ResponseDistrict, ResponseProvince} from "../../shared/model/district.model";
 import {
   API_DISTRICT,
@@ -21,6 +21,7 @@ import {environment} from "../../../environments/environment.prod";
 })
 export class PostEditService{
   private baseUrl = 'http://localhost:8080';
+
   httpOptions ={
     headers:new HttpHeaders({'Content-Type':'Application/json'})
   }
@@ -56,21 +57,25 @@ export class PostEditService{
   getDistrictsByProvinceID(id:number):Observable<ResponseDistrictByProvince>{
     return this.http.get<ResponseDistrictByProvince>(API_GET_DISTRICT_BY_PROVINCE+id)
   }
-  pushPost(roomTypeID:number,districtID:number,provinceID:number,post:Post){
+  pushPost(roomTypeID:number,post:Post,latitude:number,longitude:number){
     return this.http.post(API_POSTING,{
       roomTypeID:roomTypeID,
       address:post.address,
-      districtID: districtID,
+      // districtID: districtID,
       guestNumber:post.guestNumber,
       numberOfBathrooms:post.numberOfBathrooms,
       numberOfBedrooms:post.numberOfBedrooms,
       numberOfBeds:post.numberOfBeds,
+
       title:post.title,
       description: post.description,
       price: post.price,
       utilityRequests: JSON.stringify(post.postUtilityDtoList),
-      voucherID: post.postID,
-      paymentPackageID: 1
+
+      voucherID: [1,2],
+      paymentPackageID: 1,
+      latitude:latitude,
+      longitude:longitude
     })
   }
   getUtility():Observable<UtilitiesResponse>
