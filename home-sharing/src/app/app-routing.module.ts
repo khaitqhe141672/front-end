@@ -14,6 +14,12 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {HasRoleCusGuard} from "./guard/has-role-cus.guard";
 import {HasRoleGuard} from "./guard/has-role.guard";
+
+import {HostComponent} from "./host/host.component";
+import {HostPostListComponent} from "./host/host-post-list/host-post-list.component";
+import {ManageRateComponent} from "./host/manage-rate/manage-rate.component";
+import {RateDetailComponent} from "./host/rate-detail/rate-detail.component";
+
 import {MapComponent} from "./map/map.component";
 import {AuthGuard} from "./guard/auth.guard";
 import {UserInfoComponent} from "./profile/user-info/user-info.component";
@@ -22,13 +28,14 @@ import {HistoryBookingComponent} from "./history-booking/history-booking.compone
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 
+
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {
     path: 'auth', children: [
-      {path: '',component: LoginComponent},
-      {path:'login',component:LoginComponent},
-      {path:'register',component:RegisterComponent}
+      {path: '', component: LoginComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent}
     ]
 
   },
@@ -44,19 +51,33 @@ const appRoute: Routes = [
   },
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
-  {path:'posts',children:[
-      {path: '',component: PostsComponent},
-      {path: 'post-detail/:id',component: PostDetailComponent,resolve:[PostResolverService]},
+  {
+    path: 'posts', children: [
+      {path: '', component: PostsComponent},
+      {path: 'post-detail/:id', component: PostDetailComponent, resolve: [PostResolverService]},
       // children:[
-        //   {path: ':id',component: PostDetailComponent}
-        // ]
-      {path: 'post-edit',component: PostEditComponent,canActivate:[HasRoleGuard]},
-      {path: 'post-list',component: PostListComponent}
+      //   {path: ':id',component: PostDetailComponent}
+      // ]
+      {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleGuard]},
+      {path: 'post-list', component: PostListComponent}
 
-    ]},
+    ]
+  },
+  {
+    path: 'hosts', children: [
+      {path: '', component: HostComponent},
+      {path: 'host-post-list', component: HostPostListComponent},
+      {
+        path: 'manage-rate', children: [
+          {path: '', component: ManageRateComponent},
+          {path: 'rate-detail', component: RateDetailComponent}
+        ]
+      }
+    ]
+  },
   {path: 'search', component: SearchComponent},
-  {path:'error',component:ErrorPageComponent},
-  {path:'**',component:ErrorPageComponent}
+  {path: 'error', component: ErrorPageComponent},
+  {path: '**', component: ErrorPageComponent}
 ]
 
 @NgModule({

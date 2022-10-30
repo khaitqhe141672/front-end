@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+svg,
+img {
+  width: 100%;
+  height: 100%;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+.container-manage-rate{
+  max-width: 1230px;
+  margin: auto;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.container-manage-rate .title {
+  padding-bottom: 30px;
+}
+
+.container-manage-rate .title h2 {
+  font-size: 28px;
+  font-family: Actor;
+}
+
+.container-manage-rate .content_list_rate {
+  max-width: 1150px;
+  margin: auto;
+  width: 100%;
+  border: 2px solid #F36B08;
+  border-radius: 15px;
+}
+
+.container-manage-rate .content_list_rate .list_rate{
+  padding: 15px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 50px;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.container-manage-rate .content_list_rate
+.list_rate .card_rate{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.container-manage-rate .content_list_rate
+.list_rate .card_rate svg{
+  width: 12px;
+  height: 10px;
+}
+
+.container-manage-rate .content_list_rate
+.list_rate .card_rate {
+  border: 1px solid #F36B08;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.message_box {
+  position: absolute;
+  margin-left: 93%;
+  margin-top: -5%;
+}
+
+.message_box button{
+  border: 1px solid #F36B08;
+  border-radius: 50%;
+  padding: 10px 15px 10px 15px;
+  background-color: #FAC29A;
+}
+
+.message_box button svg{
+  width: 40px;
+  height: 40px;
+}
