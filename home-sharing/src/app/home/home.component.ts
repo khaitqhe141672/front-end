@@ -62,4 +62,7 @@ export class HomeComponent implements OnInit,AfterViewInit {
       console.log(this.postTopRate)
     })
   }
+
+  ngAfterViewInit(): void {
+  }
 }
