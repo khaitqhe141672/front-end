@@ -1,0 +1,72 @@
+span {
+  display: inline-block;
+  cursor: pointer;
+  line-height: 25px;
+  text-align: center;
+  width: 25px;
+}
+.container-fluid{
+
+}
+.row{
+  height: auto;
+}
+.h3{
+  font-weight: bolder;
+}
+.container-fluid{
+
+}
+.main-content{
+  background-color: white;
+  padding-bottom: 20px;
+  height: auto;
+  /*border:1px solid #F36B08;*/
+  border-radius: 14px;
+  width: auto;
+}
+.btn-back{
+  border: 1px solid #F36B08;
+  border-radius: 4px;
+}
+.btn-back:hover{
+  border: 1px solid #F36B08;
+  color: #F36B08;
+  box-shadow: #7A7676;
+}
+.btn-submit{
+  background-color: #F36B08;
+  color: white;
+}
+.btn-submit:hover{
+  background-color: #F36B08;
+}
+::ng-deep label.star {
+  padding: 0 5px !important;
+  font-size: 20px !important;
+  color: #ddd !important;
+
+}
+::ng-deep label.star::before {
+  content: "\f005" !important;
+  text-shadow: none !important;
+}
+::ng-deep label.star:active {
+  content: "\fffff" !important;
+
+}
+::ng-deep label.star:hover {
+  transform: rotate(0deg) scale(1.2) !important;
+
+}
+input.star:checked ~ label.star:before {
+}
+
+input.star:checked ~ label.star:before{
+  color: #F36B08 !important;
+
+}
+::ng-deep .star-rate{
+  color:pink !important;
+
+}

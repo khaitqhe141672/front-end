@@ -52,6 +52,10 @@ import { UserInfoComponent } from './profile/user-info/user-info.component';
 import { HistoryBookingComponent } from './history-booking/history-booking.component';
 import { PasswordComponent } from './profile/password/password.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import { RateComponent } from './rate/rate.component';
+import {NgxStarRatingModule} from "ngx-star-rating";
+import { BookingComponent } from './booking/booking.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -78,7 +82,9 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     SearchComponent,
     UserInfoComponent,
     HistoryBookingComponent,
-    PasswordComponent
+    PasswordComponent,
+    RateComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +110,8 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
     }),
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxStarRatingModule, MatCheckboxModule
   ],
   providers: [
     DatePipe,

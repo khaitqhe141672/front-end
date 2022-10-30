@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {environment} from "../../environments/environment.prod";
 import {API_MAP_GEO} from "../constant/api.constant";
 import {HttpClient, HttpRequest} from "@angular/common/http";
@@ -8,15 +8,21 @@ import {MapService} from "./map.service";
 import {debounceTime} from "rxjs/operators";
 import {ResponseCoordinateInfo} from "../shared/model/location.model";
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import {PostService} from "../posts/post.service";
+import {Subject} from "rxjs";
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  constructor(private mapService:MapService) { }
+  @Output() addressEvent = new EventEmitter<string>();
+  address:string=null
 
-
+  sendAddress(){
+    return this.addressEvent.emit(this.address)
+  }
+  constructor(private mapService:MapService,private postService:PostService) { }
   map:Mapboxgl.Map
   ngOnInit(): void {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
@@ -51,19 +57,22 @@ export class MapComponent implements OnInit, AfterViewInit {
     })
     this.map.on('click',(e)=>{
       console.log(e.lngLat.lng)
-      let lat = e.lngLat.lat
-      let lng = e.lngLat.lng
-      this.marker.setLngLat([lng,lat]).addTo(this.map)
+      this.mapService.markerLat= e.lngLat.lat
+      this.mapService.markerLng  = e.lngLat.lng
+      this.marker.setLngLat([ this.mapService.markerLng, this.mapService.markerLat]).addTo(this.map)
+      this.getLocation()
     })
   }
 
   getLocation(){
     // console.log(this.mapService.getGeoLocation())
     this.mapService.getGeoLocation().subscribe(responseCoordinateInfo=>{
-      // let placeName = responseCoordinateInfo.features[0].place_name
-      // console.log(placeName)
-      console.log('leng: '+responseCoordinateInfo.features.length)
-      console.log(JSON.stringify(responseCoordinateInfo.features[0].place_name))
+      let placeName = responseCoordinateInfo.features[0].place_name
+      console.log(placeName)
+      this.address = placeName
+      this.mapService.addressChanged.next(placeName)
+      // console.log('leng: '+responseCoordinateInfo.features.length)
+      // console.log(JSON.stringify(responseCoordinateInfo.features[0].place_name))
     })
   }
 

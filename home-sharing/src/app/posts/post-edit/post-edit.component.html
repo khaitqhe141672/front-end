@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row d-flex">
+<div class="container mb-5">
+  <div   class="row d-flex">
     <div class="col-6 mt-5">
       <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carouselExampleFade">
         <div class="carousel-inner">
@@ -71,27 +71,32 @@
               <div class="pe-0 row d-flex justify-content-start align-self-start align-items-center"
                    style="width: 100%">
 
-                <div class="col-4 pe-0">
+                <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số giường</mat-label>
-                    <input formControlName="description" matInput placeholder="" type="number">
+                    <input formControlName="numbersOfBed" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
 
-                <div class="col-4 pe-0">
+                <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng ngủ</mat-label>
-                    <input formControlName="description" matInput placeholder="" type="number">
+                    <input formControlName="numbersOfRoom" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
 
-                <div class="col-4 pe-0">
+                <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng tắm</mat-label>
-                    <input formControlName="description" matInput placeholder="" type="number">
+                    <input formControlName="numbersOfBath" matInput placeholder="" type="number">
                   </mat-form-field>
                 </div>
-
+                <div class="col-6 pe-0">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nhập số khách có thể chứa</mat-label>
+                    <input formControlName="guestNumber" matInput placeholder="" type="number">
+                  </mat-form-field>
+                </div>
               </div>
             </div>
 
@@ -329,30 +334,30 @@
             <div class="row">
               <div class="col-12">
                 <div class="text-start d-flex justify-content-start align-items-end">
-                  <div class="col-6 p-1">
+                  <div class="col-12 p-1">
                     <mat-form-field appearance="outline">
                       <mat-label>Địa chỉ</mat-label>
-                      <input formControlName="address" matInput placeholder="">
+                      <input readonly [value]="address" formControlName="address" matInput placeholder="">
                     </mat-form-field>
                   </div>
-                  <div class="col-3 p-1">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Tỉnh/Thành Phố</mat-label>
-                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">
-                        <mat-option disabled>-Chọn-</mat-option>
-                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-3 p-1">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Quận/Huyện</mat-label>
-                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">
-                        <mat-option disabled>--Chọn--</mat-option>
-                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+<!--                  <div class="col-3 p-1">-->
+<!--                    <mat-form-field appearance="outline">-->
+<!--                      <mat-label>Tỉnh/Thành Phố</mat-label>-->
+<!--                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">-->
+<!--                        <mat-option disabled>-Chọn-</mat-option>-->
+<!--                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>-->
+<!--                      </mat-select>-->
+<!--                    </mat-form-field>-->
+<!--                  </div>-->
+<!--                  <div class="col-3 p-1">-->
+<!--                    <mat-form-field appearance="outline">-->
+<!--                      <mat-label>Quận/Huyện</mat-label>-->
+<!--                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">-->
+<!--                        <mat-option disabled>&#45;&#45;Chọn&#45;&#45;</mat-option>-->
+<!--                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>-->
+<!--                      </mat-select>-->
+<!--                    </mat-form-field>-->
+<!--                  </div>-->
                 </div>
                 <div class="row">
                   <div class="col">
