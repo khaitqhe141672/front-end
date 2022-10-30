@@ -23,6 +23,7 @@ export interface CheckUserNameResponse {
 
 @Injectable({providedIn: 'root'})
 export class RegisterService {
+
   // constructor(private http:HttpClient,private router:Router) {
   // }
   // apiRegister ='http://localhost:8080/api/auth/signup'

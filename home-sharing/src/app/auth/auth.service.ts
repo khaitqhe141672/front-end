@@ -211,5 +211,12 @@ export class AuthService {
       }
     }
   }
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['auth/login'])
+    localStorage.removeItem('userData')
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
+  }
 
 }

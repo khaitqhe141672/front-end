@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AuthService} from "../auth/auth.service";
 declare var $: any;
 
 @Component({
@@ -6,11 +7,11 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,AfterViewInit {
 
   token = JSON.parse(localStorage.getItem("userData"));
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -40,4 +41,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.auth.logout()
+  }
 }

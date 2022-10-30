@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {Post} from "./post.model";
 import {DataStorageService} from "../shared/data-storage.service";
 import {HttpClient} from "@angular/common/http";
+import * as mapboxgl from 'mapbox-gl'
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({providedIn:'root'})
-export class PostService{
+export class PostService {
   constructor(private http:HttpClient) {
   }
-  getData() {
-    return this.http.get<any>('https://jsonplaceholder.typicode.com/users')
-  }
+
 }
