@@ -1,7 +1,8 @@
 <!--<mat-slider min="1" max="100" step="1" value="50"></mat-slider>-->
 
-<app-header *ngIf="showHead"></app-header>
+<app-header *ngIf="showHead && headerCustomer"></app-header>
+<app-header-host *ngIf="headerHost"></app-header-host>
 
 <router-outlet></router-outlet>
 
-<app-footer *ngIf="showHead"></app-footer>
+<app-footer *ngIf="showHead && headerCustomer"></app-footer>

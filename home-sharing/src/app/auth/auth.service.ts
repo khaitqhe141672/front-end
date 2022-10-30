@@ -7,31 +7,34 @@ import {Injectable} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {CheckUserNameResponse, RegisterResponse} from "./register/register.service";
 import * as API_CONSTANT from "../constant/api.constant"
-export interface AuthResponseData{
-  message:string,
-  data:{
-    customerID:number,
-    userID:number,
-    user:{
-      username:string,
-      email:string,
-      role:string,
-      status:number
+
+export interface AuthResponseData {
+  message: string,
+  data: {
+    customerID: number,
+    userID: number,
+    user: {
+      username: string,
+      email: string,
+      role: string,
+      status: number
     },
-    token:string,
+    token: string,
   }
 }
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn: 'root'})
 export class AuthService {
   user = new BehaviorSubject<User>(null)
-  role:string
-  constructor( private router: Router, private http: HttpClient) {
+  role: string
+
+  constructor(private router: Router, private http: HttpClient) {
   }
-  login(username:string,password:string){
+
+  login(username: string, password: string) {
     const urlLogin = 'http://localhost:8080/api/auth/signin'
-    return this.http.post<AuthResponseData>(urlLogin,{username:username,password:password})
-      .pipe(catchError(this.handleError),tap(responseData=>{
+    return this.http.post<AuthResponseData>(urlLogin, {username: username, password: password})
+      .pipe(catchError(this.handleError), tap(responseData => {
           this.handleAuthentication(
             responseData.message,
             responseData.data.customerID,
@@ -45,42 +48,46 @@ export class AuthService {
         }
       ))
   }
-  autoLogin(){
+
+  autoLogin() {
     console.log("auto login")
-    const userData:User = JSON.parse(localStorage.getItem('userData'))
+    const userData: User = JSON.parse(localStorage.getItem('userData'))
     this.role = JSON.parse(localStorage.getItem('role'))
     // console.log("userName: "+userData.username+"/nRole: "+this.role)
-    if(!userData){
+    if (!userData) {
       return;
     }
-    console.log(userData.username+' '+userData.role)
-    const loadUser = new User(userData.id,userData.username,userData.role,userData.token)
-    if(loadUser.token){
+    console.log(userData.username + ' ' + userData.role)
+    const loadUser = new User(userData.id, userData.username, userData.role, userData.token)
+    if (loadUser.token) {
       this.user.next(loadUser)
     }
   }
-  getToken():string{
-    return  JSON.parse(localStorage.getItem('token'))
+
+  getToken(): string {
+    return JSON.parse(localStorage.getItem('token'))
   }
+
   private handleAuthentication(
-    message:string,customerID:number,userID:number,username:string,email:string,role:string,status:number,
-    token:string
-  ){
-    const user = new User(userID,username,role,token)
-    console.log("user info: "+user)
+    message: string, customerID: number, userID: number, username: string, email: string, role: string, status: number,
+    token: string
+  ) {
+    const user = new User(userID, username, role, token)
+    console.log("user info: " + user)
     this.user.next(user)
-    localStorage.setItem('role',JSON.stringify(user.role))
-    localStorage.setItem('userData',JSON.stringify(user))
-    localStorage.setItem('token',JSON.stringify(user.token))
+    localStorage.setItem('role', JSON.stringify(user.role))
+    localStorage.setItem('userData', JSON.stringify(user))
+    localStorage.setItem('token', JSON.stringify(user.token))
   }
-  private handleError(errorResponse:HttpErrorResponse){
+
+  private handleError(errorResponse: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!'
-    if(!errorResponse.error||!errorResponse.error.status){
-      return throwError(()=>new Error(errorMessage))
+    if (!errorResponse.error || !errorResponse.error.status) {
+      return throwError(() => new Error(errorMessage))
     }
     // console.log(errorResponse)
     // console.log(errorResponse.error.status)
-    switch (errorResponse.error.status){
+    switch (errorResponse.error.status) {
       case 'EXPECTATION_FAILED':
         errorMessage = 'Do thằng backend lười code nên ko biết lỗi gì'
         break;
@@ -97,20 +104,20 @@ export class AuthService {
 
   // apiRegister ='http://localhost:8080/api/auth/signup'
   // apiCheckMail = 'http://localhost:8080/api/auth/exist-email?'
-  register(username:string,password:string,mobile:string,address:string,email:string,
-           role:string,dob:string,fullName:string){
-    return this.http.post<RegisterResponse>(API_CONSTANT.API_REGISTER,{
-      username:username,
-      password:password,
-      email:email,
-      role:role,
-      fullName:fullName,
-      address:address,
-      mobile:mobile,
-      dob:dob,
+  register(username: string, password: string, mobile: string, address: string, email: string,
+           role: string, dob: string, fullName: string) {
+    return this.http.post<RegisterResponse>(API_CONSTANT.API_REGISTER, {
+      username: username,
+      password: password,
+      email: email,
+      role: role,
+      fullName: fullName,
+      address: address,
+      mobile: mobile,
+      dob: dob,
     })
       .pipe(catchError(this.handleError),
-        tap(responseData=>{
+        tap(responseData => {
           const message = responseData.message;
           const username = responseData.data.user;
           const fullname = responseData.data.user.fullName;
@@ -121,23 +128,23 @@ export class AuthService {
         })
       )
   }
-  checkEmailExist(email:string): Observable<boolean>{
-    let message = 'An error occurred'
-    this.http.post<CheckUserNameResponse>(API_CONSTANT.API_EXIST_MAIL+'email='+email,{
 
-    }).pipe(catchError(this.handleError),tap(responseData=>{
+  checkEmailExist(email: string): Observable<boolean> {
+    let message = 'An error occurred'
+    this.http.post<CheckUserNameResponse>(API_CONSTANT.API_EXIST_MAIL + 'email=' + email, {}).pipe(catchError(this.handleError), tap(responseData => {
       message = responseData.message
       const data = responseData.data.user
 
     }))
     // if (message === 'EMAIL_NOT_EXIST') return true
     // else return false
-    return of(message==='EMAIL_NOT_EXIST').pipe()
+    return of(message === 'EMAIL_NOT_EXIST').pipe()
   }
 
-  getRole(){
+  getRole() {
     return this.role
   }
+
   // private handleErrorEmail(errorResponse:HttpErrorResponse){
   //   let errorMessage = 'An unknown error occurred!'
   //   if(!errorResponse.error||!errorResponse.error.message){
@@ -175,13 +182,14 @@ export class AuthService {
       }
 
       if (passwordControl.value !== confirmPasswordControl.value) {
-        confirmPasswordControl.setErrors({ passwordMismatch: true });
+        confirmPasswordControl.setErrors({passwordMismatch: true});
       } else {
         confirmPasswordControl.setErrors(null);
       }
     }
   }
-  checkDob(dob:string){
+
+  checkDob(dob: string) {
     return (formGroup: FormGroup) => {
       const dobControl = formGroup.controls[dob];
       const currenDateTine = new Date().getTime()
@@ -196,7 +204,7 @@ export class AuthService {
       }
 
       if (convertDob > currenDateTine) {
-        dobControl.setErrors({ errorDate: true });
+        dobControl.setErrors({errorDate: true});
         console.log('error')
       } else {
         dobControl.setErrors(null);

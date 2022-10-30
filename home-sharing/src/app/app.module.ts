@@ -38,6 +38,11 @@ import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig} from 
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { HeaderHostComponent } from './header-host/header-host.component';
+import { HostComponent } from './host/host.component';
+import { HostPostListComponent } from './host/host-post-list/host-post-list.component';
+import { ManageRateComponent } from './host/manage-rate/manage-rate.component';
+import { RateDetailComponent } from './host/rate-detail/rate-detail.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +59,12 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     PostDetailComponent,
     PostEditComponent,
     ProfileComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    HeaderHostComponent,
+    HostComponent,
+    HostPostListComponent,
+    ManageRateComponent,
+    RateDetailComponent
 
   ],
   imports: [

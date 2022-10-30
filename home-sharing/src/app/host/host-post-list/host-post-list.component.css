@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+svg,
+img {
+  width: 100%;
+  height: 100%;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+.container-post-host {
+  max-width: 1230px;
+  margin: auto;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.container-post-host .title {
+  padding-bottom: 30px;
+}
+
+.container-post-host .title h2 {
+  font-size: 28px;
+  font-family: Actor;
+}
+
+
+.container-post-host .content_post_list {
+  max-width: 1150px;
+  margin: auto;
+  width: 100%;
+  border: 2px solid #F36B08;
+  border-radius: 15px;
+}
+
+.container-post-host .content_post_list .card_post {
+  display: grid;
+  grid-template-columns: 1fr 15px 170px 250px 50px 170px;
+  column-gap: 20px;
+  align-items: center;
+  padding: 15px 20px 15px 20px;
+  color: #F36B08;
+}
+
+.container-post-host .content_post_list .card_post
+.card_title svg {
+  width: 12px;
+  height: 10px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_endDate,
+.container-post-host .content_post_list .card_post
+.card_status {
+  border: 1px solid #F36B08;
+  border-radius: 15px;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+}
+
+.container-post-host .content_post_list .card_post
+.card_status svg {
+  width: 12px;
+  height: 10px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_function {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_function button {
+  border: none;
+  background-color: #FAC29A;
+  border-radius: 40px;
+  padding: 10px 10px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_function button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_statusReport {
+  text-align: center;
+}
+
+.container-post-host .content_post_list .card_post
+.card_statusReport svg {
+  width: 30px;
+  height: 30px;
+}
+
+.container-post-host .content_post_list .card_post
+.card_function button:hover {
+  background-color: #F4B689;
+}
+
+.container-post-host .content_post_list .other {
+  padding: 15px 20px 15px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-post-host .content_post_list .other
+.create_post {
+  justify-self: end;
+}
+
+.container-post-host .content_post_list .other
+.create_post button {
+  border: none;
+  background-color: #F36B08;
+  color: #FFFFFF;
+  font-family: Inder;
+  font-size: 22px;
+  border-radius: 10px;
+  padding: 10px 25px 10px 25px;
+}
+
+.message_box {
+  position: absolute;
+  margin-left: 93%;
+  margin-top: -5%;
+}
+
+.message_box button{
+  border: 1px solid #F36B08;
+  border-radius: 50%;
+  padding: 10px 15px 10px 15px;
+  background-color: #FAC29A;
+}
+
+
+.message_box button svg{
+  width: 40px;
+  height: 40px;
+}
