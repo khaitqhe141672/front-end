@@ -2,12 +2,14 @@ import {HttpClient} from "@angular/common/http";
 import {API_MAP_GEO} from "../constant/api.constant";
 import {environment} from "../../environments/environment.prod";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {ResponseCoordinateInfo} from "../shared/model/location.model";
 @Injectable({providedIn:'root'})
 export class MapService{
   constructor(private http:HttpClient) {
   }
+  addressChanged = new Subject<string>()
+
   getGeoLocation():Observable<ResponseCoordinateInfo> {
     // console.log('marker: '+this.markerLat+"/"+this.markerLng)
     console.log(API_MAP_GEO+this.markerLng+","+this.markerLat+".json?access_token="+environment.mapboxKey)

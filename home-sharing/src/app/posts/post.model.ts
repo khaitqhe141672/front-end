@@ -25,6 +25,8 @@ export class Post {
   districtDto: DistrictDto
   avgRate: number
   status: number
+
+  roomTypeID?:number
 }
 
 export interface ImageDtoList {

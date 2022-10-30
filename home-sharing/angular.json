@@ -55,7 +55,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/custom-theme.scss",
               "src/styles.css",
-              "mapbox-gl/dist/mapbox-gl.css"
+              "mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -19,6 +19,7 @@ import {AuthGuard} from "./guard/auth.guard";
 import {UserInfoComponent} from "./profile/user-info/user-info.component";
 import {PasswordComponent} from "./profile/password/password.component";
 import {HistoryBookingComponent} from "./history-booking/history-booking.component";
+import {RateComponent} from "./rate/rate.component";
 
 const appRoute: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -30,7 +31,7 @@ const appRoute: Routes = [
     ]
 
   },
-  {path:'test',component:MapComponent},
+  {path:'test',component:RateComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
     canActivate:[HasRoleGuard],children:[
