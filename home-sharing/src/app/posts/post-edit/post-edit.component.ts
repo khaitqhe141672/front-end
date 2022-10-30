@@ -143,6 +143,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
           })
         ]
       ),
+      guestNumber:[''],
       numbersOfBed:[''],
       numbersOfRoom:[''],
       numbersOfBath:[''],

@@ -47,6 +47,8 @@ import { PasswordComponent } from './profile/password/password.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import { RateComponent } from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
+import { BookingComponent } from './booking/booking.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import {NgxStarRatingModule} from "ngx-star-rating";
     UserInfoComponent,
     HistoryBookingComponent,
     PasswordComponent,
-    RateComponent
+    RateComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,7 @@ import {NgxStarRatingModule} from "ngx-star-rating";
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
     }),
     MatSnackBarModule,
-    NgxStarRatingModule,
+    NgxStarRatingModule, MatCheckboxModule
   ],
   providers: [
     DatePipe,
