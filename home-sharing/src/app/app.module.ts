@@ -56,6 +56,7 @@ import { RateComponent } from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
 import { BookingComponent } from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
     }),
     MatSnackBarModule,
-    NgxStarRatingModule, MatCheckboxModule
+    NgxStarRatingModule, MatCheckboxModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     DatePipe,

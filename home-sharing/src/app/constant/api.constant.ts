@@ -17,3 +17,6 @@ export const API_HOME_POST_TOP_RATE = 'http://localhost:8080/api/home/post-top-r
 export const API_MAP_GEO = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
 export const API_CHANGE_PASSWORD = 'http://localhost:8080/api/auth/change-password'
 
+export const API_VOUCHER = 'http://localhost:8080/api/voucher'
+export const API_SERVICE_POST = 'http://localhost:8080/api/services/all-list'
+export const API_PUSH_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image?post-id='

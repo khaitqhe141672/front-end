@@ -285,3 +285,10 @@ state-done, .mat-step-header .mat-step-icon-state-edit {
   width: auto;
   height: 300px;
 }
+::ng-deep.mat-horizontal-content-container{
+  height: 800px !important;
+}
+.multi-select-voucher{
+  height: 30px!important;
+
+}
