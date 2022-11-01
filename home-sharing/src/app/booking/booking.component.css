@@ -1,36 +1,48 @@
-.btn-calendar{
+.btn-calendar {
   border: none;
   color: #F36B08;
   text-decoration-line: underline;
 }
-.btn-calendar:hover{
+
+.btn-calendar:hover {
   color: #F36B08;
 }
-.title{
-  color:#F36B08
+
+.title {
+  color: #F36B08
 
 }
 
-.tb-service-row{
+.tb-service-row {
   font-size: 18px;
 }
-.tb-service-row:hover{
+
+.utility_service{
+  max-width: 550px;
+  margin: auto;
+  width: 100%;
+}
+
+.tb-service-row:hover {
   border: 1px solid #F36B08;
   border-radius: 6px;
   color: #F36B08;
 }
-:host::ng-deep.mat-checkbox-layout{
+
+:host::ng-deep.mat-checkbox-layout {
   white-space: normal !important;
 }
 
-:host::ng-deep.mat-checkbox-inner-container{
+:host::ng-deep.mat-checkbox-inner-container {
   margin-top: 4px;
 }
-.btn-bill-submit:hover{
+
+.btn-bill-submit:hover {
   background-color: #24E589;
   border: none;
 }
-.container-right{
+
+.container-right {
   padding: 16px;
   border-radius: 16px;
   background: rgba(217, 217, 217, 0.35);

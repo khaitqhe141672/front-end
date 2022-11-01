@@ -1,0 +1,206 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+svg,
+img {
+  width: 100%;
+  height: 100%;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+.container-manage-rate {
+  max-width: 1230px;
+  width: 100%;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.container-manage-rate .title {
+  display: grid;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.container-manage-rate .title h2 {
+  font-size: 28px;
+  font-family: Actor;
+}
+
+.container-manage-rate .title svg {
+  width: 15px;
+  height: 15px;
+}
+
+.container-manage-rate .box_list_rate {
+  border: 1px solid #F36B08;
+  border-radius: 15px;
+}
+
+.container-manage-rate .box_list_rate .list_rate .intro {
+  display: grid;
+  grid-template-columns: 300px 100px 1fr;
+  align-items: center;
+  column-gap: 20px;
+  padding: 20px 25px 20px 25px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.title_rate h2 {
+  text-decoration: underline;
+  font-size: 32px;
+  font-family: Inder;
+}
+.container-manage-rate .box_list_rate .box_rate{
+  max-width: 1100px;
+  width: 100%;
+  margin: auto;
+}
+
+.container-manage-rate .box_list_rate .box_rate
+.content_rate{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 20px;
+  padding-bottom: 10px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate{
+  border: 1px solid #F36B08;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+.container-manage-rate .box_list_rate
+.list_rate .star span,
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .info_customer .star{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .info_customer{
+  display: grid;
+  grid-template-columns: 55px 120px 100px 1fr;
+  align-items: center;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .info_customer .avatar{
+  width: 40px;
+  height: 40px;
+  border: 1px solid #F36B08;
+  border-radius: 50%;
+  padding: 3px 4px 3px 4px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .info_customer .star svg{
+  width: 15px;
+  height: 15px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .comment,
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment{
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  column-gap: 20px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment .rep_comment form{
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  column-gap: 20px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment .third_button{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment svg{
+  width: 27px;
+  height: 25px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment button{
+  border: none;
+  background-color: #FAC29A;
+  border-radius: 50%;
+  padding: 10px 5px 10px 5px;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment input{
+  border-radius: 20px;
+  border: 1px solid #F36B08;
+  color: #F36B08;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment input:focus{
+  color: #F36B08;
+  padding-left: 10px;
+  border: 1px solid #F36B08 !important;
+}
+
+.container-manage-rate .box_list_rate .list_rate
+.content_rate .card_rate .function_comment input::placeholder{
+  border: 1px solid #F36B08;
+}
+
+.message_box {
+  position: absolute;
+  margin-left: 93%;
+  margin-top: -6%;
+}
+
+.message_box button{
+  border: 1px solid #F36B08;
+  border-radius: 50%;
+  padding: 10px 15px 10px 15px;
+  background-color: #FAC29A;
+}
+
+.message_box button svg{
+  width: 40px;
+  height: 40px;
+}

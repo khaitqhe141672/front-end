@@ -1,11 +1,48 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+svg,
+img {
+  width: 100%;
+  height: 100%;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+mat-slider {
+  width: 100%;
+}
+
 .container-search {
   max-width: 1230px;
   margin: auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 300px 1fr;
   column-gap: 20px;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 img, iframe {
@@ -14,26 +51,141 @@ img, iframe {
 }
 
 .container-search .menu-search .map {
-  width: 350px;
+  width: 300px;
   height: 210px;
   border-radius: 15px;
   border: 1px solid #F36B08;
 }
 
 .container-search .content-search .intro_image {
-  width: 860px;
+  width: 910px;
   height: 210px;
   border: 1px solid #F36B08;
   border-radius: 25px;
 }
 
-.container-search .menu-search,
-.container-search .content-search{
+.container-search .menu-search{
   display: grid;
   row-gap: 10px;
 }
 
-.container-search .menu-search .menu-type{
+.container-search .menu-search .menu-type {
   border-radius: 15px;
   border: 1px solid #F36B08;
+  padding: 10px 10px;
+}
+
+.container-search .menu-search .menu-type .slider_fast {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 30px;
+}
+
+.container-search .menu-search .menu-type
+.slider_fast .price_min,
+.container-search .menu-search .menu-type
+.slider_fast .price_max {
+  display: grid;
+  row-gap: 5px;
+}
+
+.container-search .menu-search .menu-type
+.slider_fast button {
+  border: 1px solid #F36B08;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.container-search .menu-search .menu-type
+.slider_fast button:hover {
+  background-color: #F4B689;
+}
+
+.container-search .menu-search .menu-type .services,
+.container-search .menu-search .menu-type .star_rate,
+.container-search .menu-search .menu-type .type_place,
+.container-search .menu-search .menu-type .voucher,
+.container-search .menu-search .menu-type .map_center {
+  padding-top: 15px;
+  display: grid;
+  row-gap: 5px;
+  align-items: center;
+}
+
+.container-search .menu-search .menu-type .services .services_title h3,
+.container-search .menu-search .menu-type .search_of_price h3,
+.container-search .menu-search .menu-type .star_rate .star_rate_title h3,
+.container-search .menu-search .menu-type .type_place .type_place_title h3,
+.container-search .menu-search .menu-type .voucher .voucher_title h3,
+.container-search .menu-search .menu-type .map_center .map_center_title h3 {
+  font-family: Actor;
+  font-size: 20px;
+  color: #7A7676;
+}
+
+.container-search .menu-search .menu-type .services .services_checkbox,
+.container-search .menu-search .menu-type .star_rate .star_rate_checkbox,
+.container-search .menu-search .menu-type .type_place .type_place_checkbox,
+.container-search .menu-search .menu-type .voucher .voucher_checkbox,
+.container-search .menu-search .menu-type .map_center .map_center_checkbox {
+  padding-left: 25px;
+  padding-right: 15px;
+}
+
+.container-search .menu-search .menu-type
+.services .services_checkbox .example-section,
+.container-search .menu-search .menu-type
+.star_rate .star_rate_checkbox .example-section,
+.container-search .menu-search .menu-type
+.type_place .type_place_checkbox .example-section,
+.container-search .menu-search .menu-type
+.voucher .voucher_checkbox .example-section,
+.container-search .menu-search .menu-type
+.map_center .map_center_checkbox .example-section {
+  display: grid;
+  row-gap: 5px;
+  align-items: center;
+}
+
+.container-search .menu-search .menu-type
+.star_rate .star_rate_checkbox .example-section span {
+  padding-left: 10px;
+}
+
+.container-search .menu-search .menu-type
+.star_rate .star_rate_checkbox .example-section svg {
+  width: 18px;
+  height: 18px;
+}
+.container-search .content-search .filter_function{
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  align-items: center;
+}
+
+.container-search .content-search .filter_function .filter{
+  padding: 10px 15px 10px 15px;
+  border: 1px solid #7A7676;
+  display: grid;
+  grid-template-columns: 100px 150px 2px 120px 2px 120px;
+  border-radius: 15px;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.container-search .content-search .filter_function .filter .filter_date,
+.container-search .content-search .filter_function .filter .filter_customer{
+  justify-self: center;
+}
+
+.container-search .content-search .filter_function .filter .filter_date button,
+.container-search .content-search .filter_function .filter .filter_customer button{
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: center;
+  border: none;
+  column-gap: 20px;
+  background-color: #FFFFFF;
 }
