@@ -132,3 +132,11 @@ Star Rating
 ```bash
 npm install ngx-star-rating --save
 ```
+Multiple Select Dropdown
+```bash
+npm i ng-multiselect-dropdown
+```
+- add to import app module
+```bash
+NgMultiSelectDropDownModule.forRoot()
+```

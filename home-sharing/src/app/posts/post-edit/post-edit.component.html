@@ -1,5 +1,5 @@
 <div class="container mb-5">
-  <div   class="row d-flex">
+  <div class="row d-flex">
     <div class="col-6 mt-5">
       <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carouselExampleFade">
         <div class="carousel-inner">
@@ -112,7 +112,6 @@
 
           <mat-step [stepControl]="formGroupPost">
             <ng-template matStepLabel>Giá thuê và Dịch Vụ</ng-template>
-
             <div>
               <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
                 <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
@@ -124,7 +123,8 @@
                 <span class="btn-label"><i class="fa fa-chevron-right"></i></span>
               </button>
             </div>
-            <div class="row mt-4 d-flex justify-content-center align-self-start">
+
+            <div class="row mt-4 h-100 d-flex justify-content-center align-self-start">
               <div class="col-12">
                 <div class="row  ">
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
@@ -135,7 +135,7 @@
                   <mat-form-field appearance="outline">
                     <mat-label>Chọn tiện ích</mat-label>
                     <mat-chip-list #chipList aria-label="">
-                      <mat-chip
+                      <mat-chip style="background-color: #F36B08;color: white"
                         (removed)="removeUtilitys(utility)"
                         *ngFor="let utility of saveUtilities">
                         {{utility.name}}
@@ -155,24 +155,11 @@
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUtility($event)"
                                       [displayWith]="displayUtility">
-                      <!--                      <ng-container >-->
-                      <!--                        <mat-option *ngIf="!utilitys.includes(.name)"  [value]="utility.id">-->
-                      <!--                        <mat-option  *ngFor="let utility of filteredUtility | async " [value]="utility">-->
-                      <!--                          {{utility.name}}-->
-                      <!--                        </mat-option>-->
-                      <!--                      </ng-container>-->
-                      <!--                      <mat-select>-->
-
-                      <!--                      *ngIf="!saveUtilities.includes(utility)"-->
                       <ng-container *ngFor="let utility of filteredUtility | async">
-                        <!--                        <ng-template [ngIf]="checkUtilityExist(utility!)">-->
                         <mat-option *ngIf="!utilitys.includes(utility.name)" [value]="utility">
                           {{utility.name}}
                         </mat-option>
-                        <!--                        </ng-template>-->
                       </ng-container>
-
-                      <!--                      </mat-select>-->
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -185,21 +172,39 @@
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
                     <h2>Thêm dịch vụ</h2>
                   </div>
-
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Dịch vụ có sẵn</mat-label>
+                        <input #serviceInput type="text" matInput formControlName="selectServiceCtrl" [matAutocomplete]="auto3">
+                        <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayWithService"
+                                          (optionSelected)='onSelectService($event)'
+                        >
+                          <mat-option *ngFor="let service of filteredServices | async" [value]="service" >
+                            {{service.name}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
+                  </div>
                   <div *ngFor="let s of ServicesPost.controls;let i = index" formArrayName="servicePost">
                     <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
-
-                      <div class="col-6 p-0">
+                     <div style="display: none">
+                       <mat-form-field class="hide">
+                         <input readonly formControlName="serviceID" matInput placeholder="" >
+                       </mat-form-field>
+                     </div>
+                      <div class="col-6 ps-3">
                         <mat-form-field appearance="outline" style="width: 100%">
-                          <mat-label>Tên dịch vụ {{i + 1}}</mat-label>
-                          <input formControlName="serviceName" matInput placeholder="">
+                          <mat-label>Dịch vụ {{i + 1}}</mat-label>
+                          <input formControlName="serviceName" matInput placeholder="" >
                         </mat-form-field>
                       </div>
 
                       <div class="col-4 pe-0">
                         <mat-form-field appearance="outline" style="width: 100%">
                           <mat-label>Giá dịch vụ</mat-label>
-                          <input formControlName="servicePrice" matInput placeholder="" type="number">
+                          <input formControlName="servicePrice" matInput placeholder="" type="number" value="1">
                           <span matSuffix>VND</span>
                         </mat-form-field>
                       </div>
@@ -238,6 +243,39 @@
 
                   <div class="text-start p-0 d-flex justify-content-start align-items-end">
                     <h2>Thêm mã giảm giá</h2>
+                  </div>
+                  <div class="row text-start">
+                    <div class="col-12 h-100 ">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Chọn mã giảm giá</mat-label>
+                        <mat-chip-list #chipListVoucher aria-label="">
+                          <mat-chip style="background-color: #F36B08;color: white"
+                            (removed)="removeVouchers(voucher)"
+                            *ngFor="let voucher of saveVouchers">
+                            {{voucher.nameVoucher}}-Giảm:{{voucher.percent}}%
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+
+                          <input
+                            #voucherInput
+                            (matChipInputTokenEnd)="addVoucher($event)"
+                            [matAutocomplete]="auto2"
+                            [matChipInputFor]="chipListVoucher"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            formControlName="vouchers"
+                            placeholder="Chọn tiện ích">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedVoucher($event)" [displayWith]="displayVoucher">
+                          <ng-container *ngFor="let voucher of filteredVoucher | async">
+                            <mat-option *ngIf="!vouchers.includes(voucher.nameVoucher)" [value]="voucher">
+                              {{voucher.nameVoucher}}
+                            </mat-option>
+                          </ng-container>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
                   </div>
 
                   <div>
@@ -337,27 +375,27 @@
                   <div class="col-12 p-1">
                     <mat-form-field appearance="outline">
                       <mat-label>Địa chỉ</mat-label>
-                      <input readonly [value]="address" formControlName="address" matInput placeholder="">
+                      <input [value]="address" formControlName="address" matInput placeholder="" readonly>
                     </mat-form-field>
                   </div>
-<!--                  <div class="col-3 p-1">-->
-<!--                    <mat-form-field appearance="outline">-->
-<!--                      <mat-label>Tỉnh/Thành Phố</mat-label>-->
-<!--                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">-->
-<!--                        <mat-option disabled>-Chọn-</mat-option>-->
-<!--                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>-->
-<!--                      </mat-select>-->
-<!--                    </mat-form-field>-->
-<!--                  </div>-->
-<!--                  <div class="col-3 p-1">-->
-<!--                    <mat-form-field appearance="outline">-->
-<!--                      <mat-label>Quận/Huyện</mat-label>-->
-<!--                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">-->
-<!--                        <mat-option disabled>&#45;&#45;Chọn&#45;&#45;</mat-option>-->
-<!--                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>-->
-<!--                      </mat-select>-->
-<!--                    </mat-form-field>-->
-<!--                  </div>-->
+                  <!--                  <div class="col-3 p-1">-->
+                  <!--                    <mat-form-field appearance="outline">-->
+                  <!--                      <mat-label>Tỉnh/Thành Phố</mat-label>-->
+                  <!--                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">-->
+                  <!--                        <mat-option disabled>-Chọn-</mat-option>-->
+                  <!--                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>-->
+                  <!--                      </mat-select>-->
+                  <!--                    </mat-form-field>-->
+                  <!--                  </div>-->
+                  <!--                  <div class="col-3 p-1">-->
+                  <!--                    <mat-form-field appearance="outline">-->
+                  <!--                      <mat-label>Quận/Huyện</mat-label>-->
+                  <!--                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">-->
+                  <!--                        <mat-option disabled>&#45;&#45;Chọn&#45;&#45;</mat-option>-->
+                  <!--                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>-->
+                  <!--                      </mat-select>-->
+                  <!--                    </mat-form-field>-->
+                  <!--                  </div>-->
                 </div>
                 <div class="row">
                   <div class="col">

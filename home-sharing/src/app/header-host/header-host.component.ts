@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 
 declare var $: any;
 
@@ -7,7 +7,7 @@ declare var $: any;
   templateUrl: './header-host.component.html',
   styleUrls: ['./header-host.component.css']
 })
-export class HeaderHostComponent implements OnInit {
+export class HeaderHostComponent implements OnInit,AfterViewInit {
 
   token = JSON.parse(localStorage.getItem("userData"));
 
