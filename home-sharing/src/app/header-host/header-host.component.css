@@ -158,6 +158,15 @@ header .container-header-host .function-host ul a{
   font-size: 24px;
 }
 
+.fix__nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 900;
+}
+
 /* === responsive === */
 @media (max-width: 1100px) {
   header .container-header-host {

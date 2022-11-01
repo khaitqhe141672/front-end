@@ -135,6 +135,11 @@ hr, ul, li {
 }
 
 .container-post-host .content_post_list .other
+.page_post {
+  justify-self: start;
+}
+
+.container-post-host .content_post_list .other
 .create_post button {
   border: none;
   background-color: #F36B08;
