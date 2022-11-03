@@ -56,11 +56,10 @@ import { RateComponent } from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
 import { BookingComponent } from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-
-import {MatPaginatorModule} from '@angular/material/paginator';
-=======
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-
+import { TestComponent } from './test/test.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
+import {NgxFileDropModule} from "ngx-file-drop";
 
 @NgModule({
   declarations: [
@@ -117,6 +116,9 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     }),
     MatSnackBarModule,
     NgxStarRatingModule, MatCheckboxModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDropzoneModule,
+    NgxFileDropModule,
     MatPaginatorModule,
     NgMultiSelectDropDownModule.forRoot()
   ],

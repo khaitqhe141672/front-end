@@ -137,7 +137,14 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     this.getUtility()
     this.isChangeAddress = this.mapService.addressChanged.subscribe(address=>{
       this.address = address
-      // console.log('this is address post edit: '+this.address)
+      const matcher = this.address.match('Hanoi\\s?([0-9]*)')
+      if(matcher){
+        console.log("this is: "+matcher[0])
+          console.log(this.address.replace(/Hanoi[\\s]?([0-9]*)?/g,'Hà Nội'))
+      }else{
+        console.log("no no")
+      }
+      console.log('this is address post edit: '+this.address)
     })
     // this.loadVoucher()
     // this.filterUtility()
@@ -172,6 +179,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       numbersOfBath:[''],
       utilitys: [''],
       image: [''],
+      inputImg:[''],
       voucherPost: this.fb.array([
         // this.fb.group({
         //   voucherName:[''],
@@ -374,7 +382,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     this.progressInfos[idx] = {value: 0, fileName: file.name};
 
     if (file) {
-      this.postEditService.upload(file).subscribe(
+      this.postEditService.uploadByAPI(file).subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progressInfos[idx].value = Math.round(
@@ -394,7 +402,6 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       );
     }
   }
-
   uploadFiles(): void {
     this.message = [];
 
@@ -403,7 +410,33 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
         this.upload(i, this.selectedFiles[i]);
       }
     }
+    // this.uploadAllImg()
   }
+  uploadAllImg(): void {
+    // this.progressInfos[idx] = {value: };
+
+    if (this.selectedFiles) {
+      this.postEditService.uploadByAPI2(this.selectedFiles).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            // this.progressInfos[idx].value = Math.round(
+            //   (100 * event.loaded) / event.total
+            console.log( Math.round((100 * event.loaded) / event.total));
+          } else if (event instanceof HttpResponse) {
+            // const msg = 'Uploaded the file successfully: ' + file.name;
+            // this.message.push(msg);
+            // this.imageInfos = this.postEditService.getFiles();
+          }
+        },
+        (err: any) => {
+          // this.progressInfos[idx].value = 0;
+          // const msg = 'Could not upload the file: ' + file.name;
+          // this.message.push(msg);
+        }
+      );
+    }
+  }
+
 
   onChangePositionImg(event, pos1: number, pos2: number) {
     // console.log(this.previews[pos1]);
