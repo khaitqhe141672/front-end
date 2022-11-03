@@ -56,18 +56,12 @@ import { RateComponent } from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
 import { BookingComponent } from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-
-
-import {MatPaginatorModule} from '@angular/material/paginator';
-
-import { FormsModule } from '@angular/forms';
-import {MatCardModule} from "@angular/material/card";
-
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { TestComponent } from './test/test.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
-
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -128,7 +122,8 @@ import {NgxFileDropModule} from "ngx-file-drop";
     NgxDropzoneModule,
     NgxFileDropModule,
     MatPaginatorModule,
-    FormsModule,MatCardModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatCardModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
