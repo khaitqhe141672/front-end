@@ -57,6 +57,8 @@ import {NgxStarRatingModule} from "ngx-star-rating";
 import { BookingComponent } from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -113,7 +115,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     }),
     MatSnackBarModule,
     NgxStarRatingModule, MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule,MatCardModule
   ],
   providers: [
     DatePipe,
