@@ -60,6 +60,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { TestComponent } from './test/test.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
