@@ -61,6 +61,7 @@ import { TestComponent } from './test/test.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     HistoryBookingComponent,
     PasswordComponent,
     RateComponent,
-    BookingComponent
+    BookingComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     NgxDropzoneModule,
     NgxFileDropModule,
     MatPaginatorModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(), MatCardModule
   ],
   providers: [
     DatePipe,

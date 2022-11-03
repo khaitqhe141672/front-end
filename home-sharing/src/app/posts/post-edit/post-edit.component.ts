@@ -380,10 +380,13 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
 
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = {value: 0, fileName: file.name};
+    console.log('pushing3')
 
     if (file) {
+      console.log('pushing 5')
       this.postEditService.uploadByAPI(file).subscribe(
         (event: any) => {
+          console.log('pushing4')
           if (event.type === HttpEventType.UploadProgress) {
             this.progressInfos[idx].value = Math.round(
               (100 * event.loaded) / event.total
@@ -398,7 +401,10 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
           this.progressInfos[idx].value = 0;
           const msg = 'Could not upload the file: ' + file.name;
           this.message.push(msg);
+        },()=>{
+          console.log('complete 1')
         }
+
       );
     }
   }
