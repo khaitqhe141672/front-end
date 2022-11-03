@@ -38,13 +38,15 @@ export class PostEditService{
     console.log('pushing')
     let formData: FormData = new FormData();
     let headers: any = new Headers();
-    headers.append('Content-type', undefined);
+    headers.append('Content-type', 'multipart/form-data');
     formData.append('file', file);
 
     const req = new HttpRequest('POST',
       API_PUSH_SINGLE_IMG_POST+'3',
-      formData, headers);
+      formData, {headers:headers});
     formData = new FormData()
+    console.log('pushing2')
+
     return this.http.request(req);
   }
 
