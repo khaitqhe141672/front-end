@@ -431,27 +431,52 @@
                   <span class="progress">{{ progressInfo.value }}%</span>
                 </mat-toolbar>
               </div>
-              <mat-form-field appearance="none" style="width: 50%;">
+<!--              <mat-form-field  style="width: 50%;">-->
+<!--                <div>-->
+<!--                  <mat-toolbar>-->
+<!--                    <input value="{{selectedFileNames.length?selectedFileNames:'Chọn ảnh'}}" matInput style="caret-color: transparent;font-size: 1rem"/>-->
+<!--                    <button (click)="uploadFiles()" [disabled]="!selectedFiles" class="p-0" type="button"-->
+<!--                            color="primary" mat-flat-button>-->
+<!--                      <span class="btn-label"><i class="fa fa-upload"></i></span>-->
+<!--                      Tải lên-->
+<!--                    </button>-->
+<!--                  </mat-toolbar>-->
+
+<!--                  <input-->
+<!--                    #fileUpload-->
+<!--                    (change)="selectFiles($event)"-->
+<!--                    accept="image/*"-->
+<!--                    id="fileInput"-->
+<!--                    multiple name="fileInput"-->
+<!--                    type="file"-->
+<!--                  />-->
+<!--                </div>-->
+<!--              </mat-form-field>-->
+              <mat-form-field>
                 <div>
                   <mat-toolbar>
-                    <input [value]="'Chọn ảnh'" matInput style="caret-color: transparent;font-size: 1rem"/>
-                    <button (click)="uploadFiles()" [disabled]="!selectedFiles" class="p-0"
-                            color="primary" mat-flat-button>
-                      <span class="btn-label"><i class="fa fa-upload"></i></span>
+                    <input matInput value="{{selectedFileNames.length ? selectedFileNames : 'Chọn ảnh'}}" />
+
+                    <button
+                      type="button"
+                      mat-flat-button
+                      color="primary"
+                      [disabled]="!selectedFiles"
+                      (click)="uploadFiles()"
+                    >
                       Tải lên
                     </button>
                   </mat-toolbar>
 
                   <input
-                    (change)="selectFiles($event)"
-                    accept="image/*"
-                    id="fileInput"
-                    multiple name="fileInput"
                     type="file"
+                    id="fileInput"
+                    name="fileInput"
+                    accept="image/*" multiple
+                    (change)="selectFiles($event)"
                   />
                 </div>
               </mat-form-field>
-
               <div *ngIf="previews.length>0">
                 <div class="row">
                   <div class="col-8 div-img-1 number_custom">

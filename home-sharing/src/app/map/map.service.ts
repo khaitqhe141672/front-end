@@ -12,8 +12,8 @@ export class MapService{
 
   getGeoLocation():Observable<ResponseCoordinateInfo> {
     // console.log('marker: '+this.markerLat+"/"+this.markerLng)
-    console.log(API_MAP_GEO+this.markerLng+","+this.markerLat+".json?access_token="+environment.mapboxKey)
-    return this.http.get<any>(API_MAP_GEO+this.markerLng+","+this.markerLat+".json?access_token="+environment.mapboxKey)
+    console.log(API_MAP_GEO+this.markerLng+","+this.markerLat+".json?language=vi&access_token="+environment.mapboxKey)
+    return this.http.get<any>(API_MAP_GEO+this.markerLng+","+this.markerLat+".json?language=vi&access_token="+environment.mapboxKey)
     // return this.http.get<any>('https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?access_token=pk.eyJ1IjoiZGluaGR1YzI1NTAiLCJhIjoiY2w5czdvZ3ZxMWlvdTN2bzVxeWlkOW91ZiJ9.9pgJl1pbYV0JAEceiGCXkQ')
   }
   lat = 16;
