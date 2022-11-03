@@ -40,13 +40,18 @@ const appRoute: Routes = [
     ]
 
   },
+
+  {path: 'test', component: BookingComponent},
+
   {path:'test',component:TestComponent},
+
   {path: 'home', component: HomeComponent},
-  {path:'profile',component:ProfileComponent,
-    canActivate:[HasRoleGuard],children:[
-      {path: '',component: UserInfoComponent},
-      {path: 'password',component: PasswordComponent},
-      {path: 'history-booking',component: HistoryBookingComponent}
+  {
+    path: 'profile', component: ProfileComponent,
+    canActivate: [HasRoleGuard], children: [
+      {path: '', component: UserInfoComponent},
+      {path: 'password', component: PasswordComponent},
+      {path: 'history-booking', component: HistoryBookingComponent}
     ]
 
   },

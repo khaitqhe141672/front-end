@@ -691,6 +691,20 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   ngAfterViewInit() {
+    $(document).ready(function () {
+      $(document).on('click', '.dropbtn2', function () {
+        $('.dropbtn2').not(this).next().removeClass('show');
+        $(this).next().toggleClass('show');
+      });
+      $(document).on('click', function (e) {
+        if (!$(e.target).closest('.dropbtn2').length)
+          $('.dropbtn2').next().removeClass('show');
+      });
+    });
+    $('#img4').click(function () {
+      $('#fileInput2').trigger('click');
+    });
+
 
     // $(document).ready(function () {
     //   $(document).on('click', '.dropbtn2', function () {
