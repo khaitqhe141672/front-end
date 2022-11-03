@@ -27,6 +27,7 @@ import {PasswordComponent} from "./profile/password/password.component";
 import {HistoryBookingComponent} from "./history-booking/history-booking.component";
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
+import {TestComponent} from "./test/test.component";
 
 
 const appRoute: Routes = [
@@ -39,7 +40,11 @@ const appRoute: Routes = [
     ]
 
   },
+
   {path: 'test', component: BookingComponent},
+
+  {path:'test',component:TestComponent},
+
   {path: 'home', component: HomeComponent},
   {
     path: 'profile', component: ProfileComponent,

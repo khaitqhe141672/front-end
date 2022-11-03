@@ -14,7 +14,7 @@ import {
   API_DISTRICT,
   API_GET_DISTRICT_BY_PROVINCE, API_MAP_GEO,
   API_POSTING,
-  API_PROVINCE,
+  API_PROVINCE, API_PUSH_IMG_POST, API_PUSH_SINGLE_IMG_POST,
   API_ROOM_TYPE, API_SERVICE_POST, API_UTILITYS, API_VOUCHER
 } from "../../constant/api.constant";
 import {catchError, map, tap} from "rxjs/operators";
@@ -30,26 +30,39 @@ import {ResponseService} from "../../shared/model/serivce-post.model";
   providedIn: 'root'
 })
 export class PostEditService{
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = API_PUSH_SINGLE_IMG_POST;
 
-  httpOptions ={
-    headers:new HttpHeaders({'Content-Type':'Application/json'})
-  }
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-
+  uploadByAPI(file: File): Observable<HttpEvent<any>> {
+    console.log('pushing')
+    let formData: FormData = new FormData();
+    let headers: any = new Headers();
+    headers.append('Content-type', undefined);
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+    const req = new HttpRequest('POST',
+      API_PUSH_SINGLE_IMG_POST+'3',
+      formData, headers);
+    formData = new FormData()
+    return this.http.request(req);
+  }
+
+  uploadByAPI2(fileList: FileList): Observable<HttpEvent<any>> {
+    console.log('pushing')
+    let formData: FormData = new FormData();
+    let fileLength = fileList.length
+    for (let i=0;i< fileLength;i++){
+      formData.append(fileList[i].name,fileList[i])
+    }
+
+    const req = new HttpRequest('POST', API_PUSH_IMG_POST+'3', formData, {
       reportProgress: true,
-      responseType: 'json'
+      responseType: 'json',
     });
 
     return this.http.request(req);
   }
-
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}/files`);
   }
