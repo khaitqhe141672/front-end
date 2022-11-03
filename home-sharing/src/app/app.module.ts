@@ -56,9 +56,15 @@ import { RateComponent } from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
 import { BookingComponent } from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+
 import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from "@angular/material/card";
+
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+
+
 
 @NgModule({
   declarations: [
@@ -116,7 +122,8 @@ import {MatCardModule} from "@angular/material/card";
     MatSnackBarModule,
     NgxStarRatingModule, MatCheckboxModule,
     MatPaginatorModule,
-    FormsModule,MatCardModule
+    FormsModule,MatCardModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     DatePipe,
