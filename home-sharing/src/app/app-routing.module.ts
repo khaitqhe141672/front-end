@@ -28,7 +28,11 @@ import {HistoryBookingComponent} from "./history-booking/history-booking.compone
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 import {TestComponent} from "./test/test.component";
+
 import {PostByLocationComponent} from "./posts/post-by-location/post-by-location.component";
+
+import {DatePickerComponent} from "./date-picker/date-picker.component";
+
 
 
 const appRoute: Routes = [
@@ -46,13 +50,14 @@ const appRoute: Routes = [
 
   {path: 'test', component: TestComponent},
 
+  {path:'booking/:id',component:BookingComponent},
+  {path:'test',component:TestComponent},
   {path: 'home', component: HomeComponent},
-  {
-    path: 'profile', component: ProfileComponent,
-    canActivate: [HasRoleGuard], children: [
-      {path: '', component: UserInfoComponent},
-      {path: 'password', component: PasswordComponent},
-      {path: 'history-booking', component: HistoryBookingComponent}
+  {path:'profile',component:ProfileComponent,
+    canActivate:[HasRoleGuard],children:[
+      {path: '',component: UserInfoComponent},
+      {path: 'password',component: PasswordComponent},
+      {path: 'history-booking',component: HistoryBookingComponent}
     ]
 
   },

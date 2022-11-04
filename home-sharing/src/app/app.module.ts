@@ -24,7 +24,12 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {
+  ErrorStateMatcher,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  ShowOnDirtyErrorStateMatcher
+} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatButtonModule} from "@angular/material/button";
@@ -62,7 +67,12 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
+
 import { PostByLocationComponent } from './posts/post-by-location/post-by-location.component';
+
+import {DatePickerComponent} from './date-picker/date-picker.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+
 
 @NgModule({
   declarations: [
@@ -93,7 +103,8 @@ import { PostByLocationComponent } from './posts/post-by-location/post-by-locati
     RateComponent,
     BookingComponent,
     TestComponent,
-    PostByLocationComponent
+    PostByLocationComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,15 +136,16 @@ import { PostByLocationComponent } from './posts/post-by-location/post-by-locati
     NgxDropzoneModule,
     NgxFileDropModule,
     MatPaginatorModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    MatCardModule,
-    NgMultiSelectDropDownModule.forRoot()
+    MatCardModule, MatDialogModule,
+    MatNativeDateModule,
   ],
   providers: [
     DatePipe,
     AuthInterceptorService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    { provide: MAT_DATE_LOCALE, useValue: 'vi-Vi' },
   ],
   bootstrap: [AppComponent]
 })

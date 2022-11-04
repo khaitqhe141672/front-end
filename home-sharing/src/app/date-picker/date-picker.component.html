@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row d-flex align-items-center text-center">
+    <div class="col">
+      <!--<button mat-button (click)="openDialog()">Launch dialog</button>-->
+      <h1 mat-dialog-title style="color: #F36B08">Chọn ngày</h1>
+      <div mat-dialog-content>
+        <mat-form-field appearance="outline" color="warn">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="formDatePicker" [rangePicker]="picker">
+            <input formControlName="startDate" matStartDate placeholder="Start date">
+            <input formControlName="endDate" matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>Ngày/Tháng/Năm - Ngày/Tháng/Năm</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions>
+        <button (click)="onSelectedDate()" style="background-color: #F36B08" mat-button mat-dialog-close="">OK</button>
+      </div>
+
+    </div>
+  </div>
+</div>

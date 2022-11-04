@@ -2,22 +2,24 @@ import {API_PUSH_SINGLE_IMG_POST} from "../constant/api.constant";
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {H} from "@angular/cdk/keycodes";
 @Injectable({providedIn:'root'})
 export class TestService{
   private baseUrl = API_PUSH_SINGLE_IMG_POST+3;
 
   constructor(private http: HttpClient) { }
-  header = new Headers()
+  // headerOption = new HttpHeaders()
   baseApiUrl = 'http://localhost:8080/api/posting/insert-post-image-one?post-id=3';
 
-token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5ZXV0aGF0eGEyMDQiLCJpYXQiOjE2NjczMzE2NjgsImV4cCI6MTY2NzQxODA2OH0.FbiHfg3fwvRsWYImuOxiOC6I_qXQqxrlagX5tACF5CbumsOJM5Xo9ALgR5ccdEkyDI16rwPrVSgQk5JPrCE-yw'
 
 
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(file: File): Observable<any> {
     const formData: FormData = new FormData();
+    // this.headerOption.append('Content-Type','multipart/form-data')
+    formData.append('file', file,file.name);
 
-    formData.append('file', file);
+
 
     const req = new HttpRequest('POST', `${this.baseApiUrl}`, formData, {
 
@@ -27,10 +29,14 @@ token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5ZXV0aGF0eGEyMDQiLCJpYXQiOjE2Njc
     });
 
     return this.http.request(req);
+
+  const headers = new HttpHeaders({"Content-Type":"multipart/form-data",'Test-xem':'ahihi'});
+    return this.http.post(this.baseApiUrl,formData, {headers : new HttpHeaders({ 'Content-Type':'multipart/form-data'})});
+
   }
 
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
-  }
+  // getFiles(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}`);
+  // }
 
 }
