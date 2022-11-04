@@ -34,20 +34,20 @@ export class PostEditService{
 
   constructor(private http: HttpClient) { }
 
-  uploadByAPI(file: File): Observable<HttpEvent<any>> {
+  uploadByAPI(file: File): Observable<any> {
     console.log('pushing')
     let formData: FormData = new FormData();
-    let headers: any = new Headers();
-    headers.append('Content-type', 'multipart/form-data');
+    let token = JSON.parse(localStorage.getItem('token'))
+    console.log('this is a token: '+token)
+    let headers: any = new Headers({
+      'Content-type': 'multipart/form-data',
+    });
+    headers.append('Authorization',token)
     formData.append('file', file);
 
-    const req = new HttpRequest('POST',
-      API_PUSH_SINGLE_IMG_POST+'3',
-      formData, {headers:headers});
-    formData = new FormData()
-    console.log('pushing2')
 
-    return this.http.request(req);
+
+    return this.http.post(API_PUSH_IMG_POST+3,formData,{headers});
   }
 
   uploadByAPI2(fileList: FileList): Observable<HttpEvent<any>> {

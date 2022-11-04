@@ -12,9 +12,12 @@ export class TokenInterceptor implements HttpInterceptor{
     console.log('this is token interceptor got: '+token)
     let jwtToken = req.clone({
       setHeaders:{
-        Authorization: token
+        // Authorization: token
+        'Authorization': `${this.authService.getToken()}`,
       }
     })
+    console.log("token intercepter: "+this.authService.getToken().substring(7))
+
     return next.handle(jwtToken);
   }
 
