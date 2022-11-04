@@ -62,7 +62,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -104,7 +104,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -146,7 +146,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -188,7 +188,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -230,7 +230,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -272,7 +272,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -314,7 +314,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -356,7 +356,7 @@
               </button>
             </div>
             <div class="checkout">
-              <button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"/>
@@ -387,4 +387,49 @@
       <rect x="0.5" y="0.649902" width="62.3333" height="61" stroke="#FAC29A"/>
     </svg>
   </button>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="staticBackdropLabel">Thông Báo</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>Xác nhận trả phòng thành công</h2>
+      </div>
+      <div class="modal-footer">
+        <!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-primary">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo">Open modal for @mdo
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="color: #F36B08;" class="modal-title" id="exampleModalLabel">Chi tiết phòng đang đón khách</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="info_hs">
+          <div class="">
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
 </div>

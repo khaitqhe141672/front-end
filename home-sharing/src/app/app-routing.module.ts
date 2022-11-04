@@ -28,6 +28,7 @@ import {HistoryBookingComponent} from "./history-booking/history-booking.compone
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 import {TestComponent} from "./test/test.component";
+import {PostByLocationComponent} from "./posts/post-by-location/post-by-location.component";
 
 
 const appRoute: Routes = [
@@ -41,9 +42,9 @@ const appRoute: Routes = [
 
   },
 
-  {path: 'test', component: BookingComponent},
+  // {path: 'test', component: BookingComponent},
 
-  {path:'test',component:TestComponent},
+  {path: 'test', component: TestComponent},
 
   {path: 'home', component: HomeComponent},
   {
@@ -65,8 +66,8 @@ const appRoute: Routes = [
       //   {path: ':id',component: PostDetailComponent}
       // ]
       {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleGuard]},
-      {path: 'post-list', component: PostListComponent}
-
+      {path: 'post-list', component: PostListComponent},
+      {path: 'post-by-location', component: PostByLocationComponent}
     ]
   },
   {

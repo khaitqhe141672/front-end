@@ -62,6 +62,7 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
+import { PostByLocationComponent } from './posts/post-by-location/post-by-location.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,9 @@ import {MatCardModule} from "@angular/material/card";
     HistoryBookingComponent,
     PasswordComponent,
     RateComponent,
-    BookingComponent
+    BookingComponent,
+    TestComponent,
+    PostByLocationComponent
   ],
   imports: [
     BrowserModule,

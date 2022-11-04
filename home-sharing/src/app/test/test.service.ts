@@ -21,6 +21,7 @@ token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5ZXV0aGF0eGEyMDQiLCJpYXQiOjE2Njc
 
     const req = new HttpRequest('POST', `${this.baseApiUrl}`, formData, {
 
+
       reportProgress: true,
       responseType: 'json'
     });
