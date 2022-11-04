@@ -140,3 +140,7 @@ npm i ng-multiselect-dropdown
 ```bash
 NgMultiSelectDropDownModule.forRoot()
 ```
+MatMomentAdapter
+```bash
+npm i @angular/material-moment-adapter
+```

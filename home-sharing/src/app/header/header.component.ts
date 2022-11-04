@@ -42,6 +42,12 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
   logout() {
+    // this.user.next(null);
+    // this.router.navigate(['auth/login'])
+
+    localStorage.removeItem("userData")
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
     this.auth.logout()
   }
 }
