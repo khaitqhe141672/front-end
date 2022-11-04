@@ -200,50 +200,57 @@
       </div>
     </div>
     <div class="detail-content-four">
+      <form [formGroup]="formBooking">
       <div class="detail-card-price">
         <div class="detail-card-price-title" style="padding-bottom: 30px;">
           <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price}} VND</span></h3>
         </div>
         <div class="detail-card-price-type">
+          <div class="row">
+            <div class="col-12">
+              <button class="btn btn-outline-success" mat-button (click)="openDatePickerDialog()" type="button">Chọn ngày</button>
+            </div>
+          </div>
           <div class="detail-card-price-type-first">
             <div class="detail-card-price-type-first-child"
                  style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
               <span>Ngày nhận phòng</span>
-              <input id="date1" type="date">
+              <input id="date1" type="date" formControlName="startDateCtrl">
             </div>
             <div class="detail-card-price-type-first-child"
                  style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
               <span>Ngày trả phòng</span>
-              <input id="date2" type="date">
+              <input id="date2" type="date"  formControlName="endDateCtrl" >
             </div>
-            <div class="detail-card-price-type-first-child"
+            <div class="detail-card-price-type-first-child "
                  style="padding: 10px 15px 10px 15px; text-align: center; display: grid;">
               <span>Số người</span>
-              <input disabled id="date3" type="text">
+              <input style="text-align: center"  formControlName="guestNumber" id="date3" type="number">
             </div>
           </div>
         </div>
         <div class="info-price">
           <h3>Giá phòng phải thanh toán</h3>
-          <h4>1,000,000 x 13 ngày = 13,000,000 VNĐ</h4>
+          <h4>{{postDetail.price}} x {{daysBetween?daysBetween:"0"}} ngày = {{totalPriceInDays?totalPriceInDays:"0"}}</h4>
           <h3>Phí dịch vụ</h3>
           <h4>2,000,000VNĐ</h4>
           <hr style="margin-top: 50px; margin-bottom: 30px">
           <div class="price-final">
             <div class="price-final-pay">
               <h3>Thanh toán</h3>
-              <h3 style="text-align: right;">15,000,000VNĐ</h3>
+              <h3 style="text-align: right;">{{totalPriceInDays?totalPriceInDays:""}}</h3>
             </div>
             <div class="total-vat">
               <h3>Tổng thanh toán sau thuế(10%VAT)</h3>
-              <h3 style="text-align: right;">16,500,000VNĐ</h3>
+              <h3 style="text-align: right;">{{totalPriceInDaysAfterTax?totalPriceInDaysAfterTax:""}}</h3>
             </div>
           </div>
         </div>
         <div class="price-button">
-          <button>Đặt ngay</button>
+          <button type="button" (click)="onBooking()">Đặt ngay</button>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>

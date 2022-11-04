@@ -28,6 +28,7 @@ import {HistoryBookingComponent} from "./history-booking/history-booking.compone
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 import {TestComponent} from "./test/test.component";
+import {DatePickerComponent} from "./date-picker/date-picker.component";
 
 
 const appRoute: Routes = [
@@ -40,6 +41,7 @@ const appRoute: Routes = [
     ]
 
   },
+  {path:'booking/:id',component:BookingComponent},
   {path:'test',component:TestComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
