@@ -17,6 +17,8 @@ import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {ListVoucher, Voucher, VoucherResponse} from "../../shared/model/voucher.model";
 import {MatSelect} from "@angular/material/select";
 import {ServiceObj} from "../../shared/model/serivce-post.model";
+import {TokenInterceptor} from "../../auth/token.interceptor";
+import {AuthInterceptorService} from "../../auth/auth-interceptor.service";
 
 declare var $: any;
 
@@ -25,10 +27,11 @@ declare var $: any;
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css'],
   providers: [
+    AuthInterceptorService,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: {showError: true}
-    }
+    },
   ]
 })
 export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
