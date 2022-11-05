@@ -68,7 +68,7 @@ export class PostDetailComponent implements OnInit {
   formatStartDate
   formatEndDate
   openDatePickerDialog() {
-    this.datePickerDialogRef = this.dialog.open(DatePickerComponent)
+    this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{hasBackdrop:true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
       console.log("Date before format: "+this.datePicked.startDate+" - "+this.datePicked.endDate)

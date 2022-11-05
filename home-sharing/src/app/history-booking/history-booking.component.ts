@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {RateComponent} from "../rate/rate.component";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-history-booking',
@@ -13,7 +16,11 @@ export class HistoryBookingComponent implements OnInit {
   totalDaysRent:number=12
   guestNumber: number=3;
   totalBill:number = 1000000000
-  constructor() { }
+  idBooking:number = 2
+  rateDialogRef:MatDialogRef<RateComponent>
+
+
+  constructor(private dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +29,14 @@ export class HistoryBookingComponent implements OnInit {
 
   }
 
-  onRateHS() {
 
+  openRateDialog(){
+    this.rateDialogRef = this.dialog.open(RateComponent,{
+      hasBackdrop:true,
+    data:{
+      id:this.idBooking
+    }
+    })
   }
 }
+

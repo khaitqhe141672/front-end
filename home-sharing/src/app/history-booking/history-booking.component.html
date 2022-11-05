@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="col-4 ms-2 mt-2 pe-0 me-0">
-          <div class="row" (click)="onRateHS()" style="cursor: pointer">
+          <div class="row" (click)="openRateDialog()" style="cursor: pointer">
             <div class="col-1 pe-0">
                <span>
                    <svg height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
@@ -74,13 +74,13 @@
         </div>
       </div>
       <div class="row">
-        <h3> Ngày thuê/trả:Từ <strong class="text-color-orange">{{startDate}}</strong> đến <strong class="text-color-orange">{{endDate}}</strong></h3>
+        <h3 class="m-0"> Ngày thuê/trả:Từ <strong class="text-color-orange">{{startDate}}</strong> đến <strong class="text-color-orange">{{endDate}}</strong></h3>
       </div>
       <div class="row">
-        <h3>Số khách: {{guestNumber}}</h3>
+        <h3 class="m-0">Số khách: {{guestNumber}}</h3>
       </div>
       <div class="row">
-        <h2>Tổng chi phí: {{totalBill}} VND</h2>
+        <h2 class=" m-0">Tổng chi phí: {{totalBill}} VND</h2>
       </div>
     </div>
 

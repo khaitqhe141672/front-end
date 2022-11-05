@@ -39,7 +39,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
-import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -54,7 +54,7 @@ import {AgmCoreModule} from "@agm/core";
 import { MapComponent } from './map/map.component';
 import {SearchComponent} from "./search/search.component";
 import { UserInfoComponent } from './profile/user-info/user-info.component';
-import { HistoryBookingComponent } from './history-booking/history-booking.component';
+import {HistoryBookingComponent} from './history-booking/history-booking.component';
 import { PasswordComponent } from './profile/password/password.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import { RateComponent } from './rate/rate.component';
@@ -100,7 +100,6 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     BookingComponent,
     TestComponent,
     DatePickerComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -122,7 +121,9 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     MatSelectModule,
     MatIconModule,
     MatMenuModule,
-    NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule,
+    NgbPaginationModule, NgbAlertModule, NgbModule,
+
+    MatChipsModule, MatListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
     }),
@@ -134,6 +135,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     MatPaginatorModule,
     MatCardModule, MatDialogModule,
     MatNativeDateModule,
+
   ],
   providers: [
     DatePipe,

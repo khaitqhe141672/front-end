@@ -43,7 +43,7 @@ const appRoute: Routes = [
 
   },
   {path:'booking/:id',component:BookingComponent},
-  {path:'test',component:TestComponent},
+  {path:'test',component:RateComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
     canActivate:[HasRoleGuard],children:[
