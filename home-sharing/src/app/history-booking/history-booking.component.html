@@ -1,1 +1,88 @@
-<p>history-booking works!</p>
+<div class="container-fluid">
+  <div class="row div-history h-auto mt-3">
+    <div class="col-4 div-history-item pe-0">
+      <img alt=""
+           class="img-history"
+           src="https://pix10.agoda.net/hotelImages/6173113/-1/bb703007affc1e68ade676d53fcaef1b.jpg?ca=13&ce=1&s=1024x768">
+    </div>
+    <div class="col ms-3 mt-2">
+      <div class="row w-auto">
+        <div class="col-4 item-host">
+          <div class="row">
+            <div class="col p-0">
+              <div class="row w-auto d-flex m-0  align-items-center">
+                <div class="col-3 justify-content-center m-0 p-0 pt-1 ps-1 pb-1">
+                  <div class="div-img-history-host-avatar">
+                    <img alt="" class="img-host justify-content-center"
+                         src="https://www.wallpaperup.com/uploads/wallpapers/2015/06/02/708190/055823af028f1c5e4725b12aff2bc72b-700.jpg">
+                  </div>
+                </div>
+                <div class="col-7 ps-2 m-0 p-0">
+                  <div>
+                    <h2 class="m-0">Chủ nhà San</h2>
+                  </div>
+                </div>
+                <div class="col p-0">
+                  <span>
+                    <svg fill="none" height="24" viewBox="0 0 23 24" width="23" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11.8819 23.3056H10.6918L7.89247 20.3208H3.75221L2.86381 19.4532V15.2536L0.0310059 12.2688V11.0368L2.86381 8.05197V3.8351L3.75221 2.96743H7.89247L10.6918 0H11.8819L14.765 2.96743H18.8382L19.6763 3.81775V8.05197L22.5426 11.0368V12.2688L19.626 15.2536V19.4532L18.7879 20.3208H14.765L11.8819 23.3056ZM9.11611 15.9478H10.3062L16.6256 9.40554L15.4354 8.17345L9.71954 14.1083L7.40636 11.7135L6.21625 12.9456L9.11611 15.9478Z"
+                fill="#F36B08"/>
+              </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-4 ms-2 mt-2 pe-0 me-0">
+          <div class="row" (click)="onRateHS()" style="cursor: pointer">
+            <div class="col-1 pe-0">
+               <span>
+                   <svg height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M19,2 C20.5949286,2 21.9034643,3.25157398 21.9948968,4.82401157 L22,5 L22,15 C22,16.5949286 20.748426,17.9034643 19.1759884,17.9948968 L19,18 L15.5,18 L12.8,21.6 C12.611,21.852 12.315,22 12,22 C11.724375,22 11.4632969,21.8866875 11.2757187,21.6895391 L11.2,21.6 L8.5,18 L5,18 C3.40507143,18 2.09653571,16.748426 2.00510323,15.1759884 L2,15 L2,5 C2,3.40507143 3.25157398,2.09653571 4.82401157,2.00510323 L5,2 L19,2 Z M19,4 L5,4 C4.48835714,4 4.06466327,4.38714796 4.00674599,4.88361625 L4,5 L4,15 C4,15.5116429 4.38714796,15.9353367 4.88361625,15.993254 L5,16 L9,16 C9.275625,16 9.53670313,16.1133125 9.72428125,16.3104609 L9.8,16.4 L12,19.333 L14.2,16.4 C14.365375,16.1795 14.6126719,16.038625 14.8829375,16.0068516 L15,16 L19,16 C19.5116429,16 19.9353367,15.612852 19.993254,15.1163837 L20,15 L20,5 C20,4.48835714 19.612852,4.06466327 19.1163837,4.00674599 L19,4 Z M17,11 C17.552,11 18,11.448 18,12 C18,12.5125714 17.6137143,12.9354694 17.1165685,12.9932682 L17,13 L7,13 C6.448,13 6,12.552 6,12 C6,11.4874286 6.38628571,11.0645306 6.88343149,11.0067318 L7,11 L17,11 Z M17,7 C17.552,7 18,7.448 18,8 C18,8.51257143 17.6137143,8.93546939 17.1165685,8.99326822 L17,9 L7,9 C6.448,9 6,8.552 6,8 C6,7.48742857 6.38628571,7.06453061 6.88343149,7.00673178 L7,7 L17,7 Z"
+    fill="#F36B08"/>
+</svg>
+               </span>
+            </div>
+            <div class="col-11 ps-4"><p class="text-color-orange">Chưa đánh giá</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row" (click)="onReportHS()" style="cursor: pointer">
+              <div class="col-1 pe-0">
+            <span>
+           <svg baseProfile="tiny" fill="#CC3636" height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24"
+                width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="M18.383,4.318c-0.374-0.155-0.804-0.069-1.09,0.217c-1.264,1.263-3.321,1.264-4.586,0c-2.045-2.043-5.37-2.043-7.414,0  C5.105,4.722,5,4.977,5,5.242v13c0,0.552,0.447,1,1,1s1-0.448,1-1v-4.553c1.271-0.997,3.121-0.911,4.293,0.26  c2.045,2.043,5.371,2.043,7.414,0C18.895,13.761,19,13.507,19,13.242v-8C19,4.837,18.756,4.473,18.383,4.318z"/></svg>
+          </span>
+              </div>
+              <div  class="col ps-4" >
+                <p class="warn-text-color">Báo cáo homestay</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col text-end mt-2">
+          <h2 style="color: #367E18">{{status}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h1>{{homeStayName}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <h3> Ngày thuê/trả:Từ <strong class="text-color-orange">{{startDate}}</strong> đến <strong class="text-color-orange">{{endDate}}</strong></h3>
+      </div>
+      <div class="row">
+        <h3>Số khách: {{guestNumber}}</h3>
+      </div>
+      <div class="row">
+        <h2>Tổng chi phí: {{totalBill}} VND</h2>
+      </div>
+    </div>
+
+  </div>
+</div>

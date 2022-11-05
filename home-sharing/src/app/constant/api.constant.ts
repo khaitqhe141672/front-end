@@ -21,3 +21,6 @@ export const API_VOUCHER = 'http://localhost:8080/api/voucher'
 export const API_SERVICE_POST = 'http://localhost:8080/api/services/all-list'
 export const API_PUSH_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image?post-id='
 export const API_PUSH_SINGLE_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image-one?post-id='
+
+
+export const API_BOOKING = 'http://localhost:8080/api/booking/create-booking?post-id='

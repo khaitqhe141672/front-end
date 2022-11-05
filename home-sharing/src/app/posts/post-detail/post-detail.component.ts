@@ -23,7 +23,6 @@ export class PostDetailComponent implements OnInit {
   datePicked: { startDate: Date, endDate: Date }
   id: number;
   postDetail: Post;
-  postDetailResponse: ReponsePost;
   rateResponse: RateResponse
   rates: Rate[] = []
   formBooking: FormGroup
@@ -32,9 +31,7 @@ export class PostDetailComponent implements OnInit {
   startDate: Date = null
   endDate: Date = null
   daysBetween: number
-
-  startDateConverted: Date
-  endDateConverted: Date
+  standardPrice:number=0
 
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute,
@@ -54,6 +51,8 @@ export class PostDetailComponent implements OnInit {
       endDateCtrl: [''],
       guestNumber: ['']
     })
+    this.standardPrice =this.postDetail.price
+
   }
 
   getRate() {
@@ -66,18 +65,19 @@ export class PostDetailComponent implements OnInit {
       error => console.log(error)
     )
   }
-
+  formatStartDate
+  formatEndDate
   openDatePickerDialog() {
     this.datePickerDialogRef = this.dialog.open(DatePickerComponent)
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
       console.log("Date before format: "+this.datePicked.startDate+" - "+this.datePicked.endDate)
       console.log("Date after that: "+this.datePicked.startDate.toLocaleDateString().slice(0, 10)+"-"+this.datePicked.endDate.toLocaleDateString().slice(0, 10))
-      let formatStartDate = this.datePipe.transform(this.datePicked.startDate,'yyyy-MM-dd')
-      let formatEndDate = this.datePipe.transform(this.datePicked.endDate,'yyyy-MM-dd')
-      console.log('format start date: '+formatStartDate)
-      this.formBooking.controls.startDateCtrl.patchValue(formatStartDate)
-      this.formBooking.controls.endDateCtrl.patchValue(formatEndDate)
+      this.formatStartDate = this.datePipe.transform(this.datePicked.startDate,'yyyy-MM-dd')
+      this.formatEndDate = this.datePipe.transform(this.datePicked.endDate,'yyyy-MM-dd')
+      console.log('format start date: '+this.formatStartDate)
+      this.formBooking.controls.startDateCtrl.patchValue(this.formatStartDate)
+      this.formBooking.controls.endDateCtrl.patchValue(this.formatEndDate)
       let differenceInTime = this.datePicked.endDate.getTime() - this.datePicked.startDate.getTime();
       this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24))+1;
       this.totalPriceInDays = this.postDetail.price * this.daysBetween
@@ -102,9 +102,10 @@ export class PostDetailComponent implements OnInit {
   onBooking() {
     this.router.navigate(['/booking', this.id], {
         queryParams: {
-          startDate: this.datePicked.startDate.toISOString().slice(0, 10),
-          endDate: this.datePicked.endDate.toISOString().slice(0, 10),
-          guestNumber:this.formBooking.controls.guestNumber.value
+          startDate: this.formatStartDate,
+          endDate: this.formatEndDate,
+          guestNumber:this.formBooking.controls.guestNumber.value,
+          standardPrice:this.standardPrice,
         }
       }
     )

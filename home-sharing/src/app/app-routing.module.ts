@@ -29,6 +29,7 @@ import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 import {TestComponent} from "./test/test.component";
 import {DatePickerComponent} from "./date-picker/date-picker.component";
+import {HasRoleHostGuard} from "./guard/has-role-host.guard";
 
 
 const appRoute: Routes = [
@@ -61,7 +62,7 @@ const appRoute: Routes = [
       // children:[
       //   {path: ':id',component: PostDetailComponent}
       // ]
-      {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleGuard]},
+      {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
       {path: 'post-list', component: PostListComponent}
 
     ]
