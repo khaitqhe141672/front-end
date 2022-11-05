@@ -25,3 +25,5 @@ export const API_PUSH_SINGLE_IMG_POST = 'http://localhost:8080/api/posting/inser
 export const API_BOOKING = 'http://localhost:8080/api/booking/create-booking?post-id='
 
 export const API_RATE = 'http://localhost:8080/api/rate/create-rate?bookingDetail-id='
+
+export const API_REPORT_HS ='http://localhost:8080/api/report/create-reportPost?post-id='

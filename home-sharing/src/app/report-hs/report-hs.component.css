@@ -1,0 +1,52 @@
+.btn-save:hover{
+  background-color: #F36B08;
+  color:white;
+}
+.btn-save{
+  background-color: #F36B08;
+  border: 1px solid #F36B08;
+}
+.chip-report{
+  background-color:  #F36B08!important;
+  color: white!important;
+}
+.chip-list-report, .chip-report:active{
+  background-color: #F36B08 !important;
+  color: white!important;
+}
+.chip-list-report, .chip-report:focus{
+  background-color: #F36B08 !important;
+  color: white!important;
+}
+.chip-unreport{
+  background-color: white!important;
+  color:  #F36B08!important;
+}
+.chip-list-report, .chip-unreport:active{
+  background-color: white!important;
+  color:  #F36B08!important;
+}
+.chip-list-report, .chip-unreport:focus{
+  background-color: white!important;
+  color:  #F36B08!important;
+}
+.row {
+  height: auto;
+}
+
+.h3 {
+  font-weight: bolder;
+}
+
+.container-fluid {
+ width: 600px;
+}
+
+.main-content {
+  background-color: white;
+  padding-bottom: 20px;
+  height: auto;
+  /*border:1px solid #F36B08;*/
+  border-radius: 14px;
+  width: auto;
+}

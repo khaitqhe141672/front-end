@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
@@ -69,6 +69,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import { ReportHsComponent } from './report-hs/report-hs.component';
 
 @NgModule({
   declarations: [
@@ -100,43 +101,44 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     BookingComponent,
     TestComponent,
     DatePickerComponent,
+    ReportHsComponent,
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    CoreModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatMenuModule,
-    NgbPaginationModule, NgbAlertModule, NgbModule,
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        CoreModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatMenuModule,
+        NgbPaginationModule, NgbAlertModule, NgbModule,
 
-    MatChipsModule, MatListModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-    }),
-    MatSnackBarModule,
-    NgxStarRatingModule, MatCheckboxModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgxDropzoneModule,
-    NgxFileDropModule,
-    MatPaginatorModule,
-    MatCardModule, MatDialogModule,
-    MatNativeDateModule,
+        MatChipsModule, MatListModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+        }),
+        MatSnackBarModule,
+        NgxStarRatingModule, MatCheckboxModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        NgxDropzoneModule,
+        NgxFileDropModule,
+        MatPaginatorModule,
+        MatCardModule, MatDialogModule,
+        MatNativeDateModule, FormsModule,
 
-  ],
+    ],
   providers: [
     DatePipe,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
