@@ -13,6 +13,7 @@ import {$e} from "@angular/compiler/src/chars";
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
+
 export class TestComponent implements OnInit {
   // header = new Headers()
   selectedFiles?: FileList;

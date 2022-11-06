@@ -74,7 +74,7 @@
         <ng-template ngbSlide>
           <div class="carousel-wap">
             <div *ngFor="let i of recommendedPlace | slice:0:4" class="item">
-              <a routerLink="/{{i.provinceID}}">
+              <a routerLink="/posts/post-by-location/{{i.provinceID}}">
                 <div class="item_image">
                   <img src="{{i.imageUrl}}">
                 </div>
@@ -88,7 +88,7 @@
         <ng-template ngbSlide>
           <div class="carousel-wap">
             <div *ngFor="let i of recommendedPlace | slice:4:8" class="item">
-              <a routerLink="/{{i.provinceID}}">
+              <a routerLink="/posts/post-by-location/{{i.provinceID}}">
                 <div class="item_image">
                   <img src="{{i.imageUrl}}">
                 </div>

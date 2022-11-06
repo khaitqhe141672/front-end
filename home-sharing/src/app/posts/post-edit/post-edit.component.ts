@@ -34,7 +34,7 @@ declare var $: any;
     },
   ]
 })
-export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
+export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   formGroupPost: FormGroup;
   // typeHomeStay = [
   //   'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
@@ -50,16 +50,16 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
 
   //service:
   dropDownServiceData = []
-  saveService: {serviceID:number; price:number }[] = []
-  dropDOwnSettingService:IDropdownSettings={};
-  loadedService:ServiceObj[]
-  filteredServices:Observable<ServiceObj[]>
+  saveService: { serviceID: number; price: number }[] = []
+  dropDOwnSettingService: IDropdownSettings = {};
+  loadedService: ServiceObj[]
+  filteredServices: Observable<ServiceObj[]>
   isServicePost = true
   isVoucherPost = true
 
   //address
-  private isChangeAddress!:Subscription
-  address:string  = null
+  private isChangeAddress!: Subscription
+  address: string = null
   districts: DistrictByProvince[] = []
   provinces: Province[] = []
   roomTypes: RoomType[] = []
@@ -76,7 +76,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   utilitys: string[] = [];
   utilitiesDisplay: UtilitiesData[]
   allUtilitys: UtilitiesData[] = [];
-  saveUtilities:UtilitiesData[]=[]
+  saveUtilities: UtilitiesData[] = []
 
   //Voucher
   loadedVoucher
@@ -84,21 +84,25 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   vouchers: string[] = [];
   vouchersDisplay: Voucher[]
   allVoucher: Voucher[] = [];
-  saveVouchers:Voucher[]=[]
-  voucherResponse:VoucherResponse
-  @ViewChild('multiSelectVoucher',{static:true}) multiSelectVoucher:MatSelect
+  saveVouchers: Voucher[] = []
+  voucherResponse: VoucherResponse
+  @ViewChild('multiSelectVoucher', {static: true}) multiSelectVoucher: MatSelect
   @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   @ViewChild('voucherInput') voucherInput: ElementRef<HTMLInputElement>;
-  @ViewChild('serviceInput') serviceInput:ElementRef<HTMLInputElement>;
+  @ViewChild('serviceInput') serviceInput: ElementRef<HTMLInputElement>;
   // @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   loadUtility$ = this.postEditService.getUtility().pipe(shareReplay())
   utilityResponse: UtilitiesResponse
   arrUtility: UtilitiesData[]
 
+
   //process
   isUploading = false
 
   constructor(private fb: FormBuilder, private postEditService: PostEditService,private mapService:MapService) {
+
+  constructor(private fb: FormBuilder, private postEditService: PostEditService, private mapService: MapService) {
+
 
   }
 
@@ -141,24 +145,26 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     //    console.log(a)
     //  })
     this.getUtility()
-    this.isChangeAddress = this.mapService.addressChanged.subscribe(address=>{
+    this.isChangeAddress = this.mapService.addressChanged.subscribe(address => {
       this.address = address
       const matcher = this.address.match('Hanoi\\s?([0-9]*)')
-      if(matcher){
-        console.log("this is: "+matcher[0])
-          console.log(this.address.replace(/Hanoi[\\s]?([0-9]*)?/g,'Hà Nội'))
-      }else{
+      if (matcher) {
+        console.log("this is: " + matcher[0])
+        console.log(this.address.replace(/Hanoi[\\s]?([0-9]*)?/g, 'Hà Nội'))
+      } else {
         console.log("no no")
       }
-      console.log('this is address post edit: '+this.address)
+      console.log('this is address post edit: ' + this.address)
     })
     // this.loadVoucher()
     // this.filterUtility()
 
     this.getVoucher()
-      this.getService()
+    this.getService()
   }
+
   protected _onDestroy = new Subject()
+
   initForm() {
     this.formGroupPost = this.fb.group({
       name: ['',Validators.required],
@@ -166,6 +172,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       // district: [''],
       // province: [''],
       type: [''],
+
       description: ['',Validators.required],
       priceHS: ['',Validators.required],
       vouchers:[''],
@@ -183,9 +190,28 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       numbersOfBed:['',Validators.required],
       numbersOfRoom:['',Validators.required],
       numbersOfBath:['',Validators.required],
+
+      description: [''],
+      priceHS: [''],
+      vouchers: [''],
+      selectServiceCtrl: [''],
+      servicePost: this.fb.array(
+        [
+          this.fb.group({
+            serviceID: [''],
+            serviceName: [''],
+            servicePrice: ['']
+          })
+        ]
+      ),
+      guestNumber: [''],
+      numbersOfBed: [''],
+      numbersOfRoom: [''],
+      numbersOfBath: [''],
+
       utilitys: [''],
       image: [''],
-      inputImg:[''],
+      inputImg: [''],
       voucherPost: this.fb.array([
         // this.fb.group({
         //   voucherName:[''],
@@ -218,17 +244,17 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     let numbersOfBath = this.formGroupPost.controls['numbersOfBath'].value
     let guestNumber = this.formGroupPost.controls['guestNumber'].value
 
-    let servicePost = this.formGroupPost.controls['servicePost'].value as {serviceID:number,serviceName:string,servicePrice:number}[]
+    let servicePost = this.formGroupPost.controls['servicePost'].value as { serviceID: number, serviceName: string, servicePrice: number }[]
     // let servicePost2 = servicePost as {serviceID:number,serviceName:string,servicePrice:number}[]
-    this.saveService = servicePost.map(service=>{
-     return {serviceID:service.serviceID,price:service.servicePrice}
+    this.saveService = servicePost.map(service => {
+      return {serviceID: service.serviceID, price: service.servicePrice}
     })
 
-    let saveUtilityIDs:number[] =  this.saveUtilities.map(utility=>{
+    let saveUtilityIDs: number[] = this.saveUtilities.map(utility => {
       return utility.id
     })
 
-    let saveVoucherID:number[] = this.saveVouchers.map(voucher =>{
+    let saveVoucherID: number[] = this.saveVouchers.map(voucher => {
       return voucher.idVoucher
     })
 
@@ -236,9 +262,9 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     let voucher: { pctDiscout: number, voucherName: string }[] = this.formGroupPost.controls['voucherPost'].value
     let lat = this.mapService.markerLat
     let lng = this.mapService.markerLng
-    console.log('number of bed: '+numbersOfBed)
-    console.log('number of Room: '+numbersOfRoom)
-    console.log('number of Bath: '+numbersOfBath)
+    console.log('number of bed: ' + numbersOfBed)
+    console.log('number of Room: ' + numbersOfRoom)
+    console.log('number of Bath: ' + numbersOfBath)
 
 
     //
@@ -251,7 +277,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     //
     // console.log('description: ' + description)
     // console.log('priceHS: ' + priceHS)
-    console.log('utility: '+JSON.stringify(saveUtilityIDs))
+    console.log('utility: ' + JSON.stringify(saveUtilityIDs))
     console.log('service post: ' + JSON.stringify(this.saveService))
     // console.log('service post: ' +  JSON.stringify(servicePost))
     // console.log('service post: ' +  typeof servicePost2)
@@ -274,22 +300,23 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     post.roomTypeID = typeID
     post.address = address
     // this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
-    let pushPostObservable:Observable<any>
-    pushPostObservable = this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
+    let pushPostObservable: Observable<any>
+    pushPostObservable = this.postEditService.pushPost(typeID, post, lat, lng, saveUtilityIDs, saveVoucherID, this.saveService)
     pushPostObservable.subscribe({
-      next:responseData=>{
+      next: responseData => {
         console.log(responseData)
       },
-      error:errMessageResponse=>{
+      error: errMessageResponse => {
         console.log(errMessageResponse)
       },
-      complete:()=>{
+      complete: () => {
         console.log('complete')
         this.uploadFiles()
       }
     })
   }
-  onPushPost(){
+
+  onPushPost() {
 
   }
 
@@ -297,9 +324,14 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   onAddService() {
     console.log('service post length: '+this.ServicesPost.length)
     this.ServicesPost.push(this.fb.group({
+
       serviceID:[null],
       serviceName: ['',Validators.required],
       servicePrice: ['',Validators.required]
+
+      serviceName: ['', Validators.required],
+      servicePrice: ['', Validators.required]
+
     }))
     this.isServicePost = true
   }
@@ -328,58 +360,59 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   //   console.log('remove utility '+JSON.stringify(this.saveUtilities))
   // }
 
-  bindServiceDataToFormGroup(service:ServiceObj){
+  bindServiceDataToFormGroup(service: ServiceObj) {
     this.ServicesPost.push(this.fb.group({
-      serviceID:[service.id],
-      serviceName: [service.name,[Validators.required]],
-      servicePrice: ['',Validators.required]
+      serviceID: [service.id],
+      serviceName: [service.name, [Validators.required]],
+      servicePrice: ['', Validators.required]
     }))
     this.isServicePost = true
   }
 
-  getService(){
-    this.postEditService.getService().subscribe(responseService =>{
+  getService() {
+    this.postEditService.getService().subscribe(responseService => {
       this.loadedService = responseService.object
       this.filterService()
     })
   }
 
-  filterService(){
+  filterService() {
     this.filteredServices = this.formGroupPost.controls.selectServiceCtrl.valueChanges
       .pipe(
         startWith(''),
         debounceTime(500),
-        map((service:string|null) =>{
-          if(service) return this._filterService(service)
+        map((service: string | null) => {
+          if (service) return this._filterService(service)
           else return this.loadedService.slice()
         })
       )
   }
-  displayWithService(service: ServiceObj){
-      return service ? service.name : ''
+
+  displayWithService(service: ServiceObj) {
+    return service ? service.name : ''
   }
 
-  onSelectService($event){
+  onSelectService($event) {
     console.log($event)
     let service = $event.option.value as ServiceObj
     console.log(service)
     // this.saveService.push({serviceID:service.id})
 
-    let formArr = <FormArray> this.formGroupPost.controls['servicePost']
-    let formControl = <FormGroup> formArr.controls[0]
+    let formArr = <FormArray>this.formGroupPost.controls['servicePost']
+    let formControl = <FormGroup>formArr.controls[0]
     let firstFormControlServiceName = formControl.controls['serviceName'].value
     let firstFormControlServiceID = formControl.controls['serviceID'].value
-    if(firstFormControlServiceName){
+    if (firstFormControlServiceName) {
       this.bindServiceDataToFormGroup(service)
-    }else{
+    } else {
       formControl.controls['serviceName'].patchValue(service.name)
       formControl.controls['serviceID'].patchValue(service.id)
     }
     this.serviceInput.nativeElement.blur()
     this.formGroupPost.controls['selectServiceCtrl'].patchValue('')
-     let indexService = this.loadedService.indexOf(service)
-    if(indexService>-1){
-      this.loadedService.splice(indexService,1)
+    let indexService = this.loadedService.indexOf(service)
+    if (indexService > -1) {
+      this.loadedService.splice(indexService, 1)
     }
     this.formGroupPost.controls.servicePost.patchValue(null)
   }
@@ -449,6 +482,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       );
     }
   }
+
   uploadFiles(): void {
     this.message = [];
     this.isUploading = true
@@ -469,6 +503,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     // }
     // this.uploadAllImg()
   }
+
   uploadAll(formDataImg:FormData): void {
     // this.progressInfos[idx] = {value: 0,isLoading:true, fileName: file.name};
     this.isUploading = true
@@ -476,6 +511,14 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     if (formDataImg) {
       console.log('pushing 5')
       this.postEditService.uploadAllFileByAPI(formDataImg).subscribe(
+
+
+  uploadAllImg(): void {
+    // this.progressInfos[idx] = {value: };
+
+    if (this.selectedFiles) {
+      this.postEditService.uploadByAPI2(this.selectedFiles).subscribe(
+
         (event: any) => {
 
           console.log('event type: '+JSON.stringify(event))
@@ -484,8 +527,12 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
             this.isUploading = true
             // this.progressInfos[idx].value = Math.round(
             //   (100 * event.loaded) / event.total
+
             // );
             // console.log( this.progressInfos[idx].value)
+
+            console.log(Math.round((100 * event.loaded) / event.total));
+
           } else if (event instanceof HttpResponse) {
             const msg = 'Uploaded the file successfully: '
             // this.message.push(msg);
@@ -612,7 +659,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
 
   onSelectedTypeHS($event) {
     this.typeHsID = $event.value
-    console.log('this is type onSelected: '+this.typeHsID)
+    console.log('this is type onSelected: ' + this.typeHsID)
   }
 
   //Voucher
@@ -664,10 +711,10 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     const index2 = this.saveVouchers.indexOf(voucher)
     if (index >= 0) {
       this.vouchers.splice(index, 1);
-      this.saveVouchers.splice(index2,1)
+      this.saveVouchers.splice(index2, 1)
     }
-    console.log('size save voucher: '+this.saveVouchers.length)
-    console.log('remove voucher '+JSON.stringify(this.saveVouchers))
+    console.log('size save voucher: ' + this.saveVouchers.length)
+    console.log('remove voucher ' + JSON.stringify(this.saveVouchers))
   }
   selectedVoucher(event: MatAutocompleteSelectedEvent): void {
 
@@ -676,14 +723,14 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     this.voucherInput.nativeElement.value = '';
     this.voucherInput.nativeElement.blur();
     this.formGroupPost.controls['vouchers'].setValue(null);
-    console.log('selected voucher '+JSON.stringify(this.saveVouchers))
+    console.log('selected voucher ' + JSON.stringify(this.saveVouchers))
 
   }
 
   getVoucher() {
 
 
-    this.postEditService.getVoucher().subscribe(voucherResponse=>{
+    this.postEditService.getVoucher().subscribe(voucherResponse => {
       this.voucherResponse = voucherResponse
       this.allVoucher = voucherResponse.data.vouchers
       console.log(this.loadedVoucher)
@@ -691,27 +738,27 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     })
   }
 
-  loadVoucher(){
-    this.postEditService.getVoucher().subscribe(voucherResponse=>{
-      let listVoucher:ListVoucher = voucherResponse.data
+  loadVoucher() {
+    this.postEditService.getVoucher().subscribe(voucherResponse => {
+      let listVoucher: ListVoucher = voucherResponse.data
       this.loadedVoucher = listVoucher.vouchers
       console.log(this.loadedVoucher)
 
     })
     this.dropDOwnSettingService = {
-      idField:'idVoucher',
-      textField:'nameVoucher'
+      idField: 'idVoucher',
+      textField: 'nameVoucher'
     }
   }
 
   displayVoucher(voucher: Voucher) {
     return voucher ? voucher.nameVoucher : ''
   }
+
   //--------------------------------------------------------------------------------
   // filterVoucher:ReplaySubject<Voucher[]> = new ReplaySubject<Voucher[]>()
   // voucherMultiFilterCtrl: FormControl = new FormControl();
   // voucherMultiCtrl:FormControl = new FormControl()
-
 
 
   filterUtility() {
@@ -745,10 +792,10 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     const index2 = this.saveUtilities.indexOf(utility)
     if (index >= 0) {
       this.utilitys.splice(index, 1);
-      this.saveUtilities.splice(index2,1)
+      this.saveUtilities.splice(index2, 1)
     }
-    console.log('size save utility: '+this.saveUtilities.length)
-    console.log('remove utility '+JSON.stringify(this.saveUtilities))
+    console.log('size save utility: ' + this.saveUtilities.length)
+    console.log('remove utility ' + JSON.stringify(this.saveUtilities))
   }
 
   selectedUtility(event: MatAutocompleteSelectedEvent): void {
@@ -757,7 +804,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     this.utilityInput.nativeElement.value = '';
     this.utilityInput.nativeElement.blur();
     this.formGroupPost.controls['utilitys'].setValue(null);
-    console.log('selected utility '+JSON.stringify(this.saveUtilities))
+    console.log('selected utility ' + JSON.stringify(this.saveUtilities))
 
   }
 
@@ -826,17 +873,20 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     const filterValue = value.name || value;
     return this.allUtilitys.filter(utility => this.toLowerCaseNonAccentVietnamese(utility.name).includes(this.toLowerCaseNonAccentVietnamese(filterValue.toLowerCase())));
   }
+
   private _filterVoucher(value: any): Voucher[] {
     const filterValue = value.name || value;
     return this.allVoucher.filter(voucher => this.toLowerCaseNonAccentVietnamese(voucher.nameVoucher).includes(this.toLowerCaseNonAccentVietnamese(filterValue.toLowerCase())));
   }
-  private _filterService(value:any):ServiceObj[]{
-    console.log('filter value: '+JSON.stringify(value))
-    const filterValue = value.name||value
+
+  private _filterService(value: any): ServiceObj[] {
+    console.log('filter value: ' + JSON.stringify(value))
+    const filterValue = value.name || value
 
     return this.loadedService.filter(voucher => this.toLowerCaseNonAccentVietnamese(voucher.name.toLowerCase()).includes(this.toLowerCaseNonAccentVietnamese(filterValue.toLowerCase())))
   }
-  checkUtilityExist(utility?:UtilitiesData):boolean{
+
+  checkUtilityExist(utility?: UtilitiesData): boolean {
     return !this.saveUtilities.find(data => data.id = utility.id);
   }
 

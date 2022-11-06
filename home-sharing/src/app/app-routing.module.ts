@@ -28,9 +28,13 @@ import {HistoryBookingComponent} from "./history-booking/history-booking.compone
 import {RateComponent} from "./rate/rate.component";
 import {BookingComponent} from "./booking/booking.component";
 import {TestComponent} from "./test/test.component";
+
+import {PostByLocationComponent} from "./posts/post-by-location/post-by-location.component";
+
 import {DatePickerComponent} from "./date-picker/date-picker.component";
 import {HasRoleHostGuard} from "./guard/has-role-host.guard";
 import {ReportHsComponent} from "./report-hs/report-hs.component";
+
 
 
 const appRoute: Routes = [
@@ -43,6 +47,11 @@ const appRoute: Routes = [
     ]
 
   },
+
+  // {path: 'test', component: BookingComponent},
+
+  {path: 'test', component: TestComponent},
+
   {path:'booking/:id',component:BookingComponent},
   {path:'test',component:ReportHsComponent},
   {path: 'home', component: HomeComponent},
@@ -65,6 +74,11 @@ const appRoute: Routes = [
       // ]
       {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
       {path: 'post-list', component: PostListComponent}
+
+
+      {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleGuard]},
+      {path: 'post-list', component: PostListComponent},
+      {path: 'post-by-location', component: PostByLocationComponent}
 
     ]
   },
