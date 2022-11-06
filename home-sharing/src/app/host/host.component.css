@@ -197,12 +197,3 @@ hr, ul, li {
   width: 40px;
   height: 40px;
 }
-
-.modal .modal-header h2{
-  color: #F36B08;
-}
-
-.modal .btn-primary{
-  background-color: #F36B08;
-  border: none;
-}

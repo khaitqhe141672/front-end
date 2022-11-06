@@ -67,13 +67,9 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
-
-import { PostByLocationComponent } from './posts/post-by-location/post-by-location.component';
-
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import { ReportHsComponent } from './report-hs/report-hs.component';
-
 
 @NgModule({
   declarations: [
@@ -104,42 +100,8 @@ import { ReportHsComponent } from './report-hs/report-hs.component';
     RateComponent,
     BookingComponent,
     TestComponent,
-    PostByLocationComponent,
     DatePickerComponent,
     ReportHsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    CoreModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatMenuModule,
-    NgbPaginationModule, NgbAlertModule, NgbModule, MatChipsModule, MatListModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-    }),
-    MatSnackBarModule,
-    NgxStarRatingModule, MatCheckboxModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgxDropzoneModule,
-    NgxFileDropModule,
-    MatPaginatorModule,
-    MatCardModule, MatDialogModule,
-    MatNativeDateModule,
   ],
     imports: [
         BrowserModule,
