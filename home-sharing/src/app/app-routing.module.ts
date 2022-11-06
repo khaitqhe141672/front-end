@@ -32,6 +32,8 @@ import {TestComponent} from "./test/test.component";
 import {PostByLocationComponent} from "./posts/post-by-location/post-by-location.component";
 
 import {DatePickerComponent} from "./date-picker/date-picker.component";
+import {HasRoleHostGuard} from "./guard/has-role-host.guard";
+import {ReportHsComponent} from "./report-hs/report-hs.component";
 
 
 
@@ -51,7 +53,7 @@ const appRoute: Routes = [
   {path: 'test', component: TestComponent},
 
   {path:'booking/:id',component:BookingComponent},
-  {path:'test',component:TestComponent},
+  {path:'test',component:ReportHsComponent},
   {path: 'home', component: HomeComponent},
   {path:'profile',component:ProfileComponent,
     canActivate:[HasRoleGuard],children:[
@@ -70,9 +72,14 @@ const appRoute: Routes = [
       // children:[
       //   {path: ':id',component: PostDetailComponent}
       // ]
+      {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
+      {path: 'post-list', component: PostListComponent}
+
+
       {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleGuard]},
       {path: 'post-list', component: PostListComponent},
       {path: 'post-by-location', component: PostByLocationComponent}
+
     ]
   },
   {

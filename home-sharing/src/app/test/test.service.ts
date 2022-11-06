@@ -14,9 +14,26 @@ export class TestService {
   // headerOption = new HttpHeaders()
   baseApiUrl = 'http://localhost:8080/api/posting/insert-post-image-one?post-id=6';
 
-
   upload(file: File): Observable<any> {
     const formData: FormData = new FormData();
+
+    let token = JSON.parse(localStorage.getItem('token'))
+    console.log('this is a token: '+token)
+    let headers: any = new Headers({
+      'Content-type': 'multipart/form-data',
+    });
+    headers.append('Authorization',token)
+    formData.append('file', file);
+
+    // const req = new HttpRequest('POST', `${this.baseApiUrl}`, formData, {
+    //   headers:headers,
+    //   reportProgress: true,
+    //   responseType: 'json'
+    // });
+    //
+    // return this.http.request(req);
+    return this.http.post(this.baseApiUrl,formData,{headers})
+
     // this.headerOption.append('Content-Type','multipart/form-data')
     formData.append('file', file, file.name);
 
@@ -36,7 +53,7 @@ export class TestService {
   }
 
   // getFiles(): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}`);
+  //   // return this.http.get(`${this.baseUrl}/files`);
   // }
 
 }

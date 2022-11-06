@@ -24,9 +24,9 @@
 }
 
 .tb-service-row:hover {
-  border: 1px solid #F36B08;
-  border-radius: 6px;
-  color: #F36B08;
+  /*border: 1px solid #F36B08;*/
+  /*border-radius: 6px;*/
+  /*color: #F36B08;*/
 }
 
 :host::ng-deep.mat-checkbox-layout {

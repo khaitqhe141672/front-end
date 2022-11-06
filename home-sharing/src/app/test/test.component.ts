@@ -16,18 +16,19 @@ import {$e} from "@angular/compiler/src/chars";
 
 export class TestComponent implements OnInit {
   // header = new Headers()
-  form: FormGroup;
-  file: File;
-
-  constructor(private fb: FormBuilder, private http: HttpClient,private testService:TestService) {}
-
-
   selectedFiles?: FileList;
   progressInfos: any[] = [];
   message: string[] = [];
 
   previews: string[] = [];
   imageInfos?: Observable<any>;
+
+  constructor(private uploadService: TestService) {}
+
+  ngOnInit(): void {
+    // this.imageInfos = this.uploadService.getFiles();
+  }
+
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];
@@ -40,7 +41,6 @@ export class TestComponent implements OnInit {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          console.log(e.target.result);
           this.previews.push(e.target.result);
         };
 
@@ -48,6 +48,32 @@ export class TestComponent implements OnInit {
       }
     }
   }
+
+  upload(idx: number, file: File): void {
+    this.progressInfos[idx] = { value: 0, fileName: file.name };
+
+    if (file) {
+      this.uploadService.upload(file).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progressInfos[idx].value = Math.round(
+              (100 * event.loaded) / event.total
+            );
+          } else if (event instanceof HttpResponse) {
+            const msg = 'Uploaded the file successfully: ' + file.name;
+            this.message.push(msg);
+            // this.imageInfos = this.uploadService;
+          }
+        },
+        (err: any) => {
+          this.progressInfos[idx].value = 0;
+          const msg = 'Could not upload the file: ' + file.name;
+          this.message.push(msg);
+        }
+      );
+    }
+  }
+
   uploadFiles(): void {
     this.message = [];
 
@@ -57,28 +83,6 @@ export class TestComponent implements OnInit {
       }
     }
   }
-  upload(idx: number, file: File): void {
-    this.progressInfos[idx] = { value: 0, fileName: file.name };
 
-    if (file) {
-      this.testService.upload(file).subscribe(
-        (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
-            const msg = 'Uploaded the file successfully: ' + file.name;
-            this.message.push(msg);
-            // this.imageInfos = this.testService.getFiles();
-          }
-        },
-        (err: any) => {
-          this.progressInfos[idx].value = 0;
-          const msg = 'Could not upload the file: ' + file.name;
-          this.message.push(msg);
-        });
-    }
-  }
 
-  ngOnInit(): void {
-  }
 }

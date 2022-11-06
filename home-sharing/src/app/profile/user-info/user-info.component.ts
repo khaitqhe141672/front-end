@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../profile.service";
 import {UserInfo, UserInfoResponse} from "../profile.model";
 
@@ -24,14 +24,11 @@ export class UserInfoComponent implements OnInit {
   initForm(){
     this.infoFormGroup = this._formBuilder.group(
       {
-        userName:[''],
-        secondName:[''],
-        gender:[''],
-        phoneNumber:[''],
-        email:[''],
-        province:[''],
-        district:[''],
-        address:['']
+        userName:['',Validators.required],
+        fullName:['',Validators.required],
+        phoneNumber:['',Validators.required],
+        email:['',Validators.required],
+        address:['',Validators.required]
       }
     )
     this.historyFormGroup = this._formBuilder.group({
@@ -48,10 +45,14 @@ export class UserInfoComponent implements OnInit {
   }
   bindData(userInfo:UserInfo){
     this.infoFormGroup.controls['userName'].patchValue(this.userInfo.username)
-    this.infoFormGroup.controls['secondName'].patchValue(this.userInfo.fullName)
+    this.infoFormGroup.controls['fullName'].patchValue(this.userInfo.fullName)
     this.infoFormGroup.controls['phoneNumber'].patchValue(this.userInfo.mobile)
     this.infoFormGroup.controls['email'].patchValue(this.userInfo.email)
     this.infoFormGroup.controls['address'].patchValue(this.userInfo.address)
+
+  }
+
+  onSaveProfile() {
 
   }
 }

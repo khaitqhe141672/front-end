@@ -17,6 +17,8 @@ import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {ListVoucher, Voucher, VoucherResponse} from "../../shared/model/voucher.model";
 import {MatSelect} from "@angular/material/select";
 import {ServiceObj} from "../../shared/model/serivce-post.model";
+import {TokenInterceptor} from "../../auth/token.interceptor";
+import {AuthInterceptorService} from "../../auth/auth-interceptor.service";
 
 declare var $: any;
 
@@ -25,10 +27,11 @@ declare var $: any;
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css'],
   providers: [
+    AuthInterceptorService,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: {showError: true}
-    }
+    },
   ]
 })
 export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -92,7 +95,14 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   utilityResponse: UtilitiesResponse
   arrUtility: UtilitiesData[]
 
+
+  //process
+  isUploading = false
+
+  constructor(private fb: FormBuilder, private postEditService: PostEditService,private mapService:MapService) {
+
   constructor(private fb: FormBuilder, private postEditService: PostEditService, private mapService: MapService) {
+
 
   }
 
@@ -157,11 +167,30 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   initForm() {
     this.formGroupPost = this.fb.group({
-      name: [''],
+      name: ['',Validators.required],
       address: [''],
       // district: [''],
       // province: [''],
       type: [''],
+
+      description: ['',Validators.required],
+      priceHS: ['',Validators.required],
+      vouchers:[''],
+      selectServiceCtrl:[''],
+      servicePost: this.fb.array(
+        [
+          this.fb.group({
+            serviceID:[''],
+            serviceName: ['',Validators.required],
+            servicePrice: ['',Validators.required]
+          })
+        ]
+      ),
+      guestNumber:['',Validators.required],
+      numbersOfBed:['',Validators.required],
+      numbersOfRoom:['',Validators.required],
+      numbersOfBath:['',Validators.required],
+
       description: [''],
       priceHS: [''],
       vouchers: [''],
@@ -179,6 +208,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       numbersOfBed: [''],
       numbersOfRoom: [''],
       numbersOfBath: [''],
+
       utilitys: [''],
       image: [''],
       inputImg: [''],
@@ -190,7 +220,16 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       ])
     })
   }
-
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.formGroupPost.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name);
+      }
+    }
+    return invalid;
+  }
   onSubmit() {
     console.log('clicked')
     let postName = this.formGroupPost.controls['name'].value
@@ -272,6 +311,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       complete: () => {
         console.log('complete')
+        this.uploadFiles()
       }
     })
   }
@@ -282,21 +322,43 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //Service
   onAddService() {
+    console.log('service post length: '+this.ServicesPost.length)
     this.ServicesPost.push(this.fb.group({
+
+      serviceID:[null],
+      serviceName: ['',Validators.required],
+      servicePrice: ['',Validators.required]
+
       serviceName: ['', Validators.required],
       servicePrice: ['', Validators.required]
+
     }))
     this.isServicePost = true
   }
 
-  onDeleteService(i: number) {
-
+  onDeleteService(i: number,s) {
+    console.log('ondelete service: '+JSON.stringify(s.value))
     if (this.ServicesPost.length <= 1) {
       this.isServicePost = false
       return
     }
     this.ServicesPost.removeAt(i)
+    if(!s.value.serviceID||!s.value.serviceName) return;
+    this.loadedService.push({id:s.value.serviceID,icon:'none',name:s.value.serviceName})
+    console.log(JSON.stringify(this.loadedService))
+    this.filterService()
+    // this.saveService.splice(i,1)
   }
+  // removeUtilitys(utility: UtilitiesData): void {
+  //   const index = this.utilitys.indexOf(utility.name);
+  //   const index2 = this.saveUtilities.indexOf(utility)
+  //   if (index >= 0) {
+  //     this.utilitys.splice(index, 1);
+  //     this.saveUtilities.splice(index2,1)
+  //   }
+  //   console.log('size save utility: '+this.saveUtilities.length)
+  //   console.log('remove utility '+JSON.stringify(this.saveUtilities))
+  // }
 
   bindServiceDataToFormGroup(service: ServiceObj) {
     this.ServicesPost.push(this.fb.group({
@@ -352,6 +414,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     if (indexService > -1) {
       this.loadedService.splice(indexService, 1)
     }
+    this.formGroupPost.controls.servicePost.patchValue(null)
   }
 
   //IMG
@@ -381,24 +444,26 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       // console.log('preview' + i)
     }
   }
-
+  process=0
   upload(idx: number, file: File): void {
-    this.progressInfos[idx] = {value: 0, fileName: file.name};
+    this.progressInfos[idx] = {value: 0,isLoading:true, fileName: file.name};
     console.log('pushing3')
-
     if (file) {
       console.log('pushing 5')
       this.postEditService.uploadByAPI(file).subscribe(
         (event: any) => {
+
+          console.log('event type: '+JSON.stringify(event))
           console.log('pushing4')
           if (event.type === HttpEventType.UploadProgress) {
             this.progressInfos[idx].value = Math.round(
               (100 * event.loaded) / event.total
             );
+            console.log( this.progressInfos[idx].value)
           } else if (event instanceof HttpResponse) {
             const msg = 'Uploaded the file successfully: ' + file.name;
             this.message.push(msg);
-            this.imageInfos = this.postEditService.getFiles();
+            // this.imageInfos = this.postEditService.getFiles();
           }
         },
         (err: any) => {
@@ -407,6 +472,11 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           this.message.push(msg);
         },()=>{
           console.log('complete 1')
+          this.progressInfos[idx].isLoading= false;
+          this.process++
+          if(this.process==5){
+            this.isUploading = false
+          }
         }
 
       );
@@ -415,52 +485,103 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   uploadFiles(): void {
     this.message = [];
-
+    this.isUploading = true
+    let formDataImg = new FormData()
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.upload(i, this.selectedFiles[i]);
+        formDataImg.append('file'+i,this.selectedFiles[i],this.selectedFiles[i].name)
       }
+      this.uploadAll(formDataImg);
+
     }
+    // if (this.selectedFiles) {
+    //   for (let i = 0; i < this.selectedFiles.length; i++) {
+    //    this.upload(i,this.selectedFiles[i])
+    //   }
+    //   this.uploadAll(formDataImg);
+    //
+    // }
     // this.uploadAllImg()
   }
+
+  uploadAll(formDataImg:FormData): void {
+    // this.progressInfos[idx] = {value: 0,isLoading:true, fileName: file.name};
+    this.isUploading = true
+    console.log('pushing3')
+    if (formDataImg) {
+      console.log('pushing 5')
+      this.postEditService.uploadAllFileByAPI(formDataImg).subscribe(
+
 
   uploadAllImg(): void {
     // this.progressInfos[idx] = {value: };
 
     if (this.selectedFiles) {
       this.postEditService.uploadByAPI2(this.selectedFiles).subscribe(
+
         (event: any) => {
+
+          console.log('event type: '+JSON.stringify(event))
+          console.log('pushing4')
           if (event.type === HttpEventType.UploadProgress) {
+            this.isUploading = true
             // this.progressInfos[idx].value = Math.round(
             //   (100 * event.loaded) / event.total
+
+            // );
+            // console.log( this.progressInfos[idx].value)
+
             console.log(Math.round((100 * event.loaded) / event.total));
+
           } else if (event instanceof HttpResponse) {
-            // const msg = 'Uploaded the file successfully: ' + file.name;
+            const msg = 'Uploaded the file successfully: '
             // this.message.push(msg);
             // this.imageInfos = this.postEditService.getFiles();
           }
         },
         (err: any) => {
           // this.progressInfos[idx].value = 0;
-          // const msg = 'Could not upload the file: ' + file.name;
-          // this.message.push(msg);
+          const msg = 'Could not upload the file: ';
+          this.message.push(msg);
+        },()=>{
+          console.log('complete 1')
+          // this.progressInfos[idx].isLoading= false;
+            this.isUploading = false
         }
       );
     }
   }
 
 
+
   onChangePositionImg(event, pos1: number, pos2: number) {
     // console.log(this.previews[pos1]);
     // console.log(this.previews[pos2]);
-    if (!this.previews[pos2]) return
+    // if (!this.previews[pos2]) return
+    //
+    // [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
+    // [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
+    // [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
+    //
+    // this.imgPreviewPositionChanged.next(this.previews.slice())
+    // this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
 
+    if (!this.previews[pos2]) return
     [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
     [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
-    [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
+    // [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
 
     this.imgPreviewPositionChanged.next(this.previews.slice())
     this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
+
+    let list = new DataTransfer();
+    for(let i=0;i<5;i++){
+      list.items.add(this.selectedFiles[i])
+    }
+    [[list[pos1]], [list[pos2]]] = [[list[pos2]], [list[pos1]]];
+
+    // this.selectedFiles = new FileList()
+    this.selectedFiles = list.files
     // console.log(this.previews[pos1]);
     // console.log(this.previews[pos2]);
   }
@@ -595,7 +716,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('size save voucher: ' + this.saveVouchers.length)
     console.log('remove voucher ' + JSON.stringify(this.saveVouchers))
   }
-
   selectedVoucher(event: MatAutocompleteSelectedEvent): void {
 
     this.vouchers.push(event.option.viewValue);

@@ -1,5 +1,5 @@
-<form [formGroup]="infoFormGroup">
-  <div class="row">
+<form  style="border-left: 1px solid #F36B08" (ngSubmit)="onSaveProfile()"  [formGroup]="infoFormGroup">
+  <div  class="row">
     <div class="col-4">
       <div class="row d-flex justify-content-center">
         <div class="col p-0 d-flex justify-content-center">
@@ -17,7 +17,6 @@
       </div>
     </div>
     <div class="col">
-      <form [formGroup]="infoFormGroup">
         <div class="row">
           <div class="col-12"><h2>Thông tin người dùng</h2></div>
         </div>
@@ -31,7 +30,7 @@
           <div class="col-3  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Họ và Tên</mat-label>
-              <input formControlName="secondName" matInput
+              <input formControlName="fullName" matInput
                      placeholder="">
             </mat-form-field>
           </div>
@@ -67,11 +66,11 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <div class="col-3">
+        <div class="row d-flex text-end">
+          <div class="col-12">
+            <button [disabled]="!infoFormGroup.valid" class="btn btn-submit" type="submit">Lưu</button>
           </div>
         </div>
-      </form>
     </div>
   </div>
 </form>

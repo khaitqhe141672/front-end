@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
@@ -39,7 +39,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
-import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -54,7 +54,7 @@ import {AgmCoreModule} from "@agm/core";
 import { MapComponent } from './map/map.component';
 import {SearchComponent} from "./search/search.component";
 import { UserInfoComponent } from './profile/user-info/user-info.component';
-import { HistoryBookingComponent } from './history-booking/history-booking.component';
+import {HistoryBookingComponent} from './history-booking/history-booking.component';
 import { PasswordComponent } from './profile/password/password.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import { RateComponent } from './rate/rate.component';
@@ -72,6 +72,7 @@ import { PostByLocationComponent } from './posts/post-by-location/post-by-locati
 
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import { ReportHsComponent } from './report-hs/report-hs.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     TestComponent,
     PostByLocationComponent,
     DatePickerComponent,
+    ReportHsComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,9 +141,44 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     MatCardModule, MatDialogModule,
     MatNativeDateModule,
   ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        CoreModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatMenuModule,
+        NgbPaginationModule, NgbAlertModule, NgbModule,
+
+        MatChipsModule, MatListModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+        }),
+        MatSnackBarModule,
+        NgxStarRatingModule, MatCheckboxModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        NgxDropzoneModule,
+        NgxFileDropModule,
+        MatPaginatorModule,
+        MatCardModule, MatDialogModule,
+        MatNativeDateModule, FormsModule,
+
+    ],
   providers: [
     DatePipe,
-    AuthInterceptorService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
