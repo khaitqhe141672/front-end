@@ -15,7 +15,6 @@ export class TestService{
 
   upload(file: File): Observable<any> {
     const formData: FormData = new FormData();
-
     let token = JSON.parse(localStorage.getItem('token'))
     console.log('this is a token: '+token)
     let headers: any = new Headers({
@@ -32,24 +31,6 @@ export class TestService{
     //
     // return this.http.request(req);
     return this.http.post(this.baseApiUrl,formData,{headers})
-
-    // this.headerOption.append('Content-Type','multipart/form-data')
-    formData.append('file', file,file.name);
-
-
-
-    const req = new HttpRequest('POST', `${this.baseApiUrl}`, formData, {
-
-
-      reportProgress: true,
-      responseType: 'json'
-    });
-
-    return this.http.request(req);
-
-  const headers = new HttpHeaders({"Content-Type":"multipart/form-data",'Test-xem':'ahihi'});
-    return this.http.post(this.baseApiUrl,formData, {headers : new HttpHeaders({ 'Content-Type':'multipart/form-data'})});
-
   }
 
   // getFiles(): Observable<any> {
