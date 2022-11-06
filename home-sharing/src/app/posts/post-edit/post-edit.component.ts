@@ -440,9 +440,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
         this.selectedFileNames.push(this.selectedFiles[i].name);
       }
     }
-    for (let i of this.previews) {
-      // console.log('preview' + i)
-    }
+
   }
   process=0
   upload(idx: number, file: File): void {
@@ -489,7 +487,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     let formDataImg = new FormData()
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        formDataImg.append('file'+i,this.selectedFiles[i],this.selectedFiles[i].name)
+        formDataImg.append('file',this.selectedFiles[i])
       }
       this.uploadAll(formDataImg);
 
@@ -584,6 +582,13 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedFiles = list.files
     // console.log(this.previews[pos1]);
     // console.log(this.previews[pos2]);
+    for (let i =0;i<this.selectedFiles.length;i++){
+      console.log(this.selectedFiles[i].name)
+    }
+
+    for (let i =0;i<5;i++){
+      console.log(list[i].name)
+    }
   }
 
   onDeleteImg($event, position: number) {

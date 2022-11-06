@@ -45,8 +45,6 @@ export class PostEditService{
     headers.append('Authorization',token)
     formData.append('file', file);
 
-
-
     return this.http.post(API_PUSH_IMG_POST+3,formData,{headers,
       reportProgress: true,
       responseType: 'json'});
