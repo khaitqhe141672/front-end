@@ -47,26 +47,22 @@ export class PostEditService{
 
 
 
-    return this.http.post(API_PUSH_IMG_POST+3,formData,{headers});
-  }
-
-  uploadByAPI2(fileList: FileList): Observable<HttpEvent<any>> {
-    console.log('pushing')
-    let formData: FormData = new FormData();
-    let fileLength = fileList.length
-    for (let i=0;i< fileLength;i++){
-      formData.append(fileList[i].name,fileList[i])
-    }
-
-    const req = new HttpRequest('POST', API_PUSH_IMG_POST+'3', formData, {
+    return this.http.post(API_PUSH_IMG_POST+3,formData,{headers,
       reportProgress: true,
-      responseType: 'json',
-    });
-
-    return this.http.request(req);
+      responseType: 'json'});
   }
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+
+  uploadAllFileByAPI(formData:FormData): Observable<any> {
+    console.log('pushing')
+    let token = JSON.parse(localStorage.getItem('token'))
+    console.log('this is a token: '+token)
+    let headers: any = new Headers({
+      'Content-type': 'multipart/form-data',
+    });
+    headers.append('Authorization',token)
+    return this.http.post(API_PUSH_IMG_POST+3,formData,{headers,
+      reportProgress: true,
+      responseType: 'json'});
   }
 
   //load district and province
