@@ -212,12 +212,12 @@ export class AuthService {
     }
   }
   logout() {
-    this.user.next(null);
-    this.router.navigate(['auth/login'])
-
-    localStorage.removeItem("userData")
+    localStorage.removeItem('userData')
     localStorage.removeItem('role')
     localStorage.removeItem('token')
+    // this.router.navigate(['auth/login'])
+    this.user.next(null);
+    this.router.navigate(['auth/login'])
 
   }
 

@@ -1,32 +1,18 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-
-    <div class="container-fluid modal-dialog  modal-dialog-centered">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="p-0 pt-2 ps-3 modal-header d-flex">
-            <h1 style="color: #F36B08" class="pt-2">Đánh giá</h1>
-            <button aria-label="Close" class="me-2 btn-close" type="button"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row main-content">
-              <div class="d-flex justify-content-center w-100">
-                <div class="col-12">
-                  <form [formGroup]="formRate">
-
-                    <div class="row d-flex ">
-
-                      <div class="col-12">
-                        <h3>Vui lòng đánh giá Homestay</h3>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <ng-template #t let-fill="fill">
+<h1 mat-dialog-title >Đánh giá</h1>
+<div mat-dialog-content>
+  <div class="modal-body">
+    <div class="row main-content">
+      <div class="d-flex justify-content-center w-100">
+        <div class="col-12">
+          <form [formGroup]="formRate">
+            <div class="row d-flex ">
+              <div class="col-12">
+                <h3>Vui lòng đánh giá Homestay</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <ng-template #t let-fill="fill">
                           <span>
                             <ng-container *ngIf="fill > 0;">
                                <svg height="24" style="fill: #F36B08" viewBox="0 0 24 24" width="24"
@@ -41,53 +27,140 @@
                                  fill-rule="evenodd"></path></svg>
                            </ng-container>
                           </span>
-
-                        </ng-template>
-                        <ngb-rating (click)="showData()" formControlName="rating" [starTemplate]="t"
-                                    [(rate)]="currentRate" [max]="5"></ngb-rating>
-                      </div>
-                    </div>
-                    <div class="row h-100 mt-4">
-                      <div class="col-12">
-                        <h3>Mô tả trải nghiệm của bạn</h3>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12 ">
-                        <mat-form-field appearance="outline" class="example-full-width w-100 h-100">
-                          <mat-label>Nhận xét</mat-label>
-                          <textarea matInput placeholder="Để lại nhận xét của bạn ở đây" rows="10"></textarea>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-12">
-                        <h3>
-                          *Bạn hay đánh giá thật lòng để Chủ nhà có thể cải thiện và làm kinh nghiệm cho khách sau
-                        </h3>
-                      </div>
-                    </div>
-
-                  </form>
-                </div>
+                </ng-template>
+                <ngb-rating (click)="showData()" [(rate)]="currentRate" [max]="5"
+                            [starTemplate]="t" formControlName="rating"></ngb-rating>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <div class="d-flex justify-content-end">
-              <div class="row">
-                <div class="col">
-                  <button class="btn btn-back" type="button">Trở lại</button>
-                  <button class=" ms-1 btn btn-submit" type="button">Hoàn thành</button>
-                </div>
+            <div class="row h-100 mt-4">
+              <div class="col-12">
+                <h3>Mô tả trải nghiệm của bạn</h3>
               </div>
             </div>
-          </div>
+            <div class="row">
+              <div class="col-12 ">
+                <mat-form-field appearance="outline" class="example-full-width w-100 h-100">
+                  <mat-label>Nhận xét</mat-label>
+                  <textarea formControlName="commentCtrl" matInput placeholder="Để lại nhận xét của bạn ở đây" rows="10"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <h3>
+                  *Bạn hay đánh giá thật lòng để Chủ nhà có thể cải thiện và làm kinh nghiệm cho khách sau
+                </h3>
+              </div>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+<div mat-dialog-actions>
+  <div class="modal-footer">
+    <div class="d-flex justify-content-end">
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-back" type="button" mat-button mat-dialog-close>Trở lại</button>
+          <button class=" ms-1 btn btn-submit" type="button" mat-button (click)="onSubmitRate()">Hoàn thành</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--  Launch demo modal-->
+<!--</button>-->
 
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog modal-dialog-centered">-->
+
+<!--    <div class="container-fluid modal-dialog  modal-dialog-centered">-->
+<!--      <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="p-0 pt-2 ps-3 modal-header d-flex">-->
+<!--            <h1 style="color: #F36B08" class="pt-2">Đánh giá</h1>-->
+<!--            <button aria-label="Close" class="me-2 btn-close" type="button"></button>-->
+<!--          </div>-->
+<!--          <div class="modal-body">-->
+<!--            <div class="row main-content">-->
+<!--              <div class="d-flex justify-content-center w-100">-->
+<!--                <div class="col-12">-->
+<!--                  <form [formGroup]="formRate">-->
+
+<!--                    <div class="row d-flex ">-->
+
+<!--                      <div class="col-12">-->
+<!--                        <h3>Vui lòng đánh giá Homestay</h3>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-12">-->
+<!--                        <ng-template #t let-fill="fill">-->
+<!--                          <span>-->
+<!--                            <ng-container *ngIf="fill > 0;">-->
+<!--                               <svg height="24" style="fill: #F36B08" viewBox="0 0 24 24" width="24"-->
+<!--                                    xmlns="http://www.w3.org/2000/svg"><path-->
+<!--                                 d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"-->
+<!--                                 fill-rule="evenodd"></path></svg>-->
+<!--                            </ng-container>-->
+<!--                           <ng-container *ngIf="fill<5">-->
+<!--                               <svg height="24" style="fill: #F36B08" viewBox="0 0 24 24" width="24"-->
+<!--                                    xmlns="http://www.w3.org/2000/svg"><path-->
+<!--                                 d="M12 .25a.75.75 0 01.673.418l3.058 6.197 6.839.994a.75.75 0 01.415 1.279l-4.948 4.823 1.168 6.811a.75.75 0 01-1.088.791L12 18.347l-6.117 3.216a.75.75 0 01-1.088-.79l1.168-6.812-4.948-4.823a.75.75 0 01.416-1.28l6.838-.993L11.328.668A.75.75 0 0112 .25zm0 2.445L9.44 7.882a.75.75 0 01-.565.41l-5.725.832 4.143 4.038a.75.75 0 01.215.664l-.978 5.702 5.121-2.692a.75.75 0 01.698 0l5.12 2.692-.977-5.702a.75.75 0 01.215-.664l4.143-4.038-5.725-.831a.75.75 0 01-.565-.41L12 2.694z"-->
+<!--                                 fill-rule="evenodd"></path></svg>-->
+<!--                           </ng-container>-->
+<!--                          </span>-->
+
+<!--                        </ng-template>-->
+<!--                        <ngb-rating (click)="showData()" formControlName="rating" [starTemplate]="t"-->
+<!--                                    [(rate)]="currentRate" [max]="5"></ngb-rating>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="row h-100 mt-4">-->
+<!--                      <div class="col-12">-->
+<!--                        <h3>Mô tả trải nghiệm của bạn</h3>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-12 ">-->
+<!--                        <mat-form-field appearance="outline" class="example-full-width w-100 h-100">-->
+<!--                          <mat-label>Nhận xét</mat-label>-->
+<!--                          <textarea matInput placeholder="Để lại nhận xét của bạn ở đây" rows="10"></textarea>-->
+<!--                        </mat-form-field>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row">-->
+<!--                      <div class="col-12">-->
+<!--                        <h3>-->
+<!--                          *Bạn hay đánh giá thật lòng để Chủ nhà có thể cải thiện và làm kinh nghiệm cho khách sau-->
+<!--                        </h3>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                  </form>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="modal-footer">-->
+<!--            <div class="d-flex justify-content-end">-->
+<!--              <div class="row">-->
+<!--                <div class="col">-->
+<!--                  <button class="btn btn-back" type="button">Trở lại</button>-->
+<!--                  <button class=" ms-1 btn btn-submit" type="button">Hoàn thành</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->

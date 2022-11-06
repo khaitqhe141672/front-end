@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {HttpEvent, HttpHandler, HttpParams, HttpRequest} from "@angular/common/http";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {exhaustMap, take} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class AuthInterceptorService {
+export class AuthInterceptorService implements HttpInterceptor{
   constructor(private authService: AuthService) {
   }
 
@@ -26,9 +26,10 @@ export class AuthInterceptorService {
         // 'Content-Type' : 'application/json; charset=utf-8',
         // 'Accept'       : 'application/json',
         'Authorization': `${this.authService.getToken()}`,
+        // 'access-token':`${this.authService.getToken()}`
       },
     });
-
+    console.log("auth interceptor token: "+this.authService.getToken())
     return next.handle(req);
   }
 }

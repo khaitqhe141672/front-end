@@ -63,3 +63,16 @@ state-done, .mat-step-header .mat-step-icon-state-edit {
   width: auto;
 
 }
+
+.btn-submit:hover{
+  background-color: #367E18;
+  color:white;
+}
+.btn-submit{
+  border: 2px solid #367E18
+}
+
+::ng-deep.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-
+state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color:  #F36B08!important
+}
