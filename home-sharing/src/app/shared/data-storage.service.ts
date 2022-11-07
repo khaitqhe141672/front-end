@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {PostService} from "../posts/post.service";
-import { ReponsePost} from "../posts/post.model";
+import { ResponsePost} from "../posts/post.model";
 import {API_POST_DETAIL} from "../constant/api.constant";
 import {take, tap} from "rxjs/operators";
 import {PostDetailService} from "../posts/post-detail/post-detail.service";
@@ -12,6 +12,6 @@ export class DataStorageService{
   }
 
   fetchPostDetailData(id:number){
-      return this.http.get<ReponsePost>(API_POST_DETAIL+id)
+      return this.http.get<ResponsePost>(API_POST_DETAIL+id)
   }
 }

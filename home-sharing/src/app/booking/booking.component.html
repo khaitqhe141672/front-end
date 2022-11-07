@@ -131,13 +131,13 @@
             <ng-container>
               <mat-selection-list #serviceSelection
                                   (selectionChange)="onSelectedService(serviceSelection.selectedOptions.selected)">
-                <mat-list-option *ngFor="let s of servicePost" [value]="s" color="warn">
+                <mat-list-option *ngFor="let s of listService" [value]="s" color="warn">
                   <div class="row tb-service-row mb-3 mt-3 utility_service">
                     <div class="col-4"><span>
-                 {{s.icon}}
+                 {{s.iconService}}
                 </span></div>
-                    <div class="col-4">{{s.name}}</div>
-                    <div class="col-3 p-0">{{s.price}}/người</div>
+                    <div class="col-4">{{s.nameService}}</div>
+                    <div class="col-3 p-0">{{s.price}}VND/người</div>
                   </div>
                 </mat-list-option>
               </mat-selection-list>

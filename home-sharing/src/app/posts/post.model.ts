@@ -1,4 +1,4 @@
-export interface ReponsePost {
+export interface ResponsePost {
   status: string
   object: Object
 }

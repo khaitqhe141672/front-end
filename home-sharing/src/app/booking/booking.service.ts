@@ -39,7 +39,7 @@ export class BookingService{
   }
   handleError(errorResponse:HttpErrorResponse){
     let errorMessage = 'An unknown error occurred!'
-    errorMessage = errorResponse.error.message
+    // errorMessage = errorResponse.error.message
     return throwError(()=>new Error(errorMessage))
   }
 }
