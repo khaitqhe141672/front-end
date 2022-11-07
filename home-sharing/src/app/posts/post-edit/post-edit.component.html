@@ -38,7 +38,8 @@
                   <ng-template matStepLabel>Giới thiệu</ng-template>
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập tên homestay</mat-label>
-                    <input formControlName="name" matInput placeholder="">
+                    <input  formControlName="name" matInput placeholder="">
+                    <mat-error *ngIf="formGroupPost.controls.name.touched">Lỗi</mat-error>
                   </mat-form-field>
                 </div>
 
@@ -410,7 +411,7 @@
           </mat-step>
           <div class="img-uploader">
             <mat-step>
-              <ng-template matStepLabel>
+              <ng-template readonly matStepLabel>
                 Chọn ảnh
               </ng-template>
               <div>
@@ -424,9 +425,9 @@
                 </button><div>
                 <p style="color: red" *ngIf="!formGroupPost.valid">Bạn phải điền đầy đủ thông tin trước khi đăng bài</p>
               </div>
-                <div>
-                  <p *ngIf="findInvalidControls">{{findInvalidControls()}}</p>
-                </div>
+<!--                <div>-->
+<!--                  <p *ngIf="findInvalidControls">{{findInvalidControls()}}</p>-->
+<!--                </div>-->
 
               </div>
 
@@ -442,41 +443,21 @@
 
                 </mat-toolbar>
               </div>
-<!--              <mat-form-field  style="width: 50%;">-->
-<!--                <div>-->
-<!--                  <mat-toolbar>-->
-<!--                    <input value="{{selectedFileNames.length?selectedFileNames:'Chọn ảnh'}}" matInput style="caret-color: transparent;font-size: 1rem"/>-->
-<!--                    <button (click)="uploadFiles()" [disabled]="!selectedFiles" class="p-0" type="button"-->
-<!--                            color="primary" mat-flat-button>-->
-<!--                      <span class="btn-label"><i class="fa fa-upload"></i></span>-->
-<!--                      Tải lên-->
-<!--                    </button>-->
-<!--                  </mat-toolbar>-->
 
-<!--                  <input-->
-<!--                    #fileUpload-->
-<!--                    (change)="selectFiles($event)"-->
-<!--                    accept="image/*"-->
-<!--                    id="fileInput"-->
-<!--                    multiple name="fileInput"-->
-<!--                    type="file"-->
-<!--                  />-->
-<!--                </div>-->
-<!--              </mat-form-field>-->
               <mat-form-field appearance="none">
                 <div>
                   <mat-toolbar>
-                    <input matInput value="{{selectedFileNames.length ? selectedFileNames : 'Chọn ảnh'}}" />
+                    <input readonly matInput value="{{selectedFileNames.length ? selectedFileNames : 'Chọn ảnh'}}" />
 
-                    <button
-                      type="button"
-                      mat-flat-button
-                      color="primary"
-                      [disabled]="!selectedFiles"
-                      (click)="uploadFiles()"
-                    >
-                      Tải lên
-                    </button>
+<!--                    <button-->
+<!--                      type="button"-->
+<!--                      mat-flat-button-->
+<!--                      color="primary"-->
+<!--                      [disabled]="!selectedFiles"-->
+<!--                      (click)="uploadFiles()"-->
+<!--                    >-->
+<!--                      Tải lên-->
+<!--                    </button>-->
                   </mat-toolbar>
 
                   <input
@@ -488,10 +469,10 @@
                   />
                 </div>
               </mat-form-field>
-              <div *ngIf="previews.length>0">
+              <div *ngIf="previews.length>0&&previews[0]">
                 <div class="row">
-                  <div class="col-8 div-img-1 number_custom">
-                    <div style="height: 250px; width: 400px;">
+                  <div  class="col-8 d-flex justify-content-center div-img-1 number_custom">
+                    <div  style="height: 250px; width: 400px;">
                       <img (click)="file0.click()"
                            [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block  div-img-post-1">
@@ -522,10 +503,10 @@
                     </div>
                     <span style="top: 75%; left: 10%;">1</span>
                   </div>
-                  <div class="col-4 mb-1">
+                  <div class="col-4 mb-1 p-0">
                     <div class="row">
-                      <div class="col-12 p-0 ps-2 mb-1  div-img-1 number_custom">
-                        <div style="height: 125px; width: 200px;">
+                      <div  class="col-12  mb-1  div-img-1 number_custom">
+                        <div   style="height: 125px; width: 200px;">
                           <img (click)="file1.click()"
                                [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" alt="..."
                                class="d-block div-img-post-2">
@@ -553,8 +534,8 @@
                         </div>
                         <span style="top: 60%; left: 15%;">2</span>
                       </div>
-                      <div class="col-12 p-0 ps-2  div-img-1 number_custom">
-                        <div style="height: 125px; width: 200px;">
+                      <div class="col-12  div-img-1 number_custom">
+                        <div  style="height: 125px; width: 200px;">
                           <img (click)="file2.click()"
                                [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" alt="..."
                                class="d-block  div-img-post-3">
@@ -586,9 +567,9 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-4  div-img-1 number_custom">
-                    <div style="width: 200px; height: 250px;">
+                <div class="row d-flex justify-content-center">
+                  <div  class="d-flex justify-content-end col-4 pe-0  div-img-1 number_custom">
+                    <div  style="width: 200px; height: 250px;">
                       <img (click)="file3.click()"
                            [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block  div-img-post-4">
@@ -616,8 +597,8 @@
                     </div>
                     <span style="top: 75%; left: 15%;">4</span>
                   </div>
-                  <div class="col-8  div-img-1 number_custom">
-                    <div style="width: 400px; height: 250px;">
+                  <div  class="d-flex ps-1 col-8 div-img-1 number_custom">
+                    <div  style="width: 400px; height: 250px;">
                       <img (click)="file4.click()"
                            [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block div-img-post-5" id="img4">

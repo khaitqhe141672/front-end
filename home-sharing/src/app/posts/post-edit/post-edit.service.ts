@@ -98,7 +98,7 @@ export class PostEditService{
       longitude:longitude,
       postServiceRequests:postServiceRequests
     }).pipe(catchError(this.handleErrorPushPost),tap(responseData=>{
-      console.log(responseData)
+      console.log('res1:'+responseData)
     }))
   }
   getUtility():Observable<UtilitiesResponse>
