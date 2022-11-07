@@ -15,3 +15,21 @@ export class Voucher {
   dueDate: number
   status: number
 }
+
+export interface VoucherPostResponse {
+  status: string
+  object: VoucherPost[]
+}
+
+export class VoucherPost {
+  postVoucherID: number
+  voucherID: number
+  description: string
+  dueDay: number
+  nameVoucher: string
+  percent: number
+  startDate: string
+  endDate: string
+  status: number
+}
+

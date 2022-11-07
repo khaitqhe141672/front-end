@@ -76,10 +76,10 @@ export class PostEditService{
   getDistrictsByProvinceID(id:number):Observable<ResponseDistrictByProvince>{
     return this.http.get<ResponseDistrictByProvince>(API_GET_DISTRICT_BY_PROVINCE+id)
   }
-  pushPost(roomTypeID:number,post:Post,latitude:number,longitude:number,utilityRequests:number[],voucherList:number[],
+  pushPost(post:Post,latitude:number,longitude:number,utilityRequests:number[],voucherList:number[],
            postServiceRequests:{serviceID:number,price:number}[]){
     return this.http.post(API_POSTING,{
-      roomTypeID:roomTypeID,
+      roomTypeID:post.roomTypeID,
       address:post.address,
       // districtID: districtID,
       guestNumber:post.guestNumber,
