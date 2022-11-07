@@ -50,7 +50,7 @@ export class PostEditService{
       responseType: 'json'});
   }
 
-  uploadAllFileByAPI(formData:FormData): Observable<any> {
+  uploadAllFileByAPI(formData:FormData,postID:number): Observable<any> {
     console.log('pushing')
     let token = JSON.parse(localStorage.getItem('token'))
     console.log('this is a token: '+token)
@@ -58,7 +58,7 @@ export class PostEditService{
       'Content-type': 'multipart/form-data',
     });
     headers.append('Authorization',token)
-    return this.http.post(API_PUSH_IMG_POST+3,formData,{headers,
+    return this.http.post(API_PUSH_IMG_POST+postID,formData,{headers,
       reportProgress: true,
       responseType: 'json'});
   }

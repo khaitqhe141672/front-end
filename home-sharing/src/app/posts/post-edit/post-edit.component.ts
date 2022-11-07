@@ -21,6 +21,17 @@ import {TokenInterceptor} from "../../auth/token.interceptor";
 import {AuthInterceptorService} from "../../auth/auth-interceptor.service";
 import {FormErrorStateMatcher} from "../../error-state-matcher";
 
+export interface ResponsePost {
+  message: string
+  data: IdResponse
+}
+
+export interface IdResponse {
+  Message: string
+  postID: number
+}
+
+
 declare var $: any;
 
 @Component({
@@ -284,21 +295,23 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
 
     post.address = this.address
 
-
+    let postIDResponse:number
     console.log('address submit: '+post.address)
     // this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
+    this.isUploading = true
     let pushPostObservable:Observable<any>
     pushPostObservable = this.postEditService.pushPost(post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
     pushPostObservable.subscribe({
       next:responseData=>{
-        console.log('res2: '+responseData)
+        console.log('res2: '+JSON.stringify(responseData))
+        postIDResponse = responseData.data.postID as number
       },
       error:errMessageResponse=>{
         console.log(errMessageResponse)
       },
       complete:()=>{
         console.log('complete')
-        this.uploadFiles()
+        this.uploadFiles(postIDResponse)
       }
     })
   }
@@ -465,7 +478,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       );
     }
   }
-  uploadFiles(): void {
+  uploadFiles(postIdResponse): void {
     this.message = [];
     this.isUploading = true
     let formDataImg = new FormData()
@@ -473,7 +486,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       for (let i = 0; i < this.savedFiles.length; i++) {
         formDataImg.append('file',this.savedFiles[i])
       }
-      this.uploadAll(formDataImg);
+      this.uploadAll(formDataImg,postIdResponse);
     }
     // if (this.selectedFiles) {
     //   for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -484,13 +497,12 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     // }
     // this.uploadAllImg()
   }
-  uploadAll(formDataImg:FormData): void {
+  uploadAll(formDataImg:FormData,postID:number): void {
     // this.progressInfos[idx] = {value: 0,isLoading:true, fileName: file.name};
-    this.isUploading = true
     console.log('pushing3')
     if (formDataImg) {
       console.log('pushing 5')
-      this.postEditService.uploadAllFileByAPI(formDataImg).subscribe(
+      this.postEditService.uploadAllFileByAPI(formDataImg,postID).subscribe(
         (event: any) => {
 
           console.log('event type: '+JSON.stringify(event))

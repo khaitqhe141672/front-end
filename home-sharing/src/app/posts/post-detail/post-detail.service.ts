@@ -1,19 +1,29 @@
 import {Injectable} from "@angular/core";
 import {Post} from "../post.model";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
 import {RateResponse} from "../../shared/model/rate.model";
-import {API_RATE, API_UTILITYS} from "../../constant/api.constant";
+import {
+  API_FAVORITE_POST,
+  API_FOLLOW_HOST, API_LIKE_RATE,
+  API_POST_DETAIL,
+  API_RATE,
+  API_RATE_BY_POST_ID,
+  API_UTILITYS
+} from "../../constant/api.constant";
 import {UtilitiesResponse} from "../../shared/model/utility.model";
+import {PostDetail, ResponsePostDetail} from "./post-detail.model";
+import {ResponseFollow} from "../../shared/model/follow-host.model";
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class PostDetailService {
   constructor(private http: HttpClient) {
   }
 
-  postDetail: Post
+  postDetail: PostDetail
 
-  bindPostData(postDetail: Post) {
+  bindPostData(postDetail: PostDetail) {
     this.postDetail = postDetail
   }
 
@@ -22,11 +32,50 @@ export class PostDetailService {
   }
 
   getRatesByPostID(id: number): Observable<RateResponse> {
-    return this.http.get<RateResponse>(API_RATE + id)
+    return this.http.get<RateResponse>(API_RATE_BY_POST_ID + id)
   }
 
-  // getUtilitysByPostID(id:number):Observable<any>{
-  //
-  // }
+  getPostDetail(id:number):Observable<ResponsePostDetail>{
+    return this.http.get<ResponsePostDetail>(API_POST_DETAIL+id)
+  }
 
+  followHost(hostID:number):Observable<ResponseFollow>{
+    return this.http.post<ResponseFollow>(API_FOLLOW_HOST+hostID,null).pipe(
+      catchError(this.handleError),tap(responseData=>{
+        console.log(responseData)
+      })
+    )
+  }
+  private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', errorResponse.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${errorResponse.status}, body was: `, errorResponse.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
+
+  likeRate(rateID:number,type:number):Observable<any>{
+    // type=2&rate-id=1
+    let params = new HttpParams({fromString: 'type='+type+'&'+'rate-id='+rateID});
+    // params.append('type',type+"")
+    // params.append('rate-id',rateID+"")
+
+
+    return this.http.post<any>(API_LIKE_RATE,null,{
+      params:params
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  favoritePost(postID:number):Observable<any>{
+    let params = new HttpParams({fromString:'post-id='+postID})
+    return this.http.post(API_FAVORITE_POST,null,{params:params}).pipe(catchError(this.handleError))
+  }
 }

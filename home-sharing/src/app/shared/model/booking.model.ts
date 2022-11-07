@@ -4,7 +4,7 @@ export class BookingBody {
   note?: string
   totalMoney: number
   totalPerson: number
-  postServices: any[]
+  postServices: number[]
   postVoucherID?: number
   totalPriceRoom: number
   totalPriceService: number

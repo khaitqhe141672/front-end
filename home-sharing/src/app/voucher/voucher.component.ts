@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {VoucherService} from "./voucher.service";
+import {VoucherPost, VoucherPostResponse} from "../shared/model/voucher.model";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-voucher',
@@ -8,12 +10,17 @@ import {VoucherService} from "./voucher.service";
 })
 export class VoucherComponent implements OnInit {
 
-  constructor(private voucherService:VoucherService) { }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number,private voucherService:VoucherService) { }
+  listVoucher:VoucherPost[]=[]
+  voucherIResponse
   ngOnInit(): void {
-    this.voucherService.getVouchers().subscribe(reponse=>{
-
+    this.voucherService.getVouchers(this.data).subscribe(response=>{
+        let voucherIResponse =   response as VoucherPostResponse
+        this.listVoucher = voucherIResponse.object
     })
+    console.log(JSON.stringify(this.listVoucher))
+    console.log(JSON.stringify(this.voucherIResponse))
+    console.log(this.data)
   }
 
   onChooseVoucher() {

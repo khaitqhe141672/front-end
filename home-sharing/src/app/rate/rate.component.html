@@ -66,7 +66,7 @@
       <div class="row">
         <div class="col">
           <button class="btn btn-back" type="button" mat-button mat-dialog-close>Trở lại</button>
-          <button class=" ms-1 btn btn-submit" type="button" mat-button (click)="onSubmitRate()">Hoàn thành</button>
+          <button class=" ms-1 btn btn-submit" mat-dialog-close [disabled]="!formRate.valid" type="button" mat-button (click)="onSubmitRate()">Hoàn thành</button>
         </div>
       </div>
     </div>
