@@ -19,6 +19,7 @@ import {MatSelect} from "@angular/material/select";
 import {ServiceObj} from "../../shared/model/serivce-post.model";
 import {TokenInterceptor} from "../../auth/token.interceptor";
 import {AuthInterceptorService} from "../../auth/auth-interceptor.service";
+import {FormErrorStateMatcher} from "../../error-state-matcher";
 
 declare var $: any;
 
@@ -35,6 +36,10 @@ declare var $: any;
   ]
 })
 export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
+
+  //handle input error
+  matcherInput
+
   formGroupPost: FormGroup;
   // typeHomeStay = [
   //   'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
@@ -45,9 +50,10 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
   selectedFileNames: string[] = [];
   progressInfos: any[] = [];
   message: string[] = [];
-  previews: string[] = [];
+  previews: string[] = new Array<string>(5);
+  // arr = new Array<number>(3);
   imageInfos?: Observable<any>;
-
+  savedFiles:File[] = []
   //service:
   dropDownServiceData = []
   saveService: {serviceID:number; price:number }[] = []
@@ -157,11 +163,14 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
 
     this.getVoucher()
       this.getService()
+    // this.matcherInput = FormErrorStateMatcher
   }
   protected _onDestroy = new Subject()
   initForm() {
     this.formGroupPost = this.fb.group({
-      name: ['',Validators.required],
+      name: ['',Validators.compose([
+        Validators.required,
+      ])],
       address: [''],
       // district: [''],
       // province: [''],
@@ -278,7 +287,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     pushPostObservable = this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
     pushPostObservable.subscribe({
       next:responseData=>{
-        console.log(responseData)
+        console.log('res2: '+responseData)
       },
       error:errMessageResponse=>{
         console.log(errMessageResponse)
@@ -383,28 +392,33 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     }
     this.formGroupPost.controls.servicePost.patchValue(null)
   }
-
+   fileListAsArray
   //IMG
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
-
+    this.savedFiles = [].slice()
+    for (let i = 0;i<this.selectedFiles.length;i++){
+      this.savedFiles.push(this.selectedFiles.item(i))
+      // console.log(this.savedFiles[i].name)
+    }
     this.previews = [];
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
+    if (this.savedFiles && this.savedFiles[0]) {
+      const numberOfFiles = this.savedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
           // console.log(e.target.result);
-          this.previews.push(e.target.result);
+          this.previews[i]=e.target.result;
         };
 
-        reader.readAsDataURL(this.selectedFiles[i]);
+        reader.readAsDataURL(this.savedFiles[i]);
 
-        this.selectedFileNames.push(this.selectedFiles[i].name);
+        this.selectedFileNames.push(this.savedFiles[i].name);
+        console.log(this.selectedFileNames[i])
       }
     }
 
@@ -451,12 +465,11 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     this.message = [];
     this.isUploading = true
     let formDataImg = new FormData()
-    if (this.selectedFiles) {
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        formDataImg.append('file',this.selectedFiles[i])
+    if (this.savedFiles) {
+      for (let i = 0; i < this.savedFiles.length; i++) {
+        formDataImg.append('file',this.savedFiles[i])
       }
       this.uploadAll(formDataImg);
-
     }
     // if (this.selectedFiles) {
     //   for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -522,33 +535,41 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
     // [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
 
+    [[this.savedFiles[pos1]], [this.savedFiles[pos2]]] = [[this.savedFiles[pos2]], [this.savedFiles[pos1]]];
     this.imgPreviewPositionChanged.next(this.previews.slice())
     this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
 
     let list = new DataTransfer();
     for(let i=0;i<5;i++){
-      list.items.add(this.selectedFiles[i])
+      console.log(JSON.stringify(this.savedFiles[i].name))
     }
-    [[list[pos1]], [list[pos2]]] = [[list[pos2]], [list[pos1]]];
+    console.log('----------------------------------------')
+
+    // [[list[pos1]], [list[pos2]]] = [[list[pos2]], [list[pos1]]];
 
     // this.selectedFiles = new FileList()
-    this.selectedFiles = list.files
+
     // console.log(this.previews[pos1]);
     // console.log(this.previews[pos2]);
-    for (let i =0;i<this.selectedFiles.length;i++){
-      console.log(this.selectedFiles[i].name)
-    }
 
-    for (let i =0;i<5;i++){
-      console.log(list[i].name)
-    }
+    // let temp_file = list[pos1]
+    // list[pos1] = list[pos2]
+    // list[pos2] = temp_file
+    // this.selectedFiles = list.files
+    // for (let i =0;i<this.selectedFiles.length;i++){
+    //   console.log(this.selectedFiles[i].name)
+    // }
+    // for (let i =0;i<list.files.length;i++){
+    //   console.log(list[i])
+    // }
   }
 
   onDeleteImg($event, position: number) {
     // this.imgPreviewPositionChanged.next(this.previews.splice(position, 1)) xoa anh va day arr len
     this.previews[position] = undefined
     this.imgPreviewPositionChanged.next(this.previews.slice())
-
+    this.savedFiles[position] = undefined
+    this.selectedFileNames[position] = undefined
   }
 
   selectSingleFiles(event, position: number) {
@@ -562,6 +583,7 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
       };
       reader.readAsDataURL(this.selectedFiles[0]);
       this.selectedFileNames[position] = this.selectedFiles[0].name
+      this.savedFiles[position] = this.selectedFiles[0]
     }
 
   }
