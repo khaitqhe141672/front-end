@@ -27,3 +27,5 @@ export const API_BOOKING = 'http://localhost:8080/api/booking/create-booking?pos
 export const API_RATE = 'http://localhost:8080/api/rate/create-rate?bookingDetail-id='
 
 export const API_REPORT_HS ='http://localhost:8080/api/report/create-reportPost?post-id='
+
+export const API_VOUCHER_BY_POST_ID ='http://localhost:8080/api/post-detail/get-all-voucher?post_id='

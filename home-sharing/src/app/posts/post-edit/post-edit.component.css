@@ -286,7 +286,7 @@ state-done, .mat-step-header .mat-step-icon-state-edit {
   height: 300px;
 }
 ::ng-deep.mat-horizontal-content-container{
-  height: 800px !important;
+  height: auto !important;
 }
 .multi-select-voucher{
   height: 30px!important;

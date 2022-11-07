@@ -9,6 +9,7 @@ import {DatePickerComponent} from "../date-picker/date-picker.component";
 import {BookingService} from "./booking.service";
 import {BookingBody} from "../shared/model/booking.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {VoucherComponent} from "../voucher/voucher.component";
 
 @Component({
   selector: 'app-booking',
@@ -46,7 +47,7 @@ export class BookingComponent implements OnInit {
   ]
   selectedServicePost:{id:number,icon:string;name:string;price:number}[]=[]
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
-
+  voucherPickerDialogRef:MatDialogRef<VoucherComponent>
 
   postVoucherID = null
 
@@ -124,7 +125,7 @@ export class BookingComponent implements OnInit {
   }
 
   openDatePickerDialog() {
-    this.datePickerDialogRef = this.dialog.open(DatePickerComponent)
+    this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{hasBackdrop:true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
       this.startDateBooking = this.datePipe.transform(this.datePicked.startDate,'dd-MM-yyyy')
@@ -184,4 +185,9 @@ export class BookingComponent implements OnInit {
     })
   }
 
+  onOpenVoucherDialog() {
+    this.voucherPickerDialogRef = this.dialog.open(VoucherComponent,{
+      hasBackdrop:true
+    })
+  }
 }

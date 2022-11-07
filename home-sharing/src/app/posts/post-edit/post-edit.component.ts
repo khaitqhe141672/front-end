@@ -255,8 +255,8 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     // // console.log('address: ' + this.mapService)
     // console.log('district: ' + this.address)
     // // console.log('province: ' + this.provinceID)
-    // console.log('type: ' + type)
-    // console.log('type 2: ' + this.typeHsID)
+    console.log('type: ' + typeID)
+    console.log('type 2: ' + this.typeHsID)
     //
     // console.log('description: ' + description)
     // console.log('priceHS: ' + priceHS)
@@ -280,11 +280,15 @@ export class PostEditComponent implements OnInit,AfterViewInit,OnDestroy {
     post.price = priceHS
 
 
-    post.roomTypeID = typeID
-    post.address = address
+    post.roomTypeID = this.typeHsID
+
+    post.address = this.address
+
+
+    console.log('address submit: '+post.address)
     // this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
     let pushPostObservable:Observable<any>
-    pushPostObservable = this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
+    pushPostObservable = this.postEditService.pushPost(post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
     pushPostObservable.subscribe({
       next:responseData=>{
         console.log('res2: '+responseData)

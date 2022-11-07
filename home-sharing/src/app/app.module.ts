@@ -70,6 +70,7 @@ import {MatCardModule} from "@angular/material/card";
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import { ReportHsComponent } from './report-hs/report-hs.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { ReportHsComponent } from './report-hs/report-hs.component';
     TestComponent,
     DatePickerComponent,
     ReportHsComponent,
+    VoucherComponent,
   ],
     imports: [
         BrowserModule,
