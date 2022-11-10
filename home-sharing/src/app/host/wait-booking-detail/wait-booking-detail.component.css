@@ -1,0 +1,112 @@
+.box_pop-up {
+  width: 800px;
+}
+
+.box_pop-up h1 {
+  color: #F36B08;
+  font-size: 32px;
+  font-family: 'Baloo';
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6, span, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.box_pop-up .pop-up_content .info_hs ul {
+  list-style: none;
+}
+
+.box_pop-up .pop-up_content .info_hs {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.box_pop-up .pop-up_content .info_hs h3 {
+  font-size: 24px;
+  font-family: Actor;
+}
+
+.box_pop-up .pop-up_content .info_hs ul {
+  display: grid;
+  grid-template-columns: 30px 200px 10px 1fr;
+  align-items: center;
+}
+
+.box_pop-up .pop-up_content .info_hs .avatar_cus {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #F36B08;
+}
+
+.box_pop-up .pop-up_content .detail_content {
+  padding-top: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li h3 {
+  font-size: 20px;
+  font-family: Actor;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li h3 span {
+  border: 1px solid #F36B08;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+  margin-left: 15px;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li {
+  padding-bottom: 15px;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li:nth-child(3) .box_service {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li:nth-child(3) .box_service span {
+  border: 1px solid #F36B08;
+  border-radius: 15px;
+  padding: 10px 15px 10px 15px;
+  color: black;
+  margin-left: 10px;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li:nth-child(3) .box_service span svg {
+  width: 20px;
+  height: 20px;
+}
+
+.box_pop-up .btn_close button {
+  background-color: #F36B08;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: Inder;
+  padding: 5px 20px 5px 20px;
+}
+
+.box_pop-up .pop-up_content .detail_content
+ul li:nth-child(3) .box_service .list_service {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 20px;
+  align-items: center;
+  column-gap: 10px;
+}
+
