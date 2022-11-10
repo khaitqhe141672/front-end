@@ -34,3 +34,5 @@ export const API_VIEW_HISTORY_BOOKING ='http://localhost:8080/api/booking/histor
 export const API_FOLLOW_HOST = 'http://localhost:8080/api/follow-favourite/create-follow?host-id='
 export const API_LIKE_RATE = 'http://localhost:8080/api/like-dislike/create?'
 export const API_FAVORITE_POST = 'http://localhost:8080/api/follow-favourite/create-favourite?'
+
+export const API_ACCOUNT_HOST = 'http://localhost:8080/api/manage-account/view-account-host?index-page='

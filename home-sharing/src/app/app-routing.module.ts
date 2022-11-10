@@ -35,6 +35,7 @@ import {VoucherComponent} from "./voucher/voucher.component";
 import {ManageVoucherComponent} from "./host/manage-voucher/manage-voucher.component";
 import {AdminComponent} from "./admin/admin.component";
 import {ManagePostComponent} from "./admin/manage-post/manage-post.component";
+import {ManagerAccountComponent} from "./admin/manager-account/manager-account.component";
 
 
 const appRoute: Routes = [
@@ -87,8 +88,9 @@ const appRoute: Routes = [
     ]
   },
   {
-    path: 'admin', children: [
-      {path: '', component: AdminComponent},
+    path: 'admin',component:AdminComponent, children: [
+      {path: '', component: ManagerAccountComponent},
+      {path: 'manager-account',component: ManagerAccountComponent},
       {path: 'manage-post', component: ManagePostComponent}
     ]
   },

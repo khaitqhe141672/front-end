@@ -84,6 +84,11 @@ import { CreateVoucherComponent } from './host/create-voucher/create-voucher.com
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { ManagePostComponent } from './admin/manage-post/manage-post.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTreeModule} from "@angular/material/tree";
+import { ManagerAccountComponent } from './admin/manager-account/manager-account.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -128,43 +133,44 @@ import { ManagePostComponent } from './admin/manage-post/manage-post.component';
     AdminComponent,
     HeaderAdminComponent,
     ManagePostComponent,
+    ManagerAccountComponent,
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    CoreModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatMenuModule,
-    NgbPaginationModule, NgbAlertModule, NgbModule,
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        CoreModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatMenuModule,
+        NgbPaginationModule, NgbAlertModule, NgbModule,
 
-    MatChipsModule, MatListModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-    }),
-    MatSnackBarModule,
-    NgxStarRatingModule, MatCheckboxModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgxDropzoneModule,
-    NgxFileDropModule,
-    MatPaginatorModule,
-    MatCardModule, MatDialogModule,
-    MatNativeDateModule, FormsModule,
-    MatTabsModule, MatTableModule
-  ],
+        MatChipsModule, MatListModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+        }),
+        MatSnackBarModule,
+        NgxStarRatingModule, MatCheckboxModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        NgxDropzoneModule,
+        NgxFileDropModule,
+        MatPaginatorModule,
+        MatCardModule, MatDialogModule,
+        MatNativeDateModule, FormsModule,
+        MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule
+    ],
   providers: [
     DatePipe,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},

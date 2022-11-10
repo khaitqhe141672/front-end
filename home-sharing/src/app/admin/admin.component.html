@@ -1,6 +1,29 @@
-<div class="container_account">
-  <mat-tab-group>
-    <mat-tab label="First"> Content 1 </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-  </mat-tab-group>
-</div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" opened mode="side">
+    <mat-list class="d-flex text-center flex-column justify-content-center">
+      <mat-list-item    routerLinkActive="active" class="left-bar-list"
+                       routerLink="/admin/manager-account" >
+          <mat-icon class="me-2">account_circle</mat-icon>
+          Quản lý tài khoản
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="/admin/manage-post"  class="left-bar-list"  routerLinkActive="active">
+        <mat-icon class="me-2">feed</mat-icon>
+        Quản lý bài đăng</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item class="left-bar-list">
+        <mat-icon class="me-2">payments</mat-icon>
+        Thanh toán</mat-list-item><mat-list-item class="left-bar-list"  routerLinkActive="active">
+      <mat-icon class="me-2">flag</mat-icon>
+      Xử lý báo cáo</mat-list-item><mat-list-item class="left-bar-list"  routerLinkActive="active">
+      <mat-icon class="me-2">bar_chart</mat-icon>
+      Thống kê</mat-list-item>
+    </mat-list>
+
+  </mat-drawer>
+
+  <div  class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

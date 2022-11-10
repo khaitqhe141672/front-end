@@ -1,0 +1,24 @@
+.example-container {
+  width: 100%;
+  height: 900px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav {
+  padding: 0;
+  min-width: 250px;
+}
+.left-bar-list:hover{
+  background-color: #F36B08 !important;
+  color: #FFFFFF!important;
+}
+.left-bar-list{
+  cursor: pointer;
+}
+.active{
+  background-color: #F36B08;
+  color: #FFFFFF;
+  text-decoration: none!important;
+  /*border-color: #F36B08 !important;*/
+}
+

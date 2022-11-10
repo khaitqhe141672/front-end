@@ -1,14 +1,22 @@
-<h1 mat-dialog-title >Đánh giá</h1>
-<div style="width: 400px;height: auto" mat-dialog-content>
+<h1 mat-dialog-title >Mã giảm giá có thể sử dụng</h1>
+<div style="width: 400px;min-height: 200px" mat-dialog-content>
   <div class="modal-body">
     <div class="row main-content">
       <div class="d-flex justify-content-center w-100">
-        <div class="col-12">
-            <div class="row h-100 mt-4">
+        <div class="col-12 h-auto">
+            <div class="row mt-4">
               <div class="col-12">
                 <h3>Chọn mã giảm giá</h3>
               </div>
             </div>
+          <div class="row">
+            <div class="col">
+              <mat-chip-list aria-label="Fish selection" *ngFor="let voucher of listVoucher">
+                <mat-chip style="background-color: #F36B08;color: #FFFFFF" (click)="onCopyVoucherName(voucher.nameVoucher)">{{voucher.nameVoucher}}-{{voucher.description}}-Giảm: {{voucher.percent}}%</mat-chip>
+              </mat-chip-list>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
