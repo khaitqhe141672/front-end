@@ -1,22 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
+import {AppComponent} from './app.component';
+import {AuthComponent} from './auth/auth.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HeaderComponent} from './header/header.component';
+import {LoginComponent} from './auth/login/login.component';
+import {RegisterComponent} from './auth/register/register.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
-import { FooterComponent } from './footer/footer.component';
-import { DetailComponent } from './detail/detail.component';
+import {FooterComponent} from './footer/footer.component';
+import {DetailComponent} from './detail/detail.component';
 import {DatePipe} from "@angular/common";
-import { PostsComponent } from './posts/posts.component';
-import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import {PostsComponent} from './posts/posts.component';
+import {PostEditComponent} from './posts/post-edit/post-edit.component';
 import {CoreModule} from "./core.module";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
@@ -37,40 +37,53 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {NgbAlertModule, NgbPaginationModule, NgbModule, NgbCarouselConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatListModule} from "@angular/material/list";
-import { ErrorPageComponent } from './error-page/error-page.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
 
-import { HeaderHostComponent } from './header-host/header-host.component';
-import { HostComponent } from './host/host.component';
-import { HostPostListComponent } from './host/host-post-list/host-post-list.component';
-import { ManageRateComponent } from './host/manage-rate/manage-rate.component';
-import { RateDetailComponent } from './host/rate-detail/rate-detail.component';
+import {HeaderHostComponent} from './header-host/header-host.component';
+import {HostComponent} from './host/host.component';
+import {HostPostListComponent} from './host/host-post-list/host-post-list.component';
+import {ManageRateComponent} from './host/manage-rate/manage-rate.component';
+import {RateDetailComponent} from './host/rate-detail/rate-detail.component';
 
 import {AgmCoreModule} from "@agm/core";
-import { MapComponent } from './map/map.component';
+import {MapComponent} from './map/map.component';
 import {SearchComponent} from "./search/search.component";
-import { UserInfoComponent } from './profile/user-info/user-info.component';
+import {UserInfoComponent} from './profile/user-info/user-info.component';
 import {HistoryBookingComponent} from './history-booking/history-booking.component';
-import { PasswordComponent } from './profile/password/password.component';
+import {PasswordComponent} from './profile/password/password.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
-import { RateComponent } from './rate/rate.component';
+import {RateComponent} from './rate/rate.component';
 import {NgxStarRatingModule} from "ngx-star-rating";
-import { BookingComponent } from './booking/booking.component';
+import {BookingComponent} from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-import { TestComponent } from './test/test.component';
+import {TestComponent} from './test/test.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
-import { ReportHsComponent } from './report-hs/report-hs.component';
-import { VoucherComponent } from './voucher/voucher.component';
+import {ReportHsComponent} from './report-hs/report-hs.component';
+import {VoucherComponent} from './voucher/voucher.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { CheckOutBookingComponent } from './host/check-out-booking/check-out-booking.component';
+import { CurrentBookingDetailComponent } from './host/current-booking-detail/current-booking-detail.component';
+import { ComingBookingDetailComponent } from './host/coming-booking-detail/coming-booking-detail.component';
+import { ConfirmBookingComponent } from './host/confirm-booking/confirm-booking.component';
+import { WaitBookingDetailComponent } from './host/wait-booking-detail/wait-booking-detail.component';
+import { ComplaintReportComponent } from './host/complaint-report/complaint-report.component';
+import { ManageVoucherComponent } from './host/manage-voucher/manage-voucher.component';
+import {MatTableModule} from "@angular/material/table";
+import { CreateVoucherComponent } from './host/create-voucher/create-voucher.component';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { ManagePostComponent } from './admin/manage-post/manage-post.component';
 
 @NgModule({
   declarations: [
@@ -104,50 +117,62 @@ import { VoucherComponent } from './voucher/voucher.component';
     DatePickerComponent,
     ReportHsComponent,
     VoucherComponent,
+    CheckOutBookingComponent,
+    CurrentBookingDetailComponent,
+    ComingBookingDetailComponent,
+    ConfirmBookingComponent,
+    WaitBookingDetailComponent,
+    ComplaintReportComponent,
+    ManageVoucherComponent,
+    CreateVoucherComponent,
+    AdminComponent,
+    HeaderAdminComponent,
+    ManagePostComponent,
   ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        CoreModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatIconModule,
-        MatMenuModule,
-        NgbPaginationModule, NgbAlertModule, NgbModule,
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    CoreModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatIconModule,
+    MatMenuModule,
+    NgbPaginationModule, NgbAlertModule, NgbModule,
 
-        MatChipsModule, MatListModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-        }),
-        MatSnackBarModule,
-        NgxStarRatingModule, MatCheckboxModule,
-        NgMultiSelectDropDownModule.forRoot(),
-        NgxDropzoneModule,
-        NgxFileDropModule,
-        MatPaginatorModule,
-        MatCardModule, MatDialogModule,
-        MatNativeDateModule, FormsModule,
-
-    ],
+    MatChipsModule, MatListModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+    }),
+    MatSnackBarModule,
+    NgxStarRatingModule, MatCheckboxModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDropzoneModule,
+    NgxFileDropModule,
+    MatPaginatorModule,
+    MatCardModule, MatDialogModule,
+    MatNativeDateModule, FormsModule,
+    MatTabsModule, MatTableModule
+  ],
   providers: [
     DatePipe,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
-    { provide: MAT_DATE_LOCALE, useValue: 'vi-Vi' },
+    {provide: MAT_DATE_LOCALE, useValue: 'vi-Vi'},
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -37,15 +37,22 @@ export class AppComponent implements OnInit {
 
   headerHost: boolean = false
   headerCustomer: boolean = false
+  headerAdmin: boolean = false
 
   headerDisplay() {
     if (this.role === "ROLE_HOST") {
       console.log(this.role)
       this.headerHost = true;
+      this.headerAdmin = false;
       this.headerCustomer = false;
+    } else if (this.role === "ROLE_ADMIN") {
+      this.headerHost = false;
+      this.headerCustomer = false;
+      this.headerAdmin = true;
     } else {
       this.headerHost = false;
       this.headerCustomer = true;
+      this.headerAdmin = false;
     }
   }
 

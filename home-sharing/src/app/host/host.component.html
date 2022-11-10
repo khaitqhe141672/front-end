@@ -22,358 +22,1112 @@
       <h2>Quản lý Homestay</h2>
     </div>
     <div class="function_filter">
-      <button>Đang tiếp đón (2)</button>
-      <button>Sắp đến (5)</button>
-      <button>Đang chờ xác nhận (5)</button>
-      <button>Tổng quan lịch đặt</button>
+      <mat-tab-group>
+        <mat-tab label="Đang đón tiếp (2)">
+          <div class="box_list_hs">
+            <div class="list_hs">
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card_hs">
+                <div class="card_title">
+                  <h2>
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                    </svg>
+                    Homestay view phố tại Hoàn Kiếm
+                  </h2>
+                </div>
+                <div>
+                  ---
+                </div>
+                <div class="card_endDate">
+                  <span>Ra lúc (12:50 - 16/02/2022)</span>
+                </div>
+                <div class="card_function">
+                  <div class="edit">
+                    <button (click)="onOpenCurrentBookingDetail()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                          stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </div>
+                  <div class="checkout">
+                    <button (click)="onOpenCheckOut()">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      Trả phòng hoàn tất
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="page_item">
+              <mat-paginator [length]="100"
+                             [pageSize]="10"
+                             [pageSizeOptions]="[5, 10, 25, 100]"
+                             aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Sắp đến (5)">
+          <div class="box_pad">
+            <div class="box_list_hs">
+              <div class="list_hs">
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button (click)="onOpenComingBookingDetail()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>
+                        </svg>
+                        Sẵn sàng
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card_hs">
+                  <div class="card_title">
+                    <h2>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
+                      </svg>
+                      Homestay view phố tại Hoàn Kiếm
+                    </h2>
+                  </div>
+                  <div>
+                    ---
+                  </div>
+                  <div class="card_endDate">
+                    <span>Ra lúc (12:50 - 16/02/2022)</span>
+                  </div>
+                  <div class="card_function">
+                    <div class="edit">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                          <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                        Chi tiết
+                      </button>
+                    </div>
+                    <div class="status_hs">
+                      <button>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="6.22224" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
+                        </svg>
+                        Chưa dọn
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="page_item">
+                <mat-paginator [length]="100"
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 25, 100]"
+                               aria-label="Select page">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Đang chờ xác nhận (5)">
+          <div class="box_list_hs">
+            <div class="list_booking_wait">
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="card_wait">
+                <div class="image_cus">
+                  <img src="assets/images/avatar.png" alt="">
+                </div>
+                <div class="name_cus">
+                  <h3>Phung Dang Long Vu</h3>
+                </div>
+                <div class="name_hs">
+                  Homestay nhà trên núi
+                </div>
+                <div class="function_btn">
+                  <button (click)="onOpenWaitBookingDetail()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button (click)="onOpenConfirmBooking()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="page_item">
+              <mat-paginator [length]="100"
+                             [pageSize]="10"
+                             [pageSizeOptions]="[5, 10, 25, 100]"
+                             aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Tổng quát lịch đặt">
+          <div class="box_list_hs">
+            <div class="list">
+
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
       <div></div>
-    </div>
-    <div class="box_list_hs">
-      <div class="list_hs">
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card_hs">
-          <div class="card_title">
-            <h2>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#F36B08"/>
-              </svg>
-              Homestay view phố tại Hoàn Kiếm
-            </h2>
-          </div>
-          <div>
-            ---
-          </div>
-          <div class="card_endDate">
-            <span>Ra lúc (12:50 - 16/02/2022)</span>
-          </div>
-          <div class="card_function">
-            <div class="edit">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                  <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Chi tiết
-              </button>
-            </div>
-            <div class="checkout">
-              <button>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-                Trả phòng hoàn tất
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="page_item">
-        <mat-paginator [length]="100"
-                       [pageSize]="10"
-                       [pageSizeOptions]="[5, 10, 25, 100]"
-                       aria-label="Select page">
-        </mat-paginator>
-      </div>
     </div>
   </div>
 </div>

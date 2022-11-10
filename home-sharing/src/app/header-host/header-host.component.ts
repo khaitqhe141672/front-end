@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AuthService} from "../auth/auth.service";
 
 declare var $: any;
 
@@ -11,8 +12,7 @@ export class HeaderHostComponent implements OnInit,AfterViewInit {
 
   token = JSON.parse(localStorage.getItem("userData"));
 
-  constructor() {
-  }
+  constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -42,4 +42,7 @@ export class HeaderHostComponent implements OnInit,AfterViewInit {
     });
   }
 
+  logout() {
+    this.auth.logout()
+  }
 }

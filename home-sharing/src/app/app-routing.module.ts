@@ -31,6 +31,10 @@ import {TestComponent} from "./test/test.component";
 import {DatePickerComponent} from "./date-picker/date-picker.component";
 import {HasRoleHostGuard} from "./guard/has-role-host.guard";
 import {ReportHsComponent} from "./report-hs/report-hs.component";
+import {VoucherComponent} from "./voucher/voucher.component";
+import {ManageVoucherComponent} from "./host/manage-voucher/manage-voucher.component";
+import {AdminComponent} from "./admin/admin.component";
+import {ManagePostComponent} from "./admin/manage-post/manage-post.component";
 
 
 const appRoute: Routes = [
@@ -43,14 +47,15 @@ const appRoute: Routes = [
     ]
 
   },
-  {path:'booking/:id',component:BookingComponent},
-  {path:'test',component:ReportHsComponent},
+  {path: 'booking/:id', component: BookingComponent},
+  {path: 'test', component: ReportHsComponent},
   {path: 'home', component: HomeComponent},
-  {path:'profile',component:ProfileComponent,
-    canActivate:[HasRoleGuard],children:[
-      {path: '',component: UserInfoComponent},
-      {path: 'password',component: PasswordComponent},
-      {path: 'history-booking',component: HistoryBookingComponent}
+  {
+    path: 'profile', component: ProfileComponent,
+    canActivate: [HasRoleGuard], children: [
+      {path: '', component: UserInfoComponent},
+      {path: 'password', component: PasswordComponent},
+      {path: 'history-booking', component: HistoryBookingComponent}
     ]
 
   },
@@ -77,7 +82,14 @@ const appRoute: Routes = [
           {path: '', component: ManageRateComponent},
           {path: 'rate-detail', component: RateDetailComponent}
         ]
-      }
+      },
+      {path: 'manage-voucher', component: ManageVoucherComponent}
+    ]
+  },
+  {
+    path: 'admin', children: [
+      {path: '', component: AdminComponent},
+      {path: 'manage-post', component: ManagePostComponent}
     ]
   },
   {path: 'search', component: SearchComponent},

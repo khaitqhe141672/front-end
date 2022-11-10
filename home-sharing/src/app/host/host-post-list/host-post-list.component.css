@@ -81,6 +81,18 @@ hr, ul, li {
 }
 
 .container-post-host .content_post_list .card_post
+.card_statusReport button {
+  border: none;
+  background-color: #FFFFFF;
+}
+
+.container-post-host .content_post_list .card_post
+.card_statusReport button:hover{
+  background-color: #FFFFFF;
+}
+
+
+.container-post-host .content_post_list .card_post
 .card_status svg {
   width: 12px;
   height: 10px;
@@ -156,7 +168,7 @@ hr, ul, li {
   margin-top: -5%;
 }
 
-.message_box button{
+.message_box button {
   border: 1px solid #F36B08;
   border-radius: 50%;
   padding: 10px 15px 10px 15px;
@@ -164,7 +176,7 @@ hr, ul, li {
 }
 
 
-.message_box button svg{
+.message_box button svg {
   width: 40px;
   height: 40px;
 }

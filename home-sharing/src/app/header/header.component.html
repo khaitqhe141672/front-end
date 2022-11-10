@@ -2,7 +2,7 @@
   <div class="container-header">
     <div class="nav-header">
       <div class="logo">
-        <a >
+        <a>
           <svg width="279" height="117" viewBox="0 0 279 117" fill="none"
                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect width="279" height="117" fill="url(#pattern0)"/>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="dropdown-content">
-            <a routerLink="/auth/login" *ngIf="token == null">
+            <button routerLink="/auth/login" *ngIf="token == null">
               <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -69,8 +69,8 @@
                   fill="#F36B08"/>
               </svg>
               Đăng nhập
-            </a>
-            <a routerLink="/auth/register" *ngIf="token == null">
+            </button>
+            <button routerLink="/auth/register" *ngIf="token == null">
               <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -78,8 +78,8 @@
                   fill="#F36B08"/>
               </svg>
               Đăng ký
-            </a>
-            <a [routerLink]="'profile'" *ngIf="token != null">
+            </button>
+            <button [routerLink]="'profile'" *ngIf="token != null">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -87,8 +87,8 @@
                   fill="#F36B08"/>
               </svg>
               Hồ sơ
-            </a>
-            <a  *ngIf="token != null">
+            </button>
+            <a *ngIf="token != null">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -102,7 +102,7 @@
               </svg>
               Thông báo
             </a>
-            <a  *ngIf="token != null">
+            <button *ngIf="token != null">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -111,7 +111,7 @@
                   stroke-linejoin="round"/>
               </svg>
               Tin nhắn
-            </a>
+            </button>
 
             <button type="button" (click)="logout()" *ngIf="token != null">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -121,10 +121,10 @@
                   fill="#F36B08"/>
               </svg>
 
-             Đăng xuất
+              Đăng xuất
             </button>
 
-            <a>
+            <button>
               <svg width="25" height="35" viewBox="0 0 25 35" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -132,7 +132,7 @@
                   fill="#F36B08"/>
               </svg>
               Trợ giúp
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ComplaintReportComponent} from "../complaint-report/complaint-report.component";
 
 @Component({
   selector: 'app-host-post-list',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HostPostListComponent implements OnInit {
 
-  constructor() { }
+  complaintReportPickerDialogRef: MatDialogRef<ComplaintReportComponent>
+
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
+  }
+
+  onOpenComplaintReport() {
+    this.complaintReportPickerDialogRef = this.dialog.open(ComplaintReportComponent, {
+      hasBackdrop: true
+    })
   }
 
 }
