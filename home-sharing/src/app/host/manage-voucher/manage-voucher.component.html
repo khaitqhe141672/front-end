@@ -1,0 +1,83 @@
+<div class="container_manage_voucher">
+  <div class="function_btn">
+    <div class="btn_new_voucher">
+      <button (click)="onOpenCreateVoucher()">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="30" fill="#F36B08" fill-opacity="0.41"/>
+          <path d="M30.666 20V38.6364" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M20.8887 29.3184H40.4442" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+        Thêm voucher mới
+      </button>
+    </div>
+    <div class="btn_search">
+      <form action="">
+        <div class="wrap">
+          <div class="search">
+            <input type="text" class="searchTerm" placeholder="Tìm tên voucher">
+            <button type="submit" class="searchButton">
+              <svg width="29" height="26" viewBox="0 0 29 26" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.5737 0.0322084C5.64019 0.0322084 0 5.08893 0 11.3052C0 17.5214 5.64019 22.5781 12.5737 22.5781C14.6932 22.5781 16.7769 22.1272 18.5372 21.2575C18.6782 21.4097 18.8345 21.5498 19.0042 21.6763L22.5967 24.8971C22.9284 25.2317 23.3329 25.5021 23.7854 25.6915C24.2378 25.8809 24.7287 25.9854 25.2279 25.9986C25.727 26.0118 26.2239 25.9333 26.688 25.7681C27.1521 25.6029 27.5736 25.3543 27.9267 25.0378C28.2798 24.7212 28.5571 24.3433 28.7413 23.9272C28.9256 23.5111 29.0131 23.0656 28.9984 22.6181C28.9837 22.1706 28.8672 21.7305 28.6559 21.3248C28.4446 20.9192 28.1431 20.5565 27.7698 20.2591L24.1774 17.0382C24.0024 16.8813 23.8097 16.741 23.6026 16.6195C24.5725 15.0413 25.1833 13.2054 25.1833 11.2729C25.1833 5.05672 19.5431 0 12.6096 0L12.5737 0.0322084ZM12.5737 3.25305C17.5672 3.25305 21.5549 6.82818 21.5549 11.3052C21.5549 13.4309 20.6927 15.3956 19.1838 16.845C19.1479 16.8772 19.112 16.9094 19.076 16.9416C18.9064 17.068 18.75 17.2082 18.609 17.3603C17.0283 18.6487 14.8729 19.3895 12.5377 19.3895C7.5442 19.3895 3.55655 15.8143 3.55655 11.3374C3.55655 6.86039 7.5442 3.28526 12.5377 3.28526L12.5737 3.25305Z"
+                  fill="#F36B08"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table_manage_voucher">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>STT</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Tên Khuyến mãi</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>Phần trăm giảm</th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} %</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Mô tả</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Thời gian áp dụng</th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} Ngày</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="fill">
+            <!--            <mat-label>Select an option</mat-label>-->
+            <mat-select [(value)]="selected">
+              <mat-option value="1">Option 1</mat-option>
+              <mat-option value="2">Option 2</mat-option>
+              <mat-option value="3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

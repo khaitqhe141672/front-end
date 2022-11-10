@@ -1,0 +1,105 @@
+<div class="box_complaint">
+  <h1 mat-dialog-title>Quản lý và xử lý báo cáo</h1>
+  <hr>
+  <div mat-dialog-content class="box_content_complaint">
+    <div class="list_report">
+      <div class="title">
+        <h2>Danh sách báo cáo:</h2>
+      </div>
+      <div class="list">
+        <div class="card_report">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_customer">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+          <div class="description_report">
+            <p>Địa điểm nhà không đúng với mô tả</p>
+          </div>
+        </div>
+        <div class="card_report">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_customer">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+          <div class="description_report">
+            <p>Địa điểm nhà không đúng với mô tả</p>
+          </div>
+        </div>
+        <div class="card_report">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_customer">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+          <div class="description_report">
+            <p>Địa điểm nhà không đúng với mô tả</p>
+          </div>
+        </div>
+        <div class="card_report">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_customer">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+          <div class="description_report">
+            <p>Địa điểm nhà không đúng với mô tả</p>
+          </div>
+        </div>
+        <div class="card_report">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_customer">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+          <div class="description_report">
+            <p>Địa điểm nhà không đúng với mô tả</p>
+          </div>
+        </div>
+      </div>
+      <div class="page_report">
+        <mat-paginator [length]="100"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 25, 100]"
+                       aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+    <div style="border-right: 1px solid #F36B08;"></div>
+    <div class="complaint_host">
+      <div class="title">
+        <h2>Khiếu nại báo cáo:</h2>
+      </div>
+      <div class="box_complaint_host">
+        <div class="info_cus">
+          <div class="image_customer">
+            <img src="assets/images/avatar.png" alt="">
+          </div>
+          <div class="name_cus">
+            <h3>Phung Dang Long Vu</h3>
+          </div>
+        </div>
+        <div class="reason_report">
+          <div class="reason">
+            <h3>Lý do: <span>Homestay không giống với bài đăng</span></h3>
+            <p>Phòng chưa được dọn sạch trước khi khách vào, tồn tại nhiều mùi cứt.</p>
+          </div>
+          <div class="input_host">
+            <div class="mb-3">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Bạn hãy chứng minh..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div mat-dialog-actions class="btn_submit">
+        <button mat-button mat-dialog-close>Gửi khiếu nại</button>
+      </div>
+    </div>
+  </div>
+</div>
