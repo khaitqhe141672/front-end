@@ -7,7 +7,7 @@ import {API_VOUCHER_BY_POST_ID} from "../constant/api.constant";
 export class VoucherService{
   constructor(private http:HttpClient) {
   }
-  getVouchers():Observable<any>{
-    return this.http.get(API_VOUCHER_BY_POST_ID)
+  getVouchers(id:number):Observable<any>{
+    return this.http.get(API_VOUCHER_BY_POST_ID+id)
   }
 }

@@ -25,7 +25,7 @@
       </defs>
       </svg>
     </span></h2>
-    <p>{{postDetail.avgRate}}
+    <p>{{postDetail.avgRate?postDetail.avgRate:"Chưa có đánh giá"}}
       <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
@@ -33,7 +33,11 @@
       </svg>
        | {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
       - {{postDetail.numberOfBathrooms}} vệ sinh
+      <button type="button" (click)="favoritePost()" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
     </p>
+
   </div>
   <div class="detail-content">
     <div class="detail-content-one">
@@ -87,7 +91,8 @@
               <img alt="" src="{{postDetail.imageUrlHost}}">
             </div>
             <div class="host-name">
-              <h2>Chủ nhà {{postDetail.hostName}}</h2>
+              <h2>Chủ nhà {{postDetail.hostName}}  <button mat-icon-button color="warn"  type="button" (click)="followHost()"> <mat-icon>person_add</mat-icon></button></h2>
+
               <p style="font-size: 11px;">Tham gia vào ngày {{postDetail.createDate | date: 'dd/MM/yyyy'}}</p>
             </div>
             <span>
@@ -181,14 +186,22 @@
                   <h2>{{rate.username}}</h2>
             <svg *ngFor="let i2 of [].constructor(5);let i = index"
                  fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-            <path *ngIf="i<=rate.point"
+            <path *ngIf="i<rate.point"
                   d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z" fill="#F36B08"/>
-               <path *ngIf="i>rate.point"
+               <path *ngIf="i>=rate.point"
                      d="M13.5318 11.4091H13.8692L13.9955 11.0963L17.935 1.33588L21.8745 11.0963L22.0008 11.4091H22.3382H33.8839L24.2642 17.7647L23.9231 17.99L24.0761 18.369L27.8779 27.7881L18.2106 21.4011L17.935 21.219L17.6594 21.4011L7.99214 27.7881L11.7939 18.369L11.9469 17.99L11.6058 17.7647L1.98611 11.4091H13.5318Z" fill="white" stroke="#F36B08"/>
             </svg>
                 </div>
                 <div class="rate-date">
                   <p>{{rate.dateRate}}</p>
+                </div>
+                <div>
+                  <button type="button" (click)="onLikeRate(rate.rateID)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon  layout-fill="0">thumb_up_off</mat-icon>
+                  </button>
+                  <button type="button" (click)="onDisLikeRate(rate.rateID)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon  layout-fill="0">thumb_down</mat-icon>
+                  </button>
                 </div>
               </div>
             </div>
@@ -196,6 +209,7 @@
               <p>{{rate.comment}}</p>
             </div>
           </div>
+          <hr class="mt-3">
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostService} from "../post.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Post, ReponsePost} from "../post.model";
+import {Post, ResponsePost} from "../post.model";
 import {DataStorageService} from "../../shared/data-storage.service";
 import {PostDetailService} from "./post-detail.service";
 import {Rate, RateResponse} from "../../shared/model/rate.model";
@@ -9,6 +9,9 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DatePickerComponent} from "../../date-picker/date-picker.component";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DatePipe} from "@angular/common";
+import {PostDetail} from "./post-detail.model";
+import {Observable} from "rxjs";
+import {ResponseFollow} from "../../shared/model/follow-host.model";
 
 @Component({
   selector: 'app-post-detail',
@@ -22,7 +25,8 @@ export class PostDetailComponent implements OnInit {
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   datePicked: { startDate: Date, endDate: Date }
   id: number;
-  postDetail: Post;
+  hostId:number = 6
+  postDetail: PostDetail;
   rateResponse: RateResponse
   rates: Rate[] = []
   formBooking: FormGroup
@@ -44,6 +48,7 @@ export class PostDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id']
       this.postDetail = this.postDetailService.postDetail
+      this.postDetail.avgRate = +this.postDetail.avgRate.toFixed(1)
     })
     this.getRate()
     this.formBooking = this.fb.group({
@@ -60,7 +65,7 @@ export class PostDetailComponent implements OnInit {
       responseRate => {
         this.rateResponse = responseRate
         this.rates = responseRate.object
-        console.log(this.rates[0])
+        console.log(this.rates)
       },
       error => console.log(error)
     )
@@ -108,6 +113,39 @@ export class PostDetailComponent implements OnInit {
           standardPrice:this.standardPrice,
         }
       }
+    )
+  }
+
+  followHost() {
+      let followHostObservable:Observable<ResponseFollow>
+      followHostObservable = this.postDetailService.followHost(this.hostId)
+      followHostObservable.subscribe(
+      {
+        next:responseData=>{
+          console.log(responseData)
+        },
+        error:errorMessageResponse=>{
+          console.log(errorMessageResponse)
+        },complete:()=>console.log('complete')
+      }
+    )
+  }
+
+  onLikeRate(rateID: number) {
+    this.postDetailService.likeRate(rateID,2).subscribe(
+      response=>console.log(response)
+    )
+  }
+
+  onDisLikeRate(rateID: number) {
+    this.postDetailService.likeRate(rateID,1).subscribe(
+      response=>console.log(response)
+    )
+  }
+
+  favoritePost() {
+    this.postDetailService.favoritePost(this.postDetail.postID).subscribe(
+      response=>console.log(response)
     )
   }
 }

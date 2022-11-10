@@ -10,6 +10,11 @@ import {BookingService} from "./booking.service";
 import {BookingBody} from "../shared/model/booking.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {VoucherComponent} from "../voucher/voucher.component";
+import {UserInfoComponent} from "../profile/user-info/user-info.component";
+import {ProfileService} from "../profile/profile.service";
+import {UserInfo, UserInfoResponse} from "../profile/profile.model";
+import {PostDetail, ResponsePostDetail, ServiceDetailDtoList} from "../posts/post-detail/post-detail.model";
+import {PostDetailService} from "../posts/post-detail/post-detail.service";
 
 @Component({
   selector: 'app-booking',
@@ -33,7 +38,7 @@ export class BookingComponent implements OnInit {
   standardPrice:number=0
   guestNumber:number=0
   datePicked: { startDate: Date, endDate: Date }
-
+  saveService:number[]
   formGroupBooking:FormGroup
   @ViewChild('fullName') fullNameRef:ElementRef;
   @ViewChild('phoneNumber') phoneNumberRef:ElementRef;
@@ -48,10 +53,14 @@ export class BookingComponent implements OnInit {
   selectedServicePost:{id:number,icon:string;name:string;price:number}[]=[]
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   voucherPickerDialogRef:MatDialogRef<VoucherComponent>
-
   postVoucherID = null
 
-  constructor(private router:Router,private route:ActivatedRoute,private datePipe:DatePipe,  private dialog: MatDialog,private bookingService:BookingService,private fb:FormBuilder) { }
+  userInfo:UserInfo
+  userInfoResponse:UserInfoResponse
+
+  listService:ServiceDetailDtoList[]
+
+  constructor(private postDetailService:PostDetailService,private profileService:ProfileService,private router:Router,private route:ActivatedRoute,private datePipe:DatePipe,  private dialog: MatDialog,private bookingService:BookingService,private fb:FormBuilder) { }
   ngOnInit(): void {
     this.servicePrice = 0
     this.totalDiscount = 0
@@ -67,6 +76,7 @@ export class BookingComponent implements OnInit {
      this.guestNumber = params['guestNumber']
      this.standardPrice = params['standardPrice']
    })
+    console.log(JSON.stringify(this.listService))
     this.priceHS = this.standardPrice
     this.totalBill = 0
     this.refreshPrice()
@@ -83,7 +93,27 @@ export class BookingComponent implements OnInit {
       phoneNumberCtrl:[''],
       emailCtrl:['']
     })
+    this.getUserInfo()
+    this.getPostService()
   }
+  getUserInfo(){
+    this.profileService.getUserInfo().subscribe(responseInfo=>{
+      this.userInfoResponse = responseInfo
+      this.userInfo = this.userInfoResponse.object
+      this.formGroupBooking.controls.fullNameCtrl.patchValue(this.userInfo.fullName)
+      this.formGroupBooking.controls.phoneNumberCtrl.patchValue(this.userInfo.mobile)
+      this.formGroupBooking.controls.emailCtrl.patchValue(this.userInfo.email)
+
+    })
+  }
+
+    getPostService(){
+      this.postDetailService.getPostDetail(this.postID).subscribe(response=>{
+        let responsePostDetail = response as ResponsePostDetail
+        let postDetail = responsePostDetail.object as PostDetail
+        this.listService = postDetail.serviceDtoList
+      })
+    }
 
   onSelectedService(selected) {
     this.servicePrice = 0
@@ -98,6 +128,8 @@ export class BookingComponent implements OnInit {
       this.refreshPrice()
       return o.value
     });
+    console.log(this.selectedServicePost)
+
 
   }
   refreshPrice(){
@@ -149,7 +181,7 @@ export class BookingComponent implements OnInit {
     bookingBody.note = 'note'
     bookingBody.totalMoney = this.totalBillAfterDiscount
     bookingBody.totalPerson = this.guestNumber
-    bookingBody.postServices = this.servicePost.map(service=>service.id)
+    bookingBody.postServices = this.selectedServicePost.map(service=>service.id)
     bookingBody.postVoucherID = this.postVoucherID
     bookingBody.totalPriceRoom = this.priceHS
     bookingBody.totalPriceService = this.servicePrice
@@ -171,23 +203,24 @@ export class BookingComponent implements OnInit {
     console.log('full name: '+bookingBody.fullName)
     console.log('emailL '+bookingBody.email)
     console.log('mobile: '+bookingBody.mobile)
-    let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
-    bookingObservable.subscribe({
-      next:responseData =>{
-        console.log(responseData)
-      },
-      error:errorMess =>{
-        console.log(errorMess)
-      },
-      complete:()=>{
-        console.log('complete')
-      }
-    })
+    // let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
+    // bookingObservable.subscribe({
+    //   next:responseData =>{
+    //     console.log(responseData)
+    //   },
+    //   error:errorMess =>{
+    //     console.log(errorMess)
+    //   },
+    //   complete:()=>{
+    //     console.log('complete')
+    //   }
+    // })
   }
 
   onOpenVoucherDialog() {
     this.voucherPickerDialogRef = this.dialog.open(VoucherComponent,{
-      hasBackdrop:true
+      hasBackdrop:true,
+      data:this.postID
     })
   }
 }

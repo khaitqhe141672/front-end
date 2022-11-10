@@ -8,8 +8,11 @@ export class Rate {
   postID: number
   customerID: number
   username: string
+  urlImage: string
   comment: string
   point: number
   dateRate: string
+  countLike: number
+  countDislike: number
   status: number
 }
