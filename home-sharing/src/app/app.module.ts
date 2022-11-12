@@ -64,7 +64,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {TestComponent} from './test/test.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgxFileDropModule} from "ngx-file-drop";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
@@ -92,6 +92,8 @@ import { AccountDetailComponent } from './admin/manager-account/account-detail/a
 import {MatRadioModule} from "@angular/material/radio";
 import { DetailAccountCustomerComponent } from './admin/manager-account-customer/detail-account-customer/detail-account-customer.component';
 import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
+import {CustomMatPaginatorIntl} from "./shared/CustomPaginatorConfiguration";
+import { ManagerAccountCenterComponent } from './admin/manager-account-center/manager-account-center.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,8 @@ import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/
     ManagerAccountHostComponent,
     AccountDetailComponent,
     DetailAccountCustomerComponent,
-    ManagerAccountCustomerComponent
+    ManagerAccountCustomerComponent,
+    ManagerAccountCenterComponent
   ],
     imports: [
         BrowserModule,
@@ -183,6 +186,10 @@ import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MAT_DATE_LOCALE, useValue: 'vi-Vi'},
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginatorIntl
+    }
   ],
   bootstrap: [AppComponent]
 })

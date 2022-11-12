@@ -90,14 +90,17 @@ const appRoute: Routes = [
     ]
   },
   {
-    path: 'admin',component:AdminComponent, children: [
-      {path: '', component: ManagerAccountHostComponent},
-      {path: 'manager-account',component: ManagerAccountHostComponent},
-      {path: 'manager-account-host',component: ManagerAccountHostComponent},
-      {path: 'manager-account-customer',component: ManagerAccountCustomerComponent},
-
-      {path: 'manage-post', component: ManagePostComponent}
-    ]
+    path: 'admin',
+    loadChildren:()=>import('./admin/admin-routing.module').then(m=>m.AdminRoutingModule)
+    // component:AdminComponent, children: [
+      // {path: '',redirectTo:'manager-account/manager-account-host',pathMatch:'full'},
+      // {path: 'manager-account',component: ManagerAccountHostComponent,children: [
+      //     {path: 'manager-account-host',component: ManagerAccountHostComponent},
+      //     {path: 'manager-account-customer',component: ManagerAccountCustomerComponent},
+      //   ]},
+      //
+      //
+    // ]
   },
   {path: 'search', component: SearchComponent},
   {path: 'error', component: ErrorPageComponent},

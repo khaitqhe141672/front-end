@@ -7,9 +7,9 @@ import {API_UPDATE_HOST_STATUS} from "../../../constant/api.constant";
 export class AccountDetailServices{
   constructor(private http:HttpClient) {
   }
-  updateStatus(hostID:number,status:number):Observable<any>
+  updateStatus(userID:number,status:number):Observable<any>
   {
-    let params = new HttpParams({fromString:'user-id='+hostID+'&status='+status})
+    let params = new HttpParams({fromString:'user-id='+userID+'&status='+status})
      return  this.http.put(API_UPDATE_HOST_STATUS,null,{params:params})
   }
 }

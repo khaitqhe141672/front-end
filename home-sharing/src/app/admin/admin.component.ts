@@ -9,6 +9,7 @@ import {MatSidenav} from "@angular/material/sidenav";
 export class AdminComponent implements OnInit {
   showFiller = false;
   panelOpenState = false;
+  typeAccount = "Chủ nhà"
   ngOnInit(): void {
   }
 

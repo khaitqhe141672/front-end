@@ -4,29 +4,29 @@
     <div class="row main-content">
       <div class="d-flex justify-content-center">
         <div class="col-4">
-          <img width="150px" height="150px" [src]="userInfo.urlImage" >
+          <img width="150px" height="150px" [src]="data.urlImage" >
         </div>
         <div class="col-8">
 
           <div class="row d-flex">
             <div class="col-6">
-              <p><strong>Họ và tên:</strong> {{userInfo.fullName}}</p>
+              <p><strong>Họ và tên:</strong> {{data.fullName}}</p>
             </div>
             <div class="col-6">
-              <p><strong>Tên tài khoản:</strong> {{userInfo.username}}</p>
+              <p><strong>Tên tài khoản:</strong> {{data.username}}</p>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-6">
-              <p><strong>Ngày sinh:</strong>  {{userInfo.dob}}</p>
+              <p><strong>Ngày sinh:</strong>  {{data.dob}}</p>
             </div>
             <div class="col-6">
-              <p><strong>Số điện thoại:</strong>  {{userInfo.mobile}}</p>
+              <p><strong>Số điện thoại:</strong>  {{data.mobile}}</p>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-12">
-              <p><strong>Địa chỉ:</strong>  {{userInfo.address}}</p>
+              <p><strong>Địa chỉ:</strong>  {{data.address}}</p>
             </div>
           </div>
           <form [formGroup]="formDetail">
@@ -34,40 +34,40 @@
               <div class="col-6">
                 <mat-form-field appearance="outline">
                   <mat-label>Trạng thái tài khoản</mat-label>
-                  <mat-select formControlName="statusCtrl" [value]="userInfo.status">
+                  <mat-select formControlName="statusCtrl" [value]="data.status">
                     <mat-option [value]="1" style="color: #367E18">
                       Đã kích hoạt
                     </mat-option>
                     <mat-option [value]="2" style="color: red">
                       Bị cấm
                     </mat-option>
-                    <mat-option style="color: #5E7FDC" [value]="0" [disabled]="userInfo.status===1||userInfo.status===2">
+                    <mat-option style="color: #5E7FDC" [value]="0" [disabled]="data.status===1||data.status===2">
                       Chưa kích hoạt
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <label id="vertifi-radio">Tích xanh</label>
-                <br>
-                <mat-radio-group formControlName="radioVerifyCtrl">
-                  <div class=" row">
-                    <div class="me-3 col">
-                      <mat-radio-button [checked]="userInfo.status==1" value="1">
-                        Bật
-                      </mat-radio-button>
-                    </div>
-                    <div class="col">
-                      <mat-radio-button [checked]="userInfo.status==2" value="2">
-                        Tắt
-                      </mat-radio-button>
-                    </div>
-                  </div>
-                </mat-radio-group>
-              </div>
-            </div>
+<!--            <div class="row">-->
+<!--              <div class="col-6">-->
+<!--                <label id="vertifi-radio">Tích xanh</label>-->
+<!--                <br>-->
+<!--                <mat-radio-group formControlName="radioVerifyCtrl">-->
+<!--                  <div class=" row">-->
+<!--                    <div class="me-3 col">-->
+<!--                      <mat-radio-button [checked]="data.status==1" value="1">-->
+<!--                        Bật-->
+<!--                      </mat-radio-button>-->
+<!--                    </div>-->
+<!--                    <div class="col">-->
+<!--                      <mat-radio-button [checked]="data.status==2" value="2">-->
+<!--                        Tắt-->
+<!--                      </mat-radio-button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </mat-radio-group>-->
+<!--              </div>-->
+<!--            </div>-->
           </form>
           <div class="row">
             <div class="col-12">
