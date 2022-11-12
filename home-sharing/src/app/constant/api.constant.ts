@@ -17,6 +17,7 @@ export const API_MAP_GEO = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
 export const API_CHANGE_PASSWORD = 'http://localhost:8080/api/auth/change-password'
 
 export const API_VOUCHER = 'http://localhost:8080/api/voucher'
+export const API_CHECK_VOUCHER_BY_CODE = 'http://localhost:8080/api/booking/check-post-voucher?'
 export const API_SERVICE_POST = 'http://localhost:8080/api/services/all-list'
 export const API_PUSH_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image?post-id='
 export const API_PUSH_SINGLE_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image-one?post-id='
@@ -36,3 +37,5 @@ export const API_LIKE_RATE = 'http://localhost:8080/api/like-dislike/create?'
 export const API_FAVORITE_POST = 'http://localhost:8080/api/follow-favourite/create-favourite?'
 
 export const API_ACCOUNT_HOST = 'http://localhost:8080/api/manage-account/view-account-host?index-page='
+export const API_ACCOUNTS_CUSTOMER = 'http://localhost:8080/api/manage-account/view-account-customer?index-page='
+export const API_UPDATE_HOST_STATUS ='http://localhost:8080/api/manage-account/update-status-account?'

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {API_BOOKING} from "../constant/api.constant";
+import {API_BOOKING, API_VOUCHER_BY_POST_ID} from "../constant/api.constant";
 import {BookingBody} from "../shared/model/booking.model";
 import {catchError, tap} from "rxjs/operators";
 
@@ -41,5 +41,10 @@ export class BookingService{
     let errorMessage = 'An unknown error occurred!'
     // errorMessage = errorResponse.error.message
     return throwError(()=>new Error(errorMessage))
+  }
+
+  checkVoucherExist(postID:number,code:number):Observable<any>{
+    let params =  new HttpParams({fromString:'post-id='+postID+'&'+'code='+code})
+    return this.http.get<any>(API_VOUCHER_BY_POST_ID,{params:params})
   }
 }

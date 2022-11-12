@@ -23,6 +23,14 @@
   </mat-drawer>
 
   <div  class="example-sidenav-content">
+    <div class="container-fluid mt-5">
+      <div class="row d-flex align-items-center ">
+        <div class="col p-2 header-account-type text-start">
+          <a routerLink="/admin/manager-account-host" class="btn-change-type me-3">Tài khoản chủ nhà</a>
+          <a routerLink="/admin/manager-account-customer" class="btn-change-type">Tài khoản người dùng</a>
+        </div>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </div>
 

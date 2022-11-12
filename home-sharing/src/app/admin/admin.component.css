@@ -22,3 +22,25 @@
   /*border-color: #F36B08 !important;*/
 }
 
+/*.header-account-type{*/
+/*  */
+/*  color: #F36B08;*/
+/*  cursor: pointer;*/
+
+/*}*/
+/*.header-account-type:hover{*/
+/*  background-color: #F36B08;*/
+/*  color: #FFFFFF;*/
+/*}*/
+
+.btn-change-type{
+  border: 1px solid #F36B08;
+  border-radius: 5px;
+  padding: 10px;
+  text-decoration: none;
+  color: #F36B08;
+}
+.btn-change-type:hover{
+  background-color: #F36B08;
+  color: #FFFFFF;
+}

@@ -15,4 +15,5 @@ export interface UserInfo {
   address: string
   status: number
   role: string
+  verifier?:number
 }

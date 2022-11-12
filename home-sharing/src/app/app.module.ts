@@ -20,7 +20,6 @@ import {PostEditComponent} from './posts/post-edit/post-edit.component';
 import {CoreModule} from "./core.module";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {PostDetailComponent} from "./posts/post-detail/post-detail.component";
-import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -87,8 +86,12 @@ import { ManagePostComponent } from './admin/manage-post/manage-post.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTreeModule} from "@angular/material/tree";
-import { ManagerAccountComponent } from './admin/manager-account/manager-account.component';
+import { ManagerAccountHostComponent } from './admin/manager-account/manager-account-host.component';
 import {MatSortModule} from "@angular/material/sort";
+import { AccountDetailComponent } from './admin/manager-account/account-detail/account-detail.component';
+import {MatRadioModule} from "@angular/material/radio";
+import { DetailAccountCustomerComponent } from './admin/manager-account-customer/detail-account-customer/detail-account-customer.component';
+import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 
 @NgModule({
   declarations: [
@@ -133,7 +136,10 @@ import {MatSortModule} from "@angular/material/sort";
     AdminComponent,
     HeaderAdminComponent,
     ManagePostComponent,
-    ManagerAccountComponent,
+    ManagerAccountHostComponent,
+    AccountDetailComponent,
+    DetailAccountCustomerComponent,
+    ManagerAccountCustomerComponent
   ],
     imports: [
         BrowserModule,
@@ -169,7 +175,7 @@ import {MatSortModule} from "@angular/material/sort";
         MatPaginatorModule,
         MatCardModule, MatDialogModule,
         MatNativeDateModule, FormsModule,
-        MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule
+        MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule
     ],
   providers: [
     DatePipe,

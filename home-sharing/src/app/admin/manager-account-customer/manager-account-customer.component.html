@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+
+      <ng-container matColumnDef="id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
+        <td *matCellDef="let row" mat-cell> {{row.customerID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên đăng nhập</th>
+        <td *matCellDef="let row" mat-cell> {{row.username}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Họ và tên</th>
+        <td *matCellDef="let row" mat-cell> {{row.fullName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái</th>
+        <td *matCellDef="let row" [ngSwitch]="row.status" mat-cell>
+
+          <div *ngSwitchCase="0" class="d-flex" style="color: #5E7FDC">
+            <div><p> Chưa xác minh địa chỉ email</p></div>
+            <div>
+              <mat-icon style="fill: #5E7FDC">
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+              </mat-icon>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="1" class="d-flex" style="color: #367E18">
+            <div><p> Đã kích hoạt</p></div>
+            <div>
+              <mat-icon style="fill: #367E18">
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+              </mat-icon>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="2" class="d-flex" style="color: #F36B08">
+            <div><p> Tạm dừng</p></div>
+            <div>
+              <mat-icon style="fill: #F36B08">
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+              </mat-icon>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="3" class="d-flex" style="color: red">
+            <div><p>Đã bị khoá</p></div>
+            <div>
+              <mat-icon style="fill: red">
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+              </mat-icon>
+            </div>
+          </div>
+
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày tham gia</th>
+        <td *matCellDef="let row" mat-cell> {{row.dob}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Hành động</th>
+        <td *matCellDef="let row" mat-cell>
+          <button (click)="showMore(row)" class="btn btn-success" type="button">Xem thêm</button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+      <tr *matNoDataRow class="mat-row">
+        <td class="mat-cell" colspan="4">Không có dữ liệu trùng khớp "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>

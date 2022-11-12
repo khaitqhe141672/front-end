@@ -10,6 +10,8 @@ export interface ListAccountHost {
 
 export class AccountHost {
   hostID: number
+  userID?:number
+  userDetailID?:number
   username: string
   email: string
   urlImage: string

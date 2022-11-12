@@ -1,0 +1,12 @@
+*{
+  font-size: 18px;
+}
+.btn-submit{
+  background-color: #F36B08;
+  color: #FFFFFF;
+}
+.btn-submit:hover{
+  box-shadow: #F36B08 0 5px 15px;
+  background-color: #F36B08;
+  color: white;
+}

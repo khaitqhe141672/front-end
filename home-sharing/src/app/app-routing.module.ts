@@ -35,7 +35,9 @@ import {VoucherComponent} from "./voucher/voucher.component";
 import {ManageVoucherComponent} from "./host/manage-voucher/manage-voucher.component";
 import {AdminComponent} from "./admin/admin.component";
 import {ManagePostComponent} from "./admin/manage-post/manage-post.component";
-import {ManagerAccountComponent} from "./admin/manager-account/manager-account.component";
+import {ManagerAccountHostComponent} from "./admin/manager-account/manager-account-host.component";
+import {AccountDetailComponent} from "./admin/manager-account/account-detail/account-detail.component";
+import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 
 
 const appRoute: Routes = [
@@ -49,7 +51,7 @@ const appRoute: Routes = [
 
   },
   {path: 'booking/:id', component: BookingComponent},
-  {path: 'test', component: ReportHsComponent},
+  {path: 'test', component: AccountDetailComponent},
   {path: 'home', component: HomeComponent},
   {
     path: 'profile', component: ProfileComponent,
@@ -89,8 +91,11 @@ const appRoute: Routes = [
   },
   {
     path: 'admin',component:AdminComponent, children: [
-      {path: '', component: ManagerAccountComponent},
-      {path: 'manager-account',component: ManagerAccountComponent},
+      {path: '', component: ManagerAccountHostComponent},
+      {path: 'manager-account',component: ManagerAccountHostComponent},
+      {path: 'manager-account-host',component: ManagerAccountHostComponent},
+      {path: 'manager-account-customer',component: ManagerAccountCustomerComponent},
+
       {path: 'manage-post', component: ManagePostComponent}
     ]
   },
