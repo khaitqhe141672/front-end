@@ -19,7 +19,7 @@ img {
   color: #F36B08;
 }
 
-.box_complaint .box_content_complaint {
+.box_complaint .box_list_report {
   display: grid;
   grid-template-columns: 1fr 2px 1fr;
   column-gap: 15px;
@@ -31,7 +31,7 @@ img {
   padding-top: 20px;
 }
 
-.box_complaint .box_content_complaint .image_customer {
+.image_customer {
   width: 25px;
   height: 25px;
   border: 1px solid #F36B08;
@@ -49,48 +49,55 @@ img {
   column-gap: 10px;
 }
 
-.box_complaint .box_content_complaint .box_complaint_host {
+.box_complaint .box_list_report .box_complaint_host {
   border-radius: 15px;
   border: 1px solid #F36B08;
   padding: 15px 10px 15px 10px;
   margin-top: 20px;
 }
 
-.box_complaint .box_content_complaint .box_complaint_host .info_cus {
+.box_complaint .box_list_report .box_complaint_host .info_cus {
   display: grid;
   grid-template-columns: 30px 1fr;
 }
 
-.box_complaint .box_content_complaint .box_complaint_host .reason_report .reason {
+.box_complaint .box_list_report .box_complaint_host .reason_report .reason {
   padding-left: 20px;
   padding-top: 10px;
 }
 
-.box_complaint .box_content_complaint
+.box_complaint .box_list_report
 .box_complaint_host .reason_report .reason h3 {
   color: #F36B08;
 }
 
-.box_complaint .box_content_complaint
+.box_complaint .box_list_report
 .box_complaint_host .reason_report .reason h3 span {
   border-radius: 15px;
   border: 1px solid #F36B08;
   padding: 5px 10px 5px 10px;
 }
 
-.box_complaint .box_content_complaint
+.box_complaint .box_list_report
 .box_complaint_host .reason_report .reason p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.box_complaint .box_content_complaint .btn_submit{
+.box_complaint .box_list_report .btn_submit{
   display: grid;
 }
 
-.box_complaint .box_content_complaint .btn_submit button{
+.box_complaint .box_list_report .btn_submit button{
   background-color: #F36B08;
   color: #FFFFFF;
   padding: 5px 15px 5px 15px;
   justify-self: end;
   border-radius: 20px;
+}
+
+.box_complaint .box_list_report .card_function .edit button{
+  border: 1px solid #F36B08;
+  border-radius: 15px;
+  padding: 5px 5px;
+  color: #F36B08;
 }

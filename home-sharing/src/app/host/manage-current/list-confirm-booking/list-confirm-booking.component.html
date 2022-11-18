@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput placeholder="Ex. Mia">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+
+      <ng-container matColumnDef="id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
+        <td *matCellDef="let row" mat-cell></td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên khách hàng</th>
+        <td *matCellDef="let row" mat-cell></td>
+      </ng-container>
+
+      <ng-container matColumnDef="titleHomestay">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên Homestay</th>
+        <td *matCellDef="let row" mat-cell></td>
+      </ng-container>
+
+      <ng-container matColumnDef="detail">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Chi Tiết</th>
+        <td *matCellDef="let row" mat-cell>
+          <button  class="btn btn-success" type="button">Xem thêm</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="confirm">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Xác nhận</th>
+        <td *matCellDef="let row" mat-cell>
+          <button  class="btn btn-success" type="button">Xem thêm</button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>

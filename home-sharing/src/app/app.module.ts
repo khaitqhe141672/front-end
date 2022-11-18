@@ -94,6 +94,11 @@ import { DetailAccountCustomerComponent } from './admin/manager-account-customer
 import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 import {CustomMatPaginatorIntl} from "./shared/CustomPaginatorConfiguration";
 import { ManagerAccountCenterComponent } from './admin/manager-account-center/manager-account-center.component';
+import { ManageCurrentComponent } from './host/manage-current/manage-current.component';
+import { CurrentBookingComponent } from './host/manage-current/current-booking/current-booking.component';
+import { ComingBookingComponent } from './host/manage-current/coming-booking/coming-booking.component';
+import { ListConfirmBookingComponent } from './host/manage-current/list-confirm-booking/list-confirm-booking.component';
+import { ReportDetailComponent } from './host/complaint-report/report-detail/report-detail.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +147,12 @@ import { ManagerAccountCenterComponent } from './admin/manager-account-center/ma
     AccountDetailComponent,
     DetailAccountCustomerComponent,
     ManagerAccountCustomerComponent,
-    ManagerAccountCenterComponent
+    ManagerAccountCenterComponent,
+    ManageCurrentComponent,
+    CurrentBookingComponent,
+    ComingBookingComponent,
+    ListConfirmBookingComponent,
+    ReportDetailComponent
   ],
     imports: [
         BrowserModule,
