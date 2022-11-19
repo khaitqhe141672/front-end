@@ -1,6 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CreateVoucherComponent} from "../create-voucher/create-voucher.component";
+import {MatTableDataSource} from "@angular/material/table";
+import {CustomerDetail} from "../../shared/model/account-customer.model";
+import {ManageVoucherServices} from "./manage-voucher.services";
+import {BehaviorSubject, Observable, Subscription} from "rxjs";
+import {VoucherDetail} from "../../shared/model/voucher-host.model";
+import {map, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-manage-voucher',
@@ -12,14 +18,36 @@ export class ManageVoucherComponent implements OnInit {
   selected = '1';
   createVoucherPickerDialogRef: MatDialogRef<CreateVoucherComponent>
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private manageVoucherService: ManageVoucherServices) {
   }
 
   ngOnInit(): void {
+    this.onLoadDataVoucher()
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'date', 'status'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'name', 'percent', 'description', 'date', 'status'];
+  dataSource: MatTableDataSource<VoucherDetail>
+
+  totalPaginator: number
+  pageIndex: number = 1
+
+  loadListVoucherObs: Observable<VoucherDetail[]>
+  subLoadVoucher: Subscription
+  refreshListVoucher = new BehaviorSubject<boolean>(true)
+
+  onLoadDataVoucher() {
+    this.loadListVoucherObs = this.refreshListVoucher.pipe(
+      switchMap(_ => this.manageVoucherService.getAllVoucherByHost(this.pageIndex).pipe(map(data => {
+        this.totalPaginator = data.sizePage
+        console.log(JSON.stringify(data))
+        return data.listVoucher
+      }))))
+    if (this.subLoadVoucher) this.subLoadVoucher.unsubscribe()
+    this.subLoadVoucher = this.loadListVoucherObs.subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+    })
+  }
 
   onOpenCreateVoucher() {
     this.createVoucherPickerDialogRef = this.dialog.open(CreateVoucherComponent, {
@@ -27,96 +55,13 @@ export class ManageVoucherComponent implements OnInit {
     })
   }
 
+  applyFilter($event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  date: number;
-  status: number
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 2,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 3,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 4,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 5,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 6,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 7,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 8,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 9,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-  {
-    position: 10,
-    name: 'Khuyến mãi mùa hè',
-    weight: 30,
-    symbol: 'Giảm 30% cho tổng hoá đơn trên 500k',
-    date: 30,
-    status: 1
-  },
-];

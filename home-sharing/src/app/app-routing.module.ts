@@ -77,29 +77,30 @@ const appRoute: Routes = [
     ]
   },
   {
-    path: 'hosts', children: [
-      {path: '', component: HostComponent},
-      {path: 'host-post-list', component: HostPostListComponent},
-      {
-        path: 'manage-rate', children: [
-          {path: '', component: ManageRateComponent},
-          {path: 'rate-detail', component: RateDetailComponent}
-        ]
-      },
-      {path: 'manage-voucher', component: ManageVoucherComponent}
-    ]
+    path: 'hosts',
+    loadChildren: () => import('./host/host-routing.module').then(m => m.HostRoutingModule)
+    // {path: '', component: HostComponent},
+    // {path: 'host-post-list', component: HostPostListComponent},
+    // {
+    //   path: 'manage-rate', children: [
+    //     {path: '', component: ManageRateComponent},
+    //     {path: 'rate-detail', component: RateDetailComponent}
+    //   ]
+    // },
+    // {path: 'manage-voucher', component: ManageVoucherComponent}
+
   },
   {
     path: 'admin',
-    loadChildren:()=>import('./admin/admin-routing.module').then(m=>m.AdminRoutingModule)
+    loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)
     // component:AdminComponent, children: [
-      // {path: '',redirectTo:'manager-account/manager-account-host',pathMatch:'full'},
-      // {path: 'manager-account',component: ManagerAccountHostComponent,children: [
-      //     {path: 'manager-account-host',component: ManagerAccountHostComponent},
-      //     {path: 'manager-account-customer',component: ManagerAccountCustomerComponent},
-      //   ]},
-      //
-      //
+    // {path: '',redirectTo:'manager-account/manager-account-host',pathMatch:'full'},
+    // {path: 'manager-account',component: ManagerAccountHostComponent,children: [
+    //     {path: 'manager-account-host',component: ManagerAccountHostComponent},
+    //     {path: 'manager-account-customer',component: ManagerAccountCustomerComponent},
+    //   ]},
+    //
+    //
     // ]
   },
   {path: 'search', component: SearchComponent},

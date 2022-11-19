@@ -1,0 +1,23 @@
+
+.active{
+  background-color: #F36B08;
+  color: #FFFFFF;
+  text-decoration: none!important;
+  /*border-color: #F36B08 !important;*/
+}
+
+a.active{
+  color: white;
+}
+
+.btn-change-type{
+  border: 1px solid #F36B08;
+  border-radius: 5px;
+  padding: 10px;
+  text-decoration: none;
+  color: #F36B08;
+}
+.btn-change-type:hover{
+  background-color: #F36B08;
+  color: #FFFFFF;
+}
