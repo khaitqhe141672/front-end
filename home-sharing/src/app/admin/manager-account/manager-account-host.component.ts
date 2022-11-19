@@ -16,7 +16,7 @@ import {map, switchMap} from "rxjs/operators";
   styleUrls: ['./manager-account-host.component.css']
 })
 export class ManagerAccountHostComponent implements OnInit,AfterViewInit {
-  totalPaginator:number
+  totalPaginator:number = 1
   pageIndex:number = 1
   displayedColumns: string[] = ['id', 'userName','fullName',  'status','date','action'];
   dataSource: MatTableDataSource<AccountHost>;

@@ -1,0 +1,40 @@
+<h1 mat-dialog-title style="font-size: 40px; color: #F36B08;text-align: center" >Thông tin chi tiết các lý do</h1>
+<div mat-dialog-content>
+  <div class="modal-body">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <div class="col-4">
+          <img width="150px" height="150px" [src]="data.imageUserUrl" >
+        </div>
+        <div class="col-8">
+
+          <div class="row d-flex">
+            <div class="col-6">
+              <p><strong>Họ và tên:</strong> {{data.username}}</p>
+            </div>
+            <div class="col-6">
+              <p><strong>Tên tài khoản:</strong> {{data.username}}</p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-6">
+<!--              <p><strong>{{data.nameReportType}}</strong></p>-->
+            </div>
+            <div class="col-6">
+<!--              <p><strong>Chi tiết lý do:</strong>  {{data.description}}</p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <div class="modal-footer">
+    <div class="row d-flex">
+      <div class="col align-items-end">
+        <button class="btn btn-back" type="button" mat-button mat-dialog-close>Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

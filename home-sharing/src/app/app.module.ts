@@ -94,6 +94,11 @@ import { DetailAccountCustomerComponent } from './admin/manager-account-customer
 import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 import {CustomMatPaginatorIntl} from "./shared/CustomPaginatorConfiguration";
 import { ManagerAccountCenterComponent } from './admin/manager-account-center/manager-account-center.component';
+import { ManageReportCenterComponent } from './admin/manage-report-center/manage-report-center.component';
+import { ManageReportPostComponent } from './admin/manage-report-center/manage-report-post/manage-report-post.component';
+import { ManageReportRateComponent } from './admin/manage-report-center/manage-report-rate/manage-report-rate.component';
+import { ManageComplainComponent } from './admin/manage-report-center/manage-complain/manage-complain.component';
+import { ReportPostDetailDialogComponent } from './admin/manage-report-center/manage-report-post/report-post-detail-dialog/report-post-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +147,12 @@ import { ManagerAccountCenterComponent } from './admin/manager-account-center/ma
     AccountDetailComponent,
     DetailAccountCustomerComponent,
     ManagerAccountCustomerComponent,
-    ManagerAccountCenterComponent
+    ManagerAccountCenterComponent,
+    ManageReportCenterComponent,
+    ManageReportPostComponent,
+    ManageReportRateComponent,
+    ManageComplainComponent,
+    ReportPostDetailDialogComponent
   ],
     imports: [
         BrowserModule,

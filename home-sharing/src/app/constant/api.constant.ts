@@ -39,3 +39,6 @@ export const API_FAVORITE_POST = 'http://localhost:8080/api/follow-favourite/cre
 export const API_ACCOUNT_HOST = 'http://localhost:8080/api/manage-account/view-account-host?index-page='
 export const API_ACCOUNTS_CUSTOMER = 'http://localhost:8080/api/manage-account/view-account-customer?index-page='
 export const API_UPDATE_HOST_STATUS ='http://localhost:8080/api/manage-account/update-status-account?'
+
+export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
+export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='
