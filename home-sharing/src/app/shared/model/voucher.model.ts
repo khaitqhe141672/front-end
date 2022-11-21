@@ -1,6 +1,6 @@
 export interface VoucherResponse {
   message: string
-  data: ListVoucher
+  object: Voucher[]
 }
 
 export interface ListVoucher {
@@ -9,7 +9,7 @@ export interface ListVoucher {
 
 export class Voucher {
   idVoucher:number
-  nameVoucher: string
+  nameVoucher?: string
   description: string
   percent: number
   dueDate: number

@@ -26,6 +26,8 @@ export class PostDetail {
   postVoucherDtoList: PostVoucherDetailDtoList[]
   avgRate?:number
   status: number
+  latitude: string
+  longitude: string
 }
 
 export class ServiceDetailDtoList {
@@ -57,6 +59,7 @@ export class DistrictDetailDto {
 
 export class PostVoucherDetailDtoList {
   postVoucherID: number
+  code:string
   voucherID: number
   description: string
   dueDay: number

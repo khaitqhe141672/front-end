@@ -104,6 +104,7 @@ import { ManageReportPostComponent } from './admin/manage-report-center/manage-r
 import { ManageReportRateComponent } from './admin/manage-report-center/manage-report-rate/manage-report-rate.component';
 import { ManageComplainComponent } from './admin/manage-report-center/manage-complain/manage-complain.component';
 import { ReportPostDetailDialogComponent } from './admin/manage-report-center/manage-report-post/report-post-detail-dialog/report-post-detail-dialog.component';
+import { ReportRateComponent } from './report-rate/report-rate.component';
 
 @NgModule({
   declarations: [
@@ -162,7 +163,8 @@ import { ReportPostDetailDialogComponent } from './admin/manage-report-center/ma
     ManageReportPostComponent,
     ManageReportRateComponent,
     ManageComplainComponent,
-    ReportPostDetailDialogComponent
+    ReportPostDetailDialogComponent,
+    ReportRateComponent
   ],
     imports: [
         BrowserModule,

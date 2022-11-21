@@ -1,27 +1,26 @@
-<h1 mat-dialog-title style="font-size: 40px; color: #F36B08;text-align: center" >Thông tin chi tiết các lý do</h1>
+<div class="title mb-0 pb-0 text-center d-flex justify-content-center align-items-center" style="background-color: rgba(243,107,8,0.47);height: 50px">
+  <h1 class="mt-3" mat-dialog-title style="font-size: 40px; color: #F36B08;text-align: center" >Chi tiết các lý do báo cáo</h1>
+</div>
 <div mat-dialog-content>
   <div class="modal-body">
-    <div class="row">
+    <div class="row row-detail-report" *ngFor="let r of listReportDetail">
       <div class="d-flex justify-content-center">
-        <div class="col-4">
-          <img width="150px" height="150px" [src]="data.imageUserUrl" >
+        <div class="col-4 div-img-avatar">
+          <img class="img-avatar" width="150px" height="150px" [src]="r.imageUrl" >
         </div>
         <div class="col-8">
-
           <div class="row d-flex">
             <div class="col-6">
-              <p><strong>Họ và tên:</strong> {{data.username}}</p>
+              <p class="mb-0">{{r.fullName}}</p>
             </div>
-            <div class="col-6">
-              <p><strong>Tên tài khoản:</strong> {{data.username}}</p>
+            <div class="col-6 p-1 d-flex div-report-type align-items-center justify-content-center">
+              <p class="mb-0" style="color: #FFFFFF"><strong>{{r.nameReportType}}</strong></p>
             </div>
           </div>
-          <div class="row mt-4">
-            <div class="col-6">
-<!--              <p><strong>{{data.nameReportType}}</strong></p>-->
-            </div>
-            <div class="col-6">
-<!--              <p><strong>Chi tiết lý do:</strong>  {{data.description}}</p>-->
+          <div class="row mt-2">
+            <div class="col">
+              <p style="color: #F36B08">Mô tả chi tiết hơn: </p>
+              {{r.description}}
             </div>
           </div>
         </div>

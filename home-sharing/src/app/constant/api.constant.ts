@@ -7,7 +7,10 @@ export const API_ROOM_TYPE = 'http://localhost:8080/api/room-type/'
 export const API_PROFILE = 'http://localhost:8080/api/auth/profile'
 export const API_GET_DISTRICT_BY_PROVINCE ='http://localhost:8080/api/address/district-by-provinceID?province-id='
 export const API_POSTING =  'http://localhost:8080/api/posting/create-posting'
+export const API_UPDATE_POSTING = 'http://localhost:8080/api/posting/edit-post?post-id='
+export const API_UPDATE_IMG_POST = 'http://localhost:8080/api/posting/edit-image?post-id='
 export const API_UTILITYS = 'http://localhost:8080/api/utility'
+export const API_DOWNLOAD_IMG = 'http://localhost:8080/api/posting/download-image?post-id='
 
 export const API_HOME_INTERESTING_PLACE = 'http://localhost:8080/api/home/interesting-place'
 export const API_HOME_RECOMMENDED_PLACES = 'http://localhost:8080/api/home/recommended-places'
@@ -17,6 +20,7 @@ export const API_MAP_GEO = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
 export const API_CHANGE_PASSWORD = 'http://localhost:8080/api/auth/change-password'
 
 export const API_VOUCHER = 'http://localhost:8080/api/voucher'
+export const API_VOUCHER_HOST = 'http://localhost:8080/api/voucher/list-voucher-host'
 export const API_CHECK_VOUCHER_BY_CODE = 'http://localhost:8080/api/booking/check-post-voucher?'
 export const API_SERVICE_POST = 'http://localhost:8080/api/services/all-list'
 export const API_PUSH_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image?post-id='
@@ -46,3 +50,4 @@ export const API_HOST_MANAGE_VOUCHER = 'http://localhost:8080/api/manage-voucher
 
 export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
 export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='
+export const API_ADMIN_LIST_REPORT_BY_POST = 'http://localhost:8080/api/report/list-reportPost-detail-admin?'

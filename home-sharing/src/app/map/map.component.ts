@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output, SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {environment} from "../../environments/environment.prod";
 import {API_MAP_GEO} from "../constant/api.constant";
 import {HttpClient, HttpRequest} from "@angular/common/http";
@@ -15,8 +25,12 @@ import {Subject} from "rxjs";
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, AfterViewInit,OnChanges {
   @Output() addressEvent = new EventEmitter<string>();
+  @Input() lat = ''
+  @Input() lng = ''
+  @Input() isEditMode = false
+  @Input() isDetailMode = false
   address:string=null
 
   sendAddress(){
@@ -26,27 +40,19 @@ export class MapComponent implements OnInit, AfterViewInit {
   map:Mapboxgl.Map
   ngOnInit(): void {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
+    console.log('lat: '+this.lat)
+    console.log('lng: '+this.lng)
     // this.getLocation()
   }
   marker:any
   createMarker(lng:number,lat:number){
-    this.marker = new Mapboxgl.Marker({
-      draggable:true
-    }).setLngLat([lat,lng]).addTo(this.map)
-    // marker.on('drag',()=>{
-    //   console.log(marker)
-    //   let coordinate = marker.getLngLat();
-    //   // console.log(coordinate.lng)
-    //   // console.log(marker.getLngLat())
-    // })
-    // marker.on('mouseup',()=>{
-    //   let coordinate = marker.getLngLat();
-    //   console.log(coordinate.lng)
-    // })
-    // marker.on('mousedown',()=>{
-    //   let coordinate = marker.getLngLat();
-    //   console.log(coordinate.lng)
-    // })
+    if(!lng&&!lat) return
+      this.marker = new Mapboxgl.Marker({
+        draggable:true
+      }).setLngLat([lat,lng]).addTo(this.map)
+
+    if(!this.isDetailMode) return
+
     this.marker.on('dragend',()=>{
       console.log('dropped')
       let coordinate =  this.marker.getLngLat();
@@ -65,14 +71,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   getLocation(){
-    // console.log(this.mapService.getGeoLocation())
     this.mapService.getGeoLocation().subscribe(responseCoordinateInfo=>{
       let placeName = responseCoordinateInfo.features[0].place_name
       console.log(placeName)
       this.address = placeName
       this.mapService.addressChanged.next(placeName)
-      // console.log('leng: '+responseCoordinateInfo.features.length)
-      // console.log(JSON.stringify(responseCoordinateInfo.features[0].place_name))
     })
   }
 
@@ -80,11 +83,12 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map = new Mapboxgl.Map({
       container:'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.mapService.lng, this.mapService.lat],
-      zoom:4.7
+      center: [this.lng?this.lng:this.mapService.lng,this.lat?this.lat: this.mapService.lat],
+      // center: [105,21],
+      zoom:(this.lng&&this.lat)?9:4.5
     });
-    this.createMarker(16, 108)
-    // this.getLocation()
+    if(!this.isEditMode) this.createMarker(16, 108)
+    if(this.lng&&this.lat) this.createMarker(+this.lat,+this.lng,)
     this.map.addControl(new MapboxGeocoder({
       accessToken: Mapboxgl.accessToken,
       marker:false,
@@ -99,6 +103,18 @@ export class MapComponent implements OnInit, AfterViewInit {
     }));
     const language = new MapboxLanguage();
     this.map.addControl(language);
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
+   if(this.isEditMode){
+     console.log('changes: '+JSON.stringify(changes))
+     console.log('lat: '+this.lat+' / lng: '+this.lng)
+     let lat = changes.lat.currentValue
+     let lng = changes.lng.currentValue
+     this.createMarker(lat,lng)
+     this.mapService.markerLat = lat
+     this.mapService.markerLng = lng
+     this.getLocation()
+   }
   }
 }

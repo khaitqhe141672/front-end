@@ -25,16 +25,15 @@ export class Post {
   districtDto: DistrictDto
   avgRate: number
   status: number
-
   roomTypeID?:number
 }
 
-export interface ImageDtoList {
+export class ImageDtoList {
   postImageID: number
   imageUrl: string
 }
 
-export interface PostUtilityDtoList {
+export class PostUtilityDtoList {
   postUtilityID:number
   iconUtility: string
   nameUtility: string

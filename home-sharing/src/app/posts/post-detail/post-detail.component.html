@@ -141,12 +141,14 @@
             <h4>Bản đồ</h4>
           </div>
           <div class="image-map">
-            <iframe
-              allowfullscreen=""
-              height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.942489835562!2d105.52725144979861!3d21.013822248049323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1666017828677!5m2!1sen!2s"
-              style="border:0;"
-              width="600"></iframe>
+<!--            <iframe-->
+<!--              allowfullscreen=""-->
+<!--              height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"-->
+<!--              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.942489835562!2d105.52725144979861!3d21.013822248049323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1666017828677!5m2!1sen!2s"-->
+<!--              style="border:0;"-->
+<!--              width="600"></iframe>-->
+            <app-map [lat]="postDetail.latitude" [lng]="postDetail.longitude" ></app-map>
+
           </div>
         </div>
         <div class="type-other">
@@ -202,6 +204,9 @@
                   <button type="button" (click)="onDisLikeRate(rate.rateID)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
                     <mat-icon  layout-fill="0">thumb_down</mat-icon>
                   </button>
+<!--                  <button type="button" (click)="onReportRate(rate.rateID,rate.username)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">-->
+<!--                    <mat-icon  layout-fill="0">flag</mat-icon>-->
+<!--                  </button>-->
                 </div>
               </div>
             </div>
@@ -246,8 +251,8 @@
         <div class="info-price">
           <h3>Giá phòng phải thanh toán</h3>
           <h4>{{postDetail.price}} x {{daysBetween?daysBetween:"0"}} ngày = {{totalPriceInDays?totalPriceInDays:"0"}}</h4>
-          <h3>Phí dịch vụ</h3>
-          <h4>2,000,000VNĐ</h4>
+<!--          <h3>Phí dịch vụ</h3>-->
+          <h5>(Chưa bao gồm phí dịch vụ)</h5>
           <hr style="margin-top: 50px; margin-bottom: 30px">
           <div class="price-final">
             <div class="price-final-pay">

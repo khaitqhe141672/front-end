@@ -13,3 +13,26 @@
 .btn-back,.btn-back:hover{
   color: #F36B08;
 }
+.div-report-type{
+  border: 1px solid #F36B08;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #F36B08;
+}
+.div-img-avatar{
+  width: auto;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.img-avatar{
+  width: 75px;
+  height:75px;
+  border-radius: 50%;
+  border: 1px solid #F36B08;
+}
+.row-detail-report{
+  border: 1px solid #F36B08;
+  margin: 5%;
+  padding: 10px;
+  border-radius: 24px;
+}

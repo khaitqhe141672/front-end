@@ -6,3 +6,11 @@ table{
   max-width: 1230px;
   margin: auto;
 }
+.td-title-post{
+  transition: transform 0.1s ease;
+}
+.td-title-post:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  color: #F36B08;
+}

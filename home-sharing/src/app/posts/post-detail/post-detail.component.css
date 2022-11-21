@@ -28,7 +28,7 @@ img, iframe{
 }
 
 .container-detail .title h2 {
-  font-size: 48px;
+  font-size: 36px;
   font-family: 'Abhaya Libre';
 }
 
@@ -307,7 +307,7 @@ img, iframe{
   border: none;
   background-color: #24E589;
   color: #FFFFFF;
-  font-size: 36px;
+  font-size: 30px;
   font-family: Actor;
 }
 /* Chrome, Safari, Edge, Opera */

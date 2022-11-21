@@ -62,7 +62,7 @@ export class ManageReportPostComponent implements OnInit {
     let reportPostDetail = data as ReportPostDetail
       console.log(data)
     this.reasonReportDetailDialog = this.dialog.open(ReportPostDetailDialogComponent,{
-      data:reportPostDetail,hasBackdrop:true
+      data:reportPostDetail.postID,hasBackdrop:true,
     })
 
   }

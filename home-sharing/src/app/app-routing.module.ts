@@ -68,10 +68,13 @@ const appRoute: Routes = [
     path: 'posts', children: [
       {path: '', component: PostsComponent},
       {path: 'post-detail/:id', component: PostDetailComponent, resolve: [PostResolverService]},
+
       // children:[
       //   {path: ':id',component: PostDetailComponent}
       // ]
       {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
+      {path: 'post-edit/:id', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
+
       {path: 'post-list', component: PostListComponent}
 
     ]

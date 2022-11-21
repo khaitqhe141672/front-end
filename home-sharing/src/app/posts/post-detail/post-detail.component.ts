@@ -12,6 +12,7 @@ import {DatePipe} from "@angular/common";
 import {PostDetail} from "./post-detail.model";
 import {Observable} from "rxjs";
 import {ResponseFollow} from "../../shared/model/follow-host.model";
+import {ReportRateComponent} from "../../report-rate/report-rate.component";
 
 @Component({
   selector: 'app-post-detail',
@@ -41,7 +42,8 @@ export class PostDetailComponent implements OnInit {
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute,
               private dataStorage: DataStorageService, private postDetailService: PostDetailService,
               private dialog: MatDialog, private fb: FormBuilder,
-              private datePipe:DatePipe) {
+              private datePipe:DatePipe,
+              ) {
   }
 
   ngOnInit(): void {
@@ -147,6 +149,13 @@ export class PostDetailComponent implements OnInit {
     this.postDetailService.favoritePost(this.postDetail.postID).subscribe(
       response=>console.log(response)
     )
+  }
+
+  onReportRate(rateID: number,username:string) {
+      this.dialog.open(ReportRateComponent,{
+        hasBackdrop:true,
+        data:{rateID,username}
+      })
   }
 }
 

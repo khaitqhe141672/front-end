@@ -6,6 +6,7 @@ import {map, switchMap} from "rxjs/operators";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-manage-post',
@@ -21,7 +22,7 @@ export class ManagePostComponent implements OnInit {
   dataSource:MatTableDataSource<PostTableDetail>
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private managePostService:ManagePostService) {
+  constructor(private managePostService:ManagePostService,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -50,6 +51,12 @@ export class ManagePostComponent implements OnInit {
 
   showMore(row) {
 
+  }
+
+  navigateToPost(postID: number) {
+    this.router.navigate(['../posts/post-detail/'+postID])
+    // const url = this.router.serializeUrl(this.router.createUrlTree(['/posts/post-detail/'+postID]))
+    // window.open(url,'_blank')
   }
 }
 
