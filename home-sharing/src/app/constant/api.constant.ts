@@ -50,6 +50,7 @@ export const API_HOST_MANAGE_VOUCHER = 'http://localhost:8080/api/manage-voucher
 export const API_HOST_CREATE_VOUCHER ='http://localhost:8080/api/voucher/insert'
 
 export const API_HOST_LIST_PENDING_CONFIRM_BOOKING = 'http://localhost:8080/api/manage-post/all-booking-host?'
+export const API_HOST_LIST_CURRENT_BOOKING = 'http://localhost:8080/api/manage-post/all-current-booking-host?'
 export const API_HOST_CONFIRM_BOOKING = 'http://localhost:8080/api/booking/confirm-booking?'
 export const API_HOST_CHECKOUT = 'http://localhost:8080/api/booking/update-status-booking?booking-id='
 

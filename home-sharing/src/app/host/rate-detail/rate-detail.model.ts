@@ -3,12 +3,12 @@ export interface RateDetailResponse {
   data: RateDetailResponseData
 }
 
-export interface RateDetailResponseData {
-  listDetailRate: ListDetailRate
+export class RateDetailResponseData {
+  listDetailRate: PostDetailOfRate
   sizePage: number
 }
 
-export interface ListDetailRate {
+export class PostDetailOfRate {
   postID: number
   title: string
   statusPost: number

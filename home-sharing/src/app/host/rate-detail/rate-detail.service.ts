@@ -10,6 +10,6 @@ export class RateDetailService{
   }
   getListRate(pageIndex:number,postId:number):Observable<RateDetailResponse>{
     const httpParams = new HttpParams({fromString:'post-id='+postId+'&index-page='+pageIndex})
-    return this.http.get<RateDetailResponse>(API_HOST_MANAGE_LIST_RATE_DETAIL)
+    return this.http.get<RateDetailResponse>(API_HOST_MANAGE_LIST_RATE_DETAIL,{params:httpParams})
   }
 }

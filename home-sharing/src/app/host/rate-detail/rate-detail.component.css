@@ -163,7 +163,7 @@ hr, ul, li {
 .container-manage-rate .box_list_rate .list_rate
 .content_rate .card_rate .function_comment button{
   border: none;
-  background-color: #FAC29A;
+  /*background-color: #FAC29A;*/
   border-radius: 50%;
   padding: 10px 5px 10px 5px;
 }

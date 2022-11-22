@@ -1,0 +1,12 @@
+.btn-confirm:hover {
+  background-color: #24E589;
+  color: red !important;
+}
+
+.btn-confirm {
+  background: none;
+  border-radius: 4px;
+  border: 1px solid #367E18;
+  height: 30px;
+  width: auto
+}

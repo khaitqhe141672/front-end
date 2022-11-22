@@ -60,6 +60,7 @@ export class CurrentBookingComponent implements OnInit {
   confirmReturnHS(bookingID: number) {
       this.listConfirmBookingService.confirmedReturnHS(bookingID).subscribe(response=>{
         console.log('confirmedReturnHS: '+response)
+        this.refreshListBookingConfirmed.next(true)
       })
   }
 }
