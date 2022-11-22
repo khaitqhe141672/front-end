@@ -46,7 +46,13 @@ export class MapComponent implements OnInit, AfterViewInit,OnChanges {
   }
   marker:any
   createMarker(lng:number,lat:number){
-    if(!lng&&!lat) return
+    console.log('lat 2: '+this.lat)
+    console.log('lng 2: '+this.lng)
+    if(!lng&&!lat) {
+      lng = 16
+      lat = 108
+    }
+    // if(lat>90||lat<-90) lat = 108
       this.marker = new Mapboxgl.Marker({
         draggable:true
       }).setLngLat([lat,lng]).addTo(this.map)

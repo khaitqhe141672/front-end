@@ -2,42 +2,39 @@ table {
   width: 100%;
 }
 
-.container_manage_voucher {
-  max-width: 1230px;
-  margin: auto;
-}
 
-.container_manage_voucher .table_manage_voucher {
+
+ .table_manage_voucher {
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.container_manage_voucher .function_btn{
+.function_btn{
   padding-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.container_manage_voucher .function_btn button {
+ .function_btn button {
   border: none;
   background-color: #FFFFFF;
   font-size: 24px;
   font-family: Baloo;
 }
 
-.container_manage_voucher .function_btn button svg{
+ .function_btn button svg{
   width: 45px;
   height: 45px;
 }
 
-.container_manage_voucher .function_btn .search {
+.function_btn .search {
   display: grid;
   grid-template-columns: 1fr 50px;
   align-items: center;
   position: relative;
 }
 
-.container_manage_voucher .function_btn .search .searchTerm {
+ .function_btn .search .searchTerm {
   width: 60%;
   border: 1px solid #F36B08;
   border-right: none;
@@ -49,16 +46,16 @@ table {
   justify-self: end;
 }
 
-.container_manage_voucher .function_btn .search .searchTerm::placeholder{
+ .function_btn .search .searchTerm::placeholder{
   color: #F4B689;
 }
 
-.container_manage_voucher .function_btn .search .searchTerm:focus {
+.function_btn .search .searchTerm:focus {
   color: #F36B08;
 
 }
 
-.container_manage_voucher .function_btn .search .searchButton {
+ .function_btn .search .searchButton {
   width: 50px;
   height: 46px;
   border: 1px solid #F36B08;
@@ -70,7 +67,7 @@ table {
   border-radius: 0 25px 25px 0;
 }
 
-.container_manage_voucher .function_btn .search .searchButton svg{
+ .function_btn .search .searchButton svg{
   width: 20px;
   height: 20px;
 }

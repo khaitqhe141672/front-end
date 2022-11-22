@@ -50,7 +50,7 @@ export class BookingComponent implements OnInit {
     {id:3,icon:"icon 3",name:"Hất cùn",price:400000},
     {id:4,icon:"icon 5",name:"Đấm chủ",price:400000},
   ]
-  selectedServicePost:{id:number,icon:string;name:string;price:number}[]=[]
+  selectedServicePost:any=[]
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   voucherPickerDialogRef:MatDialogRef<VoucherComponent>
   postVoucherID = null
@@ -181,7 +181,7 @@ export class BookingComponent implements OnInit {
     bookingBody.note = 'note'
     bookingBody.totalMoney = this.totalBillAfterDiscount
     bookingBody.totalPerson = this.guestNumber
-    bookingBody.postServices = this.selectedServicePost.map(service=>service.id)
+    bookingBody.postServices = this.selectedServicePost.map(service=>service.postServiceID)
     bookingBody.postVoucherID = this.postVoucherID
     bookingBody.totalPriceRoom = this.priceHS
     bookingBody.totalPriceService = this.servicePrice
@@ -189,32 +189,34 @@ export class BookingComponent implements OnInit {
     bookingBody.fullName = this.formGroupBooking.controls.fullNameCtrl.value
     bookingBody.email = this.formGroupBooking.controls.emailCtrl.value
     bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value
-
-    console.log('startDate:  '+startDateBookingBody)
-    console.log('endDate: '+bookingBody.endDate)
-    console.log('note: '+bookingBody.note)
-    console.log('total money: '+bookingBody.totalMoney)
-    console.log('total person: '+bookingBody.totalPerson)
-    console.log('post service: '+JSON.stringify(bookingBody.postServices))
-    console.log('post voucher id: '+bookingBody.postVoucherID)
-    console.log('total price room: '+bookingBody.totalPriceRoom)
-    console.log('total price service: '+bookingBody.totalPriceService)
-    console.log('discount: '+bookingBody.discount)
-    console.log('full name: '+bookingBody.fullName)
-    console.log('emailL '+bookingBody.email)
-    console.log('mobile: '+bookingBody.mobile)
-    // let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
-    // bookingObservable.subscribe({
-    //   next:responseData =>{
-    //     console.log(responseData)
-    //   },
-    //   error:errorMess =>{
-    //     console.log(errorMess)
-    //   },
-    //   complete:()=>{
-    //     console.log('complete')
-    //   }
-    // })
+    // console.log('postID:  '+this.postID)
+    // console.log('startDate:  '+startDateBookingBody)
+    // console.log('endDate: '+bookingBody.endDate)
+    // console.log('note: '+bookingBody.note)
+    // console.log('total money: '+bookingBody.totalMoney)
+    // console.log('total person: '+bookingBody.totalPerson)
+    // console.log('post service: '+bookingBody.postServices)
+    // console.log('post service2: '+JSON.stringify(this.selectedServicePost))
+    //
+    // console.log('post voucher id: '+bookingBody.postVoucherID)
+    // console.log('total price room: '+bookingBody.totalPriceRoom)
+    // console.log('total price service: '+bookingBody.totalPriceService)
+    // console.log('discount: '+bookingBody.discount)
+    // console.log('full name: '+bookingBody.fullName)
+    // console.log('emailL '+bookingBody.email)
+    // console.log('mobile: '+bookingBody.mobile)
+    let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
+    bookingObservable.subscribe({
+      next:responseData =>{
+        console.log(responseData)
+      },
+      error:errorMess =>{
+        console.log(errorMess)
+      },
+      complete:()=>{
+        console.log('complete')
+      }
+    })
   }
 
   onOpenVoucherDialog() {

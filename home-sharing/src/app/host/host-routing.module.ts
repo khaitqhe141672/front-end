@@ -26,7 +26,7 @@ const routes: Routes = [
       {
         path: 'manage-rate', children: [
           {path: '', component: ManageRateComponent},
-          {path: 'rate-detail', component: RateDetailComponent}
+          {path: 'rate-detail/:id', component: RateDetailComponent}
         ]
       },
       {path: 'manage-voucher', component: ManageVoucherComponent}

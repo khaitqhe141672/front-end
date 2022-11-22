@@ -1,11 +1,13 @@
 <div class="box_complaint">
   <h1 mat-dialog-title>Quản lý và xử lý báo cáo</h1>
   <hr>
-
-  <div class="box_list_report">
+  <div class="d-flex justify-content-center text-center"  *ngIf="dataSource.data.length<=0">
+    <h2>Chưa có báo nào về bài đăng này</h2>
+  </div>
+  <div  *ngIf="dataSource.data.length>0" class="box_list_report">
     <div class="table_list">
       <div class="mat-elevation-z8">
-        <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+        <table  class="w-100" [dataSource]="dataSource" mat-table matSort>
 
           <ng-container matColumnDef="avatar">
             <th *matHeaderCellDef mat-header-cell mat-sort-header></th>

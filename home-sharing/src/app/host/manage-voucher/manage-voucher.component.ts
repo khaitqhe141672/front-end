@@ -7,6 +7,7 @@ import {ManageVoucherServices} from "./manage-voucher.services";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {VoucherDetail} from "../../shared/model/voucher-host.model";
 import {map, switchMap} from "rxjs/operators";
+import {HandleStatusVoucherComponent} from "./handle-status-voucher/handle-status-voucher.component";
 
 @Component({
   selector: 'app-manage-voucher',
@@ -17,7 +18,7 @@ export class ManageVoucherComponent implements OnInit {
 
   selected = '1';
   createVoucherPickerDialogRef: MatDialogRef<CreateVoucherComponent>
-
+  handleStatusVoucherDialogRef:MatDialogRef<HandleStatusVoucherComponent>
   constructor(private dialog: MatDialog,
               private manageVoucherService: ManageVoucherServices) {
   }
@@ -53,6 +54,10 @@ export class ManageVoucherComponent implements OnInit {
     this.createVoucherPickerDialogRef = this.dialog.open(CreateVoucherComponent, {
       hasBackdrop: true
     })
+    this.dialog.afterAllClosed.subscribe(response=>{
+      console.log('onOpenCreateVoucher'+response)
+      this.refreshListVoucher.next(true)
+    })
   }
 
   applyFilter($event: KeyboardEvent) {
@@ -63,5 +68,22 @@ export class ManageVoucherComponent implements OnInit {
     }
   }
 
+  openDialog(status: number,voucherID:number) {
+    let isChange = false
+    this.handleStatusVoucherDialogRef= this.dialog.open(HandleStatusVoucherComponent,{hasBackdrop:true})
+    this.handleStatusVoucherDialogRef.afterClosed().subscribe(response =>{
+      console.log(response)
+      isChange = response as boolean
+      if(response as boolean){
+        this.manageVoucherService.changeStatusVoucher(status,voucherID).subscribe(
+          response =>console.log('openDialog: '+response),
+          ()=>{},
+          ()=>{
+            this.refreshListVoucher.next(true)
+          }
+        )
+      }
+    })
+  }
 }
 

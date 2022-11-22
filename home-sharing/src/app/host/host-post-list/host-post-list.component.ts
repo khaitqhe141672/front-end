@@ -8,6 +8,7 @@ import {PostDetail} from "../../shared/model/post-list-host.model";
 import {map, switchMap} from "rxjs/operators";
 import {HostPostListServices} from "./host-post-list-services";
 import {ListReportPost} from "../../shared/model/report-post.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-host-post-list',
@@ -23,7 +24,7 @@ export class HostPostListComponent implements OnInit {
   totalPaginator: number
   pageIndex: number = 1
 
-  constructor(private dialog: MatDialog,
+  constructor(private dialog: MatDialog,private router:Router,
               private hostPostListService: HostPostListServices) {
   }
 
@@ -72,4 +73,7 @@ export class HostPostListComponent implements OnInit {
 
   /*chua phan page*/
 
+  onEditPost(postID: number) {
+    this.router.navigate(['../posts/post-edit/'+postID])
+  }
 }

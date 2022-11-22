@@ -47,6 +47,16 @@ export const API_UPDATE_HOST_STATUS ='http://localhost:8080/api/manage-account/u
 export const API_HOST_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post-host?index-page='
 export const API_HOST_LIST_REPORT_POST = 'http://localhost:8080/api/manage-post/all-report-post?post-id='
 export const API_HOST_MANAGE_VOUCHER = 'http://localhost:8080/api/manage-voucher/view-all-voucher?index-page='
+export const API_HOST_CREATE_VOUCHER ='http://localhost:8080/api/voucher/insert'
+
+export const API_HOST_LIST_PENDING_CONFIRM_BOOKING = 'http://localhost:8080/api/manage-post/all-booking-host?'
+export const API_HOST_CONFIRM_BOOKING = 'http://localhost:8080/api/booking/confirm-booking?'
+export const API_HOST_CHECKOUT = 'http://localhost:8080/api/booking/update-status-booking?booking-id='
+
+export const API_HOST_VOUCHER_STATUS_UPDATE = 'http://localhost:8080/api/manage-voucher/update-status-voucher?'
+
+export const API_HOST_MANAGE_LIST_RATE = 'http://localhost:8080/api/manage-rate/all-rate?index-page='
+export const API_HOST_MANAGE_LIST_RATE_DETAIL = 'http://localhost:8080/api/manage-rate/all-detail-rate?'
 
 export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
 export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='

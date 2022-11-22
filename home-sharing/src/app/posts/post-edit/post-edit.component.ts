@@ -562,7 +562,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          // console.log(e.target.result);
+          console.log(e.target.result);
           this.previews[i] = e.target.result;
         };
 
@@ -575,61 +575,17 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  // upload(idx: number, file: File): void {
-  //   this.progressInfos[idx] = {value: 0, isLoading: true, fileName: file.name};
-  //   console.log('pushing3')
-  //   if (file) {
-  //     console.log('pushing 5')
-  //     this.postEditService.uploadByAPI(file).subscribe(
-  //       (event: any) => {
-  //
-  //         console.log('event type: ' + JSON.stringify(event))
-  //         console.log('pushing4')
-  //         if (event.type === HttpEventType.UploadProgress) {
-  //           this.progressInfos[idx].value = Math.round(
-  //             (100 * event.loaded) / event.total
-  //           );
-  //           console.log(this.progressInfos[idx].value)
-  //         } else if (event instanceof HttpResponse) {
-  //           const msg = 'Uploaded the file successfully: ' + file.name;
-  //           this.message.push(msg);
-  //           // this.imageInfos = this.postEditService.getFiles();
-  //         }
-  //       },
-  //       (err: any) => {
-  //         this.progressInfos[idx].value = 0;
-  //         const msg = 'Could not upload the file: ' + file.name;
-  //         this.message.push(msg);
-  //       }, () => {
-  //         console.log('complete 1')
-  //         this.progressInfos[idx].isLoading = false;
-  //         this.process++
-  //         if (this.process == 5) {
-  //           this.isUploading = false
-  //         }
-  //       }
-  //     );
-  //   }
-  // }
-
   uploadFiles(postIdResponse): void {
     this.message = [];
     this.isUploading = true
     let formDataImg = new FormData()
+    console.log('saved file lengtg: '+this.savedFiles.length)
     if (this.savedFiles) {
       for (let i = 0; i < this.savedFiles.length; i++) {
         formDataImg.append('file', this.savedFiles[i])
       }
       this.uploadAll(formDataImg, postIdResponse);
     }
-    // if (this.selectedFiles) {
-    //   for (let i = 0; i < this.selectedFiles.length; i++) {
-    //    this.upload(i,this.selectedFiles[i])
-    //   }
-    //   this.uploadAll(formDataImg);
-    //
-    // }
-    // this.uploadAllImg()
   }
 
   uploadAll(formDataImg: FormData, postID: number): void {
@@ -670,17 +626,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onChangePositionImg(event, pos1: number, pos2: number) {
-    // console.log(this.previews[pos1]);
-    // console.log(this.previews[pos2]);
-    // if (!this.previews[pos2]) return
-    //
-    // [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
-    // [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
-    // [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
-    //
-    // this.imgPreviewPositionChanged.next(this.previews.slice())
-    // this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
-
     if (!this.previews[pos2]) return
     [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
     [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
@@ -696,23 +641,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     console.log('----------------------------------------')
 
-    // [[list[pos1]], [list[pos2]]] = [[list[pos2]], [list[pos1]]];
-
-    // this.selectedFiles = new FileList()
-
-    // console.log(this.previews[pos1]);
-    // console.log(this.previews[pos2]);
-
-    // let temp_file = list[pos1]
-    // list[pos1] = list[pos2]
-    // list[pos2] = temp_file
-    // this.selectedFiles = list.files
-    // for (let i =0;i<this.selectedFiles.length;i++){
-    //   console.log(this.selectedFiles[i].name)
-    // }
-    // for (let i =0;i<list.files.length;i++){
-    //   console.log(list[i])
-    // }
   }
 
   onDeleteImg($event, position: number) {

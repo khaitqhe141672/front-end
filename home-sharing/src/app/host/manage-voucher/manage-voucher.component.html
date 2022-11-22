@@ -1,6 +1,5 @@
-<div class="container_manage_voucher">
 
-  <div class="container-fluid">
+  <div class="container-fluid w-100">
     <div class="function_btn">
       <div class="btn_new_voucher">
         <button (click)="onOpenCreateVoucher()" style="background-color: #fafafa;">
@@ -16,8 +15,8 @@
       </div>
       <div class="btn_search" style="justify-self: end;">
         <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
+          <mat-label>Tìm kiếm</mat-label>
+          <input #input (keyup)="applyFilter($event)" matInput placeholder="">
         </mat-form-field>
       </div>
     </div>
@@ -51,8 +50,29 @@
         </ng-container>
         <ng-container matColumnDef="status">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái</th>
-          <td *matCellDef="let row" mat-cell>
-            <button class="btn btn-success" type="button">Xem thêm</button>
+          <td *matCellDef="let row" mat-cell [ngSwitch]="row.status">
+
+            <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>
+              <div  *ngSwitchCase="1" class="d-flex justify-content-start text-center align-items-center" style="color: #367E18">
+                <mat-icon >fiber_manual_record</mat-icon>
+                Hoạt động
+              </div>
+              <div *ngSwitchCase="2" class="d-flex justify-content-start text-center align-items-center" style="color: #F57328">
+                <mat-icon >fiber_manual_record</mat-icon>
+                Tạm dừng
+              </div>
+              <div *ngSwitchCase="3" class="d-flex justify-content-start text-center align-items-center" style="color: #CC3636" >
+                <mat-icon >fiber_manual_record</mat-icon>
+                Dừng
+              </div>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button  mat-menu-item (click)="openDialog(1,row.idVoucher)">Hoạt động</button>
+              <button   mat-menu-item (click)="openDialog(2,row.idVoucher)">Tạm dừng</button>
+              <button   mat-menu-item (click)="openDialog(3,row.idVoucher)">Dừng</button>
+
+            </mat-menu>
+
           </td>
         </ng-container>
 
@@ -61,9 +81,8 @@
 
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      <mat-paginator hidePageSize aria-label="Select page of users"></mat-paginator>
     </div>
 
   </div>
 
-</div>

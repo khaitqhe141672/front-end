@@ -1,26 +1,28 @@
 <div class="box_popup_new_voucher">
   <h1 mat-dialog-title style="color:#F36B08; text-align: center">Tạo voucher mới</h1>
   <hr>
+  <form [formGroup]="formCreateVoucher" (ngSubmit)="onCreateVoucher()">
   <div mat-dialog-content class="pop-up_content">
     <div class="mb-3">
       <label class="form-label">Tên khuyến mãi</label>
-      <input type="email" class="form-control">
+      <input formControlName="voucherNameCtrl" type="text" class="form-control">
     </div>
     <div class="mb-3">
       <label class="form-label">Phần trăm giảm</label>
-      <input type="email" class="form-control">
+      <input formControlName="pctCtrl" type="number" class="form-control">
     </div>
     <div class="mb-3">
       <label class="form-label">Nội dung</label>
-      <input type="email" class="form-control">
+      <input formControlName="descriptionCtrl" type="text" class="form-control">
     </div>
     <div class="mb-3">
-      <label class="form-label">Thời gian áp dụng</label>
-      <input type="email" class="form-control">
+      <label class="form-label">Số ngày có hiệu lực</label>
+      <input formControlName="dueDayCtrl" type="number" class="form-control">
     </div>
   </div>
   <div mat-dialog-actions class="btn_voucher">
     <button mat-button mat-dialog-close>Hủy</button>
-    <button mat-button mat-dialog-close cdkFocusInitial>Xác Nhận</button>
+    <button [disabled] = "!formCreateVoucher.valid" type="submit" mat-button mat-dialog-close cdkFocusInitial>Xác Nhận</button>
   </div>
+  </form>
 </div>

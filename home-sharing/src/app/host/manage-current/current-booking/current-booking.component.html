@@ -1,38 +1,64 @@
 <div class="container-fluid">
   <mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput placeholder="Ex. Mia">
+    <mat-label>Tìm kiếm</mat-label>
+    <input matInput placeholder="">
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+    <table [dataSource]="dataSource" class="w-100" mat-table matSort>
 
       <ng-container matColumnDef="id">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-        <td *matCellDef="let row" mat-cell></td>
+        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.bookingID}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="titleHomestay">
+      <ng-container matColumnDef="title">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên Homestay</th>
-        <td *matCellDef="let row" mat-cell></td>
+        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.title}}</td>
+      </ng-container>
+      <ng-container matColumnDef="userBooking">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Người đặt</th>
+        <td *matCellDef="let row" mat-cell>{{row.userBookingDto.fullName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="startDate">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Ngày thuê phòng</th>
+        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.startDate}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Thời gian</th>
-        <td *matCellDef="let row" mat-cell></td>
-      </ng-container>
-
-      <ng-container matColumnDef="detail">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Chi Tiết</th>
+      <ng-container matColumnDef="endDate">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày trả phòng</th>
         <td *matCellDef="let row" mat-cell>
-          <button  class="btn btn-success" type="button">Xem thêm</button>
+          {{row.viewBookingDto.endDate}}
         </td>
       </ng-container>
-
-      <ng-container matColumnDef="confirm">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Xác nhận</th>
+      <ng-container matColumnDef="totalPerson">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Tổng số khách</th>
         <td *matCellDef="let row" mat-cell>
-          <button  class="btn btn-success" type="button">Xem thêm</button>
+          {{row.viewBookingDto.totalPerson}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalMoney">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng thanh toán</th>
+        <td *matCellDef="let row" mat-cell>
+          {{row.viewBookingDto.totalMoney}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalService">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng phí dịch vụ</th>
+        <td *matCellDef="let row" mat-cell>
+          {{row.viewBookingDto.totalService}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="note">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Ghi chú</th>
+        <td *matCellDef="let row" mat-cell>
+          {{row.viewBookingDto.note}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Ghi chú</th>
+        <td *matCellDef="let row" mat-cell>
+          <button class="btn btn-success" type="button" (click)="confirmReturnHS(row.viewBookingDto.bookingID)">Xác nhận đã trả phòng <mat-icon>check</mat-icon></button>
         </td>
       </ng-container>
 
@@ -41,7 +67,7 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator aria-label="Select page of users" hidePageSize></mat-paginator>
   </div>
 
 </div>

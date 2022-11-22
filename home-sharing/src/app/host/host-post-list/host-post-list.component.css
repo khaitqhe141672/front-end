@@ -94,7 +94,6 @@ hr, ul, li {
 }
 
 .card_status span{
-  border: 1px solid #F36B08;
   padding: 10px 15px 10px 15px;
   border-radius: 20px;
 }
@@ -110,3 +109,8 @@ hr, ul, li {
   border-radius: 20px;
   color: #F36B08;
 }
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
