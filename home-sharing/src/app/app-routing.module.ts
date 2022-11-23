@@ -39,6 +39,7 @@ import {ManagerAccountHostComponent} from "./admin/manager-account/manager-accou
 import {AccountDetailComponent} from "./admin/manager-account/account-detail/account-detail.component";
 import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 import {PaymentComponent} from "./payment/payment.component";
+import {PaymentSuccessComponent} from "./payment-success/payment-success.component";
 
 
 const appRoute: Routes = [
@@ -111,7 +112,7 @@ const appRoute: Routes = [
   {path: 'error', component: ErrorPageComponent},
   {path: 'error', component: ErrorPageComponent},
   {path: 'payment/:id', component: PaymentComponent},
-
+  {path: 'payment-success', component: PaymentSuccessComponent},
   {path: '**', component: ErrorPageComponent}
 ]
 

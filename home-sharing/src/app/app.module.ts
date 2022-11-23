@@ -116,6 +116,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { HandleStatusDialogComponent } from './admin/manage-report-center/manage-report-post/handle-status-dialog/handle-status-dialog.component';
 import { ConfirmDialogComponent } from './shared/dialog/confirm-dialog/confirm-dialog.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -179,7 +180,8 @@ import { PaymentComponent } from './payment/payment.component';
     HandleStatusVoucherComponent,
     HandleStatusDialogComponent,
     ConfirmDialogComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,
