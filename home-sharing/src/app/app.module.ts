@@ -114,6 +114,8 @@ import {
 } from './host/manage-voucher/handle-status-voucher/handle-status-voucher.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { HandleStatusDialogComponent } from './admin/manage-report-center/manage-report-post/handle-status-dialog/handle-status-dialog.component';
+import { ConfirmDialogComponent } from './shared/dialog/confirm-dialog/confirm-dialog.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -175,7 +177,9 @@ import { HandleStatusDialogComponent } from './admin/manage-report-center/manage
     ReportPostDetailDialogComponent,
     ReportRateComponent,
     HandleStatusVoucherComponent,
-    HandleStatusDialogComponent
+    HandleStatusDialogComponent,
+    ConfirmDialogComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

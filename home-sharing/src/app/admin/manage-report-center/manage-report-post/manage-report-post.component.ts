@@ -9,6 +9,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ReportPostDetailDialogComponent} from "./report-post-detail-dialog/report-post-detail-dialog.component";
 import {HandleStatusDialogComponent} from "./handle-status-dialog/handle-status-dialog.component";
+import {ReportPostDetailDialogService} from "./report-post-detail-dialog/report-post-detail-dialog.service";
 
 @Component({
   selector: 'app-manage-report-post',
@@ -32,7 +33,7 @@ export class ManageReportPostComponent implements OnInit {
 
 
   constructor(private manageReportPostService:ManageReportPostService,
-  private dialog:MatDialog) { }
+  private dialog:MatDialog,reportDetailDialogService:ReportPostDetailDialogService) { }
 
   ngOnInit(): void {
     this.onLoadingReportPost()
@@ -75,8 +76,8 @@ export class ManageReportPostComponent implements OnInit {
     this.onLoadingReportPost()
   }
 
-  openDialog(reportID:number,postId:number,statusReport:number,statusPost:number){
-    //0:chưa xử lý
+  updateStatus(reportID:number,postId:number,statusReport:number,statusPost:number){
+    //0: chưa xử lý
     //1: hoạt động
     //2: ẩn
     this.handleStatusDialogRef = this.dialog.open(HandleStatusDialogComponent,{hasBackdrop:true})
@@ -88,7 +89,7 @@ export class ManageReportPostComponent implements OnInit {
     },
       ()=>{},
     ()=>{
-      this.manageReportPostService.updateStatusReportPost(reportID,statusReport)
+      this.manageReportPostService.updateStatusReportPost([reportID],statusReport)
         .subscribe(response =>{
           console.log('update status report: '+response)
         },()=>{},

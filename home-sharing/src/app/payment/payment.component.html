@@ -1,0 +1,96 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="weather-card one">
+        <div class="top">
+          <div class="wrapper mt-5">
+            <h1 class="heading mt-5">Gói thanh toán 1</h1>
+            <h3 class="location mt-5">Thời hạn: 30 ngày</h3>
+            <p class="temp pt-5">
+              <span class="temp-value">300.000</span>
+              <span class="deg">VND</span>
+            </p>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wrapper">
+            <ul class="forecast">
+              <a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
+              <li class="active">
+                <span class="date">
+                  <button (click)="onPayment(1)" class="btn-submit" type="button">
+                    Thanh toán
+                  </button>
+                </span>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="weather-card rain">
+        <div class="top">
+          <div class="wrapper mt-5">
+            <h1 class="heading mt-5">Gói thanh toán 2</h1>
+            <h3 class="location mt-5">Thời hạn: 60 ngày</h3>
+            <p class="temp pt-5">
+              <span class="temp-value">550.000</span>
+              <span class="deg">VND</span>
+            </p>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wrapper">
+            <ul class="forecast">
+              <a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
+              <li class="active">
+                <span class="date"><button (click)="onPayment(2)" class="btn-submit" type="button">
+                    Thanh toán
+                  </button></span>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="weather-card rain2">
+        <div class="top">
+          <div class="wrapper mt-5">
+            <h1 class="heading mt-5">Gói thanh toán 3</h1>
+            <h3 class="location mt-5">Thời hạn: 90 ngày</h3>
+            <p class="temp pt-5">
+              <span class="temp-value">800.000</span>
+              <span class="deg">VND</span>
+            </p>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wrapper">
+            <ul class="forecast">
+              <a><span class="lnr lnr-chevron-up go-up"></span></a>
+              <li class="active">
+                <span class="date">
+                  <button (click)="onPayment(3)" class="btn-submit" type="button">
+                    Thanh toán
+                  </button>
+                </span>
+<!--                <span class="lnr lnr-sun condition">-->
+<!--									<span class="temp">22<span class="deg">0</span><span class="temp-type">C</span></span>-->
+<!--								</span>-->
+              </li>
+<!--              <li>-->
+<!--                <span class="date">Tomorrow</span>-->
+<!--                <span class="lnr lnr-cloud condition">-->
+<!--									<span class="temp">18<span class="deg">0</span><span class="temp-type">C</span></span>-->
+<!--								</span>-->
+<!--              </li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

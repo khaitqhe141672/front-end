@@ -38,7 +38,7 @@
       <ng-container matColumnDef="statusPost">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái bài đăng</th>
         <td *matCellDef="let row" [ngSwitch]="row.statusPost" mat-cell>
-          <button #menuTrigger [matMenuTriggerFor]="menu" mat-button disabled="{{row.statusReportPost==2||row.statusReportPost==3}}">
+          <button #menuTrigger [matMenuTriggerFor]="menu" mat-button disabled="{{row.statusPost==3||row.statusPost==2}}">
             <div *ngSwitchCase="0" style="color: #B01E68">
               <div class="d-flex flex-row align-items-center justify-content-center text-center">
                 <mat-icon style="fill: #B01E68">
@@ -70,33 +70,36 @@
                       fiber_manual_record
                    </span>
                 </mat-icon>
-                <div>Hoạt động</div>
+                <div>Bị ẩn bở chủ nhà</div>
               </div>
             </div>
             <div *ngSwitchCase="2" class="d-flex" style="color: #367E18">
-              <div>
-                <mat-icon style="fill: #367E18">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
-                </mat-icon>
+              <div  class="d-flex flex-row align-items-center justify-content-center">
+                  <mat-icon style="fill: #367E18">
+                      fiber_manual_record
+                  </mat-icon>
+                  Đã bị chủ nhà ẩn
               </div>
-              <div>Đã bị chủ nhà ẩn</div>
             </div>
             <div *ngSwitchCase="3" class="d-flex" style="color: #CC3636">
-              <div>
-                <mat-icon style="fill: #CC3636">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
+              <div class="d-flex flex-row align-items-center justify-content-center text-center">
+                <mat-icon>
+                  <span class="material-symbols-outlined">
+                    fiber_manual_record
+                  </span>
                 </mat-icon>
+                <div>
+                  Đã bị người quản trị ẩn
+                </div>
               </div>
-              <div>Đã bị người quản trị ẩn</div>
             </div>
           </button>
             <mat-menu #menu="matMenu">
-              <button disabled="{{!row.statusReportPost===1}}" (click)="openDialog(1,row.postID,3,3)" mat-menu-item>
+              <button *ngIf="row.statusPost==1"  (click)="updateStatus(1,row.postID,2,3)" mat-menu-item>
                 Ẩn bài viết
+              </button>
+              <button *ngIf="row.statusPost==3"  (click)="updateStatus(1,row.postID,2,3)" mat-menu-item>
+                Hiển thị bài viết
               </button>
             </mat-menu>
 

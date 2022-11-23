@@ -24,8 +24,10 @@ export class ManageReportPostService{
     return this.http.put(API_ADMIN_UPDATE_STATUS_POST_IN_MANAGE_REPORT,{},{params:paramsHttp})
 
   }
-  updateStatusReportPost(reportPostID:number,status:number):Observable<any>{
-    let paramsHttp = new HttpParams({fromString:'report-post-id='+reportPostID+'&status='+status})
-    return this.http.put(API_ADMIN_UPDATE_STATUS_REPORT_POST,{},{params:paramsHttp})
+  updateStatusReportPost(listReportPostID:number[],status:number):Observable<any>{
+    let paramsHttp = new HttpParams({fromString:'status='+status})
+    return this.http.put(API_ADMIN_UPDATE_STATUS_REPORT_POST,{
+      listReportPostID:listReportPostID
+    },{params:paramsHttp})
   }
 }

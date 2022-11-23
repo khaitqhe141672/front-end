@@ -9,6 +9,7 @@ import {map, switchMap} from "rxjs/operators";
 import {HostPostListServices} from "./host-post-list-services";
 import {ListReportPost} from "../../shared/model/report-post.model";
 import {Router} from "@angular/router";
+import {ConfirmDialogComponent} from "../../shared/dialog/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-host-post-list',
@@ -20,9 +21,11 @@ export class HostPostListComponent implements OnInit {
   complaintReportPickerDialogRef: MatDialogRef<ComplaintReportComponent>
   displayedColumns: string[] = ['id', 'titleHomestay', 'status', 'date', 'report','rate', 'function'];
   dataSource: MatTableDataSource<PostDetail>
-
+  updateStatusPostDiaLog:MatDialogRef<boolean>
   totalPaginator: number
   pageIndex: number = 1
+
+  confirmDialogRef:MatDialogRef<ConfirmDialogComponent>
 
   constructor(private dialog: MatDialog,private router:Router,
               private hostPostListService: HostPostListServices) {
@@ -79,5 +82,19 @@ export class HostPostListComponent implements OnInit {
 
   convertTo2Decimal(data:number){
     return Math.round((data+Number.EPSILON)*10)/10
+  }
+
+  updateStatusPost(postID: number,status:number) {
+    this.confirmDialogRef = this.dialog.open(ConfirmDialogComponent,{hasBackdrop:true})
+    this.confirmDialogRef.afterClosed().subscribe(response=>{
+      if(response as boolean){
+        this.hostPostListService.updateStatusPost(postID,status).subscribe(
+          response =>{this.refreshListPost.next(true)}
+        )}}
+    )
+  }
+
+  onPayment(postID: number) {
+    this.router.navigate(['../payment/'+postID])
   }
 }

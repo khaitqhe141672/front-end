@@ -40,26 +40,41 @@
         <ng-container matColumnDef="status">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái</th>
           <td *matCellDef="let row" mat-cell>
-            <div class="card_status d-flex justify-content-center" >
-              <span *ngIf="row.status == 0" style="color: #367E18;">
+            <button disabled="{{row.status == 3||row.status == 0}}" mat-button [matMenuTriggerFor]="menu" #menuTrigger>
+              <div class="card_status d-flex justify-content-start" >
+              <span *ngIf="row.status == 0" style="color: #B01E68">
+                <svg width="13" height="10" viewBox="0 0 13 10" fill="#B01E68" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#B01E68"/>
+                </svg>
+                 Chưa thanh toán
+              </span>
+                <span *ngIf="row.status == 1" style="color: #367E18;">
                 <svg width="13" height="10" viewBox="0 0 13 10" fill="#367E18" xmlns="http://www.w3.org/2000/svg">
                 <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#367E18"/>
                 </svg>
                  Hoạt động
               </span>
-              <span *ngIf="row.status == 2" style="color: #FF9A01;">
+                <span *ngIf="row.status == 2" style="color: #FF9A01;">
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#FF9A01"/>
                 </svg>
                  Tạm dừng
               </span>
-              <span *ngIf="row.status == 3" style="color: #FF0000;">
+                <span *ngIf="row.status == 3" style="color: #FF0000;">
                   <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="6.5074" cy="5" rx="6.22224" ry="5" fill="#FF0000"/>
                   </svg>
-                 Đã bị ẩn
+                 Đã bị ẩn bởi quản trị viên
               </span>
-            </div>
+              </div>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngIf="row.status == 1" mat-menu-item (click)="updateStatusPost(row.postID,2)">Ẩn bài viết</button>
+              <button *ngIf="row.status == 2" mat-menu-item (click)="updateStatusPost(row.postID,1)">Hiển thị bài viết</button>
+
+            </mat-menu>
+
+
           </td>
         </ng-container>
 
@@ -116,15 +131,20 @@
                 </button>
               </div>
 
-              <div class="voucher">
+              <div class="voucher ms-2">
                 <button type="button" [matTooltip]="'Thêm mã khuyến mãi'">
                   <svg width="34" height="31" viewBox="0 0 34 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M29.1688 17.3214L19.0113 26.5827C18.7482 26.8229 18.4357 27.0134 18.0918 27.1434C17.7478 27.2734 17.3791 27.3403 17.0068 27.3403C16.6344 27.3403 16.2657 27.2734 15.9218 27.1434C15.5778 27.0134 15.2653 26.8229 15.0022 26.5827L2.83301 15.5002V2.5835H16.9997L29.1688 13.6789C29.6966 14.1629 29.9928 14.8177 29.9928 15.5002C29.9928 16.1826 29.6966 16.8374 29.1688 17.3214Z"
-                      fill="#FAC29A" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M9.91699 9.0415H9.93116" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
                           stroke-linejoin="round"/>
                   </svg>
+                </button>
+              </div>
+              <div class="voucher ms-2">
+                <button (click)="onPayment(row.postID)" *ngIf="row.status === 0" type="button" [matTooltip]="'Gia hạn bài đăng'">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </button>
               </div>
             </div>

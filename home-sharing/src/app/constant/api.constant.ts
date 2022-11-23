@@ -1,3 +1,5 @@
+export const API_PAYMENT_POST = 'http://localhost:8080/api/payment/create-payment'
+
 export const API_REGISTER = 'http://localhost:8080/api/auth/signup'
 export const API_EXIST_MAIL = 'http://localhost:8080/api/auth/exist-email?'
 export const API_POST_DETAIL = 'http://localhost:8080/api/post-detail?post_id='
@@ -59,6 +61,7 @@ export const API_HOST_VOUCHER_STATUS_UPDATE = 'http://localhost:8080/api/manage-
 export const API_HOST_MANAGE_LIST_RATE = 'http://localhost:8080/api/manage-rate/all-rate?index-page='
 export const API_HOST_MANAGE_LIST_RATE_DETAIL = 'http://localhost:8080/api/manage-rate/all-detail-rate?'
 export const API_HOST_REPORT_RATE = 'http://localhost:8080/api/report/create-reportRate?rate-id='
+export const API_HOST_UPDATE_STATUS_POST = 'http://localhost:8080/api/manage-post/update-status-post-host?'
 
 export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
 export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='
