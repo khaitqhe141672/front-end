@@ -44,7 +44,8 @@ export class HistoryBookingComponent implements OnInit {
     this.reportHsDialogRef = this.dialog.open(ReportHsComponent,{
       hasBackdrop:true,
       data:{
-        postID:postID
+        id:postID,
+        type:1
       }
     })
   }

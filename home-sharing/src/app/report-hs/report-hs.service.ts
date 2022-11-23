@@ -1,16 +1,25 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {API_REPORT_HS} from "../constant/api.constant";
+import {
+  API_CUS_REPORT_RATE_TYPE,
+  API_HOST_REPORT_RATE,
+  API_HOST_REPORT_RATE_TYPE,
+  API_REPORT_HS
+} from "../constant/api.constant";
 import {catchError, tap} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {Observable, throwError} from "rxjs";
+import {RateTypeResponse} from "./report-hs-type.model";
 
 @Injectable({providedIn:'root'})
 export class ReportHsService{
   constructor(private http:HttpClient) {
 
   }
-  pushReportHS(postID:number,typeReportID:number,description:string){
-    return this.http.post(API_REPORT_HS+postID,{
+  pushReportHS(postID:number,typeReportID:number,description:string,type:number){
+    let api = API_HOST_REPORT_RATE
+    if(type == 1) api = API_REPORT_HS
+    console.log('report: '+api)
+    return this.http.post(api+postID,{
       description:description,
       reportTypeID:typeReportID
     }).pipe(catchError(this.handleError),tap(res=>console.log(res)))
@@ -24,5 +33,10 @@ export class ReportHsService{
 
     return throwError(()=>new Error(errorResponse.error.status))
 
+  }
+  getReportType(type:number):Observable<RateTypeResponse>{
+    let api = API_HOST_REPORT_RATE_TYPE
+    if(type==1) api = API_CUS_REPORT_RATE_TYPE
+    return this.http.get<RateTypeResponse>(api)
   }
 }

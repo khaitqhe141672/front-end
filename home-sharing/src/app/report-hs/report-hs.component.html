@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <form [formGroup]="formReportHS"  (ngSubmit)="onReport()" >
-  <h1 mat-dialog-title>Báo cáo homestay</h1>
+  <h1 mat-dialog-title>
+    <ng-template [ngIf]="data.type === 1">
+      Báo cáo homestay
+    </ng-template>
+    <ng-template [ngIf]="data.type === 2">
+      Báo cáo đánh giá
+    </ng-template>
+  </h1>
   <div mat-dialog-content>
     <div class="row modal-body">
       <h2>Lý do báo cáo</h2>

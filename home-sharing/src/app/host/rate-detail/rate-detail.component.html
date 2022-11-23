@@ -1,8 +1,8 @@
 <div class="container-manage-rate">
   <div class="title">
     <h2>Quản lý danh sách đánh giá
-      <span><svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 21L11 11L1 1" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <span><svg fill="none" height="22" viewBox="0 0 12 22" width="12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 21L11 11L1 1" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
       </span>
       Chi tiết đánh giá
@@ -16,7 +16,8 @@
         </div>
         <div class="star">
         <span>
-           {{postDetail.avgRate}} <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+           {{postDetail.avgRate}}
+          <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
               fill="#F36B08"/>
@@ -29,7 +30,7 @@
       </div>
       <div class="box_rate">
         <div class="content_rate">
-          <div class="card_rate" *ngFor="let rateDetail of listRateDetail">
+          <div *ngFor="let rateDetail of listRateDetail" class="card_rate">
             <div class="info_customer">
               <div class="avatar">
                 <img [src]="rateDetail.urlImage" alt="">
@@ -37,7 +38,7 @@
               <div class="username">
                 <h2>{{rateDetail.username}}</h2>
               </div>
-              <div class="star" *ngFor="let s of counter(rateDetail.star)">
+              <div *ngFor="let s of counter(rateDetail.star)" class="star">
                 <mat-icon style="color: #F36B08">star</mat-icon>
               </div>
               <div></div>
@@ -46,25 +47,19 @@
               <p>{{rateDetail.comment}}</p>
             </div>
             <div class="function_comment">
-              <div class="rep_comment">
-                <form>
-                  <input type="text">
-                  <button type="button" style="background: none;color: #F36B08">
-                   <mat-icon>mode_comment</mat-icon>
-                  </button>
-                </form>
-              </div>
               <div class="third_button">
-                <button  type="button" style="background: none;color: #F36B08">
+                <button (click)="onReportRate(rateDetail.rateID)" style="background: none;color: #F36B08" type="button">
                   <mat-icon>flag</mat-icon>
                 </button>
-                <button  type="button" style="background: none;color: #F36B08">
-                 <mat-icon>thumb_up</mat-icon>
+                <button style="background: none;color: #F36B08" type="button">
+                  <mat-icon>thumb_up</mat-icon>
+                  {{rateDetail.totalLike}}
                 </button>
-                <button type="button" style="background: none;color: #F36B08">
-                  <mat-icon  >
+                <button style="background: none;color: #F36B08" type="button">
+                  <mat-icon>
                     thumb_down
                   </mat-icon>
+                  {{rateDetail.totalDislike}}
                 </button>
               </div>
             </div>
@@ -72,8 +67,8 @@
         </div>
         <div class="page_item">
           <mat-paginator [length]="100"
-                         [pageSize]="10"
                          [pageSizeOptions]="[5, 10, 25, 100]"
+                         [pageSize]="10"
                          aria-label="Select page">
           </mat-paginator>
         </div>
@@ -84,11 +79,11 @@
 
 <div class="message_box">
   <button>
-    <svg width="64" height="63" viewBox="0 0 64 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="63" viewBox="0 0 64 63" width="64" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M55.417 38.8999C55.417 40.2702 54.8609 41.5843 53.8712 42.5533C52.8814 43.5222 51.539 44.0666 50.1392 44.0666H18.4725L7.91699 54.3999V13.0666C7.91699 11.6963 8.47304 10.3821 9.46282 9.41318C10.4526 8.44425 11.795 7.8999 13.1948 7.8999H50.1392C51.539 7.8999 52.8814 8.44425 53.8712 9.41318C54.8609 10.3821 55.417 11.6963 55.417 13.0666V38.8999Z"
-        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="0.5" y="0.649902" width="62.3333" height="61" stroke="#FAC29A"/>
+        stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <rect height="61" stroke="#FAC29A" width="62.3333" x="0.5" y="0.649902"/>
     </svg>
   </button>
 </div>

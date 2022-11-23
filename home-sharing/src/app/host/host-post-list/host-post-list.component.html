@@ -16,8 +16,8 @@
       </div>
       <div class="btn_search" style="justify-self: end; width: 60%;">
         <mat-form-field appearance="standard" style="width:100%;">
-          <mat-label>Filter</mat-label>
-          <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
+          <mat-label>Tìm kiếm</mat-label>
+          <input #input (keyup)="applyFilter($event)" matInput placeholder="">
         </mat-form-field>
       </div>
     </div>
@@ -82,12 +82,29 @@
             </div>
           </td>
         </ng-container>
+        <ng-container matColumnDef="rate">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Đánh giá</th>
+          <td *matCellDef="let row" mat-cell>
+            <div style="background: none" class="card_function d-flex justify-content-center">
+            <div class="star" >
+              <button style="width: 63px" type="button">
+                <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.377 1L13.2738 5.93691L19.752 6.73344L15.0645 10.5741L16.1707 16L10.377 13.4369L4.5832 16L5.68945 10.5741L1.00195 6.73344L7.48008 5.93691L10.377 1Z"
+                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {{convertTo2Decimal(row.avgRate)}}
+              </button>
+            </div>
+            </div>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="function">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Chức năng</th>
           <td *matCellDef="let row" mat-cell>
             <div class="card_function d-flex justify-content-center">
               <div class="edit">
-                <button type="button" (click)="onEditPost(row.postID)">
+                <button type="button" [matTooltip]="'Chỉnh sửa bài viết'" (click)="onEditPost(row.postID)">
                   <svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M13.8914 4H5.1803C4.52021 4 3.88715 4.21071 3.42039 4.58579C2.95363 4.96086 2.69141 5.46957 2.69141 6V20C2.69141 20.5304 2.95363 21.0391 3.42039 21.4142C3.88715 21.7893 4.52021 22 5.1803 22H22.6026C23.2627 22 23.8957 21.7893 24.3625 21.4142C24.8293 21.0391 25.0915 20.5304 25.0915 20V13"
@@ -98,18 +115,9 @@
                   </svg>
                 </button>
               </div>
-              <div class="star">
-                <button>
-                  <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M10.377 1L13.2738 5.93691L19.752 6.73344L15.0645 10.5741L16.1707 16L10.377 13.4369L4.5832 16L5.68945 10.5741L1.00195 6.73344L7.48008 5.93691L10.377 1Z"
-                      stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  {{row.avgRate}}
-                </button>
-              </div>
+
               <div class="voucher">
-                <button>
+                <button type="button" [matTooltip]="'Thêm mã khuyến mãi'">
                   <svg width="34" height="31" viewBox="0 0 34 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M29.1688 17.3214L19.0113 26.5827C18.7482 26.8229 18.4357 27.0134 18.0918 27.1434C17.7478 27.2734 17.3791 27.3403 17.0068 27.3403C16.6344 27.3403 16.2657 27.2734 15.9218 27.1434C15.5778 27.0134 15.2653 26.8229 15.0022 26.5827L2.83301 15.5002V2.5835H16.9997L29.1688 13.6789C29.6966 14.1629 29.9928 14.8177 29.9928 15.5002C29.9928 16.1826 29.6966 16.8374 29.1688 17.3214Z"

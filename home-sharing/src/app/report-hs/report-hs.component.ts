@@ -13,20 +13,26 @@ export class ReportHsComponent implements OnInit {
   selectedReportChips:{id:number,name:string}
   chipReportContent:{id:number,name:string}[]
   =[
-    {id:1,name:'Homestay không giống với bài đăng'},
-    {id:2,name:'Chủ nhà không văn minh, gây nguy hiểm'},
-    {id:3,name:'Đòi chi phí chênh lệch'},
-    {id:4,name:'Homestay đã xuống cấp gây nguy hiểm'},
-    {id:5,name:'Khác'}
+    // {id:1,name:'Homestay không giống với bài đăng'},
+    // {id:2,name:'Chủ nhà không văn minh, gây nguy hiểm'},
+    // {id:3,name:'Đòi chi phí chênh lệch'},
+    // {id:4,name:'Homestay đã xuống cấp gây nguy hiểm'},
+    // {id:5,name:'Khác'}
   ]
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {postID:number},private fb:FormBuilder,private reportHsService:ReportHsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {id:number,type:number},private fb:FormBuilder,private reportHsService:ReportHsService) {
     this.formReportHS = this.fb.group({
       descriptionCtrl:['',Validators.required],
     })
   }
 
   ngOnInit(): void {
+    this.reportHsService.getReportType(this.data.type).subscribe(response=>{
+      let listReportTyp = response.object
+      this.chipReportContent = listReportTyp.map(data=> {
+        return {id:data.id,name:data.name}
+      })
+    })
   }
 
   isSelected(chip): boolean {
@@ -35,19 +41,22 @@ export class ReportHsComponent implements OnInit {
 
   onReport() {
     console.log('submited')
-    console.log('id report: '+this.data.postID)
+    console.log('id report: '+this.data.id)
     let description = this.formReportHS.controls.descriptionCtrl.value
     console.log('description: '+description)
 
-    this.reportHsService.pushReportHS(this.data.postID,this.selectedReportChips.id,description).subscribe({
+    this.reportHsService.pushReportHS(this.data.id,this.selectedReportChips.id,description,this.data.type).subscribe({
       next:responseData=>{
         console.log(responseData)
       },
       error:errorMessageResponse=>{
         console.log(errorMessageResponse)
+        alert('Báo cáo đánh giá thất bại')
+
       },
       complete:()=>{
         console.log('complete')
+        alert('Báo cáo đánh giá thành công')
       }
     })
   }

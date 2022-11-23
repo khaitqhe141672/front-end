@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {RateDetailService} from "./rate-detail.service";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
-import {DetailRateDtoList, PostDetailOfRate} from "./rate-detail.model";
+import {DetailRateDtoList, PostDetailOfRate, RateDetailResponseData} from "./rate-detail.model";
 import {map, switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ReportHsComponent} from "../../report-hs/report-hs.component";
 
 @Component({
   selector: 'app-rate-detail',
@@ -14,13 +16,14 @@ export class RateDetailComponent implements OnInit {
   totalPage = 1
   pageIndex = 1
   postID: number
-  postDetail:PostDetailOfRate
+  postDetail:PostDetailOfRate  = {postID:null,detailRateDtoList:[],avgRate:null,statusPost:null,title:''}
   loadListRateDetailObj: Observable<PostDetailOfRate>
   listRateDetail:DetailRateDtoList[]
   subLoadListDetail: Subscription
   refreshListRateDetail = new BehaviorSubject<boolean>(true)
 
-  constructor(private rateDetailService: RateDetailService, private route: ActivatedRoute) {
+  reportRateDialogRef:MatDialogRef<ReportHsComponent>
+  constructor(private dialog:MatDialog,private rateDetailService: RateDetailService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -28,7 +31,7 @@ export class RateDetailComponent implements OnInit {
         this.postID = +params.get('id')
         this.onLoadListRateDetail(this.pageIndex, this.postID)
 
-        console.log('onInit id = ' + this.postID)
+        // console.log('onInit id = ' + this.postID)
       }, error => {
       console.log('some error occurs')
       },
@@ -37,15 +40,15 @@ export class RateDetailComponent implements OnInit {
       }
     )
   }
-
+   rateDetailData:RateDetailResponseData
   onLoadListRateDetail(pageIndex: number, postId: number) {
     this.loadListRateDetailObj = this.refreshListRateDetail
       .pipe(switchMap(_ => this.rateDetailService.getListRate(pageIndex, postId)
         .pipe(map(data => {
-          let rateDetailData = data.data
-          this.totalPage = rateDetailData.sizePage
-          this.listRateDetail = rateDetailData.listDetailRate.detailRateDtoList
-          return rateDetailData.listDetailRate
+          this.rateDetailData = data.data
+          this.totalPage = this.rateDetailData.sizePage
+          this.listRateDetail = this.rateDetailData.listDetailRate.detailRateDtoList
+          return this.rateDetailData.listDetailRate
         }))
       ))
     if(this.subLoadListDetail) this.subLoadListDetail.unsubscribe()
@@ -59,5 +62,15 @@ export class RateDetailComponent implements OnInit {
 
   counter(i: number) {
     return new Array(i);
+  }
+
+  onReportRate(rateID: number) {
+    this.reportRateDialogRef = this.dialog.open(ReportHsComponent,{
+      hasBackdrop:true,
+      data:{
+        id:rateID,
+        type:2
+      }
+    })
   }
 }

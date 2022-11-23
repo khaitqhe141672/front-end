@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 export class HostPostListComponent implements OnInit {
 
   complaintReportPickerDialogRef: MatDialogRef<ComplaintReportComponent>
-  displayedColumns: string[] = ['id', 'titleHomestay', 'status', 'date', 'report', 'function'];
+  displayedColumns: string[] = ['id', 'titleHomestay', 'status', 'date', 'report','rate', 'function'];
   dataSource: MatTableDataSource<PostDetail>
 
   totalPaginator: number
@@ -75,5 +75,9 @@ export class HostPostListComponent implements OnInit {
 
   onEditPost(postID: number) {
     this.router.navigate(['../posts/post-edit/'+postID])
+  }
+
+  convertTo2Decimal(data:number){
+    return Math.round((data+Number.EPSILON)*10)/10
   }
 }

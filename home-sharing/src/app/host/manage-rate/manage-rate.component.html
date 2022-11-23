@@ -5,10 +5,11 @@
   <div class="content_list_rate">
     <div class="list_rate">
       <div *ngFor="let rate of loadListRateObs|async" class="card_rate">
-        <div class="card_rate_title me-2">
+        <div [matTooltip]="rate.title" class="card_rate_title me-2">
           <span style="display:inline-block; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 30ch;">
             {{rate.title}}
           </span>
+
         </div>
         <div class="rate">
           <a [routerLink]="'rate-detail/'+rate.postID">Đánh giá mới ({{rate.totalRate}}), Báo cáo({{rate.totalReportRate}})

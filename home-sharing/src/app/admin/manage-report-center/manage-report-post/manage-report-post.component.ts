@@ -8,6 +8,7 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ReportPostDetailDialogComponent} from "./report-post-detail-dialog/report-post-detail-dialog.component";
+import {HandleStatusDialogComponent} from "./handle-status-dialog/handle-status-dialog.component";
 
 @Component({
   selector: 'app-manage-report-post',
@@ -15,7 +16,7 @@ import {ReportPostDetailDialogComponent} from "./report-post-detail-dialog/repor
   styleUrls: ['./manage-report-post.component.css']
 })
 export class ManageReportPostComponent implements OnInit {
-  displayedColumns: string[] = ['postID', 'title','description','numbersOfReport','status' ];
+  displayedColumns: string[] = ['postID', 'title','description','numbersOfReport','statusPost','statusReportPost' ];
   dataSource:MatTableDataSource<ReportPostDetail>
   pageIndex:number = 1
   totalPaginator = 1
@@ -27,6 +28,8 @@ export class ManageReportPostComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   reasonReportDetailDialog:MatDialogRef<ReportPostDetailDialogComponent>
+  handleStatusDialogRef:MatDialogRef<HandleStatusDialogComponent>
+
 
   constructor(private manageReportPostService:ManageReportPostService,
   private dialog:MatDialog) { }
@@ -70,5 +73,29 @@ export class ManageReportPostComponent implements OnInit {
   handlePageEvent($event: PageEvent) {
       this.pageIndex = $event.pageIndex
     this.onLoadingReportPost()
+  }
+
+  openDialog(reportID:number,postId:number,statusReport:number,statusPost:number){
+    //0:chưa xử lý
+    //1: hoạt động
+    //2: ẩn
+    this.handleStatusDialogRef = this.dialog.open(HandleStatusDialogComponent,{hasBackdrop:true})
+    this.handleStatusDialogRef.afterClosed().subscribe(response=>{
+      if(response as boolean){
+          this.manageReportPostService.updatePostStatus(postId,statusPost)
+            .subscribe(response =>console.log('openDialog: '+response))
+      }
+    },
+      ()=>{},
+    ()=>{
+      this.manageReportPostService.updateStatusReportPost(reportID,statusReport)
+        .subscribe(response =>{
+          console.log('update status report: '+response)
+        },()=>{},
+          ()=>{
+            this.refreshReportPost.next(true)
+          }
+        )}
+    )
   }
 }

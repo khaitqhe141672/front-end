@@ -71,41 +71,49 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
 import {ReportHsComponent} from './report-hs/report-hs.component';
 import {VoucherComponent} from './voucher/voucher.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import { CheckOutBookingComponent } from './host/check-out-booking/check-out-booking.component';
-import { CurrentBookingDetailComponent } from './host/current-booking-detail/current-booking-detail.component';
-import { ComingBookingDetailComponent } from './host/coming-booking-detail/coming-booking-detail.component';
-import { ConfirmBookingComponent } from './host/confirm-booking/confirm-booking.component';
-import { WaitBookingDetailComponent } from './host/wait-booking-detail/wait-booking-detail.component';
-import { ComplaintReportComponent } from './host/complaint-report/complaint-report.component';
-import { ManageVoucherComponent } from './host/manage-voucher/manage-voucher.component';
+import {CheckOutBookingComponent} from './host/check-out-booking/check-out-booking.component';
+import {CurrentBookingDetailComponent} from './host/current-booking-detail/current-booking-detail.component';
+import {ComingBookingDetailComponent} from './host/coming-booking-detail/coming-booking-detail.component';
+import {ConfirmBookingComponent} from './host/confirm-booking/confirm-booking.component';
+import {WaitBookingDetailComponent} from './host/wait-booking-detail/wait-booking-detail.component';
+import {ComplaintReportComponent} from './host/complaint-report/complaint-report.component';
+import {ManageVoucherComponent} from './host/manage-voucher/manage-voucher.component';
 import {MatTableModule} from "@angular/material/table";
-import { CreateVoucherComponent } from './host/create-voucher/create-voucher.component';
-import { AdminComponent } from './admin/admin.component';
-import { HeaderAdminComponent } from './header-admin/header-admin.component';
-import { ManagePostComponent } from './admin/manage-post/manage-post.component';
+import {CreateVoucherComponent} from './host/create-voucher/create-voucher.component';
+import {AdminComponent} from './admin/admin.component';
+import {HeaderAdminComponent} from './header-admin/header-admin.component';
+import {ManagePostComponent} from './admin/manage-post/manage-post.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTreeModule} from "@angular/material/tree";
-import { ManagerAccountHostComponent } from './admin/manager-account/manager-account-host.component';
+import {ManagerAccountHostComponent} from './admin/manager-account/manager-account-host.component';
 import {MatSortModule} from "@angular/material/sort";
-import { AccountDetailComponent } from './admin/manager-account/account-detail/account-detail.component';
+import {AccountDetailComponent} from './admin/manager-account/account-detail/account-detail.component';
 import {MatRadioModule} from "@angular/material/radio";
-import { DetailAccountCustomerComponent } from './admin/manager-account-customer/detail-account-customer/detail-account-customer.component';
+import {
+  DetailAccountCustomerComponent
+} from './admin/manager-account-customer/detail-account-customer/detail-account-customer.component';
 import {ManagerAccountCustomerComponent} from "./admin/manager-account-customer/manager-account-customer.component";
 import {CustomMatPaginatorIntl} from "./shared/CustomPaginatorConfiguration";
-import { ManagerAccountCenterComponent } from './admin/manager-account-center/manager-account-center.component';
-import { ManageCurrentComponent } from './host/manage-current/manage-current.component';
-import { CurrentBookingComponent } from './host/manage-current/current-booking/current-booking.component';
-import { ComingBookingComponent } from './host/manage-current/coming-booking/coming-booking.component';
-import { ListConfirmBookingComponent } from './host/manage-current/list-confirm-booking/list-confirm-booking.component';
-import { ReportDetailComponent } from './host/complaint-report/report-detail/report-detail.component';
-import { ManageReportCenterComponent } from './admin/manage-report-center/manage-report-center.component';
-import { ManageReportPostComponent } from './admin/manage-report-center/manage-report-post/manage-report-post.component';
-import { ManageReportRateComponent } from './admin/manage-report-center/manage-report-rate/manage-report-rate.component';
-import { ManageComplainComponent } from './admin/manage-report-center/manage-complain/manage-complain.component';
-import { ReportPostDetailDialogComponent } from './admin/manage-report-center/manage-report-post/report-post-detail-dialog/report-post-detail-dialog.component';
-import { ReportRateComponent } from './report-rate/report-rate.component';
-import { HandleStatusVoucherComponent } from './host/manage-voucher/handle-status-voucher/handle-status-voucher.component';
+import {ManagerAccountCenterComponent} from './admin/manager-account-center/manager-account-center.component';
+import {ManageCurrentComponent} from './host/manage-current/manage-current.component';
+import {CurrentBookingComponent} from './host/manage-current/current-booking/current-booking.component';
+import {ComingBookingComponent} from './host/manage-current/coming-booking/coming-booking.component';
+import {ListConfirmBookingComponent} from './host/manage-current/list-confirm-booking/list-confirm-booking.component';
+import {ReportDetailComponent} from './host/complaint-report/report-detail/report-detail.component';
+import {ManageReportCenterComponent} from './admin/manage-report-center/manage-report-center.component';
+import {ManageReportPostComponent} from './admin/manage-report-center/manage-report-post/manage-report-post.component';
+import {ManageReportRateComponent} from './admin/manage-report-center/manage-report-rate/manage-report-rate.component';
+import {ManageComplainComponent} from './admin/manage-report-center/manage-complain/manage-complain.component';
+import {
+  ReportPostDetailDialogComponent
+} from './admin/manage-report-center/manage-report-post/report-post-detail-dialog/report-post-detail-dialog.component';
+import {ReportRateComponent} from './report-rate/report-rate.component';
+import {
+  HandleStatusVoucherComponent
+} from './host/manage-voucher/handle-status-voucher/handle-status-voucher.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { HandleStatusDialogComponent } from './admin/manage-report-center/manage-report-post/handle-status-dialog/handle-status-dialog.component';
 
 @NgModule({
   declarations: [
@@ -166,44 +174,45 @@ import { HandleStatusVoucherComponent } from './host/manage-voucher/handle-statu
     ManageComplainComponent,
     ReportPostDetailDialogComponent,
     ReportRateComponent,
-    HandleStatusVoucherComponent
+    HandleStatusVoucherComponent,
+    HandleStatusDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        CoreModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatIconModule,
-        MatMenuModule,
-        NgbPaginationModule, NgbAlertModule, NgbModule,
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    CoreModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatIconModule,
+    MatMenuModule,
+    NgbPaginationModule, NgbAlertModule, NgbModule,
 
-        MatChipsModule, MatListModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
-        }),
-        MatSnackBarModule,
-        NgxStarRatingModule, MatCheckboxModule,
-        NgMultiSelectDropDownModule.forRoot(),
-        NgxDropzoneModule,
-        NgxFileDropModule,
-        MatPaginatorModule,
-        MatCardModule, MatDialogModule,
-        MatNativeDateModule, FormsModule,
-        MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule
-    ],
+    MatChipsModule, MatListModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
+    }),
+    MatSnackBarModule,
+    NgxStarRatingModule, MatCheckboxModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDropzoneModule,
+    NgxFileDropModule,
+    MatPaginatorModule,
+    MatCardModule, MatDialogModule,
+    MatNativeDateModule, FormsModule,
+    MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule, MatTooltipModule
+  ],
   providers: [
     DatePipe,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},

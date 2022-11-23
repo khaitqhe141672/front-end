@@ -16,6 +16,7 @@ export class ReportPostDetail {
   imageUserUrl: string
   typeAccount: number
   totalReport: number
-  status: number
+  statusPost: number
+  statusReportPost: number
   imagePostUrl?: string
 }

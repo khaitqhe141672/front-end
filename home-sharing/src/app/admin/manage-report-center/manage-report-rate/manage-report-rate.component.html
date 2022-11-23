@@ -1,1 +1,82 @@
-<p>manage-report-rate works!</p>
+<div class="container-fluid ">
+  <mat-form-field appearance="standard">
+    <mat-label>Tìm kiếm</mat-label>
+    <input #input (keyup)="applyFilter($event)" matInput>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8 ">
+    <table [dataSource]="dataSource" class="w-100" mat-table matSort>
+
+      <ng-container matColumnDef="reportID">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Mã báo cáo</th>
+        <td *matCellDef="let row" mat-cell> {{row.reportID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên người dùng báo cáo</th>
+        <td *matCellDef="let row" mat-cell> {{row.username}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Chi tiết lý do</th>
+        <td *matCellDef="let row" mat-cell>
+          {{row.description}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nameReportType">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Kiểu báo cáo</th>
+        <td *matCellDef="let row" mat-cell> {{row.nameReportType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Xử lý đánh giá</th>
+        <td *matCellDef="let row" [ngSwitch]="row.status" mat-cell>
+          <button disabled="{{row.status==2}}" class="p-0" #menuTrigger [matMenuTriggerFor]="menu" mat-button>
+            <div *ngSwitchCase="1" style="color: #CC3636">
+              <div  class="d-flex align-items-center justify-content-center">
+                <div class="d-flex flex-row align-items-start justify-content-start">
+                  <mat-icon style="fill: #CC3636">
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+                  </mat-icon>
+                </div>
+                <div>Chưa xử lý</div>
+              </div>
+            </div>
+            <div *ngSwitchCase="2" style="color:#5E7FDC ">
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
+                  <mat-icon style="fill: #5E7FDC">
+                  <span class="material-symbols-outlined">
+                      fiber_manual_record
+                  </span>
+                  </mat-icon>
+                </div>
+                <div>Đã xử lý(ẩn đánh giá)</div>
+              </div>
+            </div>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="openDialog(row.reportID,2)" mat-menu-item>
+              Ẩn đánh giá này
+            </button>
+          </mat-menu>
+
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+      <tr *matNoDataRow class="mat-row">
+        <td class="mat-cell" colspan="4">Không có dữ liệu trùng khớp "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator (page)="handlePageEvent($event)" [hidePageSize]="true" [length]="totalPageIndex" [pageSize]="10"
+                   aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>
