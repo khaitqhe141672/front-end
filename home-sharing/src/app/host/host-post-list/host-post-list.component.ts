@@ -10,6 +10,9 @@ import {HostPostListServices} from "./host-post-list-services";
 import {ListReportPost} from "../../shared/model/report-post.model";
 import {Router} from "@angular/router";
 import {ConfirmDialogComponent} from "../../shared/dialog/confirm-dialog/confirm-dialog.component";
+import {PostVoucherDialogComponent} from "./post-voucher-dialog/post-voucher-dialog.component";
+import {VoucherComponent} from "../../voucher/voucher.component";
+import {Voucher} from "../../shared/model/voucher.model";
 
 @Component({
   selector: 'app-host-post-list',
@@ -22,6 +25,7 @@ export class HostPostListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'titleHomestay', 'status', 'date', 'report','rate', 'function'];
   dataSource: MatTableDataSource<PostDetail>
   updateStatusPostDiaLog:MatDialogRef<boolean>
+  voucherDialogRef:MatDialogRef<PostVoucherDialogComponent>
   totalPaginator: number
   pageIndex: number = 1
 
@@ -96,5 +100,19 @@ export class HostPostListComponent implements OnInit {
 
   onPayment(postID: number) {
     this.router.navigate(['../payment/'+postID])
+  }
+
+  openVoucher(postID: number) {
+    this.voucherDialogRef = this.dialog.open(PostVoucherDialogComponent,{
+      data:postID,
+      hasBackdrop:true})
+    this.voucherDialogRef.afterClosed().subscribe(response=>{
+      let voucher:Voucher[] = response
+      let listVoucherID:number[] = voucher.map(voucher=>voucher.idVoucher)
+      console.log(listVoucherID)
+      this.hostPostListService.updateVoucher(postID,listVoucherID).subscribe(response=>{
+        console.log(response)
+      })
+    })
   }
 }

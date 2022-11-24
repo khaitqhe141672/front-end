@@ -117,6 +117,7 @@ import { HandleStatusDialogComponent } from './admin/manage-report-center/manage
 import { ConfirmDialogComponent } from './shared/dialog/confirm-dialog/confirm-dialog.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import {PostVoucherDialogComponent} from "./host/host-post-list/post-voucher-dialog/post-voucher-dialog.component";
 
 @NgModule({
   declarations: [
@@ -181,7 +182,8 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     HandleStatusDialogComponent,
     ConfirmDialogComponent,
     PaymentComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    PostVoucherDialogComponent
   ],
   imports: [
     BrowserModule,

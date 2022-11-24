@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Thêm mã khuyến mãi cho bài đăng</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formVoucher">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Chọn mã giảm giá</mat-label>
+    <mat-chip-list #chipListVoucher aria-label="">
+      <mat-chip style="background-color: #F36B08;color: white"
+                (removed)="removeVouchers(voucher)"
+                *ngFor="let voucher of saveVouchers">
+        {{voucher.nameVoucher}}-Giảm:{{voucher.percent}}%
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+
+      <input class="w-100"
+        #voucherInput
+        (matChipInputTokenEnd)="addVoucher($event)"
+        [matAutocomplete]="auto2"
+        [matChipInputFor]="chipListVoucher"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        formControlName="vouchers"
+        placeholder="Chọn mã giảm giá">
+    </mat-chip-list>
+    <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedVoucher($event)" [displayWith]="displayVoucher">
+      <ng-container *ngFor="let voucher of filteredVoucher | async">
+        <mat-option *ngIf="!vouchers.includes(voucher.nameVoucher)" [value]="voucher">
+          {{voucher.nameVoucher}}
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button (click)="onAddVoucher()" mat-button  cdkFocusInitial>Ok</button>
+</div>
