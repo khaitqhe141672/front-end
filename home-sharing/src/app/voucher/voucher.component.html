@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col">
               <mat-chip-list aria-label="Fish selection" *ngFor="let voucher of listVoucher">
-                <mat-chip style="background-color: #F36B08;color: #FFFFFF" (click)="onCopyVoucherName(voucher.nameVoucher)">{{voucher.nameVoucher}}-{{voucher.description}}-Giảm: {{voucher.percent}}%</mat-chip>
+                <mat-chip style="background-color: #F36B08;color: #FFFFFF" (click)="onCopyVoucherName(voucher.code)">{{voucher.code}}-{{voucher.description}}-Giảm: {{voucher.percent}}%</mat-chip>
               </mat-chip-list>
 
             </div>

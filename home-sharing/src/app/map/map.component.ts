@@ -15,69 +15,88 @@ import {HttpClient, HttpRequest} from "@angular/common/http";
 import * as Mapboxgl from 'mapbox-gl'
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import {MapService} from "./map.service";
-import {debounceTime} from "rxjs/operators";
+import {catchError, debounceTime} from "rxjs/operators";
 import {ResponseCoordinateInfo} from "../shared/model/location.model";
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import {PostService} from "../posts/post.service";
 import {Subject} from "rxjs";
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, AfterViewInit,OnChanges {
+export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() addressEvent = new EventEmitter<string>();
-  @Input() lat = ''
-  @Input() lng = ''
+  @Input() lat = 16
+  @Input() lng = 108
   @Input() isEditMode = false
   @Input() isDetailMode = false
-  address:string=null
+  address: string = null
+  map: Mapboxgl.Map
+  marker: any
 
-  sendAddress(){
+  constructor(private mapService: MapService, private postService: PostService) {
+  }
+
+  sendAddress() {
     return this.addressEvent.emit(this.address)
   }
-  constructor(private mapService:MapService,private postService:PostService) { }
-  map:Mapboxgl.Map
+
   ngOnInit(): void {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
-    console.log('lat: '+this.lat)
-    console.log('lng: '+this.lng)
+    console.log('lat: ' + this.lat)
+    console.log('lng: ' + this.lng)
     // this.getLocation()
   }
-  marker:any
-  createMarker(lng:number,lat:number){
-    console.log('lat 2: '+this.lat)
-    console.log('lng 2: '+this.lng)
-    if(!lng&&!lat) {
+
+  createMarker(lng: number, lat: number) {
+
+    console.log('lat 2: ' + this.lat)
+    console.log('lng 2: ' + this.lng)
+    if (!lng && !lat) {
       lng = 16
       lat = 108
     }
     // if(lat>90||lat<-90) lat = 108
+
+    if (this.isDetailMode) {
       this.marker = new Mapboxgl.Marker({
-        draggable:true
-      }).setLngLat([lat,lng]).addTo(this.map)
+        draggable: false
+      }).setLngLat([lat, lng]).addTo(this.map)
+    } else {
+      this.marker = new Mapboxgl.Marker({
+        draggable: true
+      }).setLngLat([lat, lng]).addTo(this.map)
+    }
+    if (this.isDetailMode) {
+      // this.marker.dragging.disable()
+      return
+    }
 
-    if(!this.isDetailMode) return
-
-    this.marker.on('dragend',()=>{
-      console.log('dropped')
-      let coordinate =  this.marker.getLngLat();
-      this.mapService.markerLat = coordinate.lat
-      this.mapService.markerLng = coordinate.lng
-      this.getLocation()
-      console.log(this.mapService.markerLat+"/"+this.mapService.markerLng)
-    })
-    this.map.on('click',(e)=>{
-      console.log(e.lngLat.lng)
-      this.mapService.markerLat= e.lngLat.lat
-      this.mapService.markerLng  = e.lngLat.lng
-      this.marker.setLngLat([ this.mapService.markerLng, this.mapService.markerLat]).addTo(this.map)
-      this.getLocation()
-    })
+   try{
+      this.marker.on('dragend', () => {
+        console.log('dropped')
+        let coordinate = this.marker.getLngLat();
+        this.mapService.markerLat = coordinate.lat
+        this.mapService.markerLng = coordinate.lng
+        this.getLocation()
+        console.log(this.mapService.markerLat + "/" + this.mapService.markerLng)
+      })
+      this.map.on('click', (e) => {
+        console.log(e.lngLat.lng)
+        this.mapService.markerLat = e.lngLat.lat
+        this.mapService.markerLng = e.lngLat.lng
+        this.marker.setLngLat([this.mapService.markerLng, this.mapService.markerLat]).addTo(this.map)
+        this.getLocation()
+      })
+    }catch (e) {
+     
+   }
   }
 
-  getLocation(){
-    this.mapService.getGeoLocation().subscribe(responseCoordinateInfo=>{
+  getLocation() {
+    this.mapService.getGeoLocation().subscribe(responseCoordinateInfo => {
       let placeName = responseCoordinateInfo.features[0].place_name
       console.log(placeName)
       this.address = placeName
@@ -87,17 +106,20 @@ export class MapComponent implements OnInit, AfterViewInit,OnChanges {
 
   ngAfterViewInit(): void {
     this.map = new Mapboxgl.Map({
-      container:'map',
+      container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.lng?this.lng:this.mapService.lng,this.lat?this.lat: this.mapService.lat],
+      center: [this.lng ? this.lng : this.mapService.lng, this.lat ? this.lat : this.mapService.lat],
       // center: [105,21],
-      zoom:(this.lng&&this.lat)?9:4.5
+      zoom: (this.lng && this.lat) ? 9 : 4.5
     });
-    if(!this.isEditMode) this.createMarker(16, 108)
-    if(this.lng&&this.lat) this.createMarker(+this.lat,+this.lng,)
+    if (!this.isEditMode && !this.isDetailMode) this.createMarker(16, 108)
+    if (this.isDetailMode) {
+      this.createMarker(+this.lat, +this.lng)
+    }
+
     this.map.addControl(new MapboxGeocoder({
       accessToken: Mapboxgl.accessToken,
-      marker:false,
+      marker: false,
       mapboxgl: Mapboxgl
     }))
     this.map.addControl(new Mapboxgl.GeolocateControl({
@@ -112,15 +134,15 @@ export class MapComponent implements OnInit, AfterViewInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-   if(this.isEditMode){
-     console.log('changes: '+JSON.stringify(changes))
-     console.log('lat: '+this.lat+' / lng: '+this.lng)
-     let lat = changes.lat.currentValue
-     let lng = changes.lng.currentValue
-     this.createMarker(lat,lng)
-     this.mapService.markerLat = lat
-     this.mapService.markerLng = lng
-     this.getLocation()
-   }
+    if (this.isEditMode) {
+      console.log('changes: ' + JSON.stringify(changes))
+      console.log('lat: ' + this.lat + ' / lng: ' + this.lng)
+      let lat = changes.lat.currentValue
+      let lng = changes.lng.currentValue
+      this.createMarker(lat, lng)
+      this.mapService.markerLat = lat
+      this.mapService.markerLng = lng
+      this.getLocation()
+    }
   }
 }

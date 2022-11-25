@@ -1,4 +1,6 @@
 <div class="container" style="height: 1000px!important;">
+  <mat-progress-bar *ngIf="isBooking" mode="indeterminate"></mat-progress-bar>
+
   <div class="row mt-3 mb-3">
     <div class="col-12">
       <h1 class="title">Xác nhận đặt phòng</h1>
@@ -47,15 +49,10 @@
                 <span>
                 <button type="button" (click)="increaseGuestNumber()" aria-label="Example icon button with a vertical three dot icon" mat-icon-button>
                     <mat-icon style="fill: #F36B08">add</mat-icon>
-
                 </button>
               </span>
               </p>
-
             </div>
-<!--            <div class="col text-end">-->
-<!--              <button (click)="()" class="btn btn-calendar p-0" type="button">Đổi số khách</button>-->
-<!--            </div>-->
           </div>
         </div>
         <hr>
@@ -63,16 +60,22 @@
           <h2>Khuyến mãi</h2>
         </div>
         <div class="row">
-          <div class="col-4 pe-0">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Nhập mã giảm giá</mat-label>
-              <input matInput placeholder="">
-              <mat-hint>Bạn chỉ được chọn duy nhất 1 mã giảm giá</mat-hint>
-            </mat-form-field>
-          </div>
-          <div class="col-3 d-flex ps-0 pb-3 justify-content-center align-items-center text-center">
-            <button type="button" class="btn btn-outline-primary">Kiểm tra</button>
-          </div>
+         <div class="col-6 pe-0 d-flex flex-row">
+           <form [formGroup]="formCheckVoucher" (ngSubmit)="checkVoucherExist()">
+             <div class="d-flex flex-row align-items-start justify-content-center">
+               <div>
+                 <mat-form-field appearance="outline" class="w-100">
+                   <mat-label>Nhập mã giảm giá</mat-label>
+                   <input formControlName="codeVoucherCtrl" matInput placeholder="">
+                   <mat-hint>Bạn chỉ được chọn duy nhất 1 mã giảm giá</mat-hint>
+                 </mat-form-field>
+               </div>
+               <div class="ms-3 mt-2">
+                 <button type="submit" class="btn btn-outline-primary">Kiểm tra</button>
+               </div>
+             </div>
+           </form>
+         </div>
           <div class="col-5 text-end">
             <button type="button"
                     (click)="onOpenVoucherDialog()"
@@ -110,10 +113,10 @@
         <div class="row">
           <div class="col-12">
             <p>
-              <mat-checkbox [color]="'warn'">Quý khách sẽ được huỷ đặt phòng trong vòng 24h</mat-checkbox>
+             Quý khách sẽ được huỷ đặt phòng trong vòng 24h
             </p>
             <p>
-              <mat-checkbox [color]="'warn'">Khi đặt phòng mã giảm giá đã áp dụng không thể hoàn lại</mat-checkbox>
+             Khi đặt phòng mã giảm giá đã áp dụng không thể hoàn lại
             </p>
           </div>
         </div>
@@ -134,7 +137,7 @@
                 <mat-list-option *ngFor="let s of listService" [value]="s" color="warn">
                   <div class="row tb-service-row mb-3 mt-3 utility_service">
                     <div class="col-4"><span>
-                 {{s.iconService}}
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M5.75 4A1.75 1.75 0 004 5.75v4.5c0 .966.784 1.75 1.75 1.75h4.5A1.75 1.75 0 0012 10.25v-4.5A1.75 1.75 0 0010.25 4h-4.5z"></path></svg>
                 </span></div>
                     <div class="col-4">{{s.nameService}}</div>
                     <div class="col-3 p-0">{{s.price}}VND/người</div>
@@ -190,13 +193,13 @@
             <h3>Tổng hoá đơn đặt phòng</h3>
           </div>
           <div class="col-6 text-end">
-            <h3 style="font-weight: bold">{{totalBillAfterDiscount}}</h3>
+            <h3 style="font-weight: bold">{{totalBillAfterDiscount}} VND</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <p>
-              <mat-checkbox [color]="'warn'">
+              <mat-checkbox #confirm (change)="changeValue($event)" formControlName="confirmCtrl" [ngModel]="isConfirm" [color]="'warn'">
                 Bằng việc chọn nút bên dưới, tôi đồng ý với <span style="color: #F36B08">Nội quy nhà của Chủ nhà</span>,
                 Chính sách đặt lại và hoàn tiền của Chủ nhà, và đồng ý rằng Chủ nhà
                 có thể tính phí vào phương thức thanh toán của tôi nếu tôi phải chịu
@@ -207,7 +210,7 @@
         </div>
         <div class="row" style="height: 60px">
           <div class="col-12 text-center d-flex align-items-center justify-content-center">
-            <button (click)="formBooking.ngSubmit.emit()" type="button" class="btn h-100 w-100 btn-success text-center btn-bill-submit">Xác nhận</button>
+            <button [disabled]="!isConfirm||!formGroupBooking.valid" (click)="formBooking.ngSubmit.emit()" type="button" class="btn h-100 w-100 btn-success text-center btn-bill-submit">Xác nhận</button>
           </div>
         </div>
       </div>

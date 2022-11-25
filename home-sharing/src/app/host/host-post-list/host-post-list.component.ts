@@ -115,4 +115,8 @@ export class HostPostListComponent implements OnInit {
       })
     })
   }
+
+  openPostDetail(postID: number) {
+    this.router.navigate(['../posts/post-detail/'+postID])
+  }
 }

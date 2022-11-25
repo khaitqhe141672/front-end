@@ -26,7 +26,8 @@
 
         <ng-container matColumnDef="id">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-          <td *matCellDef="let row" mat-cell>{{row.idVoucher}}</td>
+          <td  *matCellDef="let row" mat-cell>
+            <div class="d-flex text-center">{{row.idVoucher}}</div></td>
         </ng-container>
 
         <ng-container matColumnDef="name">

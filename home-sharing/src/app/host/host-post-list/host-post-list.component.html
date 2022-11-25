@@ -34,7 +34,7 @@
 
         <ng-container matColumnDef="titleHomestay">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên Homestay</th>
-          <td *matCellDef="let row" mat-cell>{{row.title}}</td>
+          <td class="hs-name" (click)="openPostDetail(row.postID)" *matCellDef="let row" mat-cell>{{row.title}}</td>
         </ng-container>
 
         <ng-container matColumnDef="status">

@@ -114,3 +114,7 @@ hr, ul, li {
   justify-content:center;
 }
 
+.hs-name:hover{
+  cursor: pointer;
+  color: #F36B08;
+}

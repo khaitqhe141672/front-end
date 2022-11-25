@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {PostEditService} from "./post-edit.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
@@ -21,11 +21,13 @@ import {AuthInterceptorService} from "../../auth/auth-interceptor.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {PostDetailService} from "../post-detail/post-detail.service";
 import {PostDetail} from "../post-detail/post-detail.model";
+import {MyErrorStateMatcher} from "../../profile/password/password.component";
+import Swal from "sweetalert2";
 
-export interface ResponsePost {
-  message: string
-  data: IdResponse
-}
+// export interface ResponsePost {
+//   message: string
+//   data: IdResponse
+// }
 
 export interface IdResponse {
   Message: string
@@ -43,7 +45,8 @@ declare var $: any;
     AuthInterceptorService,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true}
+      useValue: {showError: false},
+
     },
   ]
 })
@@ -51,23 +54,17 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //handle input error
   matcherInput
-
+  maxFileSize = 5
+  checkFileSize = 0
   formGroupPost: FormGroup;
-  // typeHomeStay = [
-  //   'Chung cư', 'Bungalow', 'Phòng lẻ', 'Biệt thự sân vườn', 'Nhà phố', 'Nhà sàn truyền thống',
-  //   'Nhà thôn dã', 'Nhà cabin', 'Căn hộ cao cấp'
-  // ]
   //Upload Image
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
   progressInfos: any[] = [];
   message: string[] = [];
   previews: string[] = new Array<string>(5);
-  // arr = new Array<number>(3);
-  imageInfos?: Observable<any>;
   savedFiles: File[] = []
   //service:
-  dropDownServiceData = []
   saveService: { serviceID: number; price: number }[] = []
   dropDOwnSettingService: IDropdownSettings = {};
   loadedService: ServiceObj[]
@@ -75,35 +72,26 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   isServicePost = true
   isVoucherPost = true
   address: string = null
-  districts: DistrictByProvince[] = []
-  provinces: Province[] = []
   roomTypes: RoomType[] = []
-  // imgPositionChanged = new Subject<FileList>()
   imgPreviewPositionChanged = new Subject<string[]>()
   //post attribute
-  provinceID: number
-  districtID: number
   typeHsID: number
   //Ultility
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredUtility: Observable<UtilitiesData[]>;
   utilitys: string[] = [];
-  utilitiesDisplay: UtilitiesData[]
   allUtilitys: UtilitiesData[] = [];
   saveUtilities: UtilitiesData[] = []
   //Voucher
   loadedVoucher
   filteredVoucher: Observable<Voucher[]>;
   vouchers: string[] = [];
-  vouchersDisplay: Voucher[]
   allVoucher: Voucher[] = [];
   saveVouchers: Voucher[] = []
-  voucherResponse: VoucherResponse
   @ViewChild('multiSelectVoucher', {static: true}) multiSelectVoucher: MatSelect
   @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   @ViewChild('voucherInput') voucherInput: ElementRef<HTMLInputElement>;
   @ViewChild('serviceInput') serviceInput: ElementRef<HTMLInputElement>;
-  // @ViewChild('utilityInput') utilityInput: ElementRef<HTMLInputElement>;
   loadUtility$ = this.postEditService.getUtility().pipe(shareReplay())
   utilityResponse: UtilitiesResponse
   arrUtility: UtilitiesData[]
@@ -115,20 +103,10 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   postDetail: PostDetail = new PostDetail()
   fileListAsArray
   process = 0
-  protected _onDestroy = new Subject()
-
-
-  // selectedFiles?: FileList;
-  // selectedFileNames: string[] = [];
-  // progressInfos: any[] = [];
-  // message: string[] = [];
-  // previews: string[] = [];
-  // imageInfos?: Observable<any>;
-  // isServicePost = true
-  //address
+  matcher = new MyErrorStateMatcher()
   private isChangeAddress!: Subscription
 
-  constructor(private fb: FormBuilder, private postEditService: PostEditService, private mapService: MapService, private route: ActivatedRoute, private postDetailService: PostDetailService,private router:Router) {
+  constructor(private fb: FormBuilder, private postEditService: PostEditService, private mapService: MapService, private route: ActivatedRoute, private postDetailService: PostDetailService, private router: Router) {
 
   }
 
@@ -140,6 +118,11 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.formGroupPost.get('voucherPost') as FormArray
   }
 
+  get PriceHS() {
+    return this.formGroupPost.get('priceHS') as FormControl
+  }
+
+  isNewLoad = true
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.postID = +params['id']
@@ -147,46 +130,44 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('edit mode: ' + this.isEditMode)
     })
     this.initForm();
-    // this.getAllDistrict()
-    // this.getAllProvince()
     this.getAllRoomTypes()
-    // this.initMap()
-    // this.filteredVouchers = this.formGroupPost.controls['vouchersCtrl'].valueChanges.pipe(
-    //   startWith(null),
-    //   map((voucher: string | null) => (voucher ? this._filter(voucher) : this.allVouchers.slice())),
-    // );
-    // this.filteredVouchers = of(this.formGroupPost.controls['vouchersCtrl'].value).pipe(
-    //    map(voucher => voucher ? this._filter(voucher) : this.allVouchers.slice())
-    //  );
-    //  this.imageInfos = this.postEditService.getFiles();
-    //  this.formGroupPost.get('district').valueChanges.subscribe(v=>{
-    //      console.log(v)
-    //    let a = this.districts.filter(district =>{
-    //      district.name === "Quận Hoàn kiếm"
-    //    })
-    //    console.log(a)
-    //  })
     this.getUtility()
     this.isChangeAddress = this.mapService.addressChanged.subscribe(address => {
       this.address = address
-      const matcher = this.address.match('Hanoi\\s?([0-9]*)')
-      if (matcher) {
-        console.log("this is: " + matcher[0])
-        console.log(this.address.replace(/Hanoi[\\s]?([0-9]*)?/g, 'Hà Nội'))
-      } else {
-        console.log("no no")
-      }
-      console.log('this is address post edit: ' + this.address)
+        this.formGroupPost.controls.address.patchValue(address)
+        let arrAddress = address.split(',')
+        const matcher = this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).match(/\s\d+/g)
+        if (matcher) {
+          console.log(this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).replace(/\s\d+/g, ''))
+          arrAddress[arrAddress.length - 2] = arrAddress[arrAddress.length - 2].replace(/\s\d+/g, '')
+          this.address = arrAddress.join(',')
+        }
+        console.log('this is address post edit: ' + this.address)
+        this.isNewLoad = false
+
     })
-    // this.loadVoucher()
-    // this.filterUtility()
 
     this.getVoucher()
     this.getService()
-    if(this.isEditMode){
+    if (this.isEditMode) {
       this.initDataEditMode()
     }
-    // this.matcherInput = FormErrorStateMatcher
+  }
+
+  checkAddressVN() {
+    return this.address.includes('Việt Nam');
+  }
+  checkAddress(){
+    if(this.isNewLoad == false){
+      if(!this.checkAddressVN()){
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Địa chỉ không thuộc Việt Nam. Vui lòng chọn lại'
+          }
+        )
+      }
+    }
   }
 
   initForm() {
@@ -194,12 +175,10 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       name: ['', Validators.compose([
         Validators.required,
       ])],
-      address: [''],
-      // district: [''],
-      // province: [''],
+      address: ['', Validators.required],
       type: [-1],
-      description: ['', Validators.required],
-      priceHS: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(20)]],
+      priceHS: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       vouchers: [''],
       selectServiceCtrl: [''],
       servicePost: this.fb.array(
@@ -211,10 +190,10 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           })
         ]
       ),
-      guestNumber: ['', Validators.required],
-      numbersOfBed: ['', Validators.required],
-      numbersOfRoom: ['', Validators.required],
-      numbersOfBath: ['', Validators.required],
+      guestNumber: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      numbersOfBed: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      numbersOfRoom: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      numbersOfBath: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       utilitys: [''],
       image: [''],
       inputImg: [''],
@@ -227,7 +206,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  bindDataToForm(){
+  bindDataToForm() {
     this.formGroupPost.controls.name.patchValue(this.postDetail.title)
     this.formGroupPost.controls.type.patchValue(this.findRoomTypeIdByName().id)
     this.formGroupPost.controls.priceHS.patchValue(this.postDetail.price)
@@ -238,13 +217,15 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formGroupPost.controls.description.patchValue(this.postDetail.description)
 
   }
-  findRoomTypeIdByName(){
+
+  findRoomTypeIdByName() {
     return this.roomTypes.find(c => {
       if (c.name == this.postDetail.roomTypeName)
         return c.id
       else return ''
     })
   }
+
   // selected:number = 1
   initDataEditMode() {
     this.postDetailService.getPostDetail(this.postID).subscribe(responseData => {
@@ -259,7 +240,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       // })
       // this.formGroupPost.controls.type.patchValue(selectedvalue.id)
       let utilitiesDataPostLoaded = this.postDetail.postUtilityDtoList
-      for (let utility of utilitiesDataPostLoaded){
+      for (let utility of utilitiesDataPostLoaded) {
         const utilityConverter: UtilitiesData = {
           id: utility.postUtilityID,
           name: utility.nameUtility,
@@ -273,53 +254,60 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       //load service edit mode
       const services = this.postDetail.serviceDtoList
       for (let service of services) {
-        const serviceConverter = {id: service.serviceID, icon: service.iconService,name:service.nameService,price:service.price} as ServiceObj
+        const serviceConverter = {
+          id: service.serviceID,
+          icon: service.iconService,
+          name: service.nameService,
+          price: service.price
+        } as ServiceObj
         this.onAddServiceData(serviceConverter)
       }
 
       const listVoucherPostLoaded = this.postDetail.postVoucherDtoList
-      for(let voucher of listVoucherPostLoaded){
-        const voucherConverted:Voucher = {
-          idVoucher:voucher.voucherID,
-          nameVoucher:voucher.code,
-          description:voucher.description,
-          percent:voucher.percent,
-          dueDate:voucher.dueDay,
-          status:voucher.status
+      for (let voucher of listVoucherPostLoaded) {
+        const voucherConverted: Voucher = {
+          idVoucher: voucher.voucherID,
+          nameVoucher: voucher.code,
+          description: voucher.description,
+          percent: voucher.percent,
+          dueDate: voucher.dueDay,
+          status: voucher.status
         }
         this.vouchers.push(this.displayVoucher(voucherConverted))
         this.onAddVoucherData(voucherConverted)
       }
-      console.log('raw list voucher: '+JSON.stringify(this.postDetail.postVoucherDtoList))
-      console.log('list voucher: '+JSON.stringify(this.saveVouchers))
+      console.log('raw list voucher: ' + JSON.stringify(this.postDetail.postVoucherDtoList))
+      console.log('list voucher: ' + JSON.stringify(this.saveVouchers))
 
       //Load Img
       this.previews = []
       let number = 1
-        this.postEditService.getImgFile(this.postDetail.postID).subscribe((imgResponse)=>{
+      this.postEditService.getImgFile(this.postDetail.postID).subscribe((imgResponse) => {
 
+        // if(number == 1){
+        // console.log(imgResponse[0])
+        //   number =2
+        // }
+        // let objectURL = 'data:image/jpeg;base64,' + imgResponse;
+        for (let imgBase64 of imgResponse) {
+          const imgConverter = 'data:image/jpeg;base64,' + imgBase64
+          this.previews.push(imgConverter)
+          const imageBlob = this.dataURItoBlob(imgBase64);
+          const imageFile = new File([imageBlob], 'a', {type: 'image/png'});
           // if(number == 1){
-            // console.log(imgResponse[0])
+          //   console.log(this.previews)
           //   number =2
           // }
-          // let objectURL = 'data:image/jpeg;base64,' + imgResponse;
-          for (let imgBase64 of imgResponse){
-            const imgConverter = 'data:image/jpeg;base64,' + imgBase64
-            this.previews.push(imgConverter)
-            const imageBlob = this.dataURItoBlob(imgBase64);
-            const imageFile = new File([imageBlob], 'a', { type: 'image/png' });
-            // if(number == 1){
-            //   console.log(this.previews)
-            //   number =2
-            // }
-            this.savedFiles.push(imageFile)
-          }
-          console.log(this.savedFiles)
+          this.savedFiles.push(imageFile)
+          this.checkFileSize = this.maxFileSize
+        }
+        console.log(this.savedFiles)
 
-          // this.createImageFromBlob(imgResponse)
-        })
+        // this.createImageFromBlob(imgResponse)
+      })
     })
   }
+
   dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
@@ -329,6 +317,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     return new Blob([int8Array], {type: 'image/png'});
   }
+
   public findInvalidControls() {
     const invalid = [];
     const controls = this.formGroupPost.controls;
@@ -341,6 +330,39 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
+    if (this.checkFileSize <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cần chọn ảnh trước khi tạo bài đăng',
+      })
+      return
+    }
+    console.log('file size: ' + this.savedFiles.length)
+    if (this.checkFileSize != 5) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cần chọn đủ 5 ảnh trước khi tạo bài đăng',
+      })
+      return
+    }
+    if (this.saveUtilities.length <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cần ít nhất 1 tiện trước khi tạo bài đăng',
+      })
+      return
+    }
+    if(!this.checkAddressVN()){
+      Swal.fire(
+        {
+          icon: 'error',
+          title: 'Địa chỉ không thuộc Việt Nam. Vui lòng chọn lại'
+        }
+      ).then(()=>{
+        return
+      })
+
+    }
     console.log('clicked')
     let postName = this.formGroupPost.controls['name'].value
     let address = this.formGroupPost.controls['address'].value
@@ -383,7 +405,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     // console.log('7.title: ' + postName)
     // console.log('8.description: ' + description)
     // console.log('9.priceHS: ' + priceHS)
-    // console.log('10.utility: ' + JSON.stringify(saveUtilityIDs))
+    console.log('10.utility: ' + JSON.stringify(saveUtilityIDs))
     // console.log('11.voucher: ' + JSON.stringify(this.saveVouchers))
     // console.log('12.lat: '+lat)
     // console.log('13.lng: '+lng)
@@ -392,7 +414,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     // console.log('15."paymentPackageID": 1')
     // console.log('---------------------------------------------------')
     let post = new Post()
-    if(this.postDetail.postID) post.postID = this.postDetail.postID
+    if (this.postDetail.postID) post.postID = this.postDetail.postID
     post.guestNumber = guestNumber
     post.numberOfBathrooms = numbersOfBath
     post.numberOfBedrooms = numbersOfRoom
@@ -402,7 +424,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     post.description = description
     post.price = priceHS
 
-    this.typeHsID?post.roomTypeID = this.typeHsID:post.roomTypeID = typeID
+    this.typeHsID ? post.roomTypeID = this.typeHsID : post.roomTypeID = typeID
 
     post.address = this.address
 
@@ -411,8 +433,8 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.postEditService.pushPost(typeID,post,lat,lng,saveUtilityIDs,saveVoucherID,this.saveService)
     this.isUploading = true
     let pushPostObservable: Observable<any>
-    pushPostObservable = this.postEditService.pushPost(post, lat, lng, saveUtilityIDs, saveVoucherID, this.saveService)
-    pushPostObservable.subscribe({
+    // pushPostObservable =
+      this.postEditService.pushPost(post, lat, lng, saveUtilityIDs, saveVoucherID, this.saveService).subscribe({
       next: responseData => {
         console.log('res2: ' + JSON.stringify(responseData))
         postIDResponse = responseData.data.postID as number
@@ -420,24 +442,17 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: errMessageResponse => {
         console.log(errMessageResponse)
+        Swal.fire({
+          icon: 'error',
+          title: 'Tạo bài đăng thất bại! Vui lòng thử lại trong giây lát',
+        })
       },
       complete: () => {
         console.log('complete')
-          this.isEditMode?this.uploadFiles(post.postID):this.uploadFiles(postIDResponse)
+        this.isEditMode ? this.uploadFiles(post.postID) : this.uploadFiles(postIDResponse)
       }
     })
   }
-
-  // removeUtilitys(utility: UtilitiesData): void {
-  //   const index = this.utilitys.indexOf(utility.name);
-  //   const index2 = this.saveUtilities.indexOf(utility)
-  //   if (index >= 0) {
-  //     this.utilitys.splice(index, 1);
-  //     this.saveUtilities.splice(index2,1)
-  //   }
-  //   console.log('size save utility: '+this.saveUtilities.length)
-  //   console.log('remove utility '+JSON.stringify(this.saveUtilities))
-  // }
 
   //Service
   onAddService() {
@@ -461,7 +476,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadedService.push({id: s.value.serviceID, icon: 'none', name: s.value.serviceName})
     console.log(JSON.stringify(this.loadedService))
     this.filterService()
-    // this.saveService.splice(i,1)
   }
 
   bindServiceDataToFormGroup(service: ServiceObj) {
@@ -500,25 +514,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log($event)
     let service = $event.option.value as ServiceObj
     console.log(service)
-    // this.saveService.push({serviceID:service.id})
     this.onAddServiceData(service)
-    // let formArr = <FormArray>this.formGroupPost.controls['servicePost']
-    // let formControl = <FormGroup>formArr.controls[0]
-    // let firstFormControlServiceName = formControl.controls['serviceName'].value
-    // let firstFormControlServiceID = formControl.controls['serviceID'].value
-    // if (firstFormControlServiceName) {
-    //   this.bindServiceDataToFormGroup(service)
-    // } else {
-    //   formControl.controls['serviceName'].patchValue(service.name)
-    //   formControl.controls['serviceID'].patchValue(service.id)
-    // }
-    // this.serviceInput.nativeElement.blur()
-    // this.formGroupPost.controls['selectServiceCtrl'].patchValue('')
-    // let indexService = this.loadedService.indexOf(service)
-    // if (indexService > -1) {
-    //   this.loadedService.splice(indexService, 1)
-    // }
-    // this.formGroupPost.controls.servicePost.patchValue(null)
   }
 
   onAddServiceData(service: ServiceObj) {
@@ -531,13 +527,13 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       formControl.controls['serviceName'].patchValue(service.name)
       formControl.controls['serviceID'].patchValue(service.id)
-      if(service.price)  formControl.controls['servicePrice'].patchValue(service.price)
+      if (service.price) formControl.controls['servicePrice'].patchValue(service.price)
     }
     this.serviceInput.nativeElement.blur()
     this.formGroupPost.controls['selectServiceCtrl'].patchValue('')
     // let indexService = this.loadedService.indexOf(service)
-    let indexService = this.loadedService.findIndex(serviceFinding=>serviceFinding.id === service.id)
-    console.log('index 2: '+indexService)
+    let indexService = this.loadedService.findIndex(serviceFinding => serviceFinding.id === service.id)
+    console.log('index 2: ' + indexService)
     if (indexService > -1) {
       this.loadedService.splice(indexService, 1)
     }
@@ -550,15 +546,23 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.progressInfos = [];
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
+    if (this.selectedFiles.length > this.maxFileSize) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Tối đa 5 ảnh được chọn',
+      })
+    }
+    this.checkFileSize = this.maxFileSize
     this.savedFiles = [].slice()
-    for (let i = 0; i < this.selectedFiles.length; i++) {
+    for (let i = 0; i < this.maxFileSize; i++) {
       this.savedFiles.push(this.selectedFiles.item(i))
       // console.log(this.savedFiles[i].name)
     }
+
     this.previews = [];
     if (this.savedFiles && this.savedFiles[0]) {
-      const numberOfFiles = this.savedFiles.length;
-      for (let i = 0; i < numberOfFiles; i++) {
+      // const numberOfFiles = this.savedFiles.length;
+      for (let i = 0; i < this.maxFileSize; i++) {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
@@ -568,10 +572,11 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
         reader.readAsDataURL(this.savedFiles[i]);
 
-        this.selectedFileNames.push(this.savedFiles[i].name);
+        // this.selectedFileNames.push(this.savedFiles[i].name);
         console.log(this.selectedFileNames[i])
       }
     }
+    // this.selectedFileNames = []
 
   }
 
@@ -579,7 +584,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.message = [];
     this.isUploading = true
     let formDataImg = new FormData()
-    console.log('saved file lengtg: '+this.savedFiles.length)
+    console.log('saved file lengtg: ' + this.savedFiles.length)
     if (this.savedFiles) {
       for (let i = 0; i < this.savedFiles.length; i++) {
         formDataImg.append('file', this.savedFiles[i])
@@ -593,7 +598,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('pushing3')
     if (formDataImg) {
       console.log('pushing 5')
-      this.postEditService.uploadAllFileByAPI(this.isEditMode,formDataImg, postID).subscribe(
+      this.postEditService.uploadAllFileByAPI(this.isEditMode, formDataImg, postID).subscribe(
         (event: any) => {
 
           console.log('event type: ' + JSON.stringify(event))
@@ -614,11 +619,22 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           // this.progressInfos[idx].value = 0;
           const msg = 'Could not upload the file: ';
           this.message.push(msg);
+          Swal.fire({
+            icon: 'error',
+            title: 'Quá trình đăng tải ảnh gặp sự cố. Vui lòng thử lại',
+          })
         }, () => {
           console.log('complete 1')
           // this.progressInfos[idx].isLoading= false;
           this.isUploading = false
-          this.router.navigate(['../posts/post-detail/'+this.postID])
+          let title = 'Tạo bài đăng thành công. Ấn OK để trở về quản lý bài đăng'
+          if (this.isEditMode) title = 'Sửa bài đăng thành công. Ấn OK để trở về quản lý bài đăng'
+          Swal.fire({
+            icon: 'success',
+            title: title,
+          }).then(() => {
+            this.router.navigate(['../hosts/host-post-list'])
+          })
         }
       );
     }
@@ -628,18 +644,10 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   onChangePositionImg(event, pos1: number, pos2: number) {
     if (!this.previews[pos2]) return
     [[this.previews[pos1]], [this.previews[pos2]]] = [[this.previews[pos2]], [this.previews[pos1]]];
-    [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
-    // [[this.selectedFiles[pos1]], [this.selectedFiles[pos2]]] = [[this.selectedFiles[pos2]], [this.selectedFiles[pos1]]];
-
     [[this.savedFiles[pos1]], [this.savedFiles[pos2]]] = [[this.savedFiles[pos2]], [this.savedFiles[pos1]]];
+    [[this.selectedFileNames[pos1]], [this.selectedFileNames[pos2]]] = [[this.selectedFileNames[pos2]], [this.selectedFileNames[pos1]]];
     this.imgPreviewPositionChanged.next(this.previews.slice())
     this.imgPreviewPositionChanged.next(this.selectedFileNames.slice())
-
-    let list = new DataTransfer();
-    for (let i = 0; i < 5; i++) {
-      console.log(JSON.stringify(this.savedFiles[i].name))
-    }
-    console.log('----------------------------------------')
 
   }
 
@@ -649,6 +657,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.imgPreviewPositionChanged.next(this.previews.slice())
     this.savedFiles[position] = undefined
     this.selectedFileNames[position] = undefined
+    this.checkFileSize--
   }
 
   selectSingleFiles(event, position: number) {
@@ -663,40 +672,44 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       reader.readAsDataURL(this.selectedFiles[0]);
       this.selectedFileNames[position] = this.selectedFiles[0].name
       this.savedFiles[position] = this.selectedFiles[0]
+      this.checkFileSize++
     }
 
   }
 
   //LOAD ADDRESS
-  getAllDistrict() {
-    let districtObj: ResponseDistrict
-    this.postEditService.getDistricts().subscribe(responseDistrict => {
-      districtObj = responseDistrict as ResponseDistrict
-      this.districts = districtObj.object
-    })
-  }
-
-  getAllProvince() {
-    let provinceObj: ResponseProvince
-    this.postEditService.getProvince().subscribe(responseProvince => {
-      provinceObj = responseProvince as ResponseProvince
-      this.provinces = provinceObj.object
-    })
-  }
-
-  onSelectedProvince($event) {
-    let province: { id: number, name: string } = $event.value
-    console.log(province.id)
-    // console.log('district value: '+$event.value)
-    this.getDistrictByProvinceID(province.id)
-    this.provinceID = province.id
-  }
-
-  onSelectedDistrict($event) {
-    console.log($event.value)
-    this.districtID = $event.value
-  }
-
+  // getAllDistrict() {
+  //   let districtObj: ResponseDistrict
+  //   this.postEditService.getDistricts().subscribe(responseDistrict => {
+  //     districtObj = responseDistrict as ResponseDistrict
+  //     this.districts = districtObj.object
+  //   })
+  // }
+  // getAllProvince() {
+  //   let provinceObj: ResponseProvince
+  //   this.postEditService.getProvince().subscribe(responseProvince => {
+  //     provinceObj = responseProvince as ResponseProvince
+  //     this.provinces = provinceObj.object
+  //   })
+  // }
+  //
+  // onSelectedProvince($event) {
+  //   let province: { id: number, name: string } = $event.value
+  //   console.log(province.id)
+  //   // console.log('district value: '+$event.value)
+  //   this.getDistrictByProvinceID(province.id)
+  //   this.provinceID = province.id
+  // }
+  //
+  // onSelectedDistrict($event) {
+  //   console.log($event.value)
+  //   this.districtID = $event.value
+  // }
+  // getDistrictByProvinceID(provinceID: number) {
+  //   this.postEditService.getDistrictsByProvinceID(provinceID).subscribe(responseDistrict => {
+  //     this.districts = responseDistrict.object
+  //   })
+  // }
   //Room type
   getAllRoomTypes() {
     this.postEditService.getRoomType().subscribe(response => {
@@ -705,17 +718,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  getDistrictByProvinceID(provinceID: number) {
-    this.postEditService.getDistrictsByProvinceID(provinceID).subscribe(responseDistrict => {
-      this.districts = responseDistrict.object
-    })
-  }
-
-  //UTILITY
-  // separatorKeysCodes: number[] = [ENTER, COMMA];
-  // filteredUtility: Observable<string[]>;
-  // utilitys: string[] = ['Nhà hàng'];
-  // allUtilitys: string[] = ['Giặt nà', 'ATM', 'Hồ bơ', 'Công viên', 'Siêu thị'];
 
   onSelectedTypeHS($event) {
     this.typeHsID = $event.value
@@ -783,7 +785,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  onAddVoucherData(voucher:Voucher){
+  onAddVoucherData(voucher: Voucher) {
     this.saveVouchers.push(voucher)
     this.voucherInput.nativeElement.value = '';
     this.voucherInput.nativeElement.blur();
@@ -795,11 +797,8 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
     console.log('get voucher here')
     this.postEditService.getVoucher().subscribe(voucherResponse => {
-      console.log('voucher response: '+JSON.stringify(voucherResponse))
-      console.log('all voucher: '+JSON.stringify(voucherResponse.object))
-
-      // this.voucherResponse = voucherResponse
-      // let dataVoucherResponse = voucherResponse.data
+      console.log('voucher response: ' + JSON.stringify(voucherResponse))
+      console.log('all voucher: ' + JSON.stringify(voucherResponse.object))
       this.allVoucher = voucherResponse.object
       this.filterVoucher()
     })
@@ -821,12 +820,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   displayVoucher(voucher: Voucher) {
     return voucher ? voucher.nameVoucher : ''
   }
-
-  //--------------------------------------------------------------------------------
-  // filterVoucher:ReplaySubject<Voucher[]> = new ReplaySubject<Voucher[]>()
-  // voucherMultiFilterCtrl: FormControl = new FormControl();
-  // voucherMultiCtrl:FormControl = new FormControl()
-
 
   filterUtility() {
     this.filteredUtility =
@@ -861,17 +854,18 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       this.utilitys.splice(index, 1);
       this.saveUtilities.splice(index2, 1)
     }
+
     console.log('size save utility: ' + this.saveUtilities.length)
     console.log('remove utility ' + JSON.stringify(this.saveUtilities))
   }
 
   selectedUtility(event: MatAutocompleteSelectedEvent): void {
     this.utilitys.push(event.option.viewValue);
-   this.onAddUtilityData(event.option.value)
+    this.onAddUtilityData(event.option.value)
 
   }
 
-  onAddUtilityData(utility:UtilitiesData){
+  onAddUtilityData(utility: UtilitiesData) {
     this.saveUtilities.push(utility)
     this.utilityInput.nativeElement.value = '';
     this.utilityInput.nativeElement.blur();

@@ -26,6 +26,7 @@ export class VoucherPost {
   voucherID: number
   description: string
   dueDay: number
+  code:string
   nameVoucher: string
   percent: number
   startDate: string

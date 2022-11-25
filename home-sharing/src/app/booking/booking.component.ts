@@ -8,13 +8,14 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DatePickerComponent} from "../date-picker/date-picker.component";
 import {BookingService} from "./booking.service";
 import {BookingBody} from "../shared/model/booking.model";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {VoucherComponent} from "../voucher/voucher.component";
 import {UserInfoComponent} from "../profile/user-info/user-info.component";
 import {ProfileService} from "../profile/profile.service";
 import {UserInfo, UserInfoResponse} from "../profile/profile.model";
 import {PostDetail, ResponsePostDetail, ServiceDetailDtoList} from "../posts/post-detail/post-detail.model";
 import {PostDetailService} from "../posts/post-detail/post-detail.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-booking',
@@ -23,6 +24,7 @@ import {PostDetailService} from "../posts/post-detail/post-detail.service";
 })
 export class BookingComponent implements OnInit {
   voucherValue:string = null
+  isBooking = false
   name:string = "Đinh Văn Đức"
   phoneNumber:string = "0999999999"
   email:string = "dinhduc2550@gmail.com"
@@ -40,6 +42,7 @@ export class BookingComponent implements OnInit {
   datePicked: { startDate: Date, endDate: Date }
   saveService:number[]
   formGroupBooking:FormGroup
+  pct = 1
   @ViewChild('fullName') fullNameRef:ElementRef;
   @ViewChild('phoneNumber') phoneNumberRef:ElementRef;
   @ViewChild('email')  emailRef:ElementRef;
@@ -59,6 +62,9 @@ export class BookingComponent implements OnInit {
   userInfoResponse:UserInfoResponse
 
   listService:ServiceDetailDtoList[]
+  formCheckVoucher: FormGroup;
+
+  isConfirm = false
 
   constructor(private postDetailService:PostDetailService,private profileService:ProfileService,private router:Router,private route:ActivatedRoute,private datePipe:DatePipe,  private dialog: MatDialog,private bookingService:BookingService,private fb:FormBuilder) { }
   ngOnInit(): void {
@@ -85,13 +91,15 @@ export class BookingComponent implements OnInit {
     console.log('end date: '+this.endDateBooking)
     console.log('Guest number: '+this.guestNumber)
     this.initForm()
+    this.initFormCheckVoucher()
   }
 
   initForm(){
     this.formGroupBooking = this.fb.group({
-      fullNameCtrl:[''],
-      phoneNumberCtrl:[''],
-      emailCtrl:['']
+      fullNameCtrl:['',[Validators.required]],
+      phoneNumberCtrl:['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(10)]],
+      emailCtrl:['',[Validators.required,Validators.email]],
+      confirmCtrl:['']
     })
     this.getUserInfo()
     this.getPostService()
@@ -104,6 +112,12 @@ export class BookingComponent implements OnInit {
       this.formGroupBooking.controls.phoneNumberCtrl.patchValue(this.userInfo.mobile)
       this.formGroupBooking.controls.emailCtrl.patchValue(this.userInfo.email)
 
+    })
+  }
+
+  initFormCheckVoucher(){
+    this.formCheckVoucher = this.fb.group({
+      codeVoucherCtrl:['']
     })
   }
 
@@ -137,6 +151,8 @@ export class BookingComponent implements OnInit {
     this.totalBill = Math.floor(+this.servicePrice + +this.priceHS)
     this.totalDiscount = Math.floor(+this.totalBill * +this.pctDiscount)
     this.totalBillAfterDiscount =Math.floor( +this.totalBill - +this.totalDiscount)
+    this.totalBillAfterDiscount = Math.round(this.totalBill*(1/this.pct))
+
     // this.displayData()
   }
 
@@ -167,6 +183,8 @@ export class BookingComponent implements OnInit {
   }
 
   onCreateBooking() {
+    console.log(this.isConfirm)
+    return
     let newDate = new Date(this.startDateBooking)
     console.log('Date booking: '+this.startDateBooking)
     console.log(this.bookingService.convertDate(this.startDateBooking))
@@ -205,15 +223,24 @@ export class BookingComponent implements OnInit {
     // console.log('full name: '+bookingBody.fullName)
     // console.log('emailL '+bookingBody.email)
     // console.log('mobile: '+bookingBody.mobile)
+    this.isBooking = true
     let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
     bookingObservable.subscribe({
       next:responseData =>{
         console.log(responseData)
+        this.isBooking = false
       },
       error:errorMess =>{
         console.log(errorMess)
       },
       complete:()=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Trạng thái đặt phòng',
+          text: 'Đặt phòng thành công',
+        }).then(
+          ()=>{this.router.navigate(['profile/history-booking'])})
+        this.isBooking = false
         console.log('complete')
       }
     })
@@ -224,5 +251,21 @@ export class BookingComponent implements OnInit {
       hasBackdrop:true,
       data:this.postID
     })
+  }
+
+  checkVoucherExist() {
+    let codeVoucher = this.formCheckVoucher.controls.codeVoucherCtrl.value
+    if(!codeVoucher) return
+      // console.log(this.formCheckVoucher.controls.codeVoucherCtrl.value)
+    this.bookingService.checkVoucherExist(this.postID,codeVoucher).subscribe(response=>{
+      this.totalBillAfterDiscount = Math.round(this.totalBill*(1/response.object))
+      this.pct = +response.object
+      console.log(response)
+    })
+  }
+
+  changeValue($event) {
+    this.isConfirm = $event.checked
+    console.log($event)
   }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {API_BOOKING, API_VOUCHER_BY_POST_ID} from "../constant/api.constant";
+import {API_BOOKING, API_CHECK_VOUCHER_BY_CODE, API_VOUCHER_BY_POST_ID} from "../constant/api.constant";
 import {BookingBody} from "../shared/model/booking.model";
 import {catchError, tap} from "rxjs/operators";
 
@@ -45,6 +45,6 @@ export class BookingService{
 
   checkVoucherExist(postID:number,code:number):Observable<any>{
     let params =  new HttpParams({fromString:'post-id='+postID+'&'+'code='+code})
-    return this.http.get<any>(API_VOUCHER_BY_POST_ID,{params:params})
+    return this.http.get<any>(API_CHECK_VOUCHER_BY_CODE,{params:params})
   }
 }

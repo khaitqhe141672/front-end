@@ -118,6 +118,8 @@ import { ConfirmDialogComponent } from './shared/dialog/confirm-dialog/confirm-d
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import {PostVoucherDialogComponent} from "./host/host-post-list/post-voucher-dialog/post-voucher-dialog.component";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { CheckInputNumberDirective } from './shared/directive/check-input-number.directive';
 
 @NgModule({
   declarations: [
@@ -183,7 +185,8 @@ import {PostVoucherDialogComponent} from "./host/host-post-list/post-voucher-dia
     ConfirmDialogComponent,
     PaymentComponent,
     PaymentSuccessComponent,
-    PostVoucherDialogComponent
+    PostVoucherDialogComponent,
+    CheckInputNumberDirective,
   ],
   imports: [
     BrowserModule,
@@ -219,7 +222,8 @@ import {PostVoucherDialogComponent} from "./host/host-post-list/post-voucher-dia
     MatPaginatorModule,
     MatCardModule, MatDialogModule,
     MatNativeDateModule, FormsModule,
-    MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule, MatTooltipModule
+    MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule, MatTooltipModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     DatePipe,

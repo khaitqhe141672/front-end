@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-6 d-flex align-self-start">
-      <form  (ngSubmit)="onSubmit()" [formGroup]="formGroupPost" class="text-center">
+      <form (ngSubmit)="onSubmit()" [formGroup]="formGroupPost" class="text-center">
         <mat-stepper #stepper headerPosition="bottom">
           <mat-step [stepControl]="formGroupPost">
             <div>
@@ -38,15 +38,19 @@
                   <ng-template matStepLabel>Giới thiệu</ng-template>
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập tên homestay</mat-label>
-                    <input formControlName="name" matInput placeholder="">
-                    <mat-error *ngIf="formGroupPost.controls.name.touched">Lỗi</mat-error>
+                    <input [errorStateMatcher]="matcher" formControlName="name" matInput placeholder="">
+                    <mat-error *ngIf="formGroupPost.controls.name.valueChanges">
+                      <mat-error *ngIf="formGroupPost.controls.name.hasError('required')">
+                        Phần này không được bỏ trống
+                      </mat-error>
+                    </mat-error>
                   </mat-form-field>
                 </div>
 
                 <div class="col-4">
                   <mat-form-field appearance="outline">
                     <mat-label>Loại HomeStay</mat-label>
-                    <mat-select formControlName="type"  (selectionChange)="onSelectedTypeHS($event)">
+                    <mat-select (selectionChange)="onSelectedTypeHS($event)" formControlName="type">
                       <mat-option [value]="-1" disabled>--Chọn--</mat-option>
                       <mat-option *ngFor="let type of roomTypes" [value]="type.id">{{type.name.trim()}}</mat-option>
                     </mat-select>
@@ -57,10 +61,15 @@
                 <div class="col-4 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Giá cho thuê</mat-label>
-                    <input formControlName="priceHS" matInput placeholder="" type="number">
+                    <input appCheckInputNumber [errorStateMatcher]="matcher" formControlName="priceHS" matInput
+                           placeholder="" type="number">
                     <span matSuffix>VND</span>
                     <mat-hint align="end">Vui lòng chỉ nhập số tiền đơn vị VND</mat-hint>
+                    <mat-error>
+                      Vui lòng nhập số
+                    </mat-error>
                   </mat-form-field>
+
                 </div>
 
               </div>
@@ -75,27 +84,39 @@
                 <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số giường</mat-label>
-                    <input formControlName="numbersOfBed" matInput placeholder="" type="number">
+                    <input [errorStateMatcher]="matcher" appCheckInputNumber="true" formControlName="numbersOfBed" matInput placeholder=""
+                           type="number">
+                    <mat-error *ngIf="formGroupPost.controls.numbersOfBed.valueChanges">
+                      Vui lòng nhập số
+                    </mat-error>
                   </mat-form-field>
                 </div>
 
                 <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng ngủ</mat-label>
-                    <input  formControlName="numbersOfRoom" matInput placeholder="" type="number">
+                    <input [errorStateMatcher]="matcher" appCheckInputNumber="true" formControlName="numbersOfRoom" matInput placeholder=""
+                           type="number">
+                    <mat-error *ngIf="formGroupPost.controls.numbersOfRoom.valueChanges">
+                      Vui lòng nhập số
+                    </mat-error>
                   </mat-form-field>
                 </div>
 
                 <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số phòng tắm</mat-label>
-                    <input  formControlName="numbersOfBath" matInput placeholder="" type="number">
+                    <input [errorStateMatcher]="matcher" appCheckInputNumber="true" formControlName="numbersOfBath" matInput placeholder=""
+                           type="number">
                   </mat-form-field>
                 </div>
                 <div class="col-6 pe-0">
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập số khách có thể chứa</mat-label>
-                    <input formControlName="guestNumber" matInput placeholder="" type="number">
+                    <input [errorStateMatcher]="matcher" formControlName="guestNumber" matInput placeholder="" type="number">
+                    <mat-error *ngIf="formGroupPost.controls.guestNumber.valueChanges">
+                      Vui lòng nhập số
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -104,9 +125,23 @@
             <div>
               <mat-form-field appearance="outline">
                 <mat-label>Mô tả</mat-label>
-                <textarea formControlName="description" matInput placeholder="" rows="20">
+                <textarea [errorStateMatcher]="matcher" formControlName="description" matInput placeholder="" rows="18">
                 </textarea>
+                <mat-error>
+                  <span *ngIf="!formGroupPost.controls.description.valid">
+                       Cần ít nhất 20 ký tự
+                  </span>
+                </mat-error>
               </mat-form-field>
+<!--              <mat-form-field class="form-element">-->
+<!--                <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="description"></textarea>-->
+<!--                <mat-error *ngIf="!formGroupPost.controls['description'].hasError('minLength') && formGroupPost.controls['description'].touched">-->
+
+<!--                </mat-error>-->
+<!--                <span  *ngIf="formGroupPost.controls['description'].hasError('minLength')">-->
+<!--                    Required field, must be between 5 and 10 characters.-->
+<!--                </span>-->
+<!--              </mat-form-field>-->
             </div>
           </mat-step>
 
@@ -136,9 +171,9 @@
                   <mat-form-field appearance="outline">
                     <mat-label>Chọn tiện ích</mat-label>
                     <mat-chip-list #chipList aria-label="">
-                      <mat-chip style="background-color: #F36B08;color: white"
-                        (removed)="removeUtilitys(utility)"
-                        *ngFor="let utility of saveUtilities">
+                      <mat-chip (removed)="removeUtilitys(utility)"
+                                *ngFor="let utility of saveUtilities"
+                                style="background-color: #F36B08;color: white">
                         {{utility.name}}
                         <button matChipRemove>
                           <mat-icon>cancel</mat-icon>
@@ -175,15 +210,15 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Dịch vụ có sẵn</mat-label>
-                        <input #serviceInput type="text"
-                               matInput formControlName="selectServiceCtrl"
-                               [matAutocomplete]="auto3">
+                        <input #serviceInput [matAutocomplete]="auto3"
+                               formControlName="selectServiceCtrl" matInput
+                               type="text">
                         <mat-autocomplete #auto3="matAutocomplete"
-                                          [displayWith]="displayWithService"
-                                          (optionSelected)='onSelectService($event)'>
-                          <mat-option *ngFor="let service of filteredServices | async" [value]="service" >
+                                          (optionSelected)='onSelectService($event)'
+                                          [displayWith]="displayWithService">
+                          <mat-option *ngFor="let service of filteredServices | async" [value]="service">
                             {{service.name}}
                           </mat-option>
                         </mat-autocomplete>
@@ -192,23 +227,26 @@
                   </div>
                   <div *ngFor="let s of ServicesPost.controls;let i = index" formArrayName="servicePost">
                     <div [formGroupName]="i" class="row p-0 align-items-start d-flex">
-                     <div style="display: none">
-                       <mat-form-field class="hide">
-                         <input readonly formControlName="serviceID" matInput placeholder="" >
-                       </mat-form-field>
-                     </div>
+                      <div style="display: none">
+                        <mat-form-field class="hide">
+                          <input  formControlName="serviceID" matInput placeholder="" readonly>
+                        </mat-form-field>
+                      </div>
                       <div class="col-6 ps-3">
                         <mat-form-field appearance="outline" style="width: 100%">
                           <mat-label>Dịch vụ {{i + 1}}</mat-label>
-                          <input formControlName="serviceName" matInput placeholder="" >
+                          <input [errorStateMatcher]="matcher" readonly formControlName="serviceName" matInput placeholder="">
                         </mat-form-field>
                       </div>
 
                       <div class="col-4 pe-0">
                         <mat-form-field appearance="outline" style="width: 100%">
                           <mat-label>Giá dịch vụ</mat-label>
-                          <input formControlName="servicePrice" matInput placeholder="" type="number" value="1">
+                          <input [errorStateMatcher]="matcher"  appCheckInputNumber formControlName="servicePrice" matInput placeholder="" type="number" value="1">
                           <span matSuffix>VND</span>
+                          <mat-error>
+                            Hãy điền giá dịch vụ
+                          </mat-error>
                         </mat-form-field>
                       </div>
 
@@ -227,15 +265,15 @@
                   <div *ngIf="!isServicePost" class="text-start p-0 d-flex justify-content-start align-items-end"><span
                     style="color: red">Cần ích nhất một dịch vụ</span></div>
                 </div>
-<!--                <div class="col">-->
-<!--                  <div class="example-button-container">-->
-<!--                    <button (click)="onAddService()" aria-label="Example icon button with a menu icon" color="primary"-->
-<!--                            mat-mini-fab-->
-<!--                            type="button">-->
-<!--                      <mat-icon>add</mat-icon>-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                <div class="col">-->
+                <!--                  <div class="example-button-container">-->
+                <!--                    <button (click)="onAddService()" aria-label="Example icon button with a menu icon" color="primary"-->
+                <!--                            mat-mini-fab-->
+                <!--                            type="button">-->
+                <!--                      <mat-icon>add</mat-icon>-->
+                <!--                    </button>-->
+                <!--                  </div>-->
+                <!--                </div>-->
 
               </div>
             </div>
@@ -252,9 +290,9 @@
                       <mat-form-field appearance="outline">
                         <mat-label>Chọn mã giảm giá</mat-label>
                         <mat-chip-list #chipListVoucher aria-label="">
-                          <mat-chip style="background-color: #F36B08;color: white"
-                            (removed)="removeVouchers(voucher)"
-                            *ngFor="let voucher of saveVouchers">
+                          <mat-chip (removed)="removeVouchers(voucher)"
+                                    *ngFor="let voucher of saveVouchers"
+                                    style="background-color: #F36B08;color: white">
                             {{voucher.nameVoucher}}-Giảm:{{voucher.percent}}%
                             <button matChipRemove>
                               <mat-icon>cancel</mat-icon>
@@ -270,7 +308,8 @@
                             formControlName="vouchers"
                             placeholder="Chọn mã giảm giá">
                         </mat-chip-list>
-                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedVoucher($event)" [displayWith]="displayVoucher">
+                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedVoucher($event)"
+                                          [displayWith]="displayVoucher">
                           <ng-container *ngFor="let voucher of filteredVoucher | async">
                             <mat-option *ngIf="!vouchers.includes(voucher.nameVoucher)" [value]="voucher">
                               {{voucher.nameVoucher}}
@@ -343,15 +382,15 @@
                       </div>
 
                     </div>
-<!--                    <div class="col">-->
-<!--                      <div class="example-button-container">-->
-<!--                        <button (click)="onAddVoucher()" aria-label="Example icon button with a menu icon"-->
-<!--                                color="primary" mat-mini-fab-->
-<!--                                type="button">-->
-<!--                          <mat-icon>add</mat-icon>-->
-<!--                        </button>-->
-<!--                      </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="col">-->
+                    <!--                      <div class="example-button-container">-->
+                    <!--                        <button (click)="onAddVoucher()" aria-label="Example icon button with a menu icon"-->
+                    <!--                                color="primary" mat-mini-fab-->
+                    <!--                                type="button">-->
+                    <!--                          <mat-icon>add</mat-icon>-->
+                    <!--                        </button>-->
+                    <!--                      </div>-->
+                    <!--                    </div>-->
                   </div>
                 </div>
               </div>
@@ -378,31 +417,17 @@
                   <div class="col-12 p-1">
                     <mat-form-field appearance="outline">
                       <mat-label>Địa chỉ</mat-label>
-                      <input [value]="address" formControlName="address" matInput placeholder="" readonly>
+                      <input (ngModelChange)="checkAddress()"  [value]="address" formControlName="address" matInput placeholder="" readonly>
+                      <mat-error>
+                        Hãy chọn địa chỉ
+                      </mat-error>
                     </mat-form-field>
                   </div>
-                  <!--                  <div class="col-3 p-1">-->
-                  <!--                    <mat-form-field appearance="outline">-->
-                  <!--                      <mat-label>Tỉnh/Thành Phố</mat-label>-->
-                  <!--                      <mat-select (selectionChange)="onSelectedProvince($event)" formControlName="province">-->
-                  <!--                        <mat-option disabled>-Chọn-</mat-option>-->
-                  <!--                        <mat-option *ngFor="let province of provinces" [value]="province">{{province.name}}</mat-option>-->
-                  <!--                      </mat-select>-->
-                  <!--                    </mat-form-field>-->
-                  <!--                  </div>-->
-                  <!--                  <div class="col-3 p-1">-->
-                  <!--                    <mat-form-field appearance="outline">-->
-                  <!--                      <mat-label>Quận/Huyện</mat-label>-->
-                  <!--                      <mat-select (selectionChange)="onSelectedDistrict($event)" formControlName="district">-->
-                  <!--                        <mat-option disabled>&#45;&#45;Chọn&#45;&#45;</mat-option>-->
-                  <!--                        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>-->
-                  <!--                      </mat-select>-->
-                  <!--                    </mat-form-field>-->
-                  <!--                  </div>-->
                 </div>
                 <div class="row image-map">
                   <div class="col">
-                    <app-map [isDetailMode]="true" [isEditMode]="isEditMode" [lat]="postDetail.latitude" [lng]="postDetail.longitude" ></app-map>
+                    <app-map [isDetailMode] ="false" [isEditMode]="isEditMode" [lat]="+postDetail.latitude"
+                             [lng]="+postDetail.longitude"></app-map>
                   </div>
                 </div>
               </div>
@@ -410,57 +435,45 @@
           </mat-step>
           <div class="img-uploader">
             <mat-step>
-              <ng-template readonly matStepLabel>
+              <ng-template matStepLabel readonly>
                 Chọn ảnh
               </ng-template>
               <div>
-                <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="submit">
+                <button class="me-5 btn btn-outline-warning" matStepperPrevious style="width: 130px" type="button">
                   <span class="btn-label"><i class="fa fa-chevron-left"></i></span>
                   Quay lại
                 </button>
-                <button  class="btn btn-outline-success" matStepperNext type="submit">
+                <button [disabled]="!formGroupPost.valid" class="btn btn-outline-success" matStepperNext type="submit">
                   Hoàn thành
                   <span class="btn-label"><i class="fa fa-check"></i></span>
-                </button><div>
-                <p style="color: red" *ngIf="!formGroupPost.valid">Bạn phải điền đầy đủ thông tin trước khi đăng bài</p>
-              </div>
-<!--                <div>-->
-<!--                  <p *ngIf="findInvalidControls">{{findInvalidControls()}}</p>-->
-<!--                </div>-->
-
-              </div>
-                <div class="pt-3">
-                  <mat-progress-bar *ngIf="isUploading" mode="indeterminate"></mat-progress-bar>
+                </button>
+                <div>
+                  <p *ngIf="!formGroupPost.valid" style="color: red">Bạn phải điền đầy đủ thông tin trước khi đăng
+                    bài</p>
                 </div>
+              </div>
+              <div class="pt-3">
+                <mat-progress-bar *ngIf="isUploading" mode="indeterminate"></mat-progress-bar>
+              </div>
               <mat-form-field appearance="none">
                 <div>
                   <mat-toolbar>
-                    <input readonly matInput value="{{selectedFileNames.length ? selectedFileNames : 'Chọn ảnh'}}" />
-
-<!--                    <button-->
-<!--                      type="button"-->
-<!--                      mat-flat-button-->
-<!--                      color="primary"-->
-<!--                      [disabled]="!selectedFiles"-->
-<!--                      (click)="uploadFiles()"-->
-<!--                    >-->
-<!--                      Tải lên-->
-<!--                    </button>-->
+                    <input matInput readonly value="Chọn ảnh"/>
                   </mat-toolbar>
 
                   <input
-                    type="file"
-                    id="fileInput"
-                    name="fileInput"
-                    accept="image/*" multiple
                     (change)="selectFiles($event)"
+                    accept="image/*"
+                    id="fileInput"
+                    multiple name="fileInput"
+                    type="file"
                   />
                 </div>
               </mat-form-field>
               <div *ngIf="previews.length>0&&previews[0]">
                 <div class="row">
-                  <div  class="col-8 d-flex justify-content-center div-img-1 number_custom">
-                    <div  style="height: 250px; width: 400px;">
+                  <div class="col-8 d-flex justify-content-center div-img-1 number_custom">
+                    <div style="height: 250px; width: 400px;">
                       <img (click)="file0.click()"
                            [src]="previews[0]?previews[0]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block  div-img-post-1">
@@ -493,8 +506,8 @@
                   </div>
                   <div class="col-4 mb-1 p-0">
                     <div class="row">
-                      <div  class="col-12  mb-1  div-img-1 number_custom">
-                        <div   style="height: 125px; width: 200px;">
+                      <div class="col-12  mb-1  div-img-1 number_custom">
+                        <div style="height: 125px; width: 200px;">
                           <img (click)="file1.click()"
                                [src]="previews[1]?previews[1]:'assets/images/bg-create-post/loading.png'" alt="..."
                                class="d-block div-img-post-2">
@@ -523,7 +536,7 @@
                         <span style="top: 60%; left: 15%;">2</span>
                       </div>
                       <div class="col-12  div-img-1 number_custom">
-                        <div  style="height: 125px; width: 200px;">
+                        <div style="height: 125px; width: 200px;">
                           <img (click)="file2.click()"
                                [src]="previews[2]?previews[2]:'assets/images/bg-create-post/loading.png'" alt="..."
                                class="d-block  div-img-post-3">
@@ -556,8 +569,8 @@
                 </div>
 
                 <div class="row d-flex justify-content-center">
-                  <div  class="d-flex justify-content-end col-4 pe-0  div-img-1 number_custom">
-                    <div  style="width: 200px; height: 250px;">
+                  <div class="d-flex justify-content-end col-4 pe-0  div-img-1 number_custom">
+                    <div style="width: 200px; height: 250px;">
                       <img (click)="file3.click()"
                            [src]="previews[3]?previews[3]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block  div-img-post-4">
@@ -585,8 +598,8 @@
                     </div>
                     <span style="top: 75%; left: 15%;">4</span>
                   </div>
-                  <div  class="d-flex ps-1 col-8 div-img-1 number_custom">
-                    <div  style="width: 400px; height: 250px;">
+                  <div class="d-flex ps-1 col-8 div-img-1 number_custom">
+                    <div style="width: 400px; height: 250px;">
                       <img (click)="file4.click()"
                            [src]="previews[4]?previews[4]:'assets/images/bg-create-post/loading.png'" alt="..."
                            class="d-block div-img-post-5" id="img4">

@@ -95,9 +95,10 @@ export class PostEditService {
     return this.http.get<ImgEditResponse>(API_DOWNLOAD_IMG+postID).pipe(map(data=>data.object))
   }
 
-  pushPost(post: Post, latitude: number, longitude: number, utilityRequests: number[], voucherList: number[],
-           postServiceRequests: { serviceID: number, price: number }[]) {
+  pushPost(post: Post, latitude: number, longitude: number, saveUtilityIDs: number[], voucherList: number[],
+           postServiceRequests: { serviceID: number, price: number }[]):Observable<any> {
     let apiPost = post.postID?API_UPDATE_POSTING+ post.postID:API_POSTING
+    console.log('postID: '+post.postID)
     // console.log('---------------------------------------------------')
     // console.log('1.id: ' +  post.postID)
     //
@@ -111,12 +112,12 @@ export class PostEditService {
     // console.log('7.title: ' + post.title)
     // console.log('8.description: ' + post.description)
     // console.log('9.priceHS: ' +  post.price)
-    // console.log('10.utility: ' + JSON.stringify(utilityRequests))
+    console.log('10.utility: ' + JSON.stringify(saveUtilityIDs))
     // console.log('11.voucher: ' + JSON.stringify(voucherList))
     // console.log('12.lat: '+latitude)
     // console.log('13.lng: '+longitude)
     // // console.log('service post: ' + JSON.stringify(this.saveService))
-    console.log('14.service post: ' +  JSON.stringify(postServiceRequests))
+    // console.log('14.service post: ' +  JSON.stringify(postServiceRequests))
     // console.log('15."paymentPackageID": 1')
     // console.log('---------------------------------------------------')
     return !post.postID?this.http.post(apiPost, {
@@ -132,7 +133,7 @@ export class PostEditService {
       description: post.description,
       price: post.price,
       // utilityRequests: JSON.stringify(utilityRequests),
-      utilityRequests: utilityRequests,
+      utilityRequests: saveUtilityIDs,
       voucherList: voucherList,
       paymentPackageID: 1,
       latitude: latitude,
@@ -153,7 +154,7 @@ export class PostEditService {
       description: post.description,
       price: post.price,
       // utilityRequests: JSON.stringify(utilityRequests),
-      utilityRequests: utilityRequests,
+      utilityRequests: saveUtilityIDs,
       voucherList: voucherList,
       paymentPackageID: 1,
       latitude: latitude,
