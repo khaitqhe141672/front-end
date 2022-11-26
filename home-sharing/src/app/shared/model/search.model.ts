@@ -11,6 +11,7 @@ export interface SearchData {
 export interface ListProvinceSearched {
   id: number
   name: string
+  imageUrl: string
 }
 
 export interface ListPostSearched {

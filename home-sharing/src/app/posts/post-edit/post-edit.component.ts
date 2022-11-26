@@ -123,6 +123,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isNewLoad = true
+
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.postID = +params['id']
@@ -134,16 +135,16 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getUtility()
     this.isChangeAddress = this.mapService.addressChanged.subscribe(address => {
       this.address = address
-        this.formGroupPost.controls.address.patchValue(address)
-        let arrAddress = address.split(',')
-        const matcher = this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).match(/\s\d+/g)
-        if (matcher) {
-          console.log(this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).replace(/\s\d+/g, ''))
-          arrAddress[arrAddress.length - 2] = arrAddress[arrAddress.length - 2].replace(/\s\d+/g, '')
-          this.address = arrAddress.join(',')
-        }
-        console.log('this is address post edit: ' + this.address)
-        this.isNewLoad = false
+      this.formGroupPost.controls.address.patchValue(address)
+      let arrAddress = address.split(',')
+      const matcher = this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).match(/\s\d+/g)
+      if (matcher) {
+        console.log(this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).replace(/\s\d+/g, ''))
+        arrAddress[arrAddress.length - 2] = arrAddress[arrAddress.length - 2].replace(/\s\d+/g, '')
+        this.address = arrAddress.join(',')
+      }
+      console.log('this is address post edit: ' + this.address)
+      this.isNewLoad = false
 
     })
 
@@ -157,9 +158,10 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   checkAddressVN() {
     return this.address.includes('Việt Nam');
   }
-  checkAddress(){
-    if(this.isNewLoad == false){
-      if(!this.checkAddressVN()){
+
+  checkAddress() {
+    if (this.isNewLoad == false) {
+      if (!this.checkAddressVN()) {
         Swal.fire(
           {
             icon: 'error',
@@ -353,13 +355,13 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       })
       return
     }
-    if(!this.checkAddressVN()){
+    if (!this.checkAddressVN()) {
       Swal.fire(
         {
           icon: 'error',
           title: 'Địa chỉ không thuộc Việt Nam. Vui lòng chọn lại'
         }
-      ).then(()=>{
+      ).then(() => {
         return
       })
 
@@ -435,7 +437,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isUploading = true
     let pushPostObservable: Observable<any>
     // pushPostObservable =
-      this.postEditService.pushPost(post, lat, lng, saveUtilityIDs, saveVoucherID, this.saveService).subscribe({
+    this.postEditService.pushPost(post, lat, lng, saveUtilityIDs, saveVoucherID, this.saveService).subscribe({
       next: responseData => {
         console.log('res2: ' + JSON.stringify(responseData))
         postIDResponse = responseData.data.postID as number
