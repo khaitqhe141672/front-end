@@ -1,5 +1,11 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Subject, Subscription} from "rxjs";
+import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
+import {HeaderService} from "./header.service";
+import {ListPostSearched, ListProvinceSearched, SearchResponse} from "../shared/model/search.model";
+import {Router} from "@angular/router";
 declare var $: any;
 
 @Component({
@@ -8,12 +14,49 @@ declare var $: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
-
+  isOpen = false
+  listProvince:ListProvinceSearched[] = []
+  listPost:ListPostSearched[]=[]
+  @ViewChild('owl')owl:ElementRef;
+  @ViewChild('divSearched') divSearched:ElementRef
   token = JSON.parse(localStorage.getItem("userData"));
+  formSearch:FormGroup
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if(this.eRef.nativeElement.contains(event.target)) {
+      this.isOpen = true;
+    } else {
+      this.isOpen = false;
 
-  constructor(private auth:AuthService) { }
-
+    }
+  }
+  constructor(private eRef: ElementRef,private router:Router,private auth:AuthService,private fb:FormBuilder,private headerService:HeaderService) { }
+  private readonly searchSubject = new Subject<string | undefined>();
+  searchSubscription?: Subscription;
   ngOnInit(): void {
+    this.formSearch = this.fb.group({
+      searchCtrl:['']
+    })
+
+    this.searchSubscription = this.searchSubject
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((searchQuery) =>{
+          console.log('searchQuery: '+searchQuery)
+          return this.headerService.searchData(searchQuery)
+        })
+      )
+      .subscribe((results:SearchResponse) => {
+        this.listProvince = results.data.listProvince
+        this.listPost = results.data.listPost
+        this.isOpen = true
+        console.log( this.listPost)
+      },()=>{
+        console.log('error')
+        }
+      );
+
   }
 
   ngAfterViewInit(){
@@ -43,5 +86,32 @@ export class HeaderComponent implements OnInit,AfterViewInit {
 
   logout() {
     this.auth.logout()
+  }
+
+
+  onSearching(event: Event): void {
+    const searchQuery = (event.target as HTMLInputElement).value;
+    if(searchQuery!='')
+    this.searchSubject.next(searchQuery?.trim());
+    else {
+      this.listProvince = []
+      this.listPost = []
+      this.isOpen = false
+    }
+  }
+
+  onSearchMore() {
+    this.router.navigate(['../search'])
+    this.isOpen = false
+  }
+
+
+  showMore(number: number) {
+
+  }
+
+  goPostDetail(postID: number) {
+    this.router.navigate(['../posts/post-detail/'+postID])
+    this.isOpen  = false
   }
 }

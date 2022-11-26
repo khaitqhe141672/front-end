@@ -242,13 +242,14 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       let utilitiesDataPostLoaded = this.postDetail.postUtilityDtoList
       for (let utility of utilitiesDataPostLoaded) {
         const utilityConverter: UtilitiesData = {
-          id: utility.postUtilityID,
+          id: utility.utilityID,
           name: utility.nameUtility,
           icon: utility.iconUtility
         }
         this.utilitys.push(this.displayUtility(utilityConverter))
         this.onAddUtilityData(utilityConverter)
       }
+      console.log('---------------utility loead: '+JSON.stringify(utilitiesDataPostLoaded))
 
 
       //load service edit mode

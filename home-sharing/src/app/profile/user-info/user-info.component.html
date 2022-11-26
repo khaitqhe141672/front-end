@@ -32,6 +32,9 @@
               <mat-label>Họ và Tên</mat-label>
               <input formControlName="fullName" matInput
                      placeholder="">
+              <mat-error>
+                Tên cần tối thiểu 6 ký tự
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -40,8 +43,11 @@
           <div class="col-3  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Số điện thoại</mat-label>
-              <input formControlName="phoneNumber" matInput
+              <input appCheckInputNumber formControlName="phoneNumber" matInput
                      placeholder="">
+              <mat-error>
+                Số điện thoại không hợp lệ
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="col-2  w-50">
@@ -63,6 +69,9 @@
               <mat-label>Địa chỉ</mat-label>
               <input formControlName="address" matInput
                      placeholder="">
+              <mat-error *ngIf="infoFormGroup.controls.address.hasError('minLength')">
+                Địa chỉ cần tối thiểu 10 ký tự
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

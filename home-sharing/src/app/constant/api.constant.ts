@@ -76,3 +76,8 @@ export const API_ADMIN_UPDATE_STATUS_REPORT_RATE = 'http://localhost:8080/api/re
 
 export const API_HOST_REPORT_RATE_TYPE = 'http://localhost:8080/api/report-type/all-report-type-host'
 export const API_CUS_REPORT_RATE_TYPE = 'http://localhost:8080/api/report-type/all-report-type-customer'
+
+
+export const API_SEARCH_FAST = 'http://localhost:8080/api/search/fill-search'
+export const API_SEARCH_DETAIL = 'http://localhost:8080/api/search/filter-search?index-page='
+

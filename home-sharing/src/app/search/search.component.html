@@ -1,590 +1,479 @@
 <div class="container-search">
-  <div class="menu-search">
-    <div class="map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.942489835562!2d105.52725144979861!3d21.013822248049323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1666017828677!5m2!1sen!2s"
-        width="600" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="intro_image">
-      <img src="assets/images/demo.png" alt="" style="border-radius: 25px;">
-    </div>
-  </div>
-  <div class="content-search" style="padding-top: 20px;">
-    <div class="menu-type">
-      <div class="search_of_price">
-        <div class="title">
-          <h3>Giá mỗi đêm:</h3>
-        </div>
-        <div class="slider_price">
-          <mat-slider
-            thumbLabel
-            [displayWith]="formatLabel"
-            tickInterval="1000"
-            step="1000"
-            min="0"
-            max="100000"
-            aria-label="units"></mat-slider>
-        </div>
-        <div class="slider_fast">
-          <div class="price_min">
-            <span>Tối thiểu</span>
-            <button>0 <sup>đ</sup></button>
+  <form (ngSubmit)="onFilterData()" [formGroup]="formFilterData">
+    <div class="content-search" style="padding-top: 20px;">
+
+      <div class="menu-type">
+        <div class="search_of_price">
+          <div class="title">
+            <h3>Giá mỗi đêm:</h3>
           </div>
-          <div class="price_max">
-            <span>Tối đa</span>
-            <button>2,000,000 <sup>đ</sup></button>
-          </div>
-        </div>
-        <div class="services">
-          <div class="services_title">
-            <h3>Các dịch vụ miễn phí theo kèm:</h3>
-          </div>
-          <div class="services_checkbox">
-            <section class="example-section">
-              <mat-checkbox class="example-margin" style="color: #F36B08;"> Check me!</mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;"> Check me!</mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;"> Check me!</mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;"> Check me!</mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;"> Check me!</mat-checkbox>
-            </section>
-          </div>
-        </div>
-        <div class="star_rate">
-          <div class="star_rate_title">
-            <h3>Trung bình điểm đánh giá:</h3>
-          </div>
-          <div class="star_rate_checkbox">
-            <section class="example-section">
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                 <span>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                 <span>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                 <span>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                 <span>
-                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                 <span>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#F36B08" stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
-                    fill="#565656" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </mat-checkbox>
-            </section>
-          </div>
-        </div>
-        <div class="type_place">
-          <div class="type_place_title">
-            <h3>Loại hình chỗ ở:</h3>
-          </div>
-          <div class="type_place_checkbox">
-            <section class="example-section">
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Cả căn nhà
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                chỉ một phòng
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Một tầng nhà
-              </mat-checkbox>
-            </section>
-          </div>
-        </div>
-        <div class="voucher">
-          <div class="voucher_title">
-            <h3>Ưu đãi giảm giá:</h3>
-          </div>
-          <div class="voucher_checkbox">
-            <section class="example-section">
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Giảm giá trên 20%
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Tặng miễn phí các dịch vụ ngoài
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                miễn phí giặt đồ
-              </mat-checkbox>
-            </section>
-          </div>
-        </div>
-        <div class="map_center">
-          <div class="map_center_title">
-            <h3>Vị trí trung tâm:</h3>
-          </div>
-          <div class="map_center_checkbox">
-            <section class="example-section">
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Bên trong trung tâm
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Cách trung tầm > 2km
-              </mat-checkbox>
-              <mat-checkbox class="example-margin" style="color: #F36B08;">
-                Cách trung tâm trên 5km
-              </mat-checkbox>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box_search">
-      <div class="filter_function">
-        <div class="filter">
-          <div class="filter_title">
-            <h2>Sắp xếp</h2>
-          </div>
-          <div class="filter_option">
-            <select class="dropdown_list">
-              <option>Phù họp nhất</option>
-              <option>AB</option>
-              <option>AC</option>
-              <option>AD</option>
-            </select>
-          </div>
-          <div style="background-color: black;">|</div>
-          <div class="filter_date">
-            <div class="dropdown_date">
-              <button>
-                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M0.0328103 0V5.75H23V0H0.0328103ZM0.0328103 8.625V22.7412C0.0328103 22.885 0.164051 23 0.328103 23H22.6719C22.8359 23 22.9672 22.885 22.9672 22.7412V8.625H0H0.0328103ZM3.31384 11.5H6.59486V14.375H3.31384V11.5ZM9.87589 11.5H13.1569V14.375H9.87589V11.5ZM16.4379 11.5H19.719V14.375H16.4379V11.5ZM3.31384 17.25H6.59486V20.125H3.31384V17.25ZM9.87589 17.25H13.1569V20.125H9.87589V17.25Z"
-                    fill="#F36B08"/>
-                </svg>
-                <span>Thời gian</span>
-              </button>
-              <div class="dropdown_content_date">
-                <div class="list_content">
-                  <div class="start_date">
-                    <div class="title_date">
-                      <h3>Nhận phòng</h3>
-                    </div>
-                    <div class="calendar_start">
-                      <mat-card class="demo-inline-calendar-card">
-                        <mat-calendar [(selected)]="selected"></mat-calendar>
-                      </mat-card>
-                    </div>
-                  </div>
-                  <div class="end_date">
-                    <div class="title_date">
-                      <h3>Trả phòng</h3>
-                    </div>
-                    <div class="calendar_end">
-                      <mat-card class="demo-inline-calendar-card">
-                        <mat-calendar [(selected)]="selected"></mat-calendar>
-                      </mat-card>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="slider_fast">
+            <div class="price_min">
+              <span>Tối thiểu</span>
+              <input formControlName="minPriceCtrl" class="input-price" appCheckInputNumber type="text">
+            </div>
+            <div class="price_max">
+              <span>Tối đa</span>
+              <input formControlName="maxPriceCtrl" class="input-price" appCheckInputNumber type="text">
             </div>
           </div>
-          <div style="background-color: black;">|</div>
-          <div class="filter_customer">
-            <div class="dropdown_customer">
-              <button>
-                <svg width="27" height="25" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="services">
+            <div class="services_title">
+              <h3>Các dịch vụ có ở nơi lưu trú:</h3>
+            </div>
+            <div class="services_checkbox">
+              <section  class="example-section">
+                <mat-checkbox (change)="onCheckChangeService($event,service.id)" *ngFor="let service of listService; let i = index" formControlName="serviceCtrl" value="{{service.id}}"  class="example-margin" style="color: #F36B08;"> {{service.name}}</mat-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="star_rate">
+            <div class="star_rate_title">
+              <h3>Trung bình điểm đánh giá:</h3>
+            </div>
+            <div class="star_rate_checkbox">
+              <section  class="example-section">
+                <mat-checkbox (change)="onCheckChangeRate($event,5)" class="example-margin" style="color: #F36B08;">
+                 <span>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
-                    d="M17.9036 0C16.2435 0 14.8112 1.09238 13.9323 2.74657C15.3971 4.43196 16.276 6.74157 16.276 9.39451C16.276 10.2996 16.1784 11.1111 15.9831 11.9226C16.6016 12.2659 17.2201 12.5156 17.9036 12.5156C20.6055 12.5156 22.7865 9.70662 22.7865 6.27341C22.7865 2.8402 20.6055 0.031211 17.9036 0.031211V0ZM8.13802 3.1211C5.4362 3.1211 3.25521 5.93009 3.25521 9.3633C3.25521 12.7965 5.4362 15.6055 8.13802 15.6055C10.8398 15.6055 13.0208 12.7965 13.0208 9.3633C13.0208 5.93009 10.8398 3.1211 8.13802 3.1211ZM23.6003 12.9838C22.2005 14.5755 20.2799 15.5431 18.099 15.6055C18.9779 16.7915 19.5312 18.2272 19.5312 19.7878V21.8477H26.0417V16.6667C26.0417 15.0437 25.0326 13.6392 23.6003 12.9526V12.9838ZM2.44141 16.1049C1.00911 16.7915 0 18.196 0 19.819V25H16.276V19.819C16.276 18.196 15.2669 16.7915 13.8346 16.1049C12.3698 17.7591 10.3841 18.7266 8.13802 18.7266C5.89193 18.7266 3.90625 17.7278 2.44141 16.1049Z"
-                    fill="#F36B08"/>
-                </svg>
-                <span>Số Khách</span>
-              </button>
-              <div class="dropdown_content_customer">
-                <div class="list_content">
-                  <div class="elder">
-                    <div class="elder_title">
-                      <h3> Người lớn <br> <span style="font-size: 12px;">(Từ 13 tuổi trở lên)</span></h3>
-                    </div>
-                    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-                      <mat-form-field appearance="fill" [color]="colorControl.value" style="width: 100%;">
-                        <mat-label>Số người</mat-label>
-                        <input matInput type="number" min="0">
-                        <span matSuffix>Người</span>
-                        <mat-error *ngIf="fontSizeControl.invalid">Không được số âm</mat-error>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                  <hr>
-                  <div class="children">
-                    <div class="children_title">
-                      <h3> Trẻ em<br> <span style="font-size: 12px;">(Độ tuổi 2 - 12)</span></h3>
-                    </div>
-                    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-                      <mat-form-field appearance="fill" [color]="colorControl.value" style="width: 100%;">
-                        <mat-label>Số người</mat-label>
-                        <input matInput type="number" min="0">
-                        <span matSuffix>Người</span>
-                        <mat-error *ngIf="fontSizeControl.invalid">Không được số âm</mat-error>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                  <hr>
-                  <div class="baby">
-                    <div class="baby_title">
-                      <h3>Em bé<br> <span style="font-size: 12px;">(Dưới 2 tuổi)</span></h3>
-                    </div>
-                    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-                      <mat-form-field appearance="fill" [color]="colorControl.value" style="width: 100%;">
-                        <mat-label>Số người</mat-label>
-                        <input matInput type="number" min="0">
-                        <span matSuffix>Người</span>
-                        <mat-error *ngIf="fontSizeControl.invalid">Không được số âm</mat-error>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                  <hr>
-                  <div class="pet">
-                    <div class="pet_title">
-                      <h3>Thú cưng <br><span style="font-size: 12px;">Bạn sẽ mang theo động vật phục vụ?</span></h3>
-                    </div>
-                    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-                      <mat-form-field appearance="fill" [color]="colorControl.value" style="width: 100%;">
-                        <mat-label>Số thú</mat-label>
-                        <input matInput type="number" min="0">
-                        <span matSuffix>thú</span>
-                        <mat-error *ngIf="fontSizeControl.invalid">Không được số âm</mat-error>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                </div>
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeRate($event,4)" class="example-margin" style="color: #F36B08;">
+                 <span>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeRate($event,3)" class="example-margin" style="color: #F36B08;">
+                 <span>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeRate($event,2)" class="example-margin" style="color: #F36B08;">
+                 <span>
+                 <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeRate($event,1)" class="example-margin" style="color: #F36B08;">
+                 <span>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="type_place">
+            <div class="type_place_title">
+              <h3>Loại hình chỗ ở:</h3>
+            </div>
+            <div class="type_place_checkbox">
+              <section class="example-section">
+                <mat-checkbox (change)="onCheckChangeRoomType($event,roomType.id)" formControlName="roomTypeCtrl" value="{{roomType.id}}" *ngFor="let roomType of listRoomType" class="example-margin" style="color: #F36B08;">
+                  {{roomType.name}}
+                </mat-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="voucher">
+            <div class="voucher_title">
+              <h3>Ưu đãi giảm giá:</h3>
+            </div>
+            <div class="voucher_checkbox">
+              <section class="example-section">
+                <mat-checkbox (change)="onCheckChangeVoucher($event,0,20)" value="1" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Giảm giá dưới 20%
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeVoucher($event,20,40)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Giảm giá từ 20% - 40%
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeVoucher($event,40,60)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Giảm giá từ 40% - 60%
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeVoucher($event,60,80)" value="3" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Giảm giá từ 60% - 80%
+                </mat-checkbox>
+                <mat-checkbox (change)="onCheckChangeVoucher($event,80,100)" value="4" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Giảm giá trên 80%
+                </mat-checkbox>
+              </section>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="box_search">
+        <div class="filter_function" style="border-radius: 16px;width: auto">
+          <div class="filter">
+            <div class="filter_title">
+              <h2>Sắp xếp</h2>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center p-2" style="width: 800px">
+              <div class="col">
+                <mat-form-field appearance="outline" class="mt-3">
+                  <mat-label>Sắp xếp theo giá</mat-label>
+                  <mat-select formControlName="optionPriceCtrl">
+                    <mat-option value="0">
+                      Mặc định
+                    </mat-option>
+                    <mat-option value="1">
+                      Giá tăng dần
+                    </mat-option>
+                    <mat-option value="2">
+                      Giá giảm dần
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col d-flex flex-row">
+                <mat-form-field appearance="outline" class="example-full-width mt-3">
+                  <input formControlName="dateCtrl"  [matDatepicker]="picker" matInput placeholder="Ngày bắt đầu thuê" readonly>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <button type="button" aria-label="Clear" mat-icon-button matSuffix>
+                    <mat-icon (click)="picker.open()"> calendar_month</mat-icon>
+                  </button>
+                  <button type="button" aria-label="Clear" mat-icon-button matSuffix>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="example-form-field mt-3">
+                  <mat-label>Số khách</mat-label>
+                  <input formControlName="guestNumberCtrl" [(ngModel)]="guestNumber" appCheckInputNumber matInput type="text">
+                  <button  type="button" (click)="guestNumber=''" aria-label="Clear" mat-icon-button matSuffix>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+
               </div>
             </div>
           </div>
         </div>
-        <div></div>
-      </div>
-      <div class="list_card_search">
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
+        <div>
+          <button type="submit" class="btn btn-success">
+            Lọc
+          </button>
+        </div>
+
+        <div class="list_card_search">
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
             </div>
-            <div class="right">
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
               <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
                   fill="#F36B08"/>
                 </svg>
                 4,0
               </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card_search">
+            <div class="image_search">
+              <img alt="" src="assets/images/demo.png">
+            </div>
+            <div class="info_post">
+              <div class="left">
+                <h3>Homestay A</h3>
+                <h4>2,000,000<sup>đ</sup></h4>
+              </div>
+              <div class="right">
+              <span>
+                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                  fill="#F36B08"/>
+                </svg>
+                4,0
+              </span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card_search">
-          <div class="image_search">
-            <img src="assets/images/demo.png" alt="">
-          </div>
-          <div class="info_post">
-            <div class="left">
-              <h3>Homestay A</h3>
-              <h4>2,000,000<sup>đ</sup></h4>
-            </div>
-            <div class="right">
-              <span>
-                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-            </div>
-          </div>
+        <div class="page_item w-100 d-flex justify-content-end align-items-end" style="padding-top: 10px;">
+          <mat-paginator [length]="100"
+                         [pageSizeOptions]="[5, 10, 25, 100]"
+                         [pageSize]="10"
+                         aria-label="Select page"
+                         hidePageSize>
+          </mat-paginator>
         </div>
       </div>
     </div>
-    <div></div>
-    <div class="page_item" style="padding-top: 10px;">
-      <mat-paginator [length]="100"
-                     [pageSize]="10"
-                     [pageSizeOptions]="[5, 10, 25, 100]"
-                     aria-label="Select page">
-      </mat-paginator>
-    </div>
-  </div>
+  </form>
 </div>

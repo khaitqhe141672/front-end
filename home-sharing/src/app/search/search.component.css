@@ -73,7 +73,6 @@ img, iframe {
 
 .container-search .content-search .menu-type {
   border-radius: 15px;
-  border: 1px solid #F36B08;
   padding: 10px 10px;
   height: 950px;
 }
@@ -171,7 +170,7 @@ img, iframe {
 
 .container-search .box_search .filter_function .filter {
   padding: 10px 15px 10px 15px;
-  border: 1px solid #7A7676;
+  /*border: 1px solid #7A7676;*/
   display: grid;
   grid-template-columns: 100px 150px 2px 100px 2px 100px;
   border-radius: 15px;
@@ -336,4 +335,23 @@ img, iframe {
   font-family: Inder;
   font-size: 24px;
   padding-bottom: 5px;
+}
+.input-price{
+  width: 124px;
+  border: 1px solid  gray;
+  border-radius: 16px;
+  text-align: center;
+  height: 32px;
+}
+
+.filter_function{
+  border-radius: 50px;
+  background: linear-gradient(315deg, #ffffff, #e6e6e6);
+  box-shadow:  -1px -1px 2px #f2f2f2,
+  1px 1px 2px #ffffff;
+}
+.menu-type{
+  background: linear-gradient(315deg, #ffffff, #e6e6e6);
+  box-shadow:  -1px -1px 2px #f2f2f2,
+  1px 1px 2px #ffffff;
 }

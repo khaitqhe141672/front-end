@@ -25,10 +25,10 @@ export class UserInfoComponent implements OnInit {
     this.infoFormGroup = this._formBuilder.group(
       {
         userName:['',Validators.required],
-        fullName:['',Validators.required],
-        phoneNumber:['',Validators.required],
+        fullName:['',[Validators.required,Validators.minLength(6)]],
+        phoneNumber:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
         email:['',Validators.required],
-        address:['',Validators.required]
+        address:['',[Validators.required,Validators.minLength(10)]]
       }
     )
     this.historyFormGroup = this._formBuilder.group({
