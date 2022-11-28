@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div mat-dialog-title class="row">
+    <div class="col">
+      <h1>Kháng cáo</h1>
+    </div>
+  </div>
+  <form [formGroup]="formAppeal" (ngSubmit)="onCreateComplain()">
+  <div mat-dialog-content class="row">
+    <div class="col" style="width: 400px">
+      <mat-form-field appearance="outline" class="example-full-width w-100">
+        <mat-label>Ý kiến của bạn</mat-label>
+        <textarea formControlName="description" rows="10" matInput placeholder="Điền ý kiến của bạn vào đây">
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button mat-button mat-dialog-close [disabled]="!formAppeal.valid" type="submit" class="btn btn-success">Gửi</button>
+    </div>
+  </div>
+  </form>
+</div>

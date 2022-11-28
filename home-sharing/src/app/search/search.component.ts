@@ -5,6 +5,9 @@ import {ServiceObj} from "../shared/model/serivce-post.model";
 import {RoomType} from "../shared/model/room-type.model";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {DatePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
+import {SearchService} from "./search.service";
+import {SearchListByTitle} from "../shared/model/search-title.model";
 
 declare var $: any;
 
@@ -20,6 +23,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   savedRoomType= []
   savedRate = []
 
+  title
+  pageIndex = 1
+  totalPage = 1
+
 
   guestNumber = ''
   datePicker = ''
@@ -32,10 +39,24 @@ export class SearchComponent implements OnInit, AfterViewInit {
   listService: ServiceObj[]=[]
   listRoomType: RoomType[]=[]
 
-  constructor(private datePipe:DatePipe,private _formBuilder: FormBuilder, private postEditService: PostEditService) {
+  listSearchByTitle:SearchListByTitle[]=[]
+
+  constructor(private route:ActivatedRoute,private datePipe:DatePipe,private _formBuilder: FormBuilder, private postEditService: PostEditService,
+              private searchService:SearchService) {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      console.log('title: '+params['title'])
+      this.title = params['title']
+      if(this.title){
+        this.searchService.searchMoreByTitle(this.title,this.pageIndex).subscribe(response=>{
+          this.totalPage=response.data.sizePage
+          this.listSearchByTitle = response.data.searchList
+          this.totalPage=response.data.sizePage
+        })
+      }
+    })
     this.formFilterData = this._formBuilder.group({
       optionPriceCtrl: [''],
       dateCtrl: [''],
@@ -58,7 +79,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
     if($event.checked){
       if(this.savedService.indexOf(serviceID)==-1)
-      this.savedService.push(serviceID)
+        this.savedService.push(serviceID)
     }
     else{
 
@@ -73,7 +94,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
     if($event.checked){
       if(this.savedService.indexOf(roomTypeID)==-1)
-      this.savedRoomType.push(roomTypeID)
+        this.savedRoomType.push(roomTypeID)
     }
     else{
       let indexRemove =this.savedRoomType.indexOf(roomTypeID)
@@ -96,7 +117,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onCheckChangeRate($event,valueRate:number){
     if($event.checked) {
       if(this.savedRate.indexOf(valueRate)==-1)
-      this.savedRate.push(valueRate)
+        this.savedRate.push(valueRate)
     }else {
       let indexRemove = this.savedRate.indexOf(valueRate)
       this.savedRate.splice(indexRemove,1).slice()
@@ -179,9 +200,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-
-
 }
 
 

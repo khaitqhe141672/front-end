@@ -28,7 +28,7 @@
         <ng-container matColumnDef="id">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
           <td  *matCellDef="let row" mat-cell>
-          <div class="d-flex justify-content-center">{{row.postID}}</div>
+            <div class="d-flex justify-content-center">{{row.postID}}</div>
           </td>
         </ng-container>
 
@@ -71,7 +71,6 @@
             <mat-menu #menu="matMenu">
               <button *ngIf="row.status == 1" mat-menu-item (click)="updateStatusPost(row.postID,2)">Ẩn bài viết</button>
               <button *ngIf="row.status == 2" mat-menu-item (click)="updateStatusPost(row.postID,1)">Hiển thị bài viết</button>
-
             </mat-menu>
 
 
@@ -101,16 +100,16 @@
           <th *matHeaderCellDef mat-header-cell mat-sort-header>Đánh giá</th>
           <td *matCellDef="let row" mat-cell>
             <div style="background: none" class="card_function d-flex justify-content-center">
-            <div class="star" >
-              <button style="width: 63px" type="button">
-                <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10.377 1L13.2738 5.93691L19.752 6.73344L15.0645 10.5741L16.1707 16L10.377 13.4369L4.5832 16L5.68945 10.5741L1.00195 6.73344L7.48008 5.93691L10.377 1Z"
-                    stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                {{convertTo2Decimal(row.avgRate)}}
-              </button>
-            </div>
+              <div class="star" >
+                <button style="width: 63px" type="button">
+                  <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.377 1L13.2738 5.93691L19.752 6.73344L15.0645 10.5741L16.1707 16L10.377 13.4369L4.5832 16L5.68945 10.5741L1.00195 6.73344L7.48008 5.93691L10.377 1Z"
+                      stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {{convertTo2Decimal(row.avgRate)}}
+                </button>
+              </div>
             </div>
           </td>
         </ng-container>

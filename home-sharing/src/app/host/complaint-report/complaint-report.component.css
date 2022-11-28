@@ -1,5 +1,5 @@
 .box_complaint {
-  width: 1100px;
+  width: 1450px;
 }
 
 h1, h2, h3, h4, p {
@@ -31,12 +31,6 @@ img {
   padding-top: 20px;
 }
 
-.image_customer {
-  width: 25px;
-  height: 25px;
-  border: 1px solid #F36B08;
-  border-radius: 50%;
-}
 
 .box_complaint .box_content_complaint .card_report {
   display: grid;
@@ -100,4 +94,19 @@ img {
   border-radius: 15px;
   padding: 5px 5px;
   color: #F36B08;
+}
+.div-img-avatar{
+  width: 24px;
+  height: 24px;
+  border: 1px solid #F36B08;
+  border-radius: 50%;
+}
+
+.img-avatar{
+  max-width:100%;
+  max-height:100%;
+  vertical-align: middle;
+  overflow: hidden;
+  border-radius: 50%;
+
 }

@@ -1,50 +1,65 @@
 <div class="box_complaint">
   <h1 mat-dialog-title>Quản lý và xử lý báo cáo</h1>
   <hr>
-  <div class="d-flex justify-content-center text-center"  *ngIf="dataSource.data.length<=0">
-    <h2>Chưa có báo nào về bài đăng này</h2>
-  </div>
-  <div  *ngIf="dataSource.data.length>0" class="box_list_report">
+  <!--  <div *ngIf="dataSource.data.length<=0" class="d-flex justify-content-center text-center">-->
+  <!--    <h2>Chưa có báo nào về bài đăng này</h2>-->
+  <!--  </div>-->
+  <div class="box_list_report">
     <div class="table_list">
       <div class="mat-elevation-z8">
-        <table  class="w-100" [dataSource]="dataSource" mat-table matSort>
+        <table [dataSource]="dataSource" class="w-100" mat-table matSort>
 
-          <ng-container matColumnDef="avatar">
-            <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
+          <ng-container matColumnDef="postID">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Mã bài viết</th>
             <td *matCellDef="let row" mat-cell>
-              <div class="image_customer">
-                <img src="{{row.customer.user.userDetail.avatarUrl}}" alt="">
-              </div>
+              {{row.postID}}
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="username">
-            <th *matHeaderCellDef mat-header-cell mat-sort-header>Username</th>
-            <td *matCellDef="let row" mat-cell>{{row.customer.user.username}}</td>
+          <ng-container matColumnDef="title">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Tên homestay</th>
+            <td *matCellDef="let row" mat-cell>{{row.title}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="description">
-            <th *matHeaderCellDef mat-header-cell mat-sort-header>Mô tả</th>
-            <td *matCellDef="let row" mat-cell>{{row.description}}</td>
+          <ng-container matColumnDef="statusPost">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái bài viết bị xử lý</th>
+            <td *matCellDef="let row" [ngSwitch]="row.statusPost" mat-cell>
+              <div *ngSwitchCase="1">
+                Hoạt động
+              </div>
+              <div *ngSwitchCase="2">
+                Đã ẩn
+              </div>
+              <div *ngSwitchCase="3">
+                Đã bị quản trị viên ẩn
+              </div>
+            </td>
           </ng-container>
+          <ng-container matColumnDef="totalReportPost">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Số lần bị báo cáo</th>
+            <td *matCellDef="let row" mat-cell>
+              {{row.totalReportPost}}
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="function">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> Chức năng</th>
             <td *matCellDef="let row" mat-cell>
               <div class="card_function">
                 <div class="edit">
-                  <button (click)="onClickShow(row)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <button (click)="onClickShow(row.historyHandleReportPostID,row.postID)">
+                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-                        stroke="#F36B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M14 2V8H20" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"/>
-                      <path d="M16 13H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"/>
-                      <path d="M16 17H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"/>
-                      <path d="M10 9H9H8" stroke="#F36B08" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"/>
+                        stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                      <path d="M14 2V8H20" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"/>
+                      <path d="M16 13H8" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"/>
+                      <path d="M16 17H8" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"/>
+                      <path d="M10 9H9H8" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"/>
                     </svg>
                     Chi tiết
                   </button>
@@ -58,38 +73,68 @@
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"
+                       hidePageSize></mat-paginator>
       </div>
     </div>
     <div style="border-right: 1px solid #F36B08;"></div>
-    <div class="complaint_host">
-      <div class="title">
-        <h2>Khiếu nại báo cáo:</h2>
-      </div>
-      <div class="box_complaint_host" *ngIf="detailReportPost != null">
-        <div class="info_cus">
-          <div class="image_customer">
-            <img src="{{detailReportPost.customer.user.userDetail.avatarUrl}}" alt="">
-          </div>
-          <div class="name_cus">
-            <h3>{{detailReportPost.customer.user.username}}</h3>
-          </div>
+    <div *ngIf="loadListDetailReportObs != null" class="complaint_host">
+      <div class="table_list">
+        <div class="mat-elevation-z8">
+          <table [dataSource]="dataSourceDetail" class="w-100" mat-table matSort>
+
+            <ng-container matColumnDef="username">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>Người báo cáo</th>
+              <td *matCellDef="let row" mat-cell>
+                <div style="width: 160px"  class="d-flex flex-row">
+                  <div class="me-3 div-img-avatar">
+                    <img [src]="row.imageUrl" alt="" class="w-100 img-avatar overflow-hidden">
+                  </div>
+                  <div>
+                    {{row.username}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reportTypeName">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>Loại báo cáo</th>
+              <td *matCellDef="let row" mat-cell>
+                <div  style="width: 160px" >
+                  {{row.reportTypeName}}
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>Nội dung báo cáo</th>
+              <td *matCellDef="let row" mat-cell>
+                <div style="width: 160px"  class="text-center">  {{row.description}}
+                </div>
+            </ng-container>
+
+
+            <ng-container matColumnDef="function">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header> Chức năng</th>
+              <td *matCellDef="let row" mat-cell>
+                <div  style="width: 160px"  class="card_function text-center">
+                  <div class="edit">
+                    <button (click)="onComplainHandling()">
+                      <mat-icon>flag</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="displayedColumnsDetail; sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: displayedColumnsDetail;" mat-row></tr>
+
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"
+                         hidePageSize></mat-paginator>
         </div>
-        <div class="reason_report">
-          <div class="reason">
-            <h3>Lý do: <span>{{detailReportPost.reportType.name}}</span></h3>
-            <p>{{detailReportPost.description}}</p>
-          </div>
-          <div class="input_host">
-            <div class="mb-3">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                        placeholder="Bạn hãy chứng minh..."></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div mat-dialog-actions class="btn_submit" *ngIf="detailReportPost != null">
-        <button mat-button mat-dialog-close>Gửi khiếu nại</button>
       </div>
     </div>
   </div>

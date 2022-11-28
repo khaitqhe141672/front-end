@@ -5,6 +5,7 @@ export interface ReportPostResponse {
 
 export interface ReportPostData {
   sizePage: number
+  size: number
   reportPostList: ReportPostDetail[]
 }
 
@@ -19,4 +20,5 @@ export class ReportPostDetail {
   statusPost: number
   statusReportPost: number
   imagePostUrl?: string
+  listReportPostID: number[]
 }

@@ -123,7 +123,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isNewLoad = true
-
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.postID = +params['id']
@@ -158,10 +157,9 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   checkAddressVN() {
     return this.address.includes('Việt Nam');
   }
-
-  checkAddress() {
-    if (this.isNewLoad == false) {
-      if (!this.checkAddressVN()) {
+  checkAddress(){
+    if(this.isNewLoad == false){
+      if(!this.checkAddressVN()){
         Swal.fire(
           {
             icon: 'error',
@@ -355,13 +353,13 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       })
       return
     }
-    if (!this.checkAddressVN()) {
+    if(!this.checkAddressVN()){
       Swal.fire(
         {
           icon: 'error',
           title: 'Địa chỉ không thuộc Việt Nam. Vui lòng chọn lại'
         }
-      ).then(() => {
+      ).then(()=>{
         return
       })
 

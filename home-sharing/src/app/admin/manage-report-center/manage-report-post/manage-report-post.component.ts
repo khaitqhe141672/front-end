@@ -10,6 +10,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ReportPostDetailDialogComponent} from "./report-post-detail-dialog/report-post-detail-dialog.component";
 import {HandleStatusDialogComponent} from "./handle-status-dialog/handle-status-dialog.component";
 import {ReportPostDetailDialogService} from "./report-post-detail-dialog/report-post-detail-dialog.service";
+import {HistoryHandleReportComponent} from "../history-handle-report/history-handle-report.component";
 
 @Component({
   selector: 'app-manage-report-post',
@@ -17,7 +18,7 @@ import {ReportPostDetailDialogService} from "./report-post-detail-dialog/report-
   styleUrls: ['./manage-report-post.component.css']
 })
 export class ManageReportPostComponent implements OnInit {
-  displayedColumns: string[] = ['postID', 'title','description','numbersOfReport','statusPost','statusReportPost' ];
+  displayedColumns: string[] = ['postID', 'title','description','numbersOfReport','statusPost','statusReportPost','history' ];
   dataSource:MatTableDataSource<ReportPostDetail>
   pageIndex:number = 1
   totalPaginator = 1
@@ -30,10 +31,10 @@ export class ManageReportPostComponent implements OnInit {
 
   reasonReportDetailDialog:MatDialogRef<ReportPostDetailDialogComponent>
   handleStatusDialogRef:MatDialogRef<HandleStatusDialogComponent>
-
+  historyDialogRef:MatDialogRef<HistoryHandleReportComponent>
 
   constructor(private manageReportPostService:ManageReportPostService,
-  private dialog:MatDialog,reportDetailDialogService:ReportPostDetailDialogService) { }
+              private dialog:MatDialog,reportDetailDialogService:ReportPostDetailDialogService) { }
 
   ngOnInit(): void {
     this.onLoadingReportPost()
@@ -64,7 +65,7 @@ export class ManageReportPostComponent implements OnInit {
 
   showMore(data) {
     let reportPostDetail = data as ReportPostDetail
-      console.log(data)
+    console.log(data)
     this.reasonReportDetailDialog = this.dialog.open(ReportPostDetailDialogComponent,{
       data:reportPostDetail.postID,hasBackdrop:true,
     })
@@ -72,31 +73,29 @@ export class ManageReportPostComponent implements OnInit {
   }
 
   handlePageEvent($event: PageEvent) {
-      this.pageIndex = $event.pageIndex
+    this.pageIndex = $event.pageIndex
     this.onLoadingReportPost()
   }
 
-  updateStatus(reportID:number,postId:number,statusReport:number,statusPost:number){
+  updateStatus(reportID:number[],postId:number,statusReport:number,statusPost:number){
     //0: chưa xử lý
     //1: hoạt động
     //2: ẩn
-    this.handleStatusDialogRef = this.dialog.open(HandleStatusDialogComponent,{hasBackdrop:true})
-    this.handleStatusDialogRef.afterClosed().subscribe(response=>{
-      if(response as boolean){
-          this.manageReportPostService.updatePostStatus(postId,statusPost)
-            .subscribe(response =>console.log('openDialog: '+response))
-      }
-    },
-      ()=>{},
-    ()=>{
-      this.manageReportPostService.updateStatusReportPost([reportID],statusReport)
-        .subscribe(response =>{
+
+    this.manageReportPostService.updateStatusReportPost(reportID,postId,statusPost)
+      .subscribe(response =>{
           console.log('update status report: '+response)
         },()=>{},
-          ()=>{
-            this.refreshReportPost.next(true)
-          }
-        )}
-    )
+        ()=>{
+          this.refreshReportPost.next(true)
+        }
+      )
+  }
+
+  viewHistory(postID: number) {
+    this.historyDialogRef = this.dialog.open(HistoryHandleReportComponent,{
+      hasBackdrop:true,
+      data:postID
+    })
   }
 }

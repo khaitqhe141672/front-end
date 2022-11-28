@@ -54,7 +54,7 @@ const appRoute: Routes = [
   },
   {path: 'booking/:id', component: BookingComponent},
   {path: 'test', component: AccountDetailComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent,canActivate:[HasRoleCusGuard]},
   {
     path: 'profile', component: ProfileComponent,
     canActivate: [HasRoleGuard], children: [
@@ -64,19 +64,12 @@ const appRoute: Routes = [
     ]
 
   },
-  // {path: 'login', component: LoginComponent},
-  // {path: 'register', component: RegisterComponent},
   {
     path: 'posts', children: [
       {path: '', component: PostsComponent},
       {path: 'post-detail/:id', component: PostDetailComponent, resolve: [PostResolverService]},
-
-      // children:[
-      //   {path: ':id',component: PostDetailComponent}
-      // ]
       {path: 'post-edit', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
       {path: 'post-edit/:id', component: PostEditComponent, canActivate: [HasRoleHostGuard]},
-
       {path: 'post-list', component: PostListComponent}
 
     ]

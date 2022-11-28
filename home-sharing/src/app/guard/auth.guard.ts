@@ -3,9 +3,16 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {AuthService} from "../auth/auth.service";
 import {map, take} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
+import {ReportPostDetail} from "../admin/manage-report-center/manage-report-post/manage-report-post.model";
 
 @Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate {
+
+  displayedColumns: string[] = ['postID', 'title','numbersOfReport','statusPost','statusReportPost','history' ];
+  dataSource:MatTableDataSource<ReportPostDetail>
+  pageIndex:number = 1
+  totalPaginator = 1
 
   constructor(private authService: AuthService, private router: Router) {
   }

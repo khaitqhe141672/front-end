@@ -48,12 +48,12 @@ export class HeaderComponent implements OnInit,AfterViewInit {
         })
       )
       .subscribe((results:SearchResponse) => {
-        this.listProvince = results.data.listProvince
-        this.listPost = results.data.listPost
-        this.isOpen = true
-        console.log( this.listPost)
-      },()=>{
-        console.log('error')
+          this.listProvince = results.data.listProvince
+          this.listPost = results.data.listPost
+          this.isOpen = true
+          console.log( this.listPost)
+        },()=>{
+          console.log('error')
         }
       );
 
@@ -92,7 +92,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   onSearching(event: Event): void {
     const searchQuery = (event.target as HTMLInputElement).value;
     if(searchQuery!='')
-    this.searchSubject.next(searchQuery?.trim());
+      this.searchSubject.next(searchQuery?.trim());
     else {
       this.listProvince = []
       this.listPost = []
@@ -106,7 +106,15 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
 
-  showMore(number: number) {
+  showMore(type: number) {
+    //1: title
+    //2: province
+    if(type==1){
+      let title = this.formSearch.controls.searchCtrl.value
+      // this.headerService.searchMoreByTitle(this.formSearch.controls.searchCtrl.value,1).subscribe(response=>{
+      this.router.navigate(['../search'],{queryParams:{title:title}})
+    }
+    this.isOpen = false
 
   }
 

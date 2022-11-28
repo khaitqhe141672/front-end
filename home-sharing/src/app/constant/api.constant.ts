@@ -46,6 +46,7 @@ export const API_ACCOUNT_HOST = 'http://localhost:8080/api/manage-account/view-a
 export const API_ACCOUNTS_CUSTOMER = 'http://localhost:8080/api/manage-account/view-account-customer?index-page='
 export const API_UPDATE_HOST_STATUS ='http://localhost:8080/api/manage-account/update-status-account?'
 
+//host
 export const API_HOST_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post-host?index-page='
 export const API_HOST_LIST_REPORT_POST = 'http://localhost:8080/api/manage-post/all-report-post?post-id='
 export const API_HOST_MANAGE_VOUCHER = 'http://localhost:8080/api/manage-voucher/view-all-voucher?index-page='
@@ -65,6 +66,7 @@ export const API_HOST_UPDATE_STATUS_POST = 'http://localhost:8080/api/manage-pos
 
 export const API_HOST_UPDATE_VOUCHER_FOR_POST ='http://localhost:8080/api/posting/insert-post-voucher?post-id='
 
+//admin
 export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
 export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='
 export const API_ADMIN_LIST_REPORT_BY_POST = 'http://localhost:8080/api/report/list-reportPost-detail-admin?'
@@ -72,12 +74,17 @@ export const API_ADMIN_MANAGE_REPORT_RATE = 'http://localhost:8080/api/report/li
 export const API_ADMIN_UPDATE_STATUS_POST_IN_MANAGE_REPORT = 'http://localhost:8080/api/posting/update-status?'
 export const API_ADMIN_UPDATE_STATUS_REPORT_POST = 'http://localhost:8080/api/report/update-status-report-post?'
 export const API_ADMIN_UPDATE_STATUS_REPORT_RATE = 'http://localhost:8080/api/report/update-status-report-rate?'
+export const API_HISTORY_HANDLE_REPORT_POST  = 'http://localhost:8080/api/report/all-history-report-post?'
+export const API_HISTORY_DETAIL_REPORT = 'http://localhost:8080/api/report/all-detail-history-report-post?'
+export const API_ADMIN_GET_COMPLAIN = 'http://localhost:8080/api/report/all-complaint-post?index-page='
 
 
+//host vs admin
+export const API_CREATE_COMPLAIN = 'http://localhost:8080/api/report/create-complaintPost?post-id='
 export const API_HOST_REPORT_RATE_TYPE = 'http://localhost:8080/api/report-type/all-report-type-host'
 export const API_CUS_REPORT_RATE_TYPE = 'http://localhost:8080/api/report-type/all-report-type-customer'
 
 
 export const API_SEARCH_FAST = 'http://localhost:8080/api/search/fill-search'
 export const API_SEARCH_DETAIL = 'http://localhost:8080/api/search/filter-search?index-page='
-
+export const API_SEARCH_MORE_BY_TITLE = 'http://localhost:8080/api/search?index-page='

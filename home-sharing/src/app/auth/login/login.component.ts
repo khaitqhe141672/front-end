@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthResponseData, AuthService} from '../auth.service';
 import { LoginService } from './login.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,10 @@ export class LoginComponent implements OnInit {
   constructor(private authService:AuthService,private router:Router) { }
   formLoginGroup:FormGroup
   ngOnInit(): void {
-      this.formLoginGroup = new FormGroup({
-        'userName': new FormControl(null,[Validators.required]),
-        'passWord':new FormControl(null,[Validators.required])
-      })
+    this.formLoginGroup = new FormGroup({
+      'userName': new FormControl(null,[Validators.required]),
+      'passWord':new FormControl(null,[Validators.required])
+    })
   }
 
   onSubmit() {
@@ -32,19 +33,30 @@ export class LoginComponent implements OnInit {
     console.log(useName + ' ' + password)
 
     let authObservable:Observable<AuthResponseData>
-    // if(this.isLogin){
-      authObservable = this.authService.login(useName,password)
-    // }
+    authObservable = this.authService.login(useName,password)
+    console.log('au tkn: '+JSON.parse(localStorage.getItem('token')))
     authObservable.subscribe({
       next:responseData=>{
-        // console.log(responseData)
-        this.router.navigate(['/home'])
+        console.log(responseData)
+        console.log("auth interceptor token2: "+responseData.data.token)
+
+        if(responseData.data.user.role==='ROLE_HOST'){
+          this.router.navigate(['/hosts/manage-current/confirm-booking'])
+        }else if(responseData.data.user.role==='ROLE_ADMIN'){
+          this.router.navigate(['/admin/manager-account/manager-account-host'])
+        }else{
+          this.router.navigate(['/home'])
+        }
       },
       error:errorMessageResponse=>{
         this.error = errorMessageResponse
+        Swal.fire({
+          icon: 'error',
+          title: 'Tài khoản hoặc mật khẩu không đúng',
+        })
       },
       complete:()=>{
-        console.log('complete')
+        // console.log('complete')
       }
     })
   }

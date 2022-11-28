@@ -120,6 +120,8 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import {PostVoucherDialogComponent} from "./host/host-post-list/post-voucher-dialog/post-voucher-dialog.component";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { CheckInputNumberDirective } from './shared/directive/check-input-number.directive';
+import { HistoryHandleReportComponent } from './admin/manage-report-center/history-handle-report/history-handle-report.component';
+import { CreateComplaintReportComponent } from './host/complaint-report/create-complaint-report/create-complaint-report.component';
 
 @NgModule({
   declarations: [
@@ -187,6 +189,8 @@ import { CheckInputNumberDirective } from './shared/directive/check-input-number
     PaymentSuccessComponent,
     PostVoucherDialogComponent,
     CheckInputNumberDirective,
+    HistoryHandleReportComponent,
+    CreateComplaintReportComponent,
   ],
   imports: [
     BrowserModule,

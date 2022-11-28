@@ -275,14 +275,14 @@
         </div>
 
         <div class="list_card_search">
-          <div class="card_search">
+          <div class="card_search"  *ngFor="let post of listSearchByTitle">
             <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
+              <img alt="" [src]="post.imageUrl">
             </div>
             <div class="info_post">
               <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
+                <h3>{{post.title}}</h3>
+                <h4>{{post.price}}<sup>đ</sup></h4>
               </div>
               <div class="right">
               <span>
@@ -291,179 +291,179 @@
                   d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
                   fill="#F36B08"/>
                 </svg>
-                4,0
+                {{post.avgStar}}
               </span>
               </div>
             </div>
           </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
-          <div class="card_search">
-            <div class="image_search">
-              <img alt="" src="assets/images/demo.png">
-            </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>Homestay A</h3>
-                <h4>2,000,000<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                4,0
-              </span>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="card_search">-->
+          <!--            <div class="image_search">-->
+          <!--              <img alt="" src="assets/images/demo.png">-->
+          <!--            </div>-->
+          <!--            <div class="info_post">-->
+          <!--              <div class="left">-->
+          <!--                <h3>Homestay A</h3>-->
+          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
+          <!--              </div>-->
+          <!--              <div class="right">-->
+          <!--              <span>-->
+          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+          <!--                <path-->
+          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+          <!--                  fill="#F36B08"/>-->
+          <!--                </svg>-->
+          <!--                4,0-->
+          <!--              </span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
         <div class="page_item w-100 d-flex justify-content-end align-items-end" style="padding-top: 10px;">
           <mat-paginator [length]="100"
