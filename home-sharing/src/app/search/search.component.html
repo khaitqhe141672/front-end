@@ -1,7 +1,6 @@
 <div class="container-search">
   <form (ngSubmit)="onFilterData()" [formGroup]="formFilterData">
     <div class="content-search" style="padding-top: 20px;">
-
       <div class="menu-type">
         <div class="search_of_price">
           <div class="title">
@@ -32,8 +31,8 @@
               <h3>Trung bình điểm đánh giá:</h3>
             </div>
             <div class="star_rate_checkbox">
-              <section  class="example-section">
-                <mat-checkbox (change)="onCheckChangeRate($event,5)" class="example-margin" style="color: #F36B08;">
+              <mat-radio-group formControlName="rateCtrl" color="warn" class="example-section">
+                <mat-radio-button value="5"  matTooltip="Được đánh giá tuyệt đối"  class="example-margin" style="color: #F36B08;">
                  <span>
                   <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -61,8 +60,8 @@
                     fill="#F36B08" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </span>
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeRate($event,4)" class="example-margin" style="color: #F36B08;">
+                </mat-radio-button>
+                <mat-radio-button value="4" matTooltip="Được đánh từ 4 sao trở lên"  class="example-margin" style="color: #F36B08;">
                  <span>
                   <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -90,8 +89,8 @@
                     fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </span>
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeRate($event,3)" class="example-margin" style="color: #F36B08;">
+                </mat-radio-button>
+                <mat-radio-button value="3" matTooltip="Được đánh từ 3 sao trở lên"  class="example-margin" style="color: #F36B08;">
                  <span>
                   <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -119,8 +118,8 @@
                     fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </span>
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeRate($event,2)" class="example-margin" style="color: #F36B08;">
+                </mat-radio-button>
+                <mat-radio-button value="2" matTooltip="Được đánh từ 2 sao trở lên"  class="example-margin" style="color: #F36B08;">
                  <span>
                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -148,8 +147,8 @@
                     fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </span>
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeRate($event,1)" class="example-margin" style="color: #F36B08;">
+                </mat-radio-button>
+                <mat-radio-button value="1" matTooltip="Được đánh từ 1 sao trở lên" class="example-margin" style="color: #F36B08;">
                  <span>
                   <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -177,8 +176,8 @@
                     fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </span>
-                </mat-checkbox>
-              </section>
+                </mat-radio-button>
+              </mat-radio-group>
             </div>
           </div>
           <div class="type_place">
@@ -186,11 +185,12 @@
               <h3>Loại hình chỗ ở:</h3>
             </div>
             <div class="type_place_checkbox">
-              <section class="example-section">
-                <mat-checkbox (change)="onCheckChangeRoomType($event,roomType.id)" formControlName="roomTypeCtrl" value="{{roomType.id}}" *ngFor="let roomType of listRoomType" class="example-margin" style="color: #F36B08;">
+              <mat-radio-group formControlName="roomTypeCtrl" class="example-section">
+                <mat-radio-button value="{{roomType.id}}" *ngFor="let roomType of listRoomType" class="example-margin" style="color: #F36B08;">
                   {{roomType.name}}
-                </mat-checkbox>
-              </section>
+                </mat-radio-button>
+              </mat-radio-group>
+<!--              (change)="onCheckChangeRoomType($event,roomType.id)"-->
             </div>
           </div>
           <div class="voucher">
@@ -199,21 +199,21 @@
             </div>
             <div class="voucher_checkbox">
               <section class="example-section">
-                <mat-checkbox (change)="onCheckChangeVoucher($event,0,20)" value="1" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
-                  Giảm giá dưới 20%
+                <mat-checkbox (change)="onCheckChangeVoucher($event)" value="1" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
+                  Đang có khuyến mại
                 </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeVoucher($event,20,40)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
-                  Giảm giá từ 20% - 40%
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeVoucher($event,40,60)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
-                  Giảm giá từ 40% - 60%
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeVoucher($event,60,80)" value="3" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
-                  Giảm giá từ 60% - 80%
-                </mat-checkbox>
-                <mat-checkbox (change)="onCheckChangeVoucher($event,80,100)" value="4" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">
-                  Giảm giá trên 80%
-                </mat-checkbox>
+<!--                <mat-checkbox (change)="onCheckChangeVoucher($event,20,40)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">-->
+<!--                  Giảm giá từ 20% - 40%-->
+<!--                </mat-checkbox>-->
+<!--                <mat-checkbox (change)="onCheckChangeVoucher($event,40,60)" value="2" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">-->
+<!--                  Giảm giá từ 40% - 60%-->
+<!--                </mat-checkbox>-->
+<!--                <mat-checkbox (change)="onCheckChangeVoucher($event,60,80)" value="3" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">-->
+<!--                  Giảm giá từ 60% - 80%-->
+<!--                </mat-checkbox>-->
+<!--                <mat-checkbox (change)="onCheckChangeVoucher($event,80,100)" value="4" formControlName="discoutPctCtrl" class="example-margin" style="color: #F36B08;">-->
+<!--                  Giảm giá trên 80%-->
+<!--                </mat-checkbox>-->
               </section>
             </div>
           </div>
@@ -275,6 +275,7 @@
         </div>
 
         <div class="list_card_search">
+
           <div class="card_search"  *ngFor="let post of listSearchByTitle">
             <div class="image_search">
               <img alt="" [src]="post.imageUrl">
@@ -296,174 +297,11 @@
               </div>
             </div>
           </div>
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--          <div class="card_search">-->
-          <!--            <div class="image_search">-->
-          <!--              <img alt="" src="assets/images/demo.png">-->
-          <!--            </div>-->
-          <!--            <div class="info_post">-->
-          <!--              <div class="left">-->
-          <!--                <h3>Homestay A</h3>-->
-          <!--                <h4>2,000,000<sup>đ</sup></h4>-->
-          <!--              </div>-->
-          <!--              <div class="right">-->
-          <!--              <span>-->
-          <!--                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-          <!--                <path-->
-          <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-          <!--                  fill="#F36B08"/>-->
-          <!--                </svg>-->
-          <!--                4,0-->
-          <!--              </span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
+          <div class="d-flex flex-row align-items-center justify-content-center text-center" *ngIf="listSearchByTitle.length<=0">
+            <div>
+              <h1>Không có kết quả phù hơp</h1>
+            </div>
+          </div>
         </div>
         <div class="page_item w-100 d-flex justify-content-end align-items-end" style="padding-top: 10px;">
           <mat-paginator [length]="100"
