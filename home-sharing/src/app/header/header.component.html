@@ -38,7 +38,7 @@
       </div>
       <div class="profile">
         <div></div>
-        <div class="dropdown">
+        <div  (click)="isOpen=false" class="dropdown">
           <div class="menu" id="menu">
             <div class="icon-menu">
               <div class="icon">
@@ -168,8 +168,8 @@
               </div>
               <div class="row">
                 <div *ngFor="let place of listProvince" class="col post-search">
-                  <div class="div-img">
-                    <img alt="" class="img-post" src="{{place.id}}">
+                  <div class="div-img-2">
+                    <img alt="" class="img-post" [src]="place.imageUrl">
                   </div>
                   <div>
                     <h4>{{place.name}}</h4>

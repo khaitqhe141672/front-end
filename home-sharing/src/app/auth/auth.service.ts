@@ -89,7 +89,7 @@ export class AuthService {
     // console.log(errorResponse.error.status)
     switch (errorResponse.error.status) {
       case 'EXPECTATION_FAILED':
-        errorMessage = 'Do thằng backend lười code nên ko biết lỗi gì'
+        errorMessage = 'Lỗi không xác định'
         break;
       case 'EMAIL_NOT_EXIST':
         errorMessage = 'Email này đã được đăng ký'

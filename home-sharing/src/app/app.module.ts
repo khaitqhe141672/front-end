@@ -13,7 +13,6 @@ import {RegisterComponent} from './auth/register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {FooterComponent} from './footer/footer.component';
-import {DetailComponent} from './detail/detail.component';
 import {DatePipe} from "@angular/common";
 import {PostsComponent} from './posts/posts.component';
 import {PostEditComponent} from './posts/post-edit/post-edit.component';
@@ -132,7 +131,6 @@ import { CreateComplaintReportComponent } from './host/complaint-report/create-c
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    DetailComponent,
     PostsComponent,
     PostListComponent,
     PostDetailComponent,

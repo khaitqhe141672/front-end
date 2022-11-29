@@ -7,6 +7,9 @@ import {DatePipe} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {SearchService} from "./search.service";
 import {SearchListByTitle} from "../shared/model/search-title.model";
+import {catchError} from "rxjs/operators";
+import {HttpErrorResponse} from "@angular/common/http";
+import {throwError} from "rxjs";
 
 declare var $: any;
 
@@ -31,10 +34,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   datePicker = ''
   selected: Date | null;
   formFilterData: FormGroup
-  serviceFormArr: FormArray
-  groupRate: FormGroup
-  groupRoomType: FormGroup
-  groupDiscout: FormGroup
   listService: ServiceObj[] = []
   listRoomType: RoomType[] = []
 
@@ -67,9 +66,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
       rateCtrl: [''],
       serviceCtrl: [''],
       serviceChoose: this._formBuilder.array([])
-      // serviceFormArr:this._formBuilder.array([]),
-      // groupRoomType:this._formBuilder.array([]),
-      // groupDiscout:this._formBuilder.array([])
     })
     this.initDataFilter()
   }
@@ -154,7 +150,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 
 
-    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,0,this.pageIndex).subscribe(response=>{
+    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,0,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage
       this.listSearchByTitle = response.data.searchList.slice()
     },()=>{
@@ -217,6 +213,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  private handleError(errorResponse: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!'
+    if (!errorResponse.error || !errorResponse.error.status) {
+      return throwError(() => new Error(errorMessage))
+    }
+    switch (errorResponse.error.status) {
+      case 'NOT_FOUND':
+        errorMessage = 'Không có dữ liệu'
+        break;
+    }
+    console.log(errorMessage)
+    return throwError(() => new Error(errorMessage))
+  }
+
 }
 
 

@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Subject, Subscription} from "rxjs";
-import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
+import {Subject, Subscription, throwError} from "rxjs";
+import {catchError, debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
 import {HeaderService} from "./header.service";
 import {ListPostSearched, ListProvinceSearched, SearchResponse} from "../shared/model/search.model";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 declare var $: any;
 
 @Component({
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     })
 
     this.searchSubscription = this.searchSubject
-      .pipe(
+      .pipe(catchError(this.handleError),
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchQuery) =>{
@@ -111,15 +112,28 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     //2: province
     if(type==1){
       let title = this.formSearch.controls.searchCtrl.value
-      // this.headerService.searchMoreByTitle(this.formSearch.controls.searchCtrl.value,1).subscribe(response=>{
       this.router.navigate(['../search'],{queryParams:{title:title}})
     }
     this.isOpen = false
-
   }
 
   goPostDetail(postID: number) {
     this.router.navigate(['../posts/post-detail/'+postID])
     this.isOpen  = false
   }
+
+  private handleError(errorResponse: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!'
+    if (!errorResponse.error || !errorResponse.error.status) {
+      return throwError(() => new Error(errorMessage))
+    }
+    switch (errorResponse.error.status) {
+      case 'NOT_FOUND':
+        errorMessage = 'Không có dữ liệu'
+        break;
+    }
+    console.log(errorMessage)
+    return throwError(() => new Error(errorMessage))
+  }
+
 }

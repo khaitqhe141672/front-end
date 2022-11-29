@@ -278,7 +278,7 @@ header .container-header .nav-header .profile .menu:hover {
   margin-top:  5px;
   border-radius:  16px;
   position: fixed;
-  min-width: 800px;
+  min-width: 700px;
   background: white;
   box-shadow:  7px 7px 14px rgba(243, 107, 8, 0.4),
   -7px -7px 14px #e2e2e2;
@@ -288,10 +288,15 @@ header .container-header .nav-header .profile .menu:hover {
   height: 100%;
 }
 .post-search{
-  height: 250px;
+  height: auto;
 }
 .div-img{
+  max-width: 300px;
   height: 200px;
+}
+.div-img-2{
+  height: 150px;
+  width: 240px;
 }
 .p-more{
   color: #F36B08;
@@ -301,4 +306,7 @@ header .container-header .nav-header .profile .menu:hover {
   cursor: pointer;
   color: #F36B08;
   text-shadow: 2px 1px 9px rgba(206,89,55,0.59);
+}
+.post-search:hover{
+  cursor: pointer;
 }
