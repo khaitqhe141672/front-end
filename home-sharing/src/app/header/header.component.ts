@@ -15,6 +15,9 @@ declare var $: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
+
+  role = JSON.parse(localStorage.getItem("role"));
+
   isOpen = false
   listProvince:ListProvinceSearched[] = []
   listPost:ListPostSearched[]=[]
@@ -135,5 +138,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     console.log(errorMessage)
     return throwError(() => new Error(errorMessage))
   }
+
+
 
 }

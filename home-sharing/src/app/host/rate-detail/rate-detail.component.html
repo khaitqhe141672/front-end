@@ -38,8 +38,8 @@
               <div class="username">
                 <h2>{{rateDetail.username}}</h2>
               </div>
-              <div *ngFor="let s of counter(rateDetail.star)" class="star">
-                <mat-icon style="color: #F36B08">star</mat-icon>
+              <div  class="star">
+                <mat-icon *ngFor="let s of counter(rateDetail.star)" style="color: #F36B08">star</mat-icon>
               </div>
               <div></div>
             </div>

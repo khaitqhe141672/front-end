@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) {
     // on route change to '/login', set the variable showHead to false
-    this.headerDisplay()
+
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         if (event['url'] == '/auth/login') {
@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoLogin()
+    this.headerDisplay()
   }
 
   headerHost: boolean = false

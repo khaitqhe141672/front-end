@@ -69,7 +69,8 @@
               <mat-label>Địa chỉ</mat-label>
               <input formControlName="address" matInput
                      placeholder="">
-              <mat-error *ngIf="infoFormGroup.controls.address.hasError('minLength')">
+              <mat-error >
+<!--                *ngIf="infoFormGroup.controls.address.hasError('minLength')"-->
                 Địa chỉ cần tối thiểu 10 ký tự
               </mat-error>
             </mat-form-field>

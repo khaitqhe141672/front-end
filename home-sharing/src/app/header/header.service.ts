@@ -9,6 +9,8 @@ import {SearchTitleResponse} from "../shared/model/search-title.model";
 export class HeaderService{
   constructor(private http:HttpClient) {
   }
+
+
   searchData(data:string):Observable<SearchResponse>{
     console.log('data: '+data)
     return this.http.post<SearchResponse>(API_SEARCH_FAST,{searchText:data})

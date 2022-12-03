@@ -35,7 +35,8 @@ const appRoute: Routes = [
   },
   {path: 'booking/:id', component: BookingComponent},
   {path: 'test', component: AccountDetailComponent},
-  {path: 'home', component: HomeComponent, canActivate: [HasRoleCusGuard]},
+  {path: 'home', component: HomeComponent},
+  // , canActivate: [HasRoleCusGuard]
   {
     path: 'profile', component: ProfileComponent,
     canActivate: [HasRoleGuard], children: [
