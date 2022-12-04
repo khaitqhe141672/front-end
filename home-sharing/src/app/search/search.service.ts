@@ -2,7 +2,8 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SearchTitleResponse} from "../shared/model/search-title.model";
-import {API_SEARCH_DETAIL, API_SEARCH_MORE_BY_TITLE} from "../constant/api.constant";
+import {API_PROVINCE, API_SEARCH_DETAIL, API_SEARCH_MORE_BY_TITLE} from "../constant/api.constant";
+import {ResponseProvince} from "../shared/model/district.model";
 
 @Injectable({providedIn:'root'})
 export class SearchService{
@@ -22,10 +23,11 @@ export class SearchService{
     console.log('optionPriceCtrl: '+statusSortPrice)
     console.log('date: '+startDate)
     console.log('guestNumberCtrl: '+numberOfGuest)
-    console.log(statusVoucher)
+    console.log('statusVoucher: '+statusVoucher)
     console.log('roomTypeCtrl: '+roomTypeID)
     console.log('rateCtrl: '+statusStar)
     console.log('service: '+service)
+    console.log('provinceID: '+provinceID)
     return this.http.post<SearchTitleResponse>(API_SEARCH_DETAIL+indexPage,{
       statusVoucher:statusVoucher,
       service:service.length==0?[]:service,
@@ -38,5 +40,8 @@ export class SearchService{
       numberOfGuest:numberOfGuest,
       provinceID:provinceID
     })
+  }
+  getProvince(): Observable<ResponseProvince> {
+    return this.http.get<ResponseProvince>(API_PROVINCE)
   }
 }

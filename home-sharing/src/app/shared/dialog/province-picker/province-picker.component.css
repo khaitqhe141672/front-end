@@ -1,0 +1,5 @@
+.province-item:hover{
+  color: #FFFFFF;
+  background-color: #F36B08;
+  cursor: pointer;
+}

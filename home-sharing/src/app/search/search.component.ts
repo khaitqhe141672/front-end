@@ -10,6 +10,9 @@ import {SearchListByTitle} from "../shared/model/search-title.model";
 import {catchError} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 import {throwError} from "rxjs";
+import {Province} from "../shared/model/district.model";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ProvincePickerComponent} from "../shared/dialog/province-picker/province-picker.component";
 
 declare var $: any;
 
@@ -24,11 +27,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
   savedRoomType = []
   savedRate = []
   isDiscout = 0
+  savedProvinceID = 0
 
   title
   pageIndex = 1
   totalPage = 1
 
+  todayDate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
   guestNumber = ''
   datePicker = ''
@@ -36,11 +41,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
   formFilterData: FormGroup
   listService: ServiceObj[] = []
   listRoomType: RoomType[] = []
-
+  listProvince:Province[]=[]
   listSearchByTitle: SearchListByTitle[] = []
 
+  provinceDialogRef:MatDialogRef<ProvincePickerComponent>
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private _formBuilder: FormBuilder, private postEditService: PostEditService,
-              private searchService: SearchService) {
+              private searchService: SearchService,private dialog:MatDialog) {
   }
 
   ngOnInit(): void {
@@ -63,11 +69,26 @@ export class SearchComponent implements OnInit, AfterViewInit {
       maxPriceCtrl: [''],
       discoutPctCtrl: [''],
       roomTypeCtrl: [''],
+      provinceCtrl:[''],
       rateCtrl: [''],
       serviceCtrl: [''],
       serviceChoose: this._formBuilder.array([])
     })
     this.initDataFilter()
+    this.initProvince()
+  }
+
+  onSelectProvince() {
+    this.provinceDialogRef = this.dialog.open(ProvincePickerComponent,{
+      data:this.listProvince,
+      hasBackdrop:true,
+      width:'800px'
+    })
+    this.provinceDialogRef.afterClosed().subscribe((response:{provinceID,provinceName})=>{
+      this.savedProvinceID = response.provinceID
+      console.log(this.savedProvinceID)
+      this.formFilterData.controls.provinceCtrl.patchValue(response.provinceName)
+    })
   }
 
   onCheckChangeService($event, serviceID: number) {
@@ -150,7 +171,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 
 
-    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,0,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
+    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage
       this.listSearchByTitle = response.data.searchList.slice()
     },()=>{
@@ -169,6 +190,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.postEditService.getRoomType().subscribe(response => {
       let roomData = response.data
       this.listRoomType = roomData.roomTypes
+    })
+  }
+
+  initProvince(){
+    this.searchService.getProvince().subscribe(response=>{
+      this.listProvince = response.object
     })
   }
 
@@ -228,6 +255,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     return throwError(() => new Error(errorMessage))
   }
 
+
+  resetProvince() {
+    this.formFilterData.controls.provinceCtrl.patchValue('')
+    this.savedProvinceID = 0
+  }
 }
 
 

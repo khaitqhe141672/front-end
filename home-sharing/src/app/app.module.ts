@@ -121,6 +121,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { CheckInputNumberDirective } from './shared/directive/check-input-number.directive';
 import { HistoryHandleReportComponent } from './admin/manage-report-center/history-handle-report/history-handle-report.component';
 import { CreateComplaintReportComponent } from './host/complaint-report/create-complaint-report/create-complaint-report.component';
+import { ProvincePickerComponent } from './shared/dialog/province-picker/province-picker.component';
 
 @NgModule({
   declarations: [
@@ -189,6 +190,7 @@ import { CreateComplaintReportComponent } from './host/complaint-report/create-c
     CheckInputNumberDirective,
     HistoryHandleReportComponent,
     CreateComplaintReportComponent,
+    ProvincePickerComponent,
   ],
   imports: [
     BrowserModule,

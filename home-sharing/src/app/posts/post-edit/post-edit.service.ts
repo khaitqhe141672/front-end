@@ -79,9 +79,7 @@ export class PostEditService {
     return this.http.get<ResponseDistrict>(API_DISTRICT)
   }
 
-  getProvince(): Observable<ResponseProvince> {
-    return this.http.get<ResponseProvince>(API_PROVINCE)
-  }
+
 
   getRoomType(): Observable<ResponseRoom> {
     return this.http.get<ResponseRoom>(API_ROOM_TYPE)
