@@ -7,6 +7,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 import {MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-password',
@@ -51,9 +52,16 @@ export class PasswordComponent implements OnInit {
         console.log('submit response data: '+responseData.message)
         if(responseData.message==='mat khau current khong khop'){
           this.messageResponse = 'Sai nhật khẩu hiện tại'
-          alert(this.messageResponse)
+          Swal.fire({
+            icon: 'error',
+            title: this.messageResponse,
+          })
+          // alert(this.messageResponse)
         }else{
-          alert("Đổi mật khẩu thành công")
+          Swal.fire({
+            icon: 'success',
+            title: 'Đổi mật khẩu thành công',
+          })
         }
         this.formChangePassword.reset()
       }
@@ -64,6 +72,7 @@ export class PasswordComponent implements OnInit {
       complete:()=>{
         // this.openSnackBar('Đổi mật khẩu...')
         console.log('complete')
+
       }
     })
   }

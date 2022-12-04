@@ -31,7 +31,7 @@
               <h3>Trung bình điểm đánh giá:</h3>
             </div>
             <div class="star_rate_checkbox">
-              <mat-radio-group formControlName="rateCtrl" color="warn" class="example-section">
+              <mat-radio-group  formControlName="rateCtrl" color="warn" class="example-section">
                 <mat-radio-button value="5"  matTooltip="Được đánh giá tuyệt đối"  class="example-margin" style="color: #F36B08;">
                  <span>
                   <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -177,6 +177,34 @@
                   </svg>
                 </span>
                 </mat-radio-button>
+                <mat-radio-button value="0" [checked]="true" matTooltip="Được đánh từ 1 sao trở lên" class="example-margin" style="color: #F36B08;">
+                 <span>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg> <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1L14.09 7.58255L21 8.64459L16 13.7655L17.18 21L11 17.5825L4.82 21L6 13.7655L1 8.64459L7.91 7.58255L11 1Z"
+                    fill="#565656" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </span>
+                </mat-radio-button>
               </mat-radio-group>
             </div>
           </div>
@@ -186,6 +214,9 @@
             </div>
             <div class="type_place_checkbox">
               <mat-radio-group formControlName="roomTypeCtrl" class="example-section">
+                <mat-radio-button [checked]="true" value="0" class="example-margin" style="color: #F36B08;">
+                  Tất cả
+                </mat-radio-button>
                 <mat-radio-button value="{{roomType.id}}" *ngFor="let roomType of listRoomType" class="example-margin" style="color: #F36B08;">
                   {{roomType.name}}
                 </mat-radio-button>
@@ -217,7 +248,23 @@
               </section>
             </div>
           </div>
-
+          <div class="mt-2 province">
+            <div class="star_rate_title">
+              <h3>Địa điểm:</h3>
+            </div>
+            <mat-form-field  class="example-full-width" appearance="outline">
+              <mat-label>Chọn địa điểm</mat-label>
+              <input (click)="onSelectProvince()" formControlName="provinceCtrl" readonly matInput placeholder="" value="">
+              <button type="button"  matSuffix mat-icon-button aria-label="Clear" (click)="resetProvince()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-success">
+              Lọc
+            </button>
+          </div>
         </div>
       </div>
       <div class="box_search">
@@ -245,7 +292,7 @@
               </div>
               <div class="col d-flex flex-row">
                 <mat-form-field appearance="outline" class="example-full-width mt-3">
-                  <input formControlName="dateCtrl"  [matDatepicker]="picker" matInput placeholder="Ngày bắt đầu thuê" readonly>
+                  <input [matDatepicker]="picker"  [min]="todayDate" formControlName="dateCtrl"  matInput placeholder="Ngày bắt đầu thuê" readonly>
                   <mat-datepicker #picker></mat-datepicker>
                   <button type="button" aria-label="Clear" mat-icon-button matSuffix>
                     <mat-icon (click)="picker.open()"> calendar_month</mat-icon>
@@ -258,21 +305,16 @@
               <div class="col">
                 <mat-form-field appearance="outline" class="example-form-field mt-3">
                   <mat-label>Số khách</mat-label>
-                  <input formControlName="guestNumberCtrl" [(ngModel)]="guestNumber" appCheckInputNumber matInput type="text">
+                  <input formControlName="guestNumberCtrl" appCheckInputNumber matInput type="text">
                   <button  type="button" (click)="guestNumber=''" aria-label="Clear" mat-icon-button matSuffix>
                     <mat-icon>close</mat-icon>
                   </button>
                 </mat-form-field>
-
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <button type="submit" class="btn btn-success">
-            Lọc
-          </button>
-        </div>
+
 
         <div class="list_card_search">
 
@@ -297,7 +339,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex flex-row align-items-center justify-content-center text-center" *ngIf="listSearchByTitle.length<=0">
+          <div class="d-flex flex-row text-center" *ngIf="listSearchByTitle.length<=0">
             <div>
               <h1>Không có kết quả phù hơp</h1>
             </div>
