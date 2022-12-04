@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Chọn địa điểm</h1>
+<div mat-dialog-content>
+  <div class="row d-flex flex-row align-self-center justify-content-center">
+    <div style="border: 1px solid #F36B08;border-radius: 6px" class="col-3 w-auto m-1 province-item"   *ngFor="let province of listProvince">
+     <button class="p-0" (click)="onSelectedProvince(province.id,province.name)" mat-button mat-dialog-close>
+       <p  class="m-0 p-0 text-center" style="width: 120px">
+         {{province.name}}
+       </p>
+     </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onSelectedProvince(0,'')">Close</button>
+</div>
