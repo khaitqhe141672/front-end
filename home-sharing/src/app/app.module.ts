@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -123,6 +123,7 @@ import { HistoryHandleReportComponent } from './admin/manage-report-center/histo
 import { CreateComplaintReportComponent } from './host/complaint-report/create-complaint-report/create-complaint-report.component';
 import { ProvincePickerComponent } from './shared/dialog/province-picker/province-picker.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ShowMoreDialogComponent } from './shared/dialog/show-more-dialog/show-more-dialog.component';
 
 @NgModule({
   declarations: [
@@ -193,6 +194,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     CreateComplaintReportComponent,
     ProvincePickerComponent,
     ForgotPasswordComponent,
+    ShowMoreDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -240,6 +242,10 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     {
       provide: MatPaginatorIntl,
       useClass: CustomMatPaginatorIntl
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue:'VND'
     }
   ],
   bootstrap: [AppComponent]

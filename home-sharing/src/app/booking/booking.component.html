@@ -60,7 +60,7 @@
           <h2>Khuyến mãi</h2>
         </div>
         <div class="row">
-         <div class="col-6 pe-0 d-flex flex-row">
+         <div class="col-7 pe-0 d-flex flex-row">
            <form [formGroup]="formCheckVoucher" (ngSubmit)="checkVoucherExist()">
              <div class="d-flex flex-row align-items-start justify-content-center">
                <div>
@@ -68,10 +68,13 @@
                    <mat-label>Nhập mã giảm giá</mat-label>
                    <input formControlName="codeVoucherCtrl" matInput placeholder="">
                    <mat-hint>Bạn chỉ được chọn duy nhất 1 mã giảm giá</mat-hint>
+                   <button matSuffix mat-icon-button aria-label="Clear" (click)="onRemoveVoucher()">
+                     <mat-icon>close</mat-icon>
+                   </button>
                  </mat-form-field>
                </div>
                <div class="ms-3 mt-2">
-                 <button type="submit" class="btn btn-outline-primary">Kiểm tra</button>
+                 <button type="submit" class="btn btn-outline-primary">Áp dụng</button>
                </div>
              </div>
            </form>
@@ -91,18 +94,24 @@
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Họ và tên</mat-label>
               <input #fullName formControlName="fullNameCtrl" matInput placeholder="" value="{{name}}">
+              <mat-error>
+                Tên không hợp lệ
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="col-xl-6 col-md-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Số điện thoại</mat-label>
               <input #phoneNumber formControlName="phoneNumberCtrl" matInput placeholder="" value="{{phoneNumber}}">
+              <mat-error>
+                Số điện thoại không hợp lệ
+              </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-xl-6 col-md-12">
+          <div class="col-xl-6 col-md-12 mt-2">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Địa chỉ email</mat-label>
-              <input #email formControlName="emailCtrl" matInput placeholder="" value="{{email}}">
+              <input readonly #email formControlName="emailCtrl" matInput placeholder="" value="{{email}}">
             </mat-form-field>
           </div>
         </div>
@@ -139,8 +148,7 @@
                     <div class="col-4"><span>
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M5.75 4A1.75 1.75 0 004 5.75v4.5c0 .966.784 1.75 1.75 1.75h4.5A1.75 1.75 0 0012 10.25v-4.5A1.75 1.75 0 0010.25 4h-4.5z"></path></svg>
                 </span></div>
-                    <div class="col-4">{{s.nameService}}</div>
-                    <div class="col-3 p-0">{{s.price}}VND/người</div>
+                    <div class="col-6 p-0">{{s.price|currency:'VND':true}}/người</div>
                   </div>
                 </mat-list-option>
               </mat-selection-list>
@@ -153,7 +161,7 @@
             <h3>Giá phòng</h3>
           </div>
           <div class="col-6 text-end">
-            <h3>{{priceHS}}</h3>
+            <h3>{{priceHS|currency}}</h3>
           </div>
         </div>
         <div class="row">
@@ -164,7 +172,7 @@
             <h3>Phí dịch vụ</h3>
           </div>
           <div class="col-6 text-end">
-            <h3>{{servicePrice}}</h3>
+            <h3>{{servicePrice|currency}}</h3>
           </div>
         </div>
         <div class="row">
@@ -175,7 +183,7 @@
             <h3>Giá phòng tạm tính</h3>
           </div>
           <div class="col-6 text-end">
-            <h3>{{totalBill}}</h3>
+            <h3>{{totalBill|currency}}</h3>
           </div>
           <div class="row">
             <div class="col-12" style="font-size: 36px">-</div>
@@ -184,7 +192,7 @@
             <h3>Chiết khấu từ mã giảm giá</h3>
           </div>
           <div class="col-6 text-end">
-            <h3 style="color: red">{{totalDiscount}}</h3>
+            <h3 style="color: red">{{totalDiscount|currency}} VND</h3>
           </div>
         </div>
         <hr>
@@ -193,7 +201,7 @@
             <h3>Tổng hoá đơn đặt phòng</h3>
           </div>
           <div class="col-6 text-end">
-            <h3 style="font-weight: bold">{{totalBillAfterDiscount}} VND</h3>
+            <h3 style="font-weight: bold">{{totalBillAfterDiscount|currency}}</h3>
           </div>
         </div>
         <div class="row">
@@ -210,7 +218,7 @@
         </div>
         <div class="row" style="height: 60px">
           <div class="col-12 text-center d-flex align-items-center justify-content-center">
-            <button [disabled]="!isConfirm||!formGroupBooking.valid"  type="submit" class="btn h-100 w-100 btn-success text-center btn-bill-submit">Xác nhận</button>
+            <button [disabled]="!isConfirm||!formGroupBooking.valid"  type="submit" class="btn h-100 w-100 btn-success text-center btn-bill-submit">Đặt phòng</button>
           </div>
         </div>
       </div>

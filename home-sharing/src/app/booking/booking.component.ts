@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, DEFAULT_CURRENCY_CODE, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import format from "@popperjs/core/lib/utils/format";
@@ -42,7 +42,6 @@ export class BookingComponent implements OnInit {
   datePicked: { startDate: Date, endDate: Date }
   saveService:number[]
   formGroupBooking:FormGroup
-  pct = 1
   @ViewChild('fullName') fullNameRef:ElementRef;
   @ViewChild('phoneNumber') phoneNumberRef:ElementRef;
   @ViewChild('email')  emailRef:ElementRef;
@@ -77,8 +76,8 @@ export class BookingComponent implements OnInit {
     })
    this.route.queryParams.subscribe(params=>{
 
-     this.startDateBooking = this.datePipe.transform(params['startDate'],format('dd-MM-yyyy'))
-     this.endDateBooking =this.datePipe.transform(params['endDate'],format('dd-MM-yyyy'))
+     this.startDateBooking = params['startDate']
+     this.endDateBooking = params['endDate']
      this.guestNumber = params['guestNumber']
      this.standardPrice = params['standardPrice']
    })
@@ -144,16 +143,27 @@ export class BookingComponent implements OnInit {
     });
     console.log(this.selectedServicePost)
 
-
   }
   refreshPrice(){
     this.priceHS = this.standardPrice
+    if(this.selectedServicePost.length>0){
+      console.log(JSON.stringify(this.selectedServicePost))
+      this.servicePrice = this.guestNumber*this.selectedServicePost.reduce((sum,current)=>sum+current.price,0)
+      console.log('servicePrice: ' +this.servicePrice)
+    }
     this.totalBill = Math.floor(+this.servicePrice + +this.priceHS)
     this.totalDiscount = Math.floor(+this.totalBill * +this.pctDiscount)
     this.totalBillAfterDiscount =Math.floor( +this.totalBill - +this.totalDiscount)
-    this.totalBillAfterDiscount = Math.round(this.totalBill*(1/this.pct))
-
+    // this.totalBillAfterDiscount = Math.round(this.totalBill-this.totalBill*(this.pct/100))
     // this.displayData()
+  }
+
+  displayData(){
+    console.log('priceHS: '+this.priceHS)
+    console.log('totalBill: '+this.totalBill)
+    console.log('total discout: '+this.totalDiscount)
+    console.log('totalBillAfterDiscount: '+this.totalBillAfterDiscount)
+    console.log('total Bill: '+this.totalBill)
   }
 
   increaseGuestNumber() {
@@ -166,19 +176,14 @@ export class BookingComponent implements OnInit {
     this.refreshPrice()
   }
 
-  displayData(){
-    console.log('priceHS: '+this.priceHS)
-    console.log('servicePrice: '+this.servicePrice+'type of service price: '+typeof this.servicePrice)
-    console.log('total Bill: '+this.totalBill)
-  }
+
 
   openDatePickerDialog() {
     this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{hasBackdrop:true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
-      this.startDateBooking = this.datePipe.transform(this.datePicked.startDate,'dd-MM-yyyy')
-      this.endDateBooking = this.datePipe.transform(this.datePicked.endDate,'dd-MM-yyyy')
-
+      this.startDateBooking = this.datePipe.transform(this.datePicked.startDate,'dd/MM/yyyy')
+      this.endDateBooking = this.datePipe.transform(this.datePicked.endDate,'dd/MM/yyyy')
     })
   }
 
@@ -190,6 +195,8 @@ export class BookingComponent implements OnInit {
     console.log(this.bookingService.convertDate(this.startDateBooking))
     let startDateBookingBody = this.datePipe.transform(this.bookingService.convertDate(this.startDateBooking),'yyyy-MM-dd')
     let endDateBookingBody =  this.datePipe.transform(this.bookingService.convertDate(this.endDateBooking),'yyyy-MM-dd')
+    // let startDateBookingBody = this.startDateBooking
+    // let endDateBookingBody =  this.endDateBooking
     console.log(startDateBookingBody.toString())
     console.log(endDateBookingBody.toString())
 
@@ -236,8 +243,8 @@ export class BookingComponent implements OnInit {
       complete:()=>{
         Swal.fire({
           icon: 'success',
-          title: 'Trạng thái đặt phòng',
-          text: 'Đặt phòng thành công',
+          title: 'Đặt phòng thành công',
+          text: 'Vui lòng đợi chủ nhà xét duyệt',
         }).then(
           ()=>{this.router.navigate(['profile/history-booking'])})
         this.isBooking = false
@@ -251,6 +258,10 @@ export class BookingComponent implements OnInit {
       hasBackdrop:true,
       data:this.postID
     })
+    this.voucherPickerDialogRef.afterClosed().subscribe(response=>{
+      if(response)
+      this.formCheckVoucher.controls.codeVoucherCtrl.patchValue(response.data)
+    })
   }
 
   checkVoucherExist() {
@@ -258,14 +269,24 @@ export class BookingComponent implements OnInit {
     if(!codeVoucher) return
       // console.log(this.formCheckVoucher.controls.codeVoucherCtrl.value)
     this.bookingService.checkVoucherExist(this.postID,codeVoucher).subscribe(response=>{
-      this.totalBillAfterDiscount = Math.round(this.totalBill*(1/response.object))
-      this.pct = +response.object
-      console.log(response)
+      this.totalBillAfterDiscount = Math.round(this.totalBill-(this.totalBill*response.object)/100)
+      this.pctDiscount = +response.object/100
+      this.totalDiscount = this.totalBill*response.object/100
+      // console.log('totalBill: '+this.totalBill)
+      // console.log('totalBillAfterDiscount: '+this.totalBillAfterDiscount)
+      // console.log('response voucher: '+response.object)
+      this.displayData()
     })
+
   }
 
   changeValue($event) {
     this.isConfirm = $event.checked
     console.log($event)
+  }
+  onRemoveVoucher(){
+    this.pctDiscount = 0
+    this.servicePrice = 0
+    this.refreshPrice()
   }
 }

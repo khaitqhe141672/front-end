@@ -12,10 +12,13 @@ export class DatePickerComponent implements OnInit {
 
   @Output() selectedStartDate = new EventEmitter<Date>()
   @Output() selectedEndDate = new EventEmitter<Date>()
-
-  constructor(private fb:FormBuilder,
-              public datePickerDialogRef:MatDialogRef<DatePickerComponent>,
-              public dialog: MatDialog) { }
+  todayDate:Date = new Date();
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private fb:FormBuilder,
+    public datePickerDialogRef:MatDialogRef<DatePickerComponent>,
+    public dialog: MatDialog
+  ) { }
   formDatePicker:FormGroup
   ngOnInit(): void {
     this.formDatePicker = this.fb.group(

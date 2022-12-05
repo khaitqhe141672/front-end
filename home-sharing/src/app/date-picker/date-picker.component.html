@@ -6,7 +6,7 @@
       <div mat-dialog-content>
         <mat-form-field appearance="outline" color="warn">
           <mat-label>Chọn ngày bạn muốn thuê</mat-label>
-          <mat-date-range-input [formGroup]="formDatePicker" [rangePicker]="picker">
+          <mat-date-range-input  [min]="todayDate" [formGroup]="formDatePicker" [rangePicker]="picker">
             <input formControlName="startDate" matStartDate placeholder="Start date">
             <input formControlName="endDate" matEndDate placeholder="End date">
           </mat-date-range-input>
@@ -16,7 +16,7 @@
         </mat-form-field>
       </div>
       <div mat-dialog-actions>
-        <button (click)="onSelectedDate()" style="background-color: #F36B08" mat-button mat-dialog-close="">OK</button>
+        <button (click)="onSelectedDate()" style="background-color: #F36B08" mat-button mat-dialog-close="">Chọn</button>
       </div>
 
     </div>

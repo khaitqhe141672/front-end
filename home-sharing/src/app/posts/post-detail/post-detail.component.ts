@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostService} from "../post.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Post, ResponsePost} from "../post.model";
 import {DataStorageService} from "../../shared/data-storage.service";
 import {PostDetailService} from "./post-detail.service";
 import {Rate, RateResponse} from "../../shared/model/rate.model";
@@ -10,9 +9,7 @@ import {DatePickerComponent} from "../../date-picker/date-picker.component";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {PostDetail} from "./post-detail.model";
-import {Observable} from "rxjs";
-import {ResponseFollow} from "../../shared/model/follow-host.model";
-import {ReportRateComponent} from "../../report-rate/report-rate.component";
+import {ShowMoreDialogComponent} from "../../shared/dialog/show-more-dialog/show-more-dialog.component";
 
 @Component({
   selector: 'app-post-detail',
@@ -24,9 +21,11 @@ export class PostDetailComponent implements OnInit {
   @ViewChild('date2') endDateCalendar: HTMLInputElement
 
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
+  showMoreDialogRef:MatDialogRef<ShowMoreDialogComponent>
+
   datePicked: { startDate: Date, endDate: Date }
   id: number;
-  hostId:number = 6
+  hostId: number = 6
   postDetail: PostDetail;
   rateResponse: RateResponse
   rates: Rate[] = []
@@ -36,20 +35,22 @@ export class PostDetailComponent implements OnInit {
   startDate: Date = null
   endDate: Date = null
   daysBetween: number
-  standardPrice:number=0
-
+  standardPrice: number = 0
+  formatStartDate
+  formatEndDate
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute,
               private dataStorage: DataStorageService, private postDetailService: PostDetailService,
               private dialog: MatDialog, private fb: FormBuilder,
-              private datePipe:DatePipe,
-              ) {
+              private datePipe: DatePipe,
+  ) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id']
       this.postDetail = this.postDetailService.postDetail
+      console.log('date range: '+this.postDetail)
       this.postDetail.avgRate = +this.postDetail.avgRate.toFixed(1)
     })
     this.getRate()
@@ -58,7 +59,7 @@ export class PostDetailComponent implements OnInit {
       endDateCtrl: [''],
       guestNumber: ['']
     })
-    this.standardPrice =this.postDetail.price
+    this.standardPrice = this.postDetail.price
 
   }
 
@@ -72,21 +73,23 @@ export class PostDetailComponent implements OnInit {
       error => console.log(error)
     )
   }
-  formatStartDate
-  formatEndDate
+
   openDatePickerDialog() {
-    this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{hasBackdrop:true})
+    this.datePickerDialogRef = this.dialog.open(DatePickerComponent, {data:
+      'a',hasBackdrop: true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
-      console.log("Date before format: "+this.datePicked.startDate+" - "+this.datePicked.endDate)
-      console.log("Date after that: "+this.datePicked.startDate.toLocaleDateString().slice(0, 10)+"-"+this.datePicked.endDate.toLocaleDateString().slice(0, 10))
-      this.formatStartDate = this.datePipe.transform(this.datePicked.startDate,'yyyy-MM-dd')
-      this.formatEndDate = this.datePipe.transform(this.datePicked.endDate,'yyyy-MM-dd')
-      console.log('format start date: '+this.formatStartDate)
+      // console.log("Date before format: " + this.datePicked.startDate + " - " + this.datePicked.endDate)
+      // console.log("Date after that: " + this.datePicked.startDate.toLocaleDateString().slice(0, 10) + "-" + this.datePicked.endDate.toLocaleDateString().slice(0, 10))
+      this.formatStartDate = this.datePipe.transform(this.datePicked.startDate, 'dd/MM/yyyy')
+      this.formatEndDate = this.datePipe.transform(this.datePicked.endDate, 'dd/MM/yyyy')
+      console.log('format start date: ' + this.formatStartDate)
+      console.log('format end date: ' + this.formatEndDate)
+
       this.formBooking.controls.startDateCtrl.patchValue(this.formatStartDate)
       this.formBooking.controls.endDateCtrl.patchValue(this.formatEndDate)
       let differenceInTime = this.datePicked.endDate.getTime() - this.datePicked.startDate.getTime();
-      this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24))+1;
+      this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24)) + 1;
       this.totalPriceInDays = this.postDetail.price * this.daysBetween
       this.totalPriceInDaysAfterTax = Math.floor(this.totalPriceInDays * 1.1)
       console.log('Day between: ' + this.daysBetween)
@@ -107,59 +110,68 @@ export class PostDetailComponent implements OnInit {
   }
 
   onBooking() {
+    console.log('formatStartDate: '+this.formatStartDate)
+    console.log('formatEndDate: '+this.formatEndDate)
+// return
     this.router.navigate(['/booking', this.id], {
         queryParams: {
           startDate: this.formatStartDate,
           endDate: this.formatEndDate,
-          guestNumber:this.formBooking.controls.guestNumber.value,
-          standardPrice:this.standardPrice,
+          guestNumber: this.formBooking.controls.guestNumber.value,
+          standardPrice: this.standardPrice,
         }
       }
     )
   }
 
-  followHost() {
-      let followHostObservable:Observable<ResponseFollow>
-      followHostObservable = this.postDetailService.followHost(this.hostId)
-      followHostObservable.subscribe(
-      {
-        next:responseData=>{
-          console.log(responseData)
-        },
-        error:errorMessageResponse=>{
-          console.log(errorMessageResponse)
-        },complete:()=>console.log('complete')
-      }
-    )
-  }
 
   onLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID,2).subscribe(
-      response=>console.log(response)
+    this.postDetailService.likeRate(rateID, 2).subscribe(
+      response => console.log(response)
     )
   }
 
   onDisLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID,1).subscribe(
-      response=>console.log(response)
+    this.postDetailService.likeRate(rateID, 1).subscribe(
+      response => console.log(response)
     )
   }
 
-  favoritePost() {
-    this.postDetailService.favoritePost(this.postDetail.postID).subscribe(
-      response=>console.log(response)
-    )
-  }
-
-  onReportRate(rateID: number,username:string) {
-      this.dialog.open(ReportRateComponent,{
+  showMore(type: number) {
+    //1: ảnh
+    //2: tiện ích
+    //3: Mô tả
+    if(type===1){
+      this.showMoreDialogRef = this.dialog.open(ShowMoreDialogComponent,{
+        data:{
+          type:1,
+          listData:this.postDetail.imageDtoList.map(utility=>utility.imageUrl)
+        },
         hasBackdrop:true,
-        data:{rateID,username}
+        width:'800px',
       })
+    }
+    else if(type===2){
+      this.showMoreDialogRef = this.dialog.open(ShowMoreDialogComponent,{
+        data:{
+          type:2,
+          listData:this.postDetail.postUtilityDtoList.map(utility=>utility.nameUtility)
+        },
+        hasBackdrop:true,
+        width:'300px'
+      })
+    }else
+    if(type===3){
+      this.showMoreDialogRef = this.dialog.open(ShowMoreDialogComponent,{
+        data:{
+          type:3,
+          listData:this.postDetail.description
+        },
+        hasBackdrop:true,
+        width:'600px'
+      })
+    }
+
   }
 }
 
-// @Component({
-//   selector:'date-picker-dialog',
-//   templateUrl:'date-picker-dialog.component.html'
-// })
