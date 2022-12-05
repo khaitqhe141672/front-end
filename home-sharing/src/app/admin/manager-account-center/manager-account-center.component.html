@@ -8,8 +8,8 @@
 <div class="container-fluid ">
   <div class="row d-flex align-items-center ">
     <div class="col p-2 header-account-type text-start">
-      <a routerLinkActive="active"  routerLink="manager-account-host" class="btn-change-type me-3">Tài khoản chủ nhà</a>
-      <a routerLinkActive="active"   routerLink="manager-account-customer" class="btn-change-type">Tài khoản người dùng</a>
+      <a (click)="changeTypeAccount(1)" routerLinkActive="active"  routerLink="manager-account-host" class="btn-change-type me-3">Tài khoản chủ nhà</a>
+      <a (click)="changeTypeAccount(2)" routerLinkActive="active"  routerLink="manager-account-customer" class="btn-change-type">Tài khoản người dùng</a>
     </div>
   </div>
 </div>

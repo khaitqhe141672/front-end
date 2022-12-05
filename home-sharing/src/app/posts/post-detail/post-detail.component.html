@@ -234,7 +234,7 @@
       <form [formGroup]="formBooking">
         <div class="detail-card-price">
           <div class="detail-card-price-title" style="padding-bottom: 30px;">
-            <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price | currency: "VND" }}</span></h3>
+            <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price | currency: "VND" }}</span>/ngày</h3>
           </div>
           <div class="detail-card-price-type">
             <div class="detail-card-price-type-first">
@@ -249,7 +249,7 @@
                 <input readonly id="date2" type="text" formControlName="endDateCtrl">
               </div>
               <div class="detail-card-price-type-first-child "
-                   style="color:white;padding: 10px 15px 10px 15px; text-align: center; display: grid;">
+                   style="padding: 10px 15px 10px 15px; text-align: center; display: grid;">
                 <span>Số người</span>
                 <input appCheckInputNumber style="text-align: center" formControlName="guestNumber" id="date3" type="number">
               </div>

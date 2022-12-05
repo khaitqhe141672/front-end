@@ -12,4 +12,8 @@ export class ManagerAccountCenterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeTypeAccount(type: number) {
+    if(type==1) this.typeAccount = 'Chủ nhà'
+    else if(type == 2) this.typeAccount = 'Người dùng'
+  }
 }
