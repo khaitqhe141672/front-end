@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../profile.service";
 import {UserInfo, UserInfoResponse} from "../profile.model";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-info',
@@ -16,11 +17,15 @@ export class UserInfoComponent implements OnInit {
   secureFormGroup: FormGroup
   userInfoResponse:UserInfoResponse
   userInfo:UserInfo
-
+  selectedFiles?:FileList
+  fileImg:File=null
+  previewImg:string = null
+  urlRootImg = ''
   ngOnInit(): void {
     this.initForm()
     this.getUserInfo()
   }
+  isLoading = false
   initForm(){
     this.infoFormGroup = this._formBuilder.group(
       {
@@ -39,8 +44,12 @@ export class UserInfoComponent implements OnInit {
     this.profileService.getUserInfo().subscribe(responseUserInfo=>{
       this.userInfoResponse = responseUserInfo
       this.userInfo = this.userInfoResponse.object
+      this.urlRootImg = this.userInfo.urlImage
       this.bindData(this.userInfo)
       console.log(this.userInfo)
+
+    },()=>{
+
     })
   }
   bindData(userInfo:UserInfo){
@@ -53,6 +62,74 @@ export class UserInfoComponent implements OnInit {
   }
 
   onSaveProfile() {
+    const name = this.infoFormGroup.controls.fullName.value
+    const phoneNumber = this.infoFormGroup.controls.phoneNumber.value
+    const address = this.infoFormGroup.controls.address.value
+    console.log('name: '+name)
+    console.log('phoneNumber: '+phoneNumber)
+    console.log('address: '+address)
+    this.profileService.updateProfile(name,phoneNumber,address).subscribe(response=>{
+      console.log(response)
+      Swal.fire({
+        icon: 'success',
+        title: 'Cập nhập thông tin thành công',
+      })
+    },()=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Cập nhập thông tin thất bại!',
+        text:'Vui lòng thử lại trong giây lát'
+      })
+    })
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'Cập nhập thông tin thành công',
+    // })
+    // Swal.fire({
+    //   icon: 'error',
+    //   title: 'Cập nhập thông tin thất bại!',
+    //   text:'Vui lòng thử lại trong giây lát'
+    // })
+  }
+
+  selectFiles(event:any) {
+    this.selectedFiles = event.target.files
+    this.fileImg = this.selectedFiles.item(0)
+    console.log(this.fileImg)
+    const  reader = new FileReader()
+    reader.onload = (e:any)=>{
+      console.log(e.target.result)
+      this.previewImg = e.target.result
+    }
+    reader.readAsDataURL(this.fileImg)
+  }
+
+  onChangeAvatar() {
+    if(this.fileImg==null){
+      Swal.fire({
+        icon: 'question',
+        title: 'Không có cập nhật nào cho ảnh đại diện',
+      })
+      return
+    }
+    this.isLoading = true
+    let formImg = new FormData()
+
+      formImg.append('file',this.fileImg)
+      this.profileService.updateAvatar(formImg).subscribe(response=>{
+        this.isLoading = false
+        Swal.fire({
+          icon: 'success',
+          title: 'Cập nhập ảnh đại diện thành công',
+        })
+
+      },()=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Cập nhật ảnh đại diện thất bại',
+          text:'Vui lòng thử lại trong giây lát'
+        })
+      })
 
   }
 }
