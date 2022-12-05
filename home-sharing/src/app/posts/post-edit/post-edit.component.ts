@@ -349,7 +349,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.saveUtilities.length <= 0) {
       Swal.fire({
         icon: 'error',
-        title: 'Cần ít nhất 1 tiện trước khi tạo bài đăng',
+        title: 'Cần ít nhất 1 tiện ích trước khi tạo bài đăng',
       })
       return
     }
