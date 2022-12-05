@@ -122,6 +122,7 @@ import { CheckInputNumberDirective } from './shared/directive/check-input-number
 import { HistoryHandleReportComponent } from './admin/manage-report-center/history-handle-report/history-handle-report.component';
 import { CreateComplaintReportComponent } from './host/complaint-report/create-complaint-report/create-complaint-report.component';
 import { ProvincePickerComponent } from './shared/dialog/province-picker/province-picker.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -191,6 +192,7 @@ import { ProvincePickerComponent } from './shared/dialog/province-picker/provinc
     HistoryHandleReportComponent,
     CreateComplaintReportComponent,
     ProvincePickerComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

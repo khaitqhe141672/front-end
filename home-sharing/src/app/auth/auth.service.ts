@@ -7,6 +7,7 @@ import {Injectable, OnDestroy} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {CheckUserNameResponse, RegisterResponse} from "./register/register.service";
 import * as API_CONSTANT from "../constant/api.constant"
+import {API_CHECK_OTP_EXIST, API_FORGOT_PASSWORD, API_RESET_PASSWORD} from "../constant/api.constant";
 
 export interface AuthResponseData {
   message: string,
@@ -221,7 +222,18 @@ export class AuthService {
 
   }
 
+  forgotPassWord(email:string){
+    return this.http.get(API_FORGOT_PASSWORD+email)
+  }
 
+  confirmForgotPassword(otp:string){
+    return this.http.get(API_CHECK_OTP_EXIST+otp)
+  }
 
-
+  resetPassword(email:string,password:string){
+    return this.http.put(API_RESET_PASSWORD,{
+      email:email,
+      password:password
+    })
+  }
 }

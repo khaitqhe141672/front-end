@@ -184,7 +184,7 @@ export class BookingComponent implements OnInit {
 
   onCreateBooking() {
     console.log(this.isConfirm)
-    return
+    // return
     let newDate = new Date(this.startDateBooking)
     console.log('Date booking: '+this.startDateBooking)
     console.log(this.bookingService.convertDate(this.startDateBooking))
@@ -227,11 +227,11 @@ export class BookingComponent implements OnInit {
     let bookingObservable =   this.bookingService.bookingRequest(bookingBody,this.postID)
     bookingObservable.subscribe({
       next:responseData =>{
-        console.log(responseData)
+        console.log('responseData: '+responseData)
         this.isBooking = false
       },
       error:errorMess =>{
-        console.log(errorMess)
+        console.log('errorMess: '+errorMess)
       },
       complete:()=>{
         Swal.fire({

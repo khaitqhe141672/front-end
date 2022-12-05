@@ -13,14 +13,20 @@ import Swal from "sweetalert2";
 })
 export class LoginComponent implements OnInit {
 
+  isForgotPassword = false
+
   isLogin = true
   error:string = null
   constructor(private authService:AuthService,private router:Router) { }
   formLoginGroup:FormGroup
+  formForgotPasswordGroup:FormGroup
   ngOnInit(): void {
     this.formLoginGroup = new FormGroup({
       'userName': new FormControl(null,[Validators.required]),
-      'passWord':new FormControl(null,[Validators.required])
+      'passWord':new FormControl(null,[Validators.required]),
+    })
+    this.formForgotPasswordGroup = new FormGroup({
+      'email':new FormControl(null,[Validators.required,Validators.email])
     })
   }
 
@@ -40,13 +46,7 @@ export class LoginComponent implements OnInit {
         console.log(responseData)
         console.log("auth interceptor token2: "+responseData.data.token)
         console.log('role: '+responseData.data.user.role)
-        // if(responseData.data.user.role==='ROLE_HOST'){
-        //   this.router.navigate(['/hosts/manage-current/confirm-booking'])
-        // }else if(responseData.data.user.role==='ROLE_ADMIN'){
-        //   this.router.navigate(['/admin/manager-account/manager-account-host'])
-        // }else{
           this.router.navigate(['/home'])
-        // }
       },
       error:errorMessageResponse=>{
         this.error = errorMessageResponse
@@ -60,5 +60,26 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-
+  onSubmitForgotPassword(){
+    const email = this.formForgotPasswordGroup.get('email').value;
+    console.log(email)
+    this.authService.forgotPassWord(email).subscribe(response=>{
+      console.log(response)
+      Swal.fire({
+        icon: 'success',
+        title: 'Vui lòng kiểm tra email để lấy lại mật khẩu',
+      })
+    },()=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Lỗi gửi xác minh qua email.',
+        text: 'Vui lòng thử lại',
+      })
+    },()=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Vui lòng kiểm tra email để lấy lại mật khẩu',
+      })
+    })
+  }
 }

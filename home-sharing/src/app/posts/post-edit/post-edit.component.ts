@@ -628,13 +628,27 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log('complete 1')
           // this.progressInfos[idx].isLoading= false;
           this.isUploading = false
-          let title = 'Tạo bài đăng thành công. Ấn OK để trở về quản lý bài đăng'
+          let title = 'Tạo bài đăng thành công!'
           if (this.isEditMode) title = 'Sửa bài đăng thành công. Ấn OK để trở về quản lý bài đăng'
           Swal.fire({
             icon: 'success',
             title: title,
           }).then(() => {
-            this.router.navigate(['../hosts/host-post-list'])
+
+          })
+          Swal.fire({
+            icon: 'success',
+            title: title,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Thanh toán ngay',
+            denyButtonText: `Trở về quản lý bài đăng`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['../payment/'+postID])
+            } else if (result.isDenied) {
+              this.router.navigate(['../hosts/host-post-list'])
+            }
           })
         }
       );

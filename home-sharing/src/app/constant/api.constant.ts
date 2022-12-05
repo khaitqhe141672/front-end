@@ -1,6 +1,10 @@
 export const API_PAYMENT_POST = 'http://localhost:8080/api/payment/create-payment'
 export const API_PAYMENT_POST_SUCCESS = 'http://localhost:8080/api/payment/payment-result?'
 export const API_REGISTER = 'http://localhost:8080/api/auth/signup'
+export const API_FORGOT_PASSWORD = 'http://localhost:8080/api/auth/forgot-password?email='
+export const API_CHECK_OTP_EXIST = 'http://localhost:8080/api/auth/confirm-forgot-password?otp='
+export const API_RESET_PASSWORD = 'http://localhost:8080/api/auth/reset-password'
+
 export const API_EXIST_MAIL = 'http://localhost:8080/api/auth/exist-email?'
 export const API_POST_DETAIL = 'http://localhost:8080/api/post-detail?post_id='
 export const API_DISTRICT ='http://localhost:8080/api/address/district'

@@ -29,7 +29,7 @@ export class BookingService{
         }
     )
       .pipe(catchError(this.handleError),tap(responseData=>{
-        console.log(responseData)
+        console.log('responseData bookingservice: '+responseData)
       }))
   }
 

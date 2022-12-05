@@ -21,6 +21,7 @@ import {HasRoleHostGuard} from "./guard/has-role-host.guard";
 import {AccountDetailComponent} from "./admin/manager-account/account-detail/account-detail.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {PaymentSuccessComponent} from "./payment-success/payment-success.component";
+import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 
 
 const appRoute: Routes = [
@@ -29,7 +30,8 @@ const appRoute: Routes = [
     path: 'auth', children: [
       {path: '', component: LoginComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent}
+      {path: 'register', component: RegisterComponent},
+      {path: 'forgot-password', component: ForgotPasswordComponent}
     ]
 
   },
