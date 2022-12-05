@@ -162,11 +162,11 @@ img, iframe{
   display: grid;
 }
 
-.container-detail .detail-content .detail-content-third
-.title-rate h2{
-  font-size: 48px;
-  font-family: Actor;
-}
+/*.container-detail .detail-content .detail-content-third*/
+/*.title-rate h2{*/
+/*  font-size: 48px;*/
+/*  font-family: Actor;*/
+/*}*/
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first{
@@ -230,7 +230,7 @@ img, iframe{
 .container-detail .detail-content .detail-content-four
 .detail-card-price .detail-card-price-title h3{
   font-family: Actor;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .container-detail .detail-content .detail-content-four
@@ -243,7 +243,9 @@ img, iframe{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-
+.detail-card-price-type-first:hover{
+  cursor: pointer;
+}
 .container-detail .detail-content .detail-content-four
 .detail-card-price .detail-card-price-type input{
   border: none;
@@ -320,6 +322,13 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+.span__read-more{
+  color:#7A7676;
+}
+.span__read-more:hover{
+  cursor: pointer;
+  color: #F36B08;
 }
 
 .info-host .host .host-image{

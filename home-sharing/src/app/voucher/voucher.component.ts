@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {VoucherService} from "./voucher.service";
 import {VoucherPost, VoucherPostResponse} from "../shared/model/voucher.model";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -13,7 +13,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class VoucherComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: number,private voucherService:VoucherService,
-              private clipboard: Clipboard,private _snackBar: MatSnackBar) { }
+              private clipboard: Clipboard,private _snackBar: MatSnackBar,
+              private voucherDialogRef:MatDialogRef<VoucherComponent>) { }
   listVoucher:VoucherPost[]=[]
   voucherIResponse
   ngOnInit(): void {
@@ -27,14 +28,14 @@ export class VoucherComponent implements OnInit {
     console.log(this.data)
   }
 
-  onChooseVoucher() {
-
+  onChooseVoucher(codeVoucher: string) {
+    this.voucherDialogRef.close({data:codeVoucher})
   }
 
   onCopyVoucherName(nameVoucher: string) {
-    this.clipboard.copy(nameVoucher)
-    this._snackBar.open('Đã sao chép mã giảm giá','',{
-      duration:1000
-    })
+    // this.clipboard.copy(nameVoucher)
+    // this._snackBar.open('Đã sao chép mã giảm giá','',{
+    //   duration:1000
+    // })
   }
 }

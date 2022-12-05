@@ -33,16 +33,16 @@
       </svg>
       | {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
       - {{postDetail.numberOfBathrooms}} vệ sinh
-      <button type="button" (click)="favoritePost()" mat-icon-button color="warn"
-              aria-label="Example icon button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
+<!--      <button type="button" (click)="favoritePost()" mat-icon-button color="warn"-->
+<!--              aria-label="Example icon button with a heart icon">-->
+<!--        <mat-icon>favorite</mat-icon>-->
+<!--      </button>-->
     </p>
 
   </div>
   <div class="detail-content">
     <div class="detail-content-one">
-      <div class="detail-card-img">
+      <div class="detail-card-img" (click)="showMore(1)">
         <div class="detail-card-img-first">
           <div class="detail-card-img-item" style="width: 450px; height: 345px;">
             <img alt="" src="{{postDetail.imageDtoList[0].imageUrl}}" style="border-top-left-radius: 28px;">
@@ -68,7 +68,7 @@
     </div>
     <div class="detail-content-two">
       <div class="detail-content-intro">
-        <div class="utilities">
+        <div class="utilities" (click)="showMore(2)">
           <div class="utility-title">
             <h4 class="h4-ultility">Tiện ích xung quanh</h4>
           </div>
@@ -136,7 +136,9 @@
         </div>
         <hr>
         <div class="desription">
-          <p>{{postDetail.description}}</p>
+          <p>{{(postDetail.description.length>289)?(postDetail.description|slice:0:289)+'...':(postDetail.description)}}
+          <span (click)="showMore(3)" class="span__read-more">xem thêm</span>
+          </p>
         </div>
         <hr>
         <div class="map">
@@ -180,6 +182,9 @@
         <h2 style="font-size: 36px;">Đánh giá</h2>
       </div>
       <div>
+        <p>Chưa có đánh giá nào</p>
+      </div>
+      <div *ngIf="rates.length>0">
         <div *ngFor="let rate of rates" class="rate">
           <div class="rate-item">
             <div class="rate-item-first">
@@ -232,28 +237,21 @@
             <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price | currency: "VND" }}</span></h3>
           </div>
           <div class="detail-card-price-type">
-            <div class="row">
-              <div class="col-12">
-                <button class="btn btn-outline-success" mat-button (click)="openDatePickerDialog()" type="button">Chọn
-                  ngày
-                </button>
-              </div>
-            </div>
             <div class="detail-card-price-type-first">
-              <div class="detail-card-price-type-first-child"
+              <div (click)="openDatePickerDialog()" class="detail-card-price-type-first-child"
                    style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
                 <span>Ngày nhận phòng</span>
-                <input id="date1" type="date" formControlName="startDateCtrl">
+                <input id="date1" type="text" formControlName="startDateCtrl">
               </div>
-              <div class="detail-card-price-type-first-child"
+              <div (click)="openDatePickerDialog()" class="detail-card-price-type-first-child"
                    style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
                 <span>Ngày trả phòng</span>
-                <input id="date2" type="date" formControlName="endDateCtrl">
+                <input readonly id="date2" type="text" formControlName="endDateCtrl">
               </div>
               <div class="detail-card-price-type-first-child "
-                   style="padding: 10px 15px 10px 15px; text-align: center; display: grid;">
+                   style="color:white;padding: 10px 15px 10px 15px; text-align: center; display: grid;">
                 <span>Số người</span>
-                <input style="text-align: center" formControlName="guestNumber" id="date3" type="number">
+                <input appCheckInputNumber style="text-align: center" formControlName="guestNumber" id="date3" type="number">
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ export class BookingService{
   }
 
   convertDate(date:string){
-    let rs:string[] = date.split('-')
+    let rs:string[] = date.split('/')
     return new Date(+rs[2],+rs[1]-1,+rs[0])
   }
   handleError(errorResponse:HttpErrorResponse){

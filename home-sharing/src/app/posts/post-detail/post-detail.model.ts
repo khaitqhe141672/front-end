@@ -28,6 +28,7 @@ export class PostDetail {
   status: number
   latitude: string
   longitude: string
+  bookingDate?: string[]
 }
 
 export class ServiceDetailDtoList {
