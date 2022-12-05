@@ -125,7 +125,7 @@ img, iframe{
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host .host .host-name h2{
   font-family: 'actor';
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .container-detail .detail-content .detail-content-two
@@ -320,4 +320,16 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.info-host .host .host-image{
+  border-radius: 50%;
+}
+
+.info-host .host .host-image img{
+  border-radius: 50%;
+}
+
+.h4-ultility{
+  font-weight: 500;
 }

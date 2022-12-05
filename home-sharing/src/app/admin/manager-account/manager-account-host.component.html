@@ -76,7 +76,7 @@
 
       <ng-container matColumnDef="date">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày tham gia</th>
-        <td *matCellDef="let row" mat-cell> {{row.dob}} </td>
+        <td *matCellDef="let row" mat-cell> {{row.dob | date: 'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="action">

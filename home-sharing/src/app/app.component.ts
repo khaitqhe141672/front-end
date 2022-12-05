@@ -21,8 +21,12 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (event['url'] == '/auth/login') {
           this.showHead = false;
+          this.headerHost = false;
+          this.headerAdmin = false;
         } else if (event['url'] == '/auth/register') {
           this.showHead = false;
+          this.headerHost = false;
+          this.headerAdmin = false;
         } else {
           // console.log("NU")
           this.showHead = true;

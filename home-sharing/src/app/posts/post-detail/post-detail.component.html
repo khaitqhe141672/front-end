@@ -70,7 +70,7 @@
       <div class="detail-content-intro">
         <div class="utilities">
           <div class="utility-title">
-            <h4>Tiện ích xung quanh</h4>
+            <h4 class="h4-ultility">Tiện ích xung quanh</h4>
           </div>
           <div class="utility-content">
             <ul>
@@ -91,9 +91,9 @@
             </div>
             <div class="host-name">
               <h2>Chủ nhà {{postDetail.hostName}}
-<!--                <button mat-icon-button color="warn" type="button" (click)="followHost()">-->
-<!--                  <mat-icon>person_add</mat-icon>-->
-<!--                </button>-->
+                <!--                <button mat-icon-button color="warn" type="button" (click)="followHost()">-->
+                <!--                  <mat-icon>person_add</mat-icon>-->
+                <!--                </button>-->
               </h2>
 
               <p style="font-size: 11px;">Tham gia vào ngày {{postDetail.createDate | date: 'dd/MM/yyyy'}}</p>
@@ -107,15 +107,15 @@
             </span>
           </div>
           <div class="host-intro">
-            <p style="font-size: 14px; font-family: 'actor'; padding-top: 5px;">{{postDetail.hostName}} là chủ nhà tích
-              cực, luôn mang lại
-              hài lòng cho khác hàng.</p>
+            <!--            <p style="font-size: 14px; font-family: 'actor'; padding-top: 5px;">{{postDetail.hostName}} là chủ nhà tích-->
+            <!--              cực, luôn mang lại-->
+            <!--              hài lòng cho khác hàng.</p>-->
           </div>
         </div>
       </div>
       <div class="detail-content-info" style="margin-top: 10px;">
         <div class="title">
-          <h3>Thông tin chi tiết</h3>
+          <h3 class="h4-ultility">Thông tin chi tiết</h3>
         </div>
         <div class="address">
           <svg fill="none" height="25" viewBox="0 0 25 25" width="25" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +141,7 @@
         <hr>
         <div class="map">
           <div class="title-mapp">
-            <h4>Bản đồ</h4>
+            <h3 class="h4-ultility">Bản đồ</h3>
           </div>
           <div class="image-map">
             <!--            <iframe-->
@@ -156,7 +156,7 @@
         </div>
         <div class="type-other">
           <div class="title-type-other">
-            <h4>Lựa chọn khác gần đó</h4>
+            <h3 class="h4-ultility">Lựa chọn khác gần đó</h3>
           </div>
           <div class="type-other-img">
             <div class="type-other-img-item">
@@ -177,7 +177,7 @@
     </div>
     <div class="detail-content-third">
       <div class="title-rate">
-        <h2>Đánh giá</h2>
+        <h2 style="font-size: 36px;">Đánh giá</h2>
       </div>
       <div>
         <div *ngFor="let rate of rates" class="rate">
@@ -229,7 +229,7 @@
       <form [formGroup]="formBooking">
         <div class="detail-card-price">
           <div class="detail-card-price-title" style="padding-bottom: 30px;">
-            <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price}} VND</span></h3>
+            <h3>Giá phòng: <span style="padding-left: 25px;">{{postDetail.price | currency: "VND" }}</span></h3>
           </div>
           <div class="detail-card-price-type">
             <div class="row">
@@ -259,19 +259,20 @@
           </div>
           <div class="info-price">
             <h3>Giá phòng phải thanh toán</h3>
-            <h4>{{postDetail.price}} x {{daysBetween ? daysBetween : "0"}} ngày
-              = {{totalPriceInDays ? totalPriceInDays : "0"}}</h4>
+            <h4>{{postDetail.price | currency: "VND" }} x {{daysBetween ? daysBetween : "0" }} ngày
+              = {{totalPriceInDays ? (totalPriceInDays | currency: "VND") : "0" }}</h4>
             <!--          <h3>Phí dịch vụ</h3>-->
             <h5>(Chưa bao gồm phí dịch vụ)</h5>
             <hr style="margin-top: 50px; margin-bottom: 30px">
             <div class="price-final">
               <div class="price-final-pay">
                 <h3>Thanh toán</h3>
-                <h3 style="text-align: right;">{{totalPriceInDays ? totalPriceInDays : ""}}</h3>
+                <h3 style="text-align: right;">{{totalPriceInDays ? (totalPriceInDays | currency: "VND") : "" }}</h3>
               </div>
               <div class="total-vat">
                 <h3>Tổng thanh toán sau thuế(10%VAT)</h3>
-                <h3 style="text-align: right;">{{totalPriceInDaysAfterTax ? totalPriceInDaysAfterTax : ""}}</h3>
+                <h3
+                  style="text-align: right;">{{totalPriceInDaysAfterTax ? (totalPriceInDaysAfterTax | currency: "VND") : ""}}</h3>
               </div>
             </div>
           </div>

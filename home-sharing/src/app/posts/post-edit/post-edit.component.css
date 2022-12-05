@@ -126,14 +126,14 @@ img {
 
 .div-btn-menu-post-1 {
   position: absolute;
-  margin-top: -58%;
-  margin-left: 88%;
+  margin-top: 3%;
+  margin-left: 86%;
 }
 
 .div-btn-menu-post-2 {
   position: absolute;
-  margin-top: -58%;
-  margin-left: 75%;
+  margin-top: -50%;
+  margin-left: 69%;
   background: rgba(217, 217, 217, 0.75);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
@@ -141,7 +141,7 @@ img {
 
 .div-btn-menu-post-3 {
   position: absolute;
-  margin-top: -120%;
+  margin-top: 10%;
   margin-left: 75%;
   background: rgba(217, 217, 217, 0.75);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -150,7 +150,7 @@ img {
 
 .div-btn-menu-post-4 {
   position: absolute;
-  margin-top: -60%;
+  margin-top: 5%;
   margin-left: 87%;
   background: rgba(217, 217, 217, 0.75);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
