@@ -75,8 +75,9 @@ export class PostDetailComponent implements OnInit {
   }
 
   openDatePickerDialog() {
-    this.datePickerDialogRef = this.dialog.open(DatePickerComponent, {data:
-      'a',hasBackdrop: true})
+    this.datePickerDialogRef = this.dialog.open(DatePickerComponent, {
+      data:this.postDetail.bookingDate,
+      hasBackdrop: true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
       // console.log("Date before format: " + this.datePicked.startDate + " - " + this.datePicked.endDate)
