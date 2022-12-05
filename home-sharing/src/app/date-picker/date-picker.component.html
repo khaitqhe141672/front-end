@@ -6,9 +6,10 @@
       <div mat-dialog-content>
         <mat-form-field appearance="outline" color="warn">
           <mat-label>Chọn ngày bạn muốn thuê</mat-label>
-          <mat-date-range-input [dateFilter]="myHolidayFilter"  [min]="todayDate" [formGroup]="formDatePicker" [rangePicker]="picker">
-            <input formControlName="startDate" matStartDate placeholder="Start date">
-            <input formControlName="endDate" matEndDate placeholder="End date">
+          <mat-date-range-input restoreFocus [dateFilter]="bookedDateFilter"  [min]="minDate" [formGroup]="formDatePicker" [max]="maxDate" [rangePicker]="picker">
+            <input #dateRangeStart (dateChange)="limitDateRange(dateRangeStart)"  formControlName="startDate" matStartDate placeholder="Ngày bắt đầu">
+            <input #dateRangeEnd (dateChange)="resetMaxDate(dateRangeEnd)" formControlName="endDate" matEndDate placeholder="Ngày kết thúc"
+            >
           </mat-date-range-input>
           <mat-hint>Ngày/Tháng/Năm - Ngày/Tháng/Năm</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
