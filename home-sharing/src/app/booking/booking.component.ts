@@ -40,6 +40,7 @@ export class BookingComponent implements OnInit {
   standardPrice:number=0
   guestNumber:number=0
   datePicked: { startDate: Date, endDate: Date }
+  listBookedDate:string[] =[]
   saveService:number[]
   formGroupBooking:FormGroup
   @ViewChild('fullName') fullNameRef:ElementRef;
@@ -80,6 +81,8 @@ export class BookingComponent implements OnInit {
      this.endDateBooking = params['endDate']
      this.guestNumber = params['guestNumber']
      this.standardPrice = params['standardPrice']
+     this.listBookedDate = params['listBookedDate']
+     console.log('list Booked date: '+this.listBookedDate)
    })
     console.log(JSON.stringify(this.listService))
     this.priceHS = this.standardPrice
@@ -110,7 +113,6 @@ export class BookingComponent implements OnInit {
       this.formGroupBooking.controls.fullNameCtrl.patchValue(this.userInfo.fullName)
       this.formGroupBooking.controls.phoneNumberCtrl.patchValue(this.userInfo.mobile)
       this.formGroupBooking.controls.emailCtrl.patchValue(this.userInfo.email)
-
     })
   }
 
@@ -158,6 +160,12 @@ export class BookingComponent implements OnInit {
     // this.displayData()
   }
 
+  onRemoveVoucher(){
+    this.pctDiscount = 0
+    this.servicePrice = 0
+    this.refreshPrice()
+  }
+
   displayData(){
     console.log('priceHS: '+this.priceHS)
     console.log('totalBill: '+this.totalBill)
@@ -179,7 +187,7 @@ export class BookingComponent implements OnInit {
 
 
   openDatePickerDialog() {
-    this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{hasBackdrop:true})
+    this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{data:this.listBookedDate,hasBackdrop:true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
       this.datePicked = res as { startDate: Date, endDate: Date }
       this.startDateBooking = this.datePipe.transform(this.datePicked.startDate,'dd/MM/yyyy')
@@ -284,9 +292,5 @@ export class BookingComponent implements OnInit {
     this.isConfirm = $event.checked
     console.log($event)
   }
-  onRemoveVoucher(){
-    this.pctDiscount = 0
-    this.servicePrice = 0
-    this.refreshPrice()
-  }
+
 }

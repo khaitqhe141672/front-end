@@ -120,6 +120,7 @@ export class PostDetailComponent implements OnInit {
           endDate: this.formatEndDate,
           guestNumber: this.formBooking.controls.guestNumber.value,
           standardPrice: this.standardPrice,
+          listBookedDate:this.postDetail.bookingDate
         }
       }
     )

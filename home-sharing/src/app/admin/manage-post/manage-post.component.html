@@ -33,7 +33,7 @@
       <ng-container matColumnDef="statusPost">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái bài đăng</th>
         <td *matCellDef="let row"  [ngSwitch]="row.statusPost" mat-cell>
-          <div *ngSwitchCase="0" class="d-flex" style="color: #367E18">
+          <div *ngSwitchCase="1" class="d-flex" style="color: #367E18">
             <div><p>Đang hoạt động</p></div>
             <div>
               <mat-icon>
@@ -43,8 +43,18 @@
               </mat-icon>
             </div>
           </div>
-          <div *ngSwitchCase="1" class="d-flex" style="color: gray">
-            <div><p>Đã bị ẩn</p></div>
+          <div *ngSwitchCase="2" class="d-flex" style="color: gray">
+            <div><p>Bị ẩn bởi chủ nhà</p></div>
+            <div>
+              <mat-icon>
+              <span class="material-symbols-outlined">
+                  fiber_manual_record
+              </span>
+              </mat-icon>
+            </div>
+          </div>
+          <div *ngSwitchCase="3" class="d-flex" style="color: red">
+            <div><p>Bị ẩn bởi quản trị viên</p></div>
             <div>
               <mat-icon>
               <span class="material-symbols-outlined">
@@ -57,7 +67,7 @@
       </ng-container>
 
       <ng-container matColumnDef="statusPostPayment">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái</th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái thanh toán</th>
         <td *matCellDef="let row" [ngSwitch]="row.statusPostPayment" mat-cell>
 
           <div *ngSwitchCase="0" class="d-flex" style="color: #F36B08">
