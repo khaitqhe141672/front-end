@@ -68,7 +68,7 @@ export class UserInfoComponent implements OnInit {
     console.log('name: '+name)
     console.log('phoneNumber: '+phoneNumber)
     console.log('address: '+address)
-    this.profileService.updateProfile(name,phoneNumber,address).subscribe(response=>{
+    this.profileService.updateProfile(name.trim(),phoneNumber.trim(),address.trim()).subscribe(response=>{
       console.log(response)
       Swal.fire({
         icon: 'success',
@@ -80,6 +80,8 @@ export class UserInfoComponent implements OnInit {
         title: 'Cập nhập thông tin thất bại!',
         text:'Vui lòng thử lại trong giây lát'
       })
+    },()=>{
+      this.getUserInfo()
     })
     // Swal.fire({
     //   icon: 'success',

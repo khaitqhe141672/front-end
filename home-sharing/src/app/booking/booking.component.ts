@@ -215,9 +215,9 @@ export class BookingComponent implements OnInit {
     bookingBody.totalPriceRoom = this.priceHS
     bookingBody.totalPriceService = this.servicePrice
     bookingBody.discount = this.totalDiscount
-    bookingBody.fullName = this.formGroupBooking.controls.fullNameCtrl.value
-    bookingBody.email = this.formGroupBooking.controls.emailCtrl.value
-    bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value
+    bookingBody.fullName = this.formGroupBooking.controls.fullNameCtrl.value.trim()
+    bookingBody.email = this.formGroupBooking.controls.emailCtrl.value.trim()
+    bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value.trim()
     // console.log('postID:  '+this.postID)
     // console.log('startDate:  '+startDateBookingBody)
     // console.log('endDate: '+bookingBody.endDate)
