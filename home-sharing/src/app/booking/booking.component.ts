@@ -156,13 +156,12 @@ export class BookingComponent implements OnInit {
     this.totalBill = Math.floor(+this.servicePrice + +this.priceHS)
     this.totalDiscount = Math.floor(+this.totalBill * +this.pctDiscount)
     this.totalBillAfterDiscount =Math.floor( +this.totalBill - +this.totalDiscount)
-    // this.totalBillAfterDiscount = Math.round(this.totalBill-this.totalBill*(this.pct/100))
-    // this.displayData()
   }
 
   onRemoveVoucher(){
     this.pctDiscount = 0
     this.servicePrice = 0
+    this.formCheckVoucher.controls.codeVoucherCtrl.patchValue('')
     this.refreshPrice()
   }
 
@@ -197,14 +196,11 @@ export class BookingComponent implements OnInit {
 
   onCreateBooking() {
     console.log(this.isConfirm)
-    // return
     let newDate = new Date(this.startDateBooking)
     console.log('Date booking: '+this.startDateBooking)
     console.log(this.bookingService.convertDate(this.startDateBooking))
     let startDateBookingBody = this.datePipe.transform(this.bookingService.convertDate(this.startDateBooking),'yyyy-MM-dd')
     let endDateBookingBody =  this.datePipe.transform(this.bookingService.convertDate(this.endDateBooking),'yyyy-MM-dd')
-    // let startDateBookingBody = this.startDateBooking
-    // let endDateBookingBody =  this.endDateBooking
     console.log(startDateBookingBody.toString())
     console.log(endDateBookingBody.toString())
 
@@ -274,16 +270,20 @@ export class BookingComponent implements OnInit {
 
   checkVoucherExist() {
     let codeVoucher = this.formCheckVoucher.controls.codeVoucherCtrl.value
-    if(!codeVoucher) return
+    if(codeVoucher=='') return
       // console.log(this.formCheckVoucher.controls.codeVoucherCtrl.value)
     this.bookingService.checkVoucherExist(this.postID,codeVoucher).subscribe(response=>{
-      this.totalBillAfterDiscount = Math.round(this.totalBill-(this.totalBill*response.object)/100)
-      this.pctDiscount = +response.object/100
-      this.totalDiscount = this.totalBill*response.object/100
-      // console.log('totalBill: '+this.totalBill)
-      // console.log('totalBillAfterDiscount: '+this.totalBillAfterDiscount)
-      // console.log('response voucher: '+response.object)
-      this.displayData()
+      console.log('response: '+JSON.stringify(response))
+      if(response.status!=21)
+      {
+        this.totalBillAfterDiscount = Math.round(this.totalBill-(this.totalBill*response.object)/100)
+        this.pctDiscount = +response.object/100
+        this.totalDiscount = this.totalBill*response.object/100
+        // console.log('totalBill: '+this.totalBill)
+        // console.log('totalBillAfterDiscount: '+this.totalBillAfterDiscount)
+        // console.log('response voucher: '+response.object)
+        this.displayData()
+      }
     })
 
   }

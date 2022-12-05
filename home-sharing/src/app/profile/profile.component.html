@@ -5,7 +5,7 @@
         <li  class="item-left">
           <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="list-group-item clearfix" routerLink="/profile">Tài khoản</a>
         </li>
-        <li   class="item-left">
+        <li *ngIf="role=='ROLE_CUSTOMER'"  class="item-left">
           <a routerLinkActive="active"  class="list-group-item clearfix" routerLink="/profile/history-booking">Lịch sử đặt phòng</a>
         </li>
         <li  class="list-group-item item-left">
@@ -15,7 +15,6 @@
     </div>
     <div class="col" style="height: 820px;">
       <router-outlet></router-outlet>
-
     </div>
   </div>
 </div>
