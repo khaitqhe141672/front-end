@@ -126,12 +126,13 @@ export class UserInfoComponent implements OnInit {
         })
 
       },()=>{
+        this.isLoading = false
         Swal.fire({
           icon: 'error',
           title: 'Cập nhật ảnh đại diện thất bại',
           text:'Vui lòng thử lại trong giây lát'
         })
-      })
+      },()=>{this.isLoading=false})
 
   }
 }

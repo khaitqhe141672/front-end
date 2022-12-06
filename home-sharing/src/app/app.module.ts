@@ -124,6 +124,8 @@ import { CreateComplaintReportComponent } from './host/complaint-report/create-c
 import { ProvincePickerComponent } from './shared/dialog/province-picker/province-picker.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import {ShowMoreDialogComponent} from "./shared/dialog/show-more-dialog/show-more-dialog.component";
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -194,7 +196,9 @@ import {ShowMoreDialogComponent} from "./shared/dialog/show-more-dialog/show-mor
     CreateComplaintReportComponent,
     ProvincePickerComponent,
     ForgotPasswordComponent,
-    ShowMoreDialogComponent
+    ShowMoreDialogComponent,
+    AdminDashboardComponent,
+    HostDashboardComponent
   ],
   imports: [
     BrowserModule,

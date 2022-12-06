@@ -9,6 +9,7 @@ import {ManageReportCenterComponent} from "./manage-report-center/manage-report-
 import {ManageReportPostComponent} from "./manage-report-center/manage-report-post/manage-report-post.component";
 import {ManageReportRateComponent} from "./manage-report-center/manage-report-rate/manage-report-rate.component";
 import {ManageComplainComponent} from "./manage-report-center/manage-complain/manage-complain.component";
+import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
 
 const routes: Routes = [
   {path: '', component:AdminComponent,
@@ -22,7 +23,8 @@ const routes: Routes = [
         {path: 'manage-report-post',component: ManageReportPostComponent},
         {path: 'manage-report-rate',component: ManageReportRateComponent},
         {path: 'manage-complain',component: ManageComplainComponent}
-      ]}
+      ]},
+    {path:'dashboard',component:AdminDashboardComponent}
   ]},
 ]
 

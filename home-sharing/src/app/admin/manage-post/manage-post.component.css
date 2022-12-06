@@ -11,6 +11,5 @@ table{
 }
 .td-title-post:hover{
   cursor: pointer;
-  transform: scale(1.2);
   color: #F36B08;
 }

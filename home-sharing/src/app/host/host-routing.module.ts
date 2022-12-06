@@ -9,6 +9,7 @@ import {ManageCurrentComponent} from "./manage-current/manage-current.component"
 import {CurrentBookingComponent} from "./manage-current/current-booking/current-booking.component";
 import {ComingBookingComponent} from "./manage-current/coming-booking/coming-booking.component";
 import {ListConfirmBookingComponent} from "./manage-current/list-confirm-booking/list-confirm-booking.component";
+import {HostDashboardComponent} from "./host-dashboard/host-dashboard.component";
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
           {path: 'rate-detail/:id', component: RateDetailComponent}
         ]
       },
-      {path: 'manage-voucher', component: ManageVoucherComponent}
+      {path: 'manage-voucher', component: ManageVoucherComponent},
+      {path: 'dashboard', component: HostDashboardComponent}
     ]
   }
 ]

@@ -72,6 +72,7 @@ export const API_HOST_UPDATE_STATUS_POST = 'http://localhost:8080/api/manage-pos
 
 export const API_HOST_UPDATE_VOUCHER_FOR_POST ='http://localhost:8080/api/posting/insert-post-voucher?post-id='
 
+export const API_HOST_DASH_BOARD = 'http://localhost:8080/api/dashboard/host'
 //admin
 export const API_ADMIN_MANAGE_POST = 'http://localhost:8080/api/manage-post/view-all-post?index-page='
 export const API_ADMIN_MANAGE_POST_RATE ='http://localhost:8080/api/report/list-reportPost-admin?index-page='
@@ -84,6 +85,7 @@ export const API_HISTORY_HANDLE_REPORT_POST  = 'http://localhost:8080/api/report
 export const API_HISTORY_DETAIL_REPORT = 'http://localhost:8080/api/report/all-detail-history-report-post?'
 export const API_ADMIN_GET_COMPLAIN = 'http://localhost:8080/api/report/all-complaint-post?index-page='
 
+export const API_ADMIN_DASH_BOARD = 'http://localhost:8080/api/dashboard/admin'
 
 //host vs admin
 export const API_CREATE_COMPLAIN = 'http://localhost:8080/api/report/create-complaintPost?post-id='
