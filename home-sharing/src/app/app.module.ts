@@ -126,6 +126,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import {ShowMoreDialogComponent} from "./shared/dialog/show-more-dialog/show-more-dialog.component";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
+import {PieChartModule} from "@swimlane/ngx-charts";
 
 @NgModule({
   declarations: [
@@ -235,7 +236,7 @@ import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.com
     MatCardModule, MatDialogModule,
     MatNativeDateModule, FormsModule,
     MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule, MatTooltipModule,
-    SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forRoot(), PieChartModule,
   ],
   providers: [
     DatePipe,

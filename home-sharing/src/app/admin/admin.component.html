@@ -1,4 +1,4 @@
-<mat-drawer-container autosize class="example-container">
+<mat-drawer-container autosize class="example-container h-100 w-100 position-absolute" >
   <mat-drawer #drawer class="example-sidenav" mode="side" opened>
     <mat-list class="d-flex text-center flex-column justify-content-center">
       <mat-list-item class="left-bar-list" routerLink="/admin/manager-account/manager-account-host"
@@ -25,9 +25,8 @@
     </mat-list>
 
   </mat-drawer>
-
-  <div class="example-sidenav-content">
+  <mat-drawer-content class="drawer-content">
     <router-outlet></router-outlet>
-  </div>
+  </mat-drawer-content>
 
 </mat-drawer-container>

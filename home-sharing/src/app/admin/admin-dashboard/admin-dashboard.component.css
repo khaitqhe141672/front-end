@@ -1,25 +1,30 @@
-body{
-  margin-top:20px;
-  background-color: #f7f7ff;
-}
 .radius-10 {
   border-radius: 10px !important;
 }
 
 .border-info {
   border-left: 5px solid  #0dcaf0 !important;
+  border-right: 5px solid  #0dcaf0 !important;
+
 }
 .border-danger {
-  border-left: 5px solid  #fd3550 !important;
+  border-left: 5px solid  #bd0000 !important;
+  border-right: 5px solid  #bd0000 !important;
 }
 .border-success {
   border-left: 5px solid  #15ca20 !important;
+  border-right: 5px solid  #15ca20 !important;
+}
+.border-success-pack-2{
+  border-left: 5px solid  #2aff9b !important;
+  border-right: 5px solid  #2aff9b !important;
 }
 .border-warning {
   border-left: 5px solid  #ffc107 !important;
 }
 .border-warning-2 {
   border-left: 5px solid  #9d80f3 !important;
+  border-right: 5px solid  #9d80f3 !important;
 }
 .border-info-2 {
   border-left: 5px solid  #359f62 !important;
@@ -93,10 +98,10 @@ body{
   background: #ffdf40;
   background: -webkit-linear-gradient(
     45deg
-    , #ffdf40, #ff8359)!important;
+    , #ef4e5b, #bd0000)!important;
   background: linear-gradient(
     45deg
-    , #ffdf40, #ff8359)!important;
+    , #ef4e5b, #bd0000)!important;
 }
 .bg-gradient-host {
   background: #ffdf40;
@@ -121,8 +126,35 @@ body{
   background: #ffdf40;
   background: -webkit-linear-gradient(
     45deg
-    , #f36c53, #ff7c22)!important;
+    , #f36c53, #ff2243)!important;
   background: linear-gradient(
     45deg
-    , #f8b5a9, #ff7c22)!important;
+    , #e8401d, #dc0b0b)!important;
+}
+.bg-gradient-bloody-package-1 {
+  background: #79ff08;
+  background: -webkit-linear-gradient(
+    45deg
+    , #b4f183, #3f8502)!important;
+  background: linear-gradient(
+    45deg
+    , #b4f183, #3f8502)!important;
+}
+.bg-gradient-bloody-package-2 {
+  background: #2aff9b;
+  background: -webkit-linear-gradient(
+    45deg
+    , #2aff9b, #025e85)!important;
+  background: linear-gradient(
+    45deg
+    , #2aff9b, #025e85)!important;
+}
+.bg-gradient-bloody-package-3 {
+  background: #2ae6ff;
+  background: -webkit-linear-gradient(
+    45deg
+    , #2ae6ff, #022785)!important;
+  background: linear-gradient(
+    45deg
+    , #2ae6ff, #022785)!important;
 }

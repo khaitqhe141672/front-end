@@ -1,10 +1,10 @@
-<div class="container-manage-rate">
+<div class="container-manage-rate container-fluid">
   <div class="title">
     <h2>Quản lý danh sách đánh giá</h2>
   </div>
   <div class="content_list_rate">
-    <div class="list_rate">
-      <div *ngFor="let rate of loadListRateObs|async" class="card_rate">
+    <div class="list_rate row">
+      <div *ngFor="let rate of loadListRateObs|async" class="col card_rate">
         <div [matTooltip]="rate.title" class="card_rate_title me-2">
           <span style="display:inline-block; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 30ch;">
             {{rate.title}}
@@ -12,198 +12,12 @@
 
         </div>
         <div class="rate">
-          <a [routerLink]="'rate-detail/'+rate.postID">Đánh giá mới ({{rate.totalRate}}), Báo cáo({{rate.totalReportRate}})
-            <span>
-              <svg fill="none" height="10" viewBox="0 0 13 10" width="13" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="6.28084" cy="5" fill="#64F50B" rx="6.22224" ry="5"/>
-              </svg>
-            </span>
-          </a>
+          <a [routerLink]="'rate-detail/'+rate.postID">Xem đánh giá/Báo cáo Homestay</a>
         </div>
       </div>
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="card_rate">-->
-      <!--        <div class="card_rate_title">-->
-      <!--          <h2>HanoiWood Homestay</h2>-->
-      <!--        </div>-->
-      <!--        <div class="rate">-->
-      <!--          <a [routerLink]="'rate-detail'">Đánh giá mới (13), Báo cáo(2)-->
-      <!--            <span>-->
-      <!--              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-      <!--              <ellipse cx="6.28084" cy="5" rx="6.22224" ry="5" fill="#64F50B"/>-->
-      <!--              </svg>-->
-      <!--            </span>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--      </div>-->
     </div>
+
+
     <div class="page_item">
       <mat-paginator [length]="100"
                      [pageSize]="10"
@@ -213,4 +27,5 @@
     </div>
   </div>
 </div>
+
 

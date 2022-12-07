@@ -1,6 +1,6 @@
 .example-container {
   width: 100%;
-  height: 900px;
+  height:100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
@@ -46,4 +46,10 @@ a.active{
 .btn-change-type:hover{
   background-color: #F36B08;
   color: #FFFFFF;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
 }

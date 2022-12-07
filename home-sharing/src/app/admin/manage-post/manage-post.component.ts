@@ -14,7 +14,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./manage-post.component.css']
 })
 export class ManagePostComponent implements OnInit {
-  displayedColumns: string[] = ['postID', 'title','datePayment','statusPost','statusPostPayment' ];
+  displayedColumns: string[] = ['postID', 'title','datePayment','statusPost' ];
   loadPostObs:Observable<PostTableDetail[]>
   refreshListPost =  new BehaviorSubject<boolean>(true)
   totalPaginator:number

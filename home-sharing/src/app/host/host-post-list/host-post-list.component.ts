@@ -13,6 +13,7 @@ import {ConfirmDialogComponent} from "../../shared/dialog/confirm-dialog/confirm
 import {PostVoucherDialogComponent} from "./post-voucher-dialog/post-voucher-dialog.component";
 import {VoucherComponent} from "../../voucher/voucher.component";
 import {Voucher} from "../../shared/model/voucher.model";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-host-post-list',
@@ -26,7 +27,7 @@ export class HostPostListComponent implements OnInit {
   dataSource: MatTableDataSource<PostDetail>
   updateStatusPostDiaLog:MatDialogRef<boolean>
   voucherDialogRef:MatDialogRef<PostVoucherDialogComponent>
-  totalPaginator: number
+  totalPaginator: number = 0
   pageIndex: number = 1
 
   confirmDialogRef:MatDialogRef<ConfirmDialogComponent>
@@ -59,8 +60,8 @@ export class HostPostListComponent implements OnInit {
   onLoadData() {
     this.loadListPostObs = this.refreshListPost.pipe(
       switchMap(_ => this.hostPostListService.getAllPostByHost(this.pageIndex).pipe(map(data => {
-        // this.totalPaginator = data
-        console.log(JSON.stringify(data))
+        this.totalPaginator = data.SizePage
+        // console.log(JSON.stringify(data))
         return data.listPost
       }))))
     if (this.subLoadPost) this.subLoadPost.unsubscribe()
@@ -118,5 +119,11 @@ export class HostPostListComponent implements OnInit {
 
   openPostDetail(postID: number) {
     this.router.navigate(['../posts/post-detail/'+postID])
+  }
+
+  handlePageEvent(e: PageEvent) {
+      console.log('page index: '+e.pageIndex)
+    this.pageIndex = ++e.pageIndex
+    this.onLoadData()
   }
 }

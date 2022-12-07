@@ -32,6 +32,7 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@popperjs/core": "^2.11.6",
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
+    "@swimlane/ngx-charts": "^20.1.1",
     "angular-material": "^1.2.5",
     "angular-popper": "^2.0.1",
     "angular-star-rating": "^6.0.0",

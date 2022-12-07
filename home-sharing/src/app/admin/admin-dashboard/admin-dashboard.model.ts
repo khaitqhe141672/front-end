@@ -4,19 +4,23 @@ export interface AdminDashBoardRResponse {
 }
 
 export interface AdminDashBoardData {
-  totalPostDeActive: number
   totalAccount: number
-  totalPost: number
   totalCustomerDeActive: number
-  totalPostActive: number
+  post: PostChart[]
   totalCustomer: number
   totalHost: number
   totalHostDeActive: number
   totalPostPayment: number
   paymentDtoList: PaymentDtoList[]
+  totalPost: number
 }
 
-export class PaymentDtoList {
+export interface PostChart {
+  name: string
+  value: number
+}
+
+export interface PaymentDtoList {
   packagePaymentID: number
   totalPost: number
 }

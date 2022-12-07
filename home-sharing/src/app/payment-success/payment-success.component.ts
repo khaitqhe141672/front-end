@@ -30,6 +30,6 @@ data = []
   }
 
   goToManagePost() {
-    this.router.navigate(['../hosts/host-post-list'])
+    this.router.navigate(['../host/host-post-list'])
   }
 }

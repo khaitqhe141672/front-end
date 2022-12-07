@@ -647,7 +647,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
             if (result.isConfirmed) {
               this.router.navigate(['../payment/'+postID])
             } else if (result.isDenied) {
-              this.router.navigate(['../hosts/host-post-list'])
+              this.router.navigate(['../host/host-post-list'])
             }
           })
         }

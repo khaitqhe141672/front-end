@@ -31,7 +31,6 @@ hr, ul, li {
 }
 
 .container-manage-rate{
-  max-width: 1230px;
   margin: auto;
   width: 100%;
   padding-top: 30px;
@@ -48,7 +47,6 @@ hr, ul, li {
 }
 
 .container-manage-rate .content_list_rate {
-  max-width: 1150px;
   margin: auto;
   width: 100%;
   border: 2px solid #F36B08;
@@ -117,4 +115,8 @@ hr, ul, li {
 .message_box button svg{
   width: 40px;
   height: 40px;
+}
+.rate a{
+  color: #367E18;
+  font-weight: bolder;
 }

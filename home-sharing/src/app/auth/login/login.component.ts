@@ -46,7 +46,14 @@ export class LoginComponent implements OnInit {
         console.log(responseData)
         console.log("auth interceptor token2: "+responseData.data.token)
         console.log('role: '+responseData.data.user.role)
+        let role = responseData.data.user.role
+        if(role == 'ROLE_HOST'){
+          this.router.navigate(['../host/manage-current/confirm-booking'])
+        }else if(role == 'ROLE_ADMIN'){
+          this.router.navigate(['../admin/manager-account/manager-account-host'])
+        }else{
           this.router.navigate(['/home'])
+        }
       },
       error:errorMessageResponse=>{
         this.error = errorMessageResponse

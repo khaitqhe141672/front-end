@@ -59,7 +59,7 @@ const appRoute: Routes = [
     ]
   },
   {
-    path: 'hosts',
+    path: 'host',
     loadChildren: () => import('./host/host-routing.module').then(m => m.HostRoutingModule)
 
   },

@@ -7,10 +7,11 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
     super();
   }
   itemsPerPageLabel = 'Tổng trang'
-
+  nextPageLabel = 'Trang tiếp'
+  previousPageLabel = 'Trang trước'
   getRangeLabel = (page: number, pageSize: number, length: number) =>  {
     if (length === 0) {
-      return $localize`Trang 1 trên 1`;
+      return $localize`Trang 1 trên ${pageSize}`;
     }
     const amountPages = Math.ceil(length / pageSize);
     return $localize`Trang ${page + 1} trên ${amountPages}`;

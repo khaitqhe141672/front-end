@@ -4,6 +4,7 @@ export interface IResponsePost {
 }
 
 export interface ListPostData {
+  SizePage:number
   listPost: PostDetail[]
 }
 
