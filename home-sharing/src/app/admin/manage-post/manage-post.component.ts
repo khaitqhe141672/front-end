@@ -4,7 +4,7 @@ import {ManagePostService} from "./manage-post.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -52,7 +52,11 @@ export class ManagePostComponent implements OnInit {
   showMore(row) {
 
   }
-
+  handlePageEvent(e: PageEvent) {
+    console.log('page index: '+e.pageIndex)
+    this.pageIndex = ++e.pageIndex
+    this.onLoadingData()
+  }
   navigateToPost(postID: number) {
     this.router.navigate(['../posts/post-detail/'+postID])
     // const url = this.router.serializeUrl(this.router.createUrlTree(['/posts/post-detail/'+postID]))
