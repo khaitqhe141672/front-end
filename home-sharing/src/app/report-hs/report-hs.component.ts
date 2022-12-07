@@ -2,6 +2,7 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ReportHsService} from "./report-hs.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-report-hs',
@@ -51,12 +52,18 @@ export class ReportHsComponent implements OnInit {
       },
       error:errorMessageResponse=>{
         console.log(errorMessageResponse)
-        alert('Báo cáo đánh giá thất bại')
+        Swal.fire({
+          icon: 'error',
+          title: 'Báo cáo đánh giá thất bại',
+        })
 
       },
       complete:()=>{
         console.log('complete')
-        alert('Báo cáo đánh giá thành công')
+        Swal.fire({
+          icon: 'success',
+          title: 'Báo cáo đánh giá thành công',
+        })
       }
     })
   }

@@ -9,11 +9,19 @@ import {UserInfo, UserInfoResponse} from "./profile.model";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  role = ''
+  role = 'ROLE_CUSTOMER'
+  isDisplay = false
+
   constructor() {
   }
+
   ngOnInit(): void {
     console.log('role 123: '+localStorage.getItem('role'))
     this.role = localStorage.getItem('role')
+    if(this.role=='"ROLE_CUSTOMER"') this.isDisplay = true
+  }
+
+  isCustomer():boolean{
+    return this.role==='ROLE_CUSTOMER'
   }
 }

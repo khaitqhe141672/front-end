@@ -15,7 +15,6 @@ export class ManageRateComponent implements OnInit {
   pageIndex = 1
 
   loadListRateObs:Observable<ListPostRate[]>
-  subLoadListRate
   refreshListRate = new BehaviorSubject<boolean>(true)
 
   constructor(private manageRateService:ManageRateService) { }
@@ -33,6 +32,4 @@ export class ManageRateComponent implements OnInit {
         })))
     )
   }
-
-
 }

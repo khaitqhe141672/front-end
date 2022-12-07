@@ -470,8 +470,9 @@
                   />
                 </div>
               </mat-form-field>
-              <div *ngIf="previews.length>0&&previews[0]">
-                <div class="row">
+<!--              <div *ngIf="previews.length>0&&previews[0]">-->
+              <div *ngIf="previews.length>0">
+              <div class="row">
                   <div class="col-8 d-flex justify-content-center div-img-1 number_custom">
                     <div style="height: 250px; width: 400px;">
                       <img (click)="file0.click()"

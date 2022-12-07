@@ -673,6 +673,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.savedFiles[position] = undefined
     this.selectedFileNames[position] = undefined
     this.checkFileSize--
+    // console.log(this.previews[1])
   }
 
   selectSingleFiles(event, position: number) {
