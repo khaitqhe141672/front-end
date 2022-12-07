@@ -250,7 +250,7 @@ export class BookingComponent implements OnInit {
           title: 'Đặt phòng thành công',
           text: 'Vui lòng đợi chủ nhà xét duyệt',
         }).then(
-          ()=>{this.router.navigate(['profile/history-booking'])})
+          ()=>{this.router.navigate(['../profile/history-booking'])})
         this.isBooking = false
         console.log('complete')
       }
