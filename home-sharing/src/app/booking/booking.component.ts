@@ -39,6 +39,7 @@ export class BookingComponent implements OnInit {
   endDateBooking:string
   standardPrice:number=0
   guestNumber:number=0
+  rootGuestNumber:number=0
   datePicked: { startDate: Date, endDate: Date }
   listBookedDate:string[] =[]
   saveService:number[]
@@ -76,7 +77,7 @@ export class BookingComponent implements OnInit {
       this.postID = params['id']
     })
    this.route.queryParams.subscribe(params=>{
-
+      this.rootGuestNumber = params['rootGuestNumber']
      this.startDateBooking = params['startDate']
      this.endDateBooking = params['endDate']
      this.guestNumber = params['guestNumber']
@@ -174,11 +175,21 @@ export class BookingComponent implements OnInit {
   }
 
   increaseGuestNumber() {
+    if(this.rootGuestNumber<=this.guestNumber){
+      Swal.fire({
+        icon:'error',
+        title:'Vượt quá số khách có thể chứa'
+      })
+      return
+    }
     this.guestNumber++
     this.refreshPrice()
   }
 
   decreaseGuestNumber() {
+    if(this.guestNumber==1){
+      return
+    }
     this.guestNumber--
     this.refreshPrice()
   }
@@ -188,9 +199,11 @@ export class BookingComponent implements OnInit {
   openDatePickerDialog() {
     this.datePickerDialogRef = this.dialog.open(DatePickerComponent,{data:this.listBookedDate,hasBackdrop:true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
+    if(res){
       this.datePicked = res as { startDate: Date, endDate: Date }
       this.startDateBooking = this.datePipe.transform(this.datePicked.startDate,'dd/MM/yyyy')
       this.endDateBooking = this.datePipe.transform(this.datePicked.endDate,'dd/MM/yyyy')
+    }
     })
   }
 

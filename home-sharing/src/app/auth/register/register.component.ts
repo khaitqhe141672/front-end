@@ -6,6 +6,7 @@ import {Observable, timer} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import {DatePipe} from "@angular/common";
 import {AuthService} from "../auth.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   formRegister: FormGroup
   roleOptions = ['Người thuê', 'Chủ hộ']
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router, private datePipe: DatePipe) {
   }
@@ -93,6 +95,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.formRegister.invalid) return
+    this.isLoading = true
     const mobile = this.formRegister.get('phoneNumber').value
     const username = this.formRegister.get('userName').value
     const password = this.formRegister.get('passWord').value
@@ -106,13 +109,26 @@ export class RegisterComponent implements OnInit {
     const fullName = this.formRegister.get('fullName').value
     // console.log(username+' '+password+' '+address+' '+email+' '+role+' '+dob)
     let registerObservable: Observable<RegisterResponse> = this.authService.register(username, password, mobile, address, email, role, dob, fullName)
+
     registerObservable.subscribe({
       next: responseData => {
         console.log(responseData)
+        this.isLoading = false
+
       },
       error: errorMessageResponse => {
+        this.isLoading = false
+
       }, complete: () => {
-        this.router.navigate(['auth/login'])
+        Swal.fire({
+          icon:'success',
+          title:'Đăng ký tài khoản thành công!',
+          text:'Vui lòng kiểm tra email để xác thực tài khoản'
+        }).then(()=>{
+          this.router.navigate(['auth/login'])
+        })
+        this.isLoading = false
+
       }
     })
 

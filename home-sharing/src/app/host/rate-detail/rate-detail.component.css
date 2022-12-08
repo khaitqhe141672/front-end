@@ -207,3 +207,7 @@ hr, ul, li {
 .new_rate{
   color: #F36B08!important;
 }
+.route-manage-rate:hover{
+  cursor: pointer;
+  color: #F36B08;
+}

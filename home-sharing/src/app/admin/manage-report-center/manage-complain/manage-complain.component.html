@@ -1,77 +1,79 @@
-<table [dataSource]="dataSource" class="mat-elevation-z8 w-100 mt-3" mat-table>
+<div class=" m-1 mat-elevation-z8">
+  <table [dataSource]="dataSource" class="w-100 mt-3" mat-table>
+    <ng-container matColumnDef="postID">
+      <th *matHeaderCellDef mat-header-cell> Mã bài đăng</th>
+      <td *matCellDef="let element" mat-cell> {{element.postID}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="postID">
-    <th *matHeaderCellDef mat-header-cell> Mã bài đăng</th>
-    <td *matCellDef="let element" mat-cell> {{element.postID}} </td>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <th *matHeaderCellDef mat-header-cell> Tên Homstay</th>
+      <td *matCellDef="let element" mat-cell> {{element.title}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="title">
-    <th *matHeaderCellDef mat-header-cell> Tên Homstay</th>
-    <td *matCellDef="let element" mat-cell> {{element.title}} </td>
-  </ng-container>
+    <ng-container matColumnDef="username">
+      <th *matHeaderCellDef mat-header-cell>Tên tài khoản chủ nhà</th>
+      <td *matCellDef="let element" mat-cell> {{element.username}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="username">
-    <th *matHeaderCellDef mat-header-cell>Tên tài khoản chủ nhà</th>
-    <td *matCellDef="let element" mat-cell> {{element.username}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="descriptionComplaint">
-    <th *matHeaderCellDef mat-header-cell> Lý do khiếu nại</th>
-    <td *matCellDef="let element" mat-cell> {{element.descriptionComplaint}} </td>
-  </ng-container>
-  <ng-container matColumnDef="statusPost">
-    <th *matHeaderCellDef mat-header-cell> Tình trạng bài viết</th>
-    <td *matCellDef="let element" [ngSwitch]="element.statusPost" mat-cell>
-      <button #menuTrigger [matMenuTriggerFor]="menu" disabled="{{element.statusComplaint==2}}" mat-button>
-        <div style="color:#367E18;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="1">
-          <div>
-            <mat-icon >
-              circle
-            </mat-icon>
+    <ng-container matColumnDef="descriptionComplaint">
+      <th *matHeaderCellDef mat-header-cell> Lý do khiếu nại</th>
+      <td *matCellDef="let element" mat-cell> {{element.descriptionComplaint}} </td>
+    </ng-container>
+    <ng-container matColumnDef="statusPost">
+      <th *matHeaderCellDef mat-header-cell> Tình trạng bài viết</th>
+      <td *matCellDef="let element" [ngSwitch]="element.statusPost" mat-cell>
+        <button #menuTrigger [matMenuTriggerFor]="menu" disabled="{{element.statusComplaint==2}}" mat-button>
+          <div style="color:#367E18;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="1">
+            <div>
+              <mat-icon >
+                circle
+              </mat-icon>
+            </div>
+            <div>
+              Hoạt động
+            </div>
           </div>
-          <div>
-            Hoạt động
+          <div style="color:gray;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="2">
+            <div  class="d-flex flex-row justify-content-center align-items-center">
+              <mat-icon>
+                circle
+              </mat-icon>
+            </div>
+            <div>
+              Bị chủ nhà ẩn
+            </div>
           </div>
+          <div  style="color:#CC3636;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="3">
+            <div  class="d-flex flex-row justify-content-center align-items-center">
+              <mat-icon>
+                circle
+              </mat-icon>
+            </div>
+            <div>
+              Bị ẩn
+            </div>
+          </div>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="updateStatusPost(element.postID,1)" mat-menu-item>Hiển thị</button>
+        </mat-menu>
+
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="statusComplaint">
+      <th *matHeaderCellDef mat-header-cell> Tình trạng xử lý</th>
+      <td *matCellDef="let element" [ngSwitch]="element.statusComplaint" mat-cell>
+        <div *ngSwitchCase="1">
+          Chưa xử lý
         </div>
-        <div style="color:gray;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="2">
-          <div  class="d-flex flex-row justify-content-center align-items-center">
-            <mat-icon>
-              circle
-            </mat-icon>
-          </div>
-          <div>
-            Bị chủ nhà ẩn
-          </div>
+        <div *ngSwitchCase="2">
+          Đã xử lý
         </div>
-        <div  style="color:#CC3636;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="3">
-          <div  class="d-flex flex-row justify-content-center align-items-center">
-            <mat-icon>
-              circle
-            </mat-icon>
-          </div>
-          <div>
-            Bị ẩn
-          </div>
-        </div>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button (click)="updateStatusPost(element.postID,1)" mat-menu-item>Hiển thị</button>
-      </mat-menu>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="statusComplaint">
-    <th *matHeaderCellDef mat-header-cell> Tình trạng xử lý</th>
-    <td *matCellDef="let element" [ngSwitch]="element.statusComplaint" mat-cell>
-      <div *ngSwitchCase="1">
-        Chưa xử lý
-      </div>
-      <div *ngSwitchCase="2">
-        Đã xử lý
-      </div>
-    </td>
-  </ng-container>
-  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-</table>
-
+  </table>
+  <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPage==0?1:10*totalPage" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
+</div>

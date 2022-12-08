@@ -4,8 +4,8 @@
   <form [formGroup]="formCreateVoucher" (ngSubmit)="onCreateVoucher()">
   <div mat-dialog-content class="pop-up_content">
     <div class="mb-3">
-      <label class="form-label">Tên khuyến mại</label>
-      <input formControlName="voucherNameCtrl" type="text" class="form-control">
+      <label class="form-label">Mã khuyến mại</label>
+      <input appInputRestriction="noSpecialChars" formControlName="voucherNameCtrl" type="text" class="form-control">
     </div>
     <div class="mb-3">
       <label class="form-label">Phần trăm giảm</label>

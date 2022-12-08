@@ -10,6 +10,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {PostDetail} from "./post-detail.model";
 import {ShowMoreDialogComponent} from "../../shared/dialog/show-more-dialog/show-more-dialog.component";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-post-detail',
@@ -20,6 +21,7 @@ export class PostDetailComponent implements OnInit {
   @ViewChild('date1') startDateCalendar: HTMLInputElement
   @ViewChild('date2') endDateCalendar: HTMLInputElement
 
+  isRoleUser = false
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   showMoreDialogRef:MatDialogRef<ShowMoreDialogComponent>
 
@@ -60,7 +62,8 @@ export class PostDetailComponent implements OnInit {
       guestNumber: ['']
     })
     this.standardPrice = this.postDetail.price
-
+    const role = localStorage.getItem('role')
+    if(role=='"ROLE_CUSTOMER"') this.isRoleUser = true
   }
 
   getRate() {
@@ -79,21 +82,22 @@ export class PostDetailComponent implements OnInit {
       data:this.postDetail.bookingDate,
       hasBackdrop: true})
     this.datePickerDialogRef.afterClosed().subscribe(res => {
-      this.datePicked = res as { startDate: Date, endDate: Date }
-      // console.log("Date before format: " + this.datePicked.startDate + " - " + this.datePicked.endDate)
-      // console.log("Date after that: " + this.datePicked.startDate.toLocaleDateString().slice(0, 10) + "-" + this.datePicked.endDate.toLocaleDateString().slice(0, 10))
-      this.formatStartDate = this.datePipe.transform(this.datePicked.startDate, 'dd/MM/yyyy')
-      this.formatEndDate = this.datePipe.transform(this.datePicked.endDate, 'dd/MM/yyyy')
-      console.log('format start date: ' + this.formatStartDate)
-      console.log('format end date: ' + this.formatEndDate)
-
-      this.formBooking.controls.startDateCtrl.patchValue(this.formatStartDate)
-      this.formBooking.controls.endDateCtrl.patchValue(this.formatEndDate)
-      let differenceInTime = this.datePicked.endDate.getTime() - this.datePicked.startDate.getTime();
-      this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24)) + 1;
-      this.totalPriceInDays = this.postDetail.price * this.daysBetween
-      this.totalPriceInDaysAfterTax = Math.floor(this.totalPriceInDays * 1.1)
-      console.log('Day between: ' + this.daysBetween)
+      if(res){
+        this.datePicked = res as { startDate: Date, endDate: Date }
+        // console.log("Date before format: " + this.datePicked.startDate + " - " + this.datePicked.endDate)
+        // console.log("Date after that: " + this.datePicked.startDate.toLocaleDateString().slice(0, 10) + "-" + this.datePicked.endDate.toLocaleDateString().slice(0, 10))
+        this.formatStartDate = this.datePipe.transform(this.datePicked.startDate, 'dd/MM/yyyy')
+        this.formatEndDate = this.datePipe.transform(this.datePicked.endDate, 'dd/MM/yyyy')
+        console.log('format start date: ' + this.formatStartDate)
+        console.log('format end date: ' + this.formatEndDate)
+        this.formBooking.controls.startDateCtrl.patchValue(this.formatStartDate)
+        this.formBooking.controls.endDateCtrl.patchValue(this.formatEndDate)
+        let differenceInTime = this.datePicked.endDate.getTime() - this.datePicked.startDate.getTime();
+        this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24)) + 1;
+        this.totalPriceInDays = this.postDetail.price * this.daysBetween
+        this.totalPriceInDaysAfterTax = Math.floor(this.totalPriceInDays * 1.1)
+        console.log('Day between: ' + this.daysBetween)
+      }
     })
   }
 
@@ -113,17 +117,33 @@ export class PostDetailComponent implements OnInit {
   onBooking() {
     console.log('formatStartDate: '+this.formatStartDate)
     console.log('formatEndDate: '+this.formatEndDate)
-// return
-    this.router.navigate(['/booking', this.id], {
-        queryParams: {
-          startDate: this.formatStartDate,
-          endDate: this.formatEndDate,
-          guestNumber: this.formBooking.controls.guestNumber.value,
-          standardPrice: this.standardPrice,
-          listBookedDate:this.postDetail.bookingDate
-        }
+    if(this.formatStartDate&&this.formatEndDate){
+      const numberGuest = this.formBooking.controls.guestNumber.value
+      if(numberGuest>this.postDetail.guestNumber){
+        Swal.fire({
+          icon:'error',
+          title:'Homestay này tiếp đón tối đa '+this.postDetail.guestNumber +' khách'
+        })
+      }else{
+        this.router.navigate(['/booking', this.id], {
+            queryParams: {
+              startDate: this.formatStartDate,
+              endDate: this.formatEndDate,
+              guestNumber: numberGuest,
+              rootGuestNumber:this.postDetail.guestNumber,
+              standardPrice: this.standardPrice,
+              listBookedDate:this.postDetail.bookingDate
+            }
+          }
+        )
       }
-    )
+    }else {
+      Swal.fire({
+        icon:'error',
+        title:'Vui lòng điền đủ thông tin'
+      })
+    }
+
   }
 
 

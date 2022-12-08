@@ -33,10 +33,12 @@ export class DatePickerComponent implements OnInit {
         endDate:['']
       }
     )
-    this.listBookingDate = this.data.map(data=>{
-      this.dates.push(new Date(data))
-      return this.datePipe.transform(new Date(data),'MM/dd/yyyy')
-    })
+    if(this.data){
+      this.listBookingDate = this.data.map(data=>{
+        this.dates.push(new Date(data))
+        return this.datePipe.transform(new Date(data),'MM/dd/yyyy')
+      })
+    }
     console.log(this.listBookingDate)
     this.bookedDateFilter = (d: Date): boolean => {
       const time=d.getTime();

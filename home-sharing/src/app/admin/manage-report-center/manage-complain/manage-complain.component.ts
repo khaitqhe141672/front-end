@@ -6,6 +6,7 @@ import {map, switchMap} from "rxjs/operators";
 import {MatTableDataSource} from "@angular/material/table";
 import {HostPostListServices} from "../../../host/host-post-list/host-post-list-services";
 import Swal from "sweetalert2";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-manage-complain',
@@ -58,5 +59,10 @@ export class ManageComplainComponent implements OnInit {
       }
 
     )
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex = ++e.pageIndex
+    this.onLoadComplain()
   }
 }

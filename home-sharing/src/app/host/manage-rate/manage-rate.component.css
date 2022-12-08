@@ -120,3 +120,6 @@ hr, ul, li {
   color: #367E18;
   font-weight: bolder;
 }
+.rate a:hover{
+  color: #F36B08;
+}

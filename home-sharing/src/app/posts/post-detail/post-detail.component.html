@@ -31,18 +31,18 @@
           d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
           fill="#F36B08"/>
       </svg>
-      | {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
+      |{{postDetail.guestNumber}} khách - {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
       - {{postDetail.numberOfBathrooms}} vệ sinh
-<!--      <button type="button" (click)="favoritePost()" mat-icon-button color="warn"-->
-<!--              aria-label="Example icon button with a heart icon">-->
-<!--        <mat-icon>favorite</mat-icon>-->
-<!--      </button>-->
+      <!--      <button type="button" (click)="favoritePost()" mat-icon-button color="warn"-->
+      <!--              aria-label="Example icon button with a heart icon">-->
+      <!--        <mat-icon>favorite</mat-icon>-->
+      <!--      </button>-->
     </p>
 
   </div>
   <div class="detail-content">
     <div class="detail-content-one">
-      <div class="detail-card-img" (click)="showMore(1)">
+      <div (click)="showMore(1)" class="detail-card-img">
         <div class="detail-card-img-first">
           <div class="detail-card-img-item" style="width: 450px; height: 345px;">
             <img alt="" src="{{postDetail.imageDtoList[0].imageUrl}}" style="border-top-left-radius: 28px;">
@@ -68,18 +68,21 @@
     </div>
     <div class="detail-content-two">
       <div class="detail-content-intro">
-        <div class="utilities" (click)="showMore(2)">
+        <div (click)="showMore(2)" class="utilities">
           <div class="utility-title">
             <h4 class="h4-ultility">Tiện ích xung quanh</h4>
           </div>
           <div class="utility-content">
             <ul>
-              <li *ngFor="let p of postDetail.postUtilityDtoList">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                  <path fill-rule="evenodd"
-                        d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"></path>
-                </svg>
-                {{p.nameUtility}}
+              <li *ngFor="let p of postDetail.postUtilityDtoList;let i = index" >
+                <div *ngIf="i<=3">
+                  <svg height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"
+                          fill-rule="evenodd"></path>
+                  </svg>
+                  {{p.nameUtility}}
+                </div>
+
               </li>
             </ul>
           </div>
@@ -90,26 +93,19 @@
               <img alt="" src="{{postDetail.imageUrlHost}}">
             </div>
             <div class="host-name">
-              <h2>Chủ nhà {{postDetail.hostName}}
-                <!--                <button mat-icon-button color="warn" type="button" (click)="followHost()">-->
-                <!--                  <mat-icon>person_add</mat-icon>-->
-                <!--                </button>-->
+              <h2>Chủ nhà</h2>
+              <h2>
+                {{postDetail.hostName}}
+                <span class="ms-2" style="margin: 0">
+                  <svg fill="none" height="24" viewBox="0 0 23 24" width="23" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.8819 23.3056H10.6918L7.89247 20.3208H3.75221L2.86381 19.4532V15.2536L0.0310059 12.2688V11.0368L2.86381 8.05197V3.8351L3.75221 2.96743H7.89247L10.6918 0H11.8819L14.765 2.96743H18.8382L19.6763 3.81775V8.05197L22.5426 11.0368V12.2688L19.626 15.2536V19.4532L18.7879 20.3208H14.765L11.8819 23.3056ZM9.11611 15.9478H10.3062L16.6256 9.40554L15.4354 8.17345L9.71954 14.1083L7.40636 11.7135L6.21625 12.9456L9.11611 15.9478Z"
+                    fill="black"/>
+                </svg>
+            </span>
               </h2>
-
               <p style="font-size: 11px;">Tham gia vào ngày {{postDetail.createDate | date: 'dd/MM/yyyy'}}</p>
             </div>
-            <span>
-              <svg fill="none" height="24" viewBox="0 0 23 24" width="23" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M11.8819 23.3056H10.6918L7.89247 20.3208H3.75221L2.86381 19.4532V15.2536L0.0310059 12.2688V11.0368L2.86381 8.05197V3.8351L3.75221 2.96743H7.89247L10.6918 0H11.8819L14.765 2.96743H18.8382L19.6763 3.81775V8.05197L22.5426 11.0368V12.2688L19.626 15.2536V19.4532L18.7879 20.3208H14.765L11.8819 23.3056ZM9.11611 15.9478H10.3062L16.6256 9.40554L15.4354 8.17345L9.71954 14.1083L7.40636 11.7135L6.21625 12.9456L9.11611 15.9478Z"
-                fill="black"/>
-              </svg>
-            </span>
-          </div>
-          <div class="host-intro">
-            <!--            <p style="font-size: 14px; font-family: 'actor'; padding-top: 5px;">{{postDetail.hostName}} là chủ nhà tích-->
-            <!--              cực, luôn mang lại-->
-            <!--              hài lòng cho khác hàng.</p>-->
+
           </div>
         </div>
       </div>
@@ -136,52 +132,29 @@
         </div>
         <hr>
         <div class="desription">
-          <p>{{(postDetail.description.length>289)?(postDetail.description|slice:0:289)+'...':(postDetail.description)}}
-          <span (click)="showMore(3)" class="span__read-more">xem thêm</span>
+          <p>{{(postDetail.description.length > 500) ? (postDetail.description|slice:0:500) + '...' : (postDetail.description)}}
+            <span (click)="showMore(3)" class="span__read-more">xem thêm</span>
           </p>
         </div>
         <hr>
-        <div class="map">
+        <div class="map" style="height: 265px;overflow: hidden;border-radius: 16px">
           <div class="title-mapp">
             <h3 class="h4-ultility">Bản đồ</h3>
           </div>
-          <div class="image-map">
-            <!--            <iframe-->
-            <!--              allowfullscreen=""-->
-            <!--              height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"-->
-            <!--              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.942489835562!2d105.52725144979861!3d21.013822248049323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1666017828677!5m2!1sen!2s"-->
-            <!--              style="border:0;"-->
-            <!--              width="600"></iframe>-->
+          <div class="image-map" style="height: 100%;border-radius: 16px">
+
             <app-map [isDetailMode]="true" [lat]="+postDetail.latitude" [lng]="+postDetail.longitude"></app-map>
 
           </div>
         </div>
-        <div class="type-other">
-          <div class="title-type-other">
-            <h3 class="h4-ultility">Lựa chọn khác gần đó</h3>
-          </div>
-          <div class="type-other-img">
-            <div class="type-other-img-item">
-              <img alt="" src="assets/images/image%208.png">
-            </div>
-            <div class="type-other-img-item">
-              <img alt="" src="assets/images/image%209.png">
-            </div>
-            <div class="type-other-img-item">
-              <img alt="" src="assets/images/image%2011.png">
-            </div>
-            <div class="type-other-img-item">
-              <img alt="" src="assets/images/image%2012.png">
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
-    <div class="detail-content-third">
+    <div *ngIf="isRoleUser" class="detail-content-third">
       <div class="title-rate">
         <h2 style="font-size: 36px;">Đánh giá</h2>
       </div>
-      <div>
+      <div class="title-rate-detail">
         <p>Chưa có đánh giá nào</p>
       </div>
       <div *ngIf="rates.length>0">
@@ -208,12 +181,12 @@
                   <p>{{rate.dateRate}}</p>
                 </div>
                 <div>
-                  <button type="button" (click)="onLikeRate(rate.rateID)" mat-icon-button color="warn"
-                          aria-label="Example icon button with a heart icon">
+                  <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon" color="warn" mat-icon-button
+                          type="button">
                     <mat-icon layout-fill="0">thumb_up_off</mat-icon>
                   </button>
-                  <button type="button" (click)="onDisLikeRate(rate.rateID)" mat-icon-button color="warn"
-                          aria-label="Example icon button with a heart icon">
+                  <button (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon" color="warn" mat-icon-button
+                          type="button">
                     <mat-icon layout-fill="0">thumb_down</mat-icon>
                   </button>
                   <!--                  <button type="button" (click)="onReportRate(rate.rateID,rate.username)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">-->
@@ -230,7 +203,7 @@
         </div>
       </div>
     </div>
-    <div class="detail-content-four">
+    <div *ngIf="isRoleUser" class="detail-content-four">
       <form [formGroup]="formBooking">
         <div class="detail-card-price">
           <div class="detail-card-price-title" style="padding-bottom: 30px;">
@@ -241,17 +214,18 @@
               <div (click)="openDatePickerDialog()" class="detail-card-price-type-first-child"
                    style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
                 <span>Ngày nhận phòng</span>
-                <input id="date1" type="text" formControlName="startDateCtrl">
+                <input formControlName="startDateCtrl" id="date1" type="text">
               </div>
               <div (click)="openDatePickerDialog()" class="detail-card-price-type-first-child"
                    style="display: grid;border-right: 1px solid #D9D9D9; padding: 10px 15px 10px 15px; text-align: center;">
                 <span>Ngày trả phòng</span>
-                <input readonly id="date2" type="text" formControlName="endDateCtrl">
+                <input formControlName="endDateCtrl" id="date2" readonly type="text">
               </div>
               <div class="detail-card-price-type-first-child "
                    style="padding: 10px 15px 10px 15px; text-align: center; display: grid;">
                 <span>Số người</span>
-                <input appCheckInputNumber style="text-align: center" formControlName="guestNumber" id="date3" type="number">
+                <input appCheckInputNumber formControlName="guestNumber" id="date3" style="text-align: center"
+                       type="number">
               </div>
             </div>
           </div>
@@ -275,7 +249,7 @@
             </div>
           </div>
           <div class="price-button">
-            <button type="button" (click)="onBooking()">Đặt ngay</button>
+            <button (click)="onBooking()" type="button">Đặt ngay</button>
           </div>
         </div>
       </form>

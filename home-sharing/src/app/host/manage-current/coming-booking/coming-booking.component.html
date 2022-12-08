@@ -59,7 +59,7 @@
 
     </table>
 
-    <mat-paginator hidePageSize aria-label="Select page of users"></mat-paginator>
+    <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPagePagination==0?1:10*totalPagePagination" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
   </div>
 
 </div>

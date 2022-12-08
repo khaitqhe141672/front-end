@@ -127,6 +127,7 @@ import {ShowMoreDialogComponent} from "./shared/dialog/show-more-dialog/show-mor
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
 import {PieChartModule} from "@swimlane/ngx-charts";
+import { InputRestrictionDirective } from './shared/directive/input-restriction.directive';
 
 @NgModule({
   declarations: [
@@ -199,7 +200,8 @@ import {PieChartModule} from "@swimlane/ngx-charts";
     ForgotPasswordComponent,
     ShowMoreDialogComponent,
     AdminDashboardComponent,
-    HostDashboardComponent
+    HostDashboardComponent,
+    InputRestrictionDirective
   ],
   imports: [
     BrowserModule,

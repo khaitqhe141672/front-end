@@ -27,12 +27,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   formSearch:FormGroup
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if(this.eRef.nativeElement.contains(event.target)) {
-      this.isOpen = true;
-    } else {
-      this.isOpen = false;
-
-    }
+    this.isOpen = !!this.eRef.nativeElement.contains(event.target);
   }
   constructor(private eRef: ElementRef,private router:Router,private auth:AuthService,private fb:FormBuilder,private headerService:HeaderService) { }
   private readonly searchSubject = new Subject<string | undefined>();
@@ -117,7 +112,13 @@ export class HeaderComponent implements OnInit,AfterViewInit {
       let title = this.formSearch.controls.searchCtrl.value
       this.router.navigate(['../search'],{queryParams:{title:title}})
     }
+
     this.isOpen = false
+  }
+
+  closeSearch(){
+    this.isOpen = false
+    console.log(this.isOpen)
   }
 
   goPostDetail(postID: number) {

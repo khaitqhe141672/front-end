@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ListPostRate} from "./manage-rate.model";
 import {ManageRateService} from "./manage-rate.service";
 import {map, switchMap} from "rxjs/operators";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-manage-rate',
@@ -20,16 +21,22 @@ export class ManageRateComponent implements OnInit {
   constructor(private manageRateService:ManageRateService) { }
 
   ngOnInit(): void {
-    this.onLoadListRateManager(this.pageIndex)
+    this.onLoadListRateManager()
   }
 
-  onLoadListRateManager(pageIndex:number){
+  onLoadListRateManager(){
     this.loadListRateObs = this.refreshListRate.pipe(
-      switchMap(_=> this.manageRateService.getListRateManager(pageIndex).pipe(
+      switchMap(_=> this.manageRateService.getListRateManager(this.pageIndex).pipe(
         map(data=>{
           this.totalPage = data.data.sizePage
           return data.data.listPostRate
         })))
     )
   }
+  handlePageEvent(e: PageEvent) {
+    console.log('page index: '+e.pageIndex)
+    this.pageIndex = ++e.pageIndex
+    this.onLoadListRateManager()
+  }
+
 }

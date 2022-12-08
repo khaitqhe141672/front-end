@@ -6,6 +6,7 @@ import {map, switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ReportHsComponent} from "../../report-hs/report-hs.component";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-rate-detail',
@@ -29,7 +30,7 @@ export class RateDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
         this.postID = +params.get('id')
-        this.onLoadListRateDetail(this.pageIndex, this.postID)
+        this.onLoadListRateDetail( this.postID)
 
         // console.log('onInit id = ' + this.postID)
       }, error => {
@@ -41,9 +42,9 @@ export class RateDetailComponent implements OnInit {
     )
   }
    rateDetailData:RateDetailResponseData
-  onLoadListRateDetail(pageIndex: number, postId: number) {
+  onLoadListRateDetail( postId: number) {
     this.loadListRateDetailObj = this.refreshListRateDetail
-      .pipe(switchMap(_ => this.rateDetailService.getListRate(pageIndex, postId)
+      .pipe(switchMap(_ => this.rateDetailService.getListRate(this.pageIndex, postId)
         .pipe(map(data => {
           this.rateDetailData = data.data
           this.totalPage = this.rateDetailData.sizePage
@@ -72,5 +73,11 @@ export class RateDetailComponent implements OnInit {
         type:2
       }
     })
+  }
+
+  handlePageEvent(e: PageEvent) {
+    console.log('page index: '+e.pageIndex)
+    this.pageIndex = ++e.pageIndex
+    this.onLoadListRateDetail(this.postID)
   }
 }

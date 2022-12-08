@@ -5,6 +5,7 @@ import {ListBooking} from "../list-confirm-booking/list-confirm-booking.model";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {ListConfirmBookingService} from "../list-confirm-booking/list-confirm-booking.service";
 import {map, switchMap} from "rxjs/operators";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-current-booking',
@@ -55,6 +56,10 @@ export class CurrentBookingComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex = ++e.pageIndex
+    this.onLoadListBookingConfirmed()
   }
 
   confirmReturnHS(bookingID: number) {

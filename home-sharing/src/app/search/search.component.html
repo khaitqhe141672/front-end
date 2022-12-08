@@ -317,8 +317,7 @@
 
 
         <div class="list_card_search">
-
-          <div class="card_search"  *ngFor="let post of listSearchByTitle">
+          <div class="card_search"  *ngFor="let post of listSearchByTitle" [routerLink]="'../posts/post-detail/'+post.postID">
             <div class="image_search">
               <img alt="" [src]="post.imageUrl">
             </div>

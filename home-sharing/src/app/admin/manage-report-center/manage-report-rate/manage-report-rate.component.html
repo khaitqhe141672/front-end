@@ -16,25 +16,22 @@
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên người dùng báo cáo</th>
         <td *matCellDef="let row" mat-cell> {{row.username}}</td>
       </ng-container>
-
+      <ng-container matColumnDef="nameReportType">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Kiểu báo cáo</th>
+        <td *matCellDef="let row" mat-cell> {{row.nameReportType}} </td>
+      </ng-container>
       <ng-container matColumnDef="description">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Chi tiết lý do</th>
         <td *matCellDef="let row" mat-cell>
           {{row.description}}
         </td>
       </ng-container>
-
-      <ng-container matColumnDef="nameReportType">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header>Kiểu báo cáo</th>
-        <td *matCellDef="let row" mat-cell> {{row.nameReportType}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="status">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Xử lý đánh giá</th>
         <td *matCellDef="let row" [ngSwitch]="row.status" mat-cell>
-          <button disabled="{{row.status==2}}" class="p-0" #menuTrigger [matMenuTriggerFor]="menu" mat-button>
+          <button #menuTrigger [matMenuTriggerFor]="menu" class="p-0" disabled="{{row.status==2}}" mat-button>
             <div *ngSwitchCase="1" style="color: #CC3636">
-              <div  class="d-flex align-items-center justify-content-center">
+              <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex flex-row align-items-start justify-content-start">
                   <mat-icon style="fill: #CC3636">
               <span class="material-symbols-outlined">
@@ -63,7 +60,6 @@
               Ẩn đánh giá này
             </button>
           </mat-menu>
-
         </td>
       </ng-container>
 
@@ -75,8 +71,8 @@
       </tr>
     </table>
 
-    <mat-paginator (page)="handlePageEvent($event)" [hidePageSize]="true" [length]="totalPageIndex" [pageSize]="10"
-                   aria-label="Select page of users"></mat-paginator>
+    <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPageIndex==0?1:10*totalPageIndex" [pageSize]="10"
+                   aria-label="Select page of users" hidePageSize></mat-paginator>
   </div>
 
 </div>

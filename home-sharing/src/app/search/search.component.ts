@@ -13,6 +13,7 @@ import {throwError} from "rxjs";
 import {Province} from "../shared/model/district.model";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProvincePickerComponent} from "../shared/dialog/province-picker/province-picker.component";
+import Swal from "sweetalert2";
 
 declare var $: any;
 
@@ -45,6 +46,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   listSearchByTitle: SearchListByTitle[] = []
 
   provinceDialogRef:MatDialogRef<ProvincePickerComponent>
+  maxDate = '';
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private _formBuilder: FormBuilder, private postEditService: PostEditService,
               private searchService: SearchService,private dialog:MatDialog) {
   }
@@ -169,7 +171,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
     //
     // console.log('------------------------------------')
 
-
+    if(maxPriceCtrl<minPrice) {
+      Swal.fire({
+        icon:'error',
+        title:'Giới hạn khoảng tiền không hợp lệ'
+      })
+    }
 
     this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage

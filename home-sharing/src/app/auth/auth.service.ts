@@ -8,6 +8,7 @@ import {FormGroup} from "@angular/forms";
 import {CheckUserNameResponse, RegisterResponse} from "./register/register.service";
 import * as API_CONSTANT from "../constant/api.constant"
 import {API_CHECK_OTP_EXIST, API_FORGOT_PASSWORD, API_RESET_PASSWORD} from "../constant/api.constant";
+import Swal from "sweetalert2";
 
 export interface AuthResponseData {
   message: string,
@@ -86,7 +87,7 @@ export class AuthService {
     if (!errorResponse.error || !errorResponse.error.status) {
       return throwError(() => new Error(errorMessage))
     }
-    // console.log(errorResponse)
+    console.log(errorResponse)
     // console.log(errorResponse.error.status)
     switch (errorResponse.error.status) {
       case 'EXPECTATION_FAILED':
@@ -99,7 +100,11 @@ export class AuthService {
         errorMessage = 'Tên tài khoản đã tồn tại'
         break;
     }
-    console.log(errorMessage)
+    Swal.fire({
+      icon:'error',
+      title:errorMessage
+    })
+    // console.log(errorMessage)
     return throwError(() => new Error(errorMessage))
   }
 
@@ -124,9 +129,14 @@ export class AuthService {
           const fullname = responseData.data.user.fullName;
           const role = responseData.data.user.role;
           const status = responseData.data.user.status
-          console.log(JSON.stringify(responseData))
-          console.log(message)
-        })
+          // console.log(JSON.stringify(responseData))
+          // console.log('----------------------------')
+          // console.log(message)
+
+        },()=>{},
+          ()=>{
+
+          })
       )
   }
 

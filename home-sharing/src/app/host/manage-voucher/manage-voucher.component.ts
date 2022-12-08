@@ -8,6 +8,7 @@ import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {VoucherDetail} from "../../shared/model/voucher-host.model";
 import {map, switchMap} from "rxjs/operators";
 import {HandleStatusVoucherComponent} from "./handle-status-voucher/handle-status-voucher.component";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-manage-voucher',
@@ -85,5 +86,11 @@ export class ManageVoucherComponent implements OnInit {
       }
     })
   }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex = ++e.pageIndex
+    this.onLoadDataVoucher()
+  }
+
 }
 

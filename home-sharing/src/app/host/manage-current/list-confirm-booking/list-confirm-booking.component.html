@@ -1,8 +1,10 @@
+
 <div class="container-fluid">
   <mat-form-field appearance="standard">
     <mat-label>Tìm kiếm</mat-label>
     <input matInput placeholder="">
   </mat-form-field>
+  <mat-progress-bar *ngIf="isLoading"  color="warn" mode="indeterminate"></mat-progress-bar>
 
   <div class="mat-elevation-z8">
     <table class="w-100" [dataSource]="dataSource" mat-table matSort>
@@ -54,10 +56,14 @@
     </ng-container>
       <ng-container matColumnDef="action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Xác nhận/Huỷ đặt phòng</th>
-        <td *matCellDef="let row" mat-cell>
-          <mat-icon (click)="handleBooking(row.viewBookingDto.bookingID,1)">check</mat-icon>
-          <mat-icon (click)="handleBooking(row.viewBookingDto.bookingID,2)">close</mat-icon>
-        </td>
+          <td *matCellDef="let row" mat-cell>
+            <button mat-mini-fab style="background-color: #54B435">
+              <mat-icon (click)="handleBooking(row.viewBookingDto.bookingID,1)">check</mat-icon>
+            </button>
+            <button class="ms-2" mat-mini-fab style="background-color: #DC3535">
+              <mat-icon (click)="handleBooking(row.viewBookingDto.bookingID,2)">close</mat-icon>
+            </button>
+          </td>
       </ng-container>
 
       <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
@@ -65,7 +71,8 @@
 
     </table>
 
-    <mat-paginator hidePageSize aria-label="Select page of users"></mat-paginator>
+    <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPagePagination==0?1:10*totalPagePagination" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
+
   </div>
 
 </div>

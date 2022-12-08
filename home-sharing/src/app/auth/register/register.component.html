@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="isLoading" color="accent" mode="indeterminate"></mat-progress-bar>
 <section [ngStyle]="{background: 'url(../../assets/images/bg-login.png)'}"
          class="vh-100 gradient-custom"
 >
@@ -40,7 +41,7 @@
                 <div class="col-lg-6">
                   <div class="form-group mb-4 text-start">
                     <label class="mb-2 main-text-color" for="phoneNumber">Số điện thoại</label>
-                    <input class="form-control"
+                    <input appCheckInputNumber class="form-control"
                            formControlName="phoneNumber"
                            id="phoneNumber"
                            type="text">
@@ -186,7 +187,7 @@
                 </div>
               </div>
 
-              <button [disabled]="!formRegister.valid" class="btn text-white btn-lg px-5" style="cursor: pointer"
+              <button id="btn-submit" [disabled]="!formRegister.valid||isLoading==true" class="btn text-white btn-lg px-5" style="cursor: pointer"
                       type="submit">Đăng Ký
               </button>
             </div>
