@@ -54,6 +54,10 @@ export class LoginComponent implements OnInit {
         }else{
           this.router.navigate(['/home'])
         }
+        if(responseData.data.user.status==0){
+          role == 'ROLE_PENDING'
+        }
+
       },
       error:errorMessageResponse=>{
         this.error = errorMessageResponse

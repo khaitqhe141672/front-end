@@ -23,7 +23,9 @@ export class CreateVoucherComponent implements OnInit {
 
   onCreateVoucher() {
     let voucherName = this.formCreateVoucher.controls.voucherNameCtrl.value
+
     let pct = this.formCreateVoucher.controls.pctCtrl.value
+
     let description = this.formCreateVoucher.controls.descriptionCtrl.value
     let dueDay = this.formCreateVoucher.controls.dueDayCtrl.value
 

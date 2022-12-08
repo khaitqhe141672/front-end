@@ -176,6 +176,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         icon:'error',
         title:'Giới hạn khoảng tiền không hợp lệ'
       })
+      return
     }
 
     this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{

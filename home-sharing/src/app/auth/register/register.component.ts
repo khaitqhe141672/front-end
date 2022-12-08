@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
           ]),
         ),
         'phoneNumber': new FormControl(null, [Validators.required, Validators.pattern(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/)]),
-        'address': new FormControl(null, [Validators.required]),
+        'address': new FormControl(null, [Validators.required,Validators.minLength(10)]),
         'email': new FormControl(null,
           Validators.compose([Validators.required,
             // Validators.apply(this.validateUserNameFromApi(this.registerService))

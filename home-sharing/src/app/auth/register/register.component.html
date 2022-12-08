@@ -149,6 +149,9 @@
                     <span *ngIf="formRegister.get('address').errors['required']" class="text-danger">
                         Hãy nhập địa chỉ
                     </span>
+                      <span *ngIf="formRegister.get('address').errors?.minlength" class="text-danger">
+                        Địa chỉ cần ít nhất 10 ký tự
+                      </span>
                     </span>
                   </div>
                 </div>

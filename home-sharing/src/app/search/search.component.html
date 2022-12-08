@@ -253,7 +253,7 @@
               <h3>Địa điểm:</h3>
             </div>
             <mat-form-field  class="example-full-width" appearance="outline">
-              <mat-label>Chọn địa điểm</mat-label>
+              <mat-label (click)="onSelectProvince()">Chọn địa điểm</mat-label>
               <input (click)="onSelectProvince()" formControlName="provinceCtrl" readonly matInput placeholder="" value="">
               <button type="button"  matSuffix mat-icon-button aria-label="Clear" (click)="resetProvince()">
                 <mat-icon>close</mat-icon>
