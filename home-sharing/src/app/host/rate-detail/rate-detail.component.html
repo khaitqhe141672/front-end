@@ -1,7 +1,7 @@
 <div class="container-manage-rate">
   <div class="title">
     <h2>
-      <span class="route-manage-rate"  routerLink="/host/manage-rate">Quản lý danh sách đánh giá</span>
+      <span class="route-manage-rate" routerLink="/host/manage-rate">Quản lý danh sách đánh giá</span>
       <span><svg fill="none" height="22" viewBox="0 0 12 22" width="12" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 21L11 11L1 1" stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
@@ -13,21 +13,28 @@
     <div class="list_rate">
       <div class="intro">
         <div class="title_rate">
-          <h2>{{postDetail.title}}</h2>
+          <h2 class="span_title">{{postDetail.title}}</h2>
+          <p class="span_star">
+            <span class="span_star_child">{{postDetail.avgRate}}<mat-icon style="color: #F36B08;">star</mat-icon></span>
+            <span style="color: #F36B08; font-size: 14px;">Đánh giá mới ({{postDetail.detailRateDtoList.length}})</span>
+          </p>
         </div>
-        <div class="star">
-        <span>
-           {{postDetail.avgRate}}
-          <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-              fill="#F36B08"/>
-            </svg>
-        </span>
-        </div>
-        <div class="new_rate">
-          <h3 style="color: #F36B08;">Đánh giá mới ({{postDetail.detailRateDtoList.length}})</h3>
-        </div>
+        <!--        <div class="title_rate">-->
+        <!--          <h2>{{postDetail.title}}</h2>-->
+        <!--        </div>-->
+        <!--        <div class="star">-->
+        <!--        <span>-->
+        <!--           {{postDetail.avgRate}}-->
+        <!--          <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
+        <!--            <path-->
+        <!--              d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+        <!--              fill="#F36B08"/>-->
+        <!--            </svg>-->
+        <!--        </span>-->
+        <!--        </div>-->
+        <!--        <div class="new_rate">-->
+        <!--          <h3 style="color: #F36B08;">Đánh giá mới ({{postDetail.detailRateDtoList.length}})</h3>-->
+        <!--        </div>-->
       </div>
       <div class="box_rate">
         <div class="content_rate">
@@ -37,12 +44,17 @@
                 <img class="img-avatar" [src]="rateDetail.urlImage" alt="">
               </div>
               <div class="username">
-                <h2>{{rateDetail.username}}</h2>
+                <h2>
+                  <span>{{rateDetail.username}}</span>
+                  <span style="padding-left: 15px;">
+                    <mat-icon *ngFor="let s of counter(rateDetail.star)" style="color: #F36B08;">star</mat-icon>
+                  </span>
+                </h2>
               </div>
-              <div  class="star">
-                <mat-icon *ngFor="let s of counter(rateDetail.star)" style="color: #F36B08">star</mat-icon>
-              </div>
-              <div></div>
+<!--              <div class="star">-->
+<!--                <mat-icon *ngFor="let s of counter(rateDetail.star)" style="color: #F36B08">star</mat-icon>-->
+<!--              </div>-->
+<!--              <div></div>-->
             </div>
             <div class="comment">
               <p>{{rateDetail.comment}}</p>
@@ -69,8 +81,7 @@
         <div class="page_item">
           <mat-paginator (page)="handlePageEvent($event)"
                          [length]="10*totalPage==0?1:10*totalPage"
-                         hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
-
+                         hidePageSize [pageSize]="10" aria-label="Select page of users"></mat-paginator>
         </div>
       </div>
     </div>

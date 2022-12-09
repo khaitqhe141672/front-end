@@ -70,16 +70,16 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit(){
-    const navBar = document.querySelector(".header");
-    window.addEventListener("scroll", e => {
-      const scrollHeight = window.pageYOffset;
-      const navHeight = navBar.getBoundingClientRect().height;
-      if (scrollHeight > navHeight) {
-        navBar.classList.add("fix__nav");
-      } else {
-        navBar.classList.remove("fix__nav");
-      }
-    });
+    // const navBar = document.querySelector(".header");
+    // window.addEventListener("scroll", e => {
+    //   const scrollHeight = window.pageYOffset;
+    //   const navHeight = navBar.getBoundingClientRect().height;
+    //   if (scrollHeight > navHeight) {
+    //     navBar.classList.add("fix__nav");
+    //   } else {
+    //     navBar.classList.remove("fix__nav");
+    //   }
+    // });
 
     $(document).ready(function () {
       $(".dropdown").click(function () {
