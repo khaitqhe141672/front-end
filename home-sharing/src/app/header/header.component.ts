@@ -18,6 +18,14 @@ export class HeaderComponent implements OnInit,AfterViewInit {
 
   role = JSON.parse(localStorage.getItem("role"));
 
+  showSearch = false
+
+  openSearch(){
+    if(this.role === 'ROLE_HOST' || this.role === 'ROLE_ADMIN'){
+      this.showSearch = true
+    }
+  }
+
   isOpen = false
   listProvince:ListProvinceSearched[] = []
   listPost:ListPostSearched[]=[]
@@ -33,6 +41,9 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   private readonly searchSubject = new Subject<string | undefined>();
   searchSubscription?: Subscription;
   ngOnInit(): void {
+
+    this.openSearch();
+
     this.formSearch = this.fb.group({
       searchCtrl:['']
     })

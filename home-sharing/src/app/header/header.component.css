@@ -109,7 +109,7 @@ header .container-header .nav-header .profile {
   align-items: center;
 }
 
-header .container-header .nav-header .profile svg {
+header .container-header .nav-header .profile .icon-profile svg {
   width: 28px;
   height: 25px;
 }
@@ -165,7 +165,7 @@ header .container-header .nav-header .profile .menu:hover {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   border-radius: 20px;
@@ -177,8 +177,8 @@ header .container-header .nav-header .profile .menu:hover {
   text-decoration: none;
   display: block;
   display: grid;
-  grid-template-columns: 30px 1fr;
-  column-gap: 15px;
+  grid-template-columns: 25px 1fr;
+  column-gap: 5px;
   align-items: center;
   border: none;
   background-color: #FFFFFF;
@@ -198,8 +198,8 @@ header .container-header .nav-header .profile .menu:hover {
 
 .dropdown-content a svg,
 .dropdown-content button svg{
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 .dropdown-content a:hover,

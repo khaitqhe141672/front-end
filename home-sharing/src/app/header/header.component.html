@@ -17,7 +17,8 @@
           </svg>
         </a>
       </div>
-      <div class="filter">
+      <div *ngIf="showSearch == true"></div>
+      <div class="filter" *ngIf="showSearch == false">
         <form (ngSubmit)="onSearchMore()" [formGroup]="formSearch">
           <div class="wrap">
             <div class="search">
@@ -34,7 +35,6 @@
             </div>
           </div>
         </form>
-
       </div>
       <div class="profile">
         <div></div>
@@ -63,6 +63,20 @@
             </div>
           </div>
           <div class="dropdown-content">
+            <button *ngIf="token != null && role === 'ROLE_ADMIN'" routerLink="/admin/manager-account/manager-account-host">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.5 7.33337C16.5 5.87468 15.9205 4.47574 14.8891 3.44429C13.8576 2.41284 12.4587 1.83337 11 1.83337C9.54131 1.83337 8.14236 2.41284 7.11091 3.44429C6.07946 4.47574 5.5 5.87468 5.5 7.33337C5.5 13.75 2.75 15.5834 2.75 15.5834H19.25C19.25 15.5834 16.5 13.75 16.5 7.33337Z"
+                  stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+                <path
+                  d="M12.5858 19.25C12.4247 19.5278 12.1933 19.7584 11.915 19.9187C11.6367 20.079 11.3212 20.1634 11 20.1634C10.6788 20.1634 10.3633 20.079 10.0849 19.9187C9.80663 19.7584 9.57531 19.5278 9.41415 19.25"
+                  stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+              </svg>
+              Trung tâm quản lý
+            </button>
             <button *ngIf="token == null" routerLink="/auth/login">
               <svg fill="none" height="26" viewBox="0 0 24 26" width="24"
                    xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +95,7 @@
               </svg>
               Đăng ký
             </button>
-            <button *ngIf="token != null" [routerLink]="'../profile'">
+            <button *ngIf="token != null && role !== 'ROLE_ADMIN'" [routerLink]="'../profile'">
               <svg fill="none" height="22" viewBox="0 0 22 22" width="22"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -90,21 +104,35 @@
               </svg>
               Hồ sơ
             </button>
-            <a *ngIf="token != null">
-              <svg fill="none" height="22" viewBox="0 0 22 22" width="22"
+            <button *ngIf="token != null && role === 'ROLE_HOST'" routerLink="/host/manage-current/confirm-booking">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16.5 7.33337C16.5 5.87468 15.9205 4.47574 14.8891 3.44429C13.8576 2.41284 12.4587 1.83337 11 1.83337C9.54131 1.83337 8.14236 2.41284 7.11091 3.44429C6.07946 4.47574 5.5 5.87468 5.5 7.33337C5.5 13.75 2.75 15.5834 2.75 15.5834H19.25C19.25 15.5834 16.5 13.75 16.5 7.33337Z"
-                  stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2"/>
+                  stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
                 <path
                   d="M12.5858 19.25C12.4247 19.5278 12.1933 19.7584 11.915 19.9187C11.6367 20.079 11.3212 20.1634 11 20.1634C10.6788 20.1634 10.3633 20.079 10.0849 19.9187C9.80663 19.7584 9.57531 19.5278 9.41415 19.25"
-                  stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2"/>
+                  stroke="#F36B08" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
               </svg>
-              Thông báo
-            </a>
-            <button *ngIf="token != null">
+              Trung tâm quản lý
+            </button>
+<!--            <a *ngIf="token != null">-->
+<!--              <svg fill="none" height="22" viewBox="0 0 22 22" width="22"-->
+<!--                   xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M16.5 7.33337C16.5 5.87468 15.9205 4.47574 14.8891 3.44429C13.8576 2.41284 12.4587 1.83337 11 1.83337C9.54131 1.83337 8.14236 2.41284 7.11091 3.44429C6.07946 4.47574 5.5 5.87468 5.5 7.33337C5.5 13.75 2.75 15.5834 2.75 15.5834H19.25C19.25 15.5834 16.5 13.75 16.5 7.33337Z"-->
+<!--                  stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                  stroke-width="2"/>-->
+<!--                <path-->
+<!--                  d="M12.5858 19.25C12.4247 19.5278 12.1933 19.7584 11.915 19.9187C11.6367 20.079 11.3212 20.1634 11 20.1634C10.6788 20.1634 10.3633 20.079 10.0849 19.9187C9.80663 19.7584 9.57531 19.5278 9.41415 19.25"-->
+<!--                  stroke="#F36B08" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                  stroke-width="2"/>-->
+<!--              </svg>-->
+<!--              Thông báo-->
+<!--            </a>-->
+            <button *ngIf="token != null && role !== 'ROLE_ADMIN'">
               <svg fill="none" height="22" viewBox="0 0 22 22" width="22"
                    xmlns="http://www.w3.org/2000/svg">
                 <path

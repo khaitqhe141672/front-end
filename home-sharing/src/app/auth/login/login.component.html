@@ -9,11 +9,12 @@
       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
 
         <div class="card text-white" style="border-radius: 1rem;">
-          <form *ngIf="!isForgotPassword" [formGroup]="formLoginGroup" class="card-body p-5 text-center" (ngSubmit)="onSubmit()">
+          <form *ngIf="!isForgotPassword" [formGroup]="formLoginGroup" class="card-body p-5 text-center"
+                (ngSubmit)="onSubmit()">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2  class="fw-bold pb-5 main-text-color text-uppercase ">Đăng nhập</h2>
+              <h2 class="fw-bold pb-5 main-text-color text-uppercase ">Đăng nhập</h2>
 
               <div *ngIf="!isForgotPassword" class="form-group mb-4 text-start">
                 <label for="username" class="mb-2 main-text-color">Tên đăng nhập</label>
@@ -41,18 +42,23 @@
                 </span>
               </div>
 
-              <p class="small" *ngIf="!isForgotPassword" (click)="isForgotPassword = true"><a class="main-text-color">Quên mật khẩu?</a></p>
+              <p class="small" *ngIf="!isForgotPassword" (click)="isForgotPassword = true"><a class="main-text-color">Quên
+                mật khẩu?</a></p>
 
-              <button [disabled]="!formLoginGroup.valid" style="cursor: pointer"  class="btn text-white btn-lg px-5" type="submit">Đăng nhập</button>
+              <button [disabled]="!formLoginGroup.valid" style="cursor: pointer" class="btn text-white btn-lg px-5"
+                      type="submit">Đăng nhập
+              </button>
             </div>
 
             <div class="main-text-color">
-              <p class=" mb-0">Bạn chưa có tài khoản? <a routerLink="/auth/register" class="main-text-color fw-bold">Tạo tài khoản</a>
+              <p class=" mb-0">Bạn chưa có tài khoản? <a routerLink="/auth/register" class="main-text-color fw-bold">Tạo
+                tài khoản</a>
               </p>
             </div>
 
           </form>
-          <form *ngIf="isForgotPassword" [formGroup]="formForgotPasswordGroup" class="card-body p-5 text-center" (ngSubmit)="onSubmitForgotPassword()">
+          <form *ngIf="isForgotPassword" [formGroup]="formForgotPasswordGroup" class="card-body p-5 text-center"
+                (ngSubmit)="onSubmitForgotPassword()">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
@@ -73,13 +79,17 @@
                     </span>
                 </span>
               </div>
-              <p class="small" *ngIf="isForgotPassword" (click)="isForgotPassword = false"><a class="main-text-color">Đã có tài khoản</a></p>
+              <p class="small" *ngIf="isForgotPassword" (click)="isForgotPassword = false"><a class="main-text-color">Đã
+                có tài khoản</a></p>
 
-              <button [disabled]="!formForgotPasswordGroup.valid" style="cursor: pointer"  class="btn text-white btn-lg px-5" type="submit">Gửi</button>
+              <button [disabled]="!formForgotPasswordGroup.valid" style="cursor: pointer"
+                      class="btn text-white btn-lg px-5" type="submit">Gửi
+              </button>
             </div>
 
             <div class="main-text-color">
-              <p class=" mb-0">Bạn chưa có tài khoản? <a routerLink="/auth/register" class="main-text-color fw-bold">Tạo tài khoản</a>
+              <p class=" mb-0">Bạn chưa có tài khoản? <a routerLink="/auth/register" class="main-text-color fw-bold">Tạo
+                tài khoản</a>
               </p>
             </div>
 
