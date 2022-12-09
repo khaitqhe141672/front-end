@@ -211,3 +211,14 @@ hr, ul, li {
   cursor: pointer;
   color: #F36B08;
 }
+.avatar{
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #F36B08;
+}
+.img-avatar{
+  width:auto;
+  height: 100%;
+}

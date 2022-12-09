@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from "@angular/material/dialog";
 import {RateService} from "./rate.service";
+import {ViewRateCustomerDto} from "../history-booking/history_booking.model";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -12,7 +14,9 @@ import {RateService} from "./rate.service";
 export class RateComponent implements OnInit {
   currentRate= 0
   comment:string=''
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {id:number},private fb: FormBuilder,private rateService:RateService){
+  pointRate
+  isDisableInput = false
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {id:number,statusRate:number,rateDetail:ViewRateCustomerDto},private fb: FormBuilder,private rateService:RateService){
     this.formRate = this.fb.group({
       rating: ['', Validators.required],
       commentCtrl:['',Validators.required]
@@ -21,6 +25,10 @@ export class RateComponent implements OnInit {
   }
   public formRate: FormGroup;
   ngOnInit(): void {
+    if(this.data.statusRate==1){
+      this.initData()
+      this.isDisableInput = true
+    }
   }
    stars: boolean[] = Array(5).fill(false);
 
@@ -31,9 +39,15 @@ export class RateComponent implements OnInit {
     // this.currentRate = this.stars
   }
 
+  initData(){
+     let rateDetail:ViewRateCustomerDto = this.data.rateDetail
+    this.pointRate = this.data.rateDetail.point
+     this.formRate.controls.rating.patchValue(rateDetail.point)
+    this.formRate.controls.commentCtrl.patchValue(rateDetail.comment)
+  }
+
   showData() {
     this.currentRate = this.formRate.get('rating').value
-
   }
 
   onSubmitRate() {
@@ -41,14 +55,19 @@ export class RateComponent implements OnInit {
     console.log('show rate: '+this.formRate.get('rating').value)
     console.log('show rate: '+ this.comment)
     this.rateService.pushRate(this.data.id,this.comment,this.currentRate).subscribe({
-      next:responseData=>{
-        console.log(responseData)
-      },
-      error:errorMessageResponse=>{
-        console.log(errorMessageResponse)
+      next:_=>{},
+      error:_=>{
+        Swal.fire({
+          icon:'error',
+          title:'Đánh giá homestay thất bại',
+          text:'Vui lòng thử lại sau'
+        })
       },
       complete:()=>{
-        console.log('complete')
+        Swal.fire({
+          icon:'success',
+          title:'Đánh giá homestay thành công'
+        })
       }
     })
   }

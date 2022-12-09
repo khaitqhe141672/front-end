@@ -34,15 +34,15 @@ export const API_SERVICE_POST = 'http://localhost:8080/api/services/all-list'
 export const API_PUSH_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image?post-id='
 export const API_PUSH_SINGLE_IMG_POST = 'http://localhost:8080/api/posting/insert-post-image-one?post-id='
 
-
 export const API_BOOKING = 'http://localhost:8080/api/booking/create-booking?post-id='
+export const API_CANCEL_BOOKING = 'http://localhost:8080/api/booking/cancel-booking?booking-id='
 
 export const API_RATE = 'http://localhost:8080/api/rate/create-rate?bookingDetail-id='
 export const API_RATE_BY_POST_ID = 'http://localhost:8080/api/post-detail/rate-post?post_id='
-export const API_REPORT_HS ='http://localhost:8080/api/report/create-reportPost?post-id='
+export const API_REPORT_HS ='http://localhost:8080/api/report/create-reportPost?'
 
 export const API_VOUCHER_BY_POST_ID ='http://localhost:8080/api/post-detail/get-all-voucher?post_id='
-export const API_VIEW_HISTORY_BOOKING ='http://localhost:8080/api/booking/history-booking-customer'
+export const API_VIEW_HISTORY_BOOKING ='http://localhost:8080/api/booking/history-booking-customer?index-page='
 
 export const API_FOLLOW_HOST = 'http://localhost:8080/api/follow-favourite/create-follow?host-id='
 export const API_LIKE_RATE = 'http://localhost:8080/api/like-dislike/create?'

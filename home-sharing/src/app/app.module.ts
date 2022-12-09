@@ -128,6 +128,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
 import {PieChartModule} from "@swimlane/ngx-charts";
 import { InputRestrictionDirective } from './shared/directive/input-restriction.directive';
+import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.directive';
 
 @NgModule({
   declarations: [
@@ -201,7 +202,8 @@ import { InputRestrictionDirective } from './shared/directive/input-restriction.
     ShowMoreDialogComponent,
     AdminDashboardComponent,
     HostDashboardComponent,
-    InputRestrictionDirective
+    InputRestrictionDirective,
+    DisallowSpacesDirective
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,8 @@ export class InputRestrictionDirective {
     } else if (this.appInputRestriction === 'noSpecialChars') {
       //no space - no special char
       this.noSpecialChars(event);
+    }else if(this.appInputRestriction === 'noSpecialCharsWithSpaceAndNoNumber'){
+      this.noSpecialCharsWithSpaceAndNoNumber(event)
     }
   }
 
@@ -60,12 +62,30 @@ export class InputRestrictionDirective {
     }
     e.preventDefault();
   }
-
+  noSpecialCharsWithSpaceAndNoNumber(event) {
+    const e = <KeyboardEvent>event;
+    if (e.key === 'Tab' || e.key === 'TAB') {
+      return;
+    }
+    let k;
+    k = event.keyCode;  // k = event.charCode;  (Both can be used)
+    if ((k > 64 && k < 91) || (k > 96 && k < 123) || k === 8 || k === 32 || (k <= 48 && k >= 57)) {
+      return;
+    }
+    const ch = String.fromCharCode(e.keyCode);
+    const regEx = new RegExp(this.arabicRegex);
+    if (regEx.test(ch)) {
+      return;
+    }
+    e.preventDefault();
+  }
   @HostListener('paste', ['$event']) onPaste(event) {
     let regex;
     if (this.appInputRestriction === 'integer') {
       regex = /[0-9]/g;
     } else if (this.appInputRestriction === 'noSpecialChars') {
+      regex = /[a-zA-Z0-9\u0600-\u06FF]/g;
+    }else if (this.appInputRestriction === 'noSpecialCharsWithSpaceAndNoNumber') {
       regex = /[a-zA-Z0-9\u0600-\u06FF]/g;
     }
     const e = <ClipboardEvent>event;

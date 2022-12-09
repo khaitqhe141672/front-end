@@ -12,19 +12,25 @@ data = []
   status = 0
   constructor(private router:Router,private route:ActivatedRoute,private paymentSuccessService:PaymentSuccessService) { }
   value=[]
+  responseCodeStatus = undefined
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
-      console.log(params['vnp_TxnRef'])
-      this.data = (params['vnp_TxnRef'] as string).split('-');
+      this.responseCodeStatus =  params['vnp_ResponseCode'] as string
+      console.log('response Code: '+ this.responseCodeStatus)
+      if( this.responseCodeStatus=='00'){
+        console.log(params['vnp_TxnRef'])
+        this.data = (params['vnp_TxnRef'] as string).split('-');
         this.paymentSuccessService.pushPaymentSuccess(this.data[0],this.data[1]).subscribe(reponse=>{
           console.log(reponse)
-          this.status = reponse.status
+          this.status = reponse.object
+          console.log('status input: '+this.status)
         })
-      console.log(this.data)
+        console.log(this.data)
+
+      }
     },()=>{console.log('error')}
     ,()=>{
       console.log('complete')
-
       }
     );
   }

@@ -16,8 +16,8 @@
       <div class="row main-content justify-content-center w-100">
         <div class="col-12">
           <mat-form-field appearance="none" class="col-12" >
-            <mat-label>chọn 1 trong những lý do sau</mat-label>
-            <mat-chip-list [ngModelOptions] ={standalone:true} [(ngModel)]="selectedReportChips" class="chip-list-report" multiple="false" selectable="true">
+            <mat-label *ngIf="!isDisableInput">chọn 1 trong những lý do sau</mat-label>
+            <mat-chip-list  [ngModelOptions] ={standalone:true} [(ngModel)]="selectedReportChips" class="chip-list-report" multiple="false" selectable="true">
               <mat-chip   (click)="selectedReportChips = chip" *ngFor="let chip of chipReportContent"
                         [selected]="isSelected(chip)"
                          [ngClass]="isSelected(chip)?'chip-report':'chip-unreport'"
@@ -33,7 +33,7 @@
         <div class="col-12 ">
           <mat-form-field  appearance="outline" class="example-full-width w-100 h-100">
             <mat-label>Nhận xét</mat-label>
-            <textarea formControlName="descriptionCtrl" matInput placeholder="Để lại nhận xét của bạn ở đây"
+            <textarea [readonly]="isDisableInput" formControlName="descriptionCtrl" matInput placeholder="Để lại nhận xét của bạn ở đây"
                       rows="10"></textarea>
           </mat-form-field>
         </div>
@@ -41,7 +41,7 @@
   </div>
   <div mat-dialog-actions class="d-flex justify-content-end">
     <button mat-button mat-dialog-close type="button">Trở lại</button>
-    <button [disabled]="!formReportHS.valid" class="btn btn-save" type="submit">Gửi</button>
+    <button *ngIf="!isDisableInput"  mat-dialog-close [disabled]="!formReportHS.valid" class="btn btn-save" type="submit">Gửi</button>
   </div>
   </form>
 

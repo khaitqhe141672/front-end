@@ -1,12 +1,18 @@
 export interface ResponseHistory {
-  status: string
-  object: HistoryDetail[]
+  message: string
+  data: HistoryData
 }
 
-export class HistoryDetail {
+export interface HistoryData {
+  sizePage: number
+  historyBooking: HistoryBooking[]
+}
+
+export interface HistoryBooking {
   bookingID: number
-  bookingDetailID:number
+  bookingDetailID: number
   postID: number
+  titlePost: string
   imagePost: string
   nameHost: string
   avatarHost: string
@@ -16,5 +22,23 @@ export class HistoryDetail {
   totalMoney: number
   statusBooking: number
   statusRate: number
-  titlePost:number
+  statusReportPost: number
+  viewRateCustomerDto?: ViewRateCustomerDto
+  listReportPostCustomer?: ReportPostCustomer[]
 }
+
+export interface ViewRateCustomerDto {
+  rateID: number
+  comment: string
+  point: number
+  dateRate: string
+  status: number
+}
+export class ReportPostCustomer {
+  reportID: number
+  description: string
+  reportTypeID: number
+  nameReportType: string
+  status: number
+}
+

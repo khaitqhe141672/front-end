@@ -209,6 +209,7 @@ export class BookingComponent implements OnInit {
 
   onCreateBooking() {
     console.log(this.isConfirm)
+    let fullName = this.formGroupBooking.controls.fullNameCtrl.value.replace(/  +/g, ' ').trim();
     let newDate = new Date(this.startDateBooking)
     console.log('Date booking: '+this.startDateBooking)
     console.log(this.bookingService.convertDate(this.startDateBooking))
@@ -228,7 +229,13 @@ export class BookingComponent implements OnInit {
     bookingBody.totalPriceRoom = this.priceHS
     bookingBody.totalPriceService = this.servicePrice
     bookingBody.discount = this.totalDiscount
-    bookingBody.fullName = this.formGroupBooking.controls.fullNameCtrl.value.trim()
+    bookingBody.fullName = fullName
+    if(fullName.length<=0) {
+      Swal.fire({
+        icon:'error',
+        title:'Họ và Tên không hợp lệ'
+      })
+    }
     bookingBody.email = this.formGroupBooking.controls.emailCtrl.value.trim()
     bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value.trim()
     // console.log('postID:  '+this.postID)
@@ -244,7 +251,11 @@ export class BookingComponent implements OnInit {
     // console.log('total price room: '+bookingBody.totalPriceRoom)
     // console.log('total price service: '+bookingBody.totalPriceService)
     // console.log('discount: '+bookingBody.discount)
-    // console.log('full name: '+bookingBody.fullName)
+    console.log('length name: '+bookingBody.fullName.length)
+
+    console.log('full name: '+bookingBody.fullName)
+
+    return
     // console.log('emailL '+bookingBody.email)
     // console.log('mobile: '+bookingBody.mobile)
     this.isBooking = true
