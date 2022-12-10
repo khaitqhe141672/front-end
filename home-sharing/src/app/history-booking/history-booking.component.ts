@@ -110,5 +110,11 @@ export class HistoryBookingComponent implements OnInit {
       }
     )
   }
+
+  goToLink(number: string){
+    let url = 'https://zalo.me/'+number
+    window.open(url, "_blank");
+  }
+
 }
 

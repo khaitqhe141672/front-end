@@ -255,7 +255,6 @@ export class BookingComponent implements OnInit {
 
     console.log('full name: '+bookingBody.fullName)
 
-    return
     // console.log('emailL '+bookingBody.email)
     // console.log('mobile: '+bookingBody.mobile)
     this.isBooking = true

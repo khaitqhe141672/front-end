@@ -3,11 +3,11 @@
     <h2>{{postDetail.title}}
       <span class="star_detail">
       <svg fill="none" height="35" viewBox="0 0 36 35" width="36" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#filter0_d_116_116)">
-      <path
-        d="M9.49165 26.25L11.5583 17.5L4.58331 11.5L13.8833 10.75L17.5 2.5L21.1166 10.75L30.4166 11.5L26.2833 15H25.25C24.3458 15 23.4416 15.125 22.5375 15.5L25.3791 13.125L19.6958 12.625L17.5 7.625L15.3041 12.625L9.62081 13.125L13.8833 16.75L12.5916 22.125L17.5 19.25L18.1458 19.625C17.8875 20.25 17.6291 21 17.6291 21.625L9.49165 26.25ZM24.9916 26.5L21.375 22.75L22.925 21.25L24.9916 23.25L29.6416 18.75L31.1916 20.5L24.9916 26.5Z"
-        fill="#F3420A"/>
-      </g>
+<!--      <g filter="url(#filter0_d_116_116)">-->
+<!--      <path-->
+<!--        d="M9.49165 26.25L11.5583 17.5L4.58331 11.5L13.8833 10.75L17.5 2.5L21.1166 10.75L30.4166 11.5L26.2833 15H25.25C24.3458 15 23.4416 15.125 22.5375 15.5L25.3791 13.125L19.6958 12.625L17.5 7.625L15.3041 12.625L9.62081 13.125L13.8833 16.75L12.5916 22.125L17.5 19.25L18.1458 19.625C17.8875 20.25 17.6291 21 17.6291 21.625L9.49165 26.25ZM24.9916 26.5L21.375 22.75L22.925 21.25L24.9916 23.25L29.6416 18.75L31.1916 20.5L24.9916 26.5Z"-->
+<!--        fill="#F3420A"/>-->
+<!--      </g>-->
       <defs>
       <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="38" id="filter0_d_116_116"
               width="39" x="-2"
@@ -104,7 +104,11 @@
             </span>
               </h2>
               <p style="font-size: 11px;">Tham gia vào ngày {{postDetail.createDate | date: 'dd/MM/yyyy'}}</p>
+              <div>
+                <button class="btn-mess" mat-raised-button (click)="goToLink(postDetail.mobileHost)"><mat-icon>forum</mat-icon>Liên hệ</button>
+              </div>
             </div>
+
 
           </div>
         </div>

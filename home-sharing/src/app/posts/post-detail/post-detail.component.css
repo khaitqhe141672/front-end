@@ -355,3 +355,7 @@ input[type=number] {
 .title-rate-detail{
   font-size: large;
 }
+.btn-mess:hover{
+  background-color: #F36B08;
+  color: #FFFFFF;
+}
