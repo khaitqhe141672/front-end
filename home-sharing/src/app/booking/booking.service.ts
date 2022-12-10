@@ -15,7 +15,7 @@ export class BookingService{
       {
         startDate:booking.startDate,
         endDate:booking.endDate,
-        note: 'note',
+        note: booking.note,
         totalMoney:booking.totalMoney,
         totalPerson:booking.totalPerson,
         postServices :booking.postServices,

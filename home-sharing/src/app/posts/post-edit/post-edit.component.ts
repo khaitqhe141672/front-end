@@ -55,7 +55,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
   //handle input error
   matcherInput
   maxFileSize = 5
-  checkFileSize = 0
   formGroupPost: FormGroup;
   //Upload Image
   selectedFiles?: FileList;
@@ -300,7 +299,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           //   number =2
           // }
           this.savedFiles.push(imageFile)
-          this.checkFileSize = this.maxFileSize
         }
         console.log(this.savedFiles)
 
@@ -330,26 +328,27 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     return invalid;
   }
 
+  checkFileValidSize():number{
+    return this.savedFiles.findIndex(file=>file==undefined)
+  }
+
   onSubmit() {
-    if (this.checkFileSize <= 0) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Cần chọn ảnh trước khi tạo bài đăng',
-      })
-      return
-    }
+
     console.log('file size: ' + this.savedFiles.length)
-    if (this.checkFileSize != 5) {
+    let size = this.checkFileValidSize()
+    console.log('size: '+size)
+    if (size>=0||this.savedFiles.length!=5) {
       Swal.fire({
         icon: 'error',
-        title: 'Cần chọn đủ 5 ảnh trước khi tạo bài đăng',
+        title: 'Cần chọn đủ 5 ảnh!',
       })
+      console.log(this.savedFiles.length)
       return
     }
     if (this.saveUtilities.length <= 0) {
       Swal.fire({
         icon: 'error',
-        title: 'Cần ít nhất 1 tiện ích trước khi tạo bài đăng',
+        title: 'Cần ít nhất 1 tiện ích!',
       })
       return
     }
@@ -553,7 +552,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
         title: 'Tối đa 5 ảnh được chọn',
       })
     }
-    this.checkFileSize = this.maxFileSize
     this.savedFiles = [].slice()
     for (let i = 0; i < this.maxFileSize; i++) {
       this.savedFiles.push(this.selectedFiles.item(i))
@@ -636,20 +634,33 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
           }).then(() => {
 
           })
-          Swal.fire({
-            icon: 'success',
-            title: title,
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: 'Thanh toán ngay',
-            denyButtonText: `Trở về quản lý bài đăng`,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.router.navigate(['../payment/'+postID])
-            } else if (result.isDenied) {
-              this.router.navigate(['../host/host-post-list'])
-            }
-          })
+          if(!this.isEditMode)
+          {
+            Swal.fire({
+              icon: 'success',
+              title: title,
+              showDenyButton: true,
+              showCancelButton: false,
+              confirmButtonText: 'Thanh toán ngay',
+              denyButtonText: `Trở về quản lý bài đăng`,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['../payment/'+postID])
+              } else if (result.isDenied) {
+                this.router.navigate(['../host/host-post-list'])
+              }
+            })
+          }else{
+            Swal.fire({
+              icon: 'success',
+              title: title,
+              showDenyButton: false,
+              showCancelButton: false,
+              confirmButtonText: `Trở về quản lý bài đăng`,
+            }).then((result) => {
+                this.router.navigate(['../host/host-post-list'])
+            })
+          }
         }
       );
     }
@@ -672,7 +683,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.imgPreviewPositionChanged.next(this.previews.slice())
     this.savedFiles[position] = undefined
     this.selectedFileNames[position] = undefined
-    this.checkFileSize--
     // console.log(this.previews[1])
   }
 
@@ -688,7 +698,6 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       reader.readAsDataURL(this.selectedFiles[0]);
       this.selectedFileNames[position] = this.selectedFiles[0].name
       this.savedFiles[position] = this.selectedFiles[0]
-      this.checkFileSize++
     }
 
   }

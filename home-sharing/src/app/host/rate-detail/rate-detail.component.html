@@ -14,29 +14,16 @@
       <div class="intro">
         <div class="title_rate">
           <h2 class="span_title">{{postDetail.title}}</h2>
-          <p class="span_star">
-            <span class="span_star_child">{{postDetail.avgRate}}<mat-icon style="color: #F36B08;">star</mat-icon></span>
-            <span style="color: #F36B08; font-size: 14px;">Đánh giá mới ({{postDetail.detailRateDtoList.length}})</span>
+          <h3 class="mt-3" *ngIf="!postDetail.avgRate">Bài viết hiện tại chưa có đánh giá nào</h3>
+          <p class="span_star" *ngIf="postDetail.avgRate">
+            <span class="span_star_child" style="font-size: 16px;"><mat-icon style="color: #F36B08">star</mat-icon>
+              <span style="margin-left: 12px">{{postDetail.avgRate}}</span>
+            </span>
+            <span *ngIf="postDetail.detailRateDtoList.length>0" style="color: #F36B08; font-size: 14px;margin-left: 12px">Đánh giá ({{postDetail.detailRateDtoList.length}})</span>
           </p>
         </div>
-        <!--        <div class="title_rate">-->
-        <!--          <h2>{{postDetail.title}}</h2>-->
-        <!--        </div>-->
-        <!--        <div class="star">-->
-        <!--        <span>-->
-        <!--           {{postDetail.avgRate}}-->
-        <!--          <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">-->
-        <!--            <path-->
-        <!--              d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-        <!--              fill="#F36B08"/>-->
-        <!--            </svg>-->
-        <!--        </span>-->
-        <!--        </div>-->
-        <!--        <div class="new_rate">-->
-        <!--          <h3 style="color: #F36B08;">Đánh giá mới ({{postDetail.detailRateDtoList.length}})</h3>-->
-        <!--        </div>-->
       </div>
-      <div class="box_rate">
+      <div class="box_rate" *ngIf="postDetail.detailRateDtoList.length>0">
         <div class="content_rate">
           <div *ngFor="let rateDetail of listRateDetail" class="card_rate">
             <div class="info_customer">

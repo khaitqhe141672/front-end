@@ -20,7 +20,8 @@
                 </div>
                 <div class="col-7 ps-2 m-0 p-0">
                   <div>
-                    <h2 class="m-0">Chủ nhà {{i.nameHost}}</h2>
+                    <h2 class="m-0">Chủ nhà {{i.nameHost}}
+                      <mat-icon (click)="goToLink(i.mobileHost)">forum</mat-icon></h2>
                   </div>
                 </div>
                 <div class="col p-0">
@@ -82,6 +83,7 @@
               Huỷ đặt phòng
             </button>
           </div>
+
         </div>
       </div>
       <div class="row">
@@ -90,7 +92,7 @@
         </div>
       </div>
       <div class="row">
-        <h3 class="m-0"> Ngày thuê/trả:Từ <strong class="text-color-orange">{{i.startDate}}</strong> đến <strong class="text-color-orange">{{i.endDate}}</strong></h3>
+        <h3 class="m-0"> Ngày thuê/trả:Từ <strong class="text-color-orange">{{i.startDate|date:'dd/MM/yyyy'}}</strong> đến <strong class="text-color-orange">{{i.endDate|date:'dd/MM/yyyy'}}</strong></h3>
       </div>
       <div class="row">
         <h3 class="m-0">Số khách: {{i.totalPerson}}</h3>

@@ -54,6 +54,7 @@ export class RateDetailComponent implements OnInit {
       ))
     if(this.subLoadListDetail) this.subLoadListDetail.unsubscribe()
     this.subLoadListDetail = this.loadListRateDetailObj.subscribe(data=>{
+
       this.postDetail = data
       this.postDetail.avgRate =Math.round(this.postDetail.avgRate * 10) / 10
     })

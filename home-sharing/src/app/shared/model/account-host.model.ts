@@ -22,4 +22,5 @@ export class AccountHost {
   address: string
   totalFollower: number
   status: number
+  typeAccountHost:number
 }

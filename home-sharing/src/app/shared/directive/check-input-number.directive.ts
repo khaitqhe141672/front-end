@@ -31,7 +31,6 @@ export class CheckInputNumberDirective {
       }
       if (!this.isValid(event.key))
         e.preventDefault();
-
     }
   }
 

@@ -6,6 +6,9 @@ import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {ListConfirmBookingService} from "../list-confirm-booking/list-confirm-booking.service";
 import {map, switchMap} from "rxjs/operators";
 import {PageEvent} from "@angular/material/paginator";
+import {DatePipe} from "@angular/common";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {CurrentBookingDetailComponent} from "../../current-booking-detail/current-booking-detail.component";
 
 @Component({
   selector: 'app-current-booking',
@@ -26,12 +29,13 @@ export class CurrentBookingComponent implements OnInit {
   * 5:cancel booking
   * */
 
+  bookingDetail: MatDialogRef<CurrentBookingDetailComponent>
 
   loadListBookConfirmedObs:Observable<ListBooking[]>
   subLoadListBookingConfirmed:Subscription
   refreshListBookingConfirmed = new BehaviorSubject<boolean>(true)
 
-  constructor(private listConfirmBookingService:ListConfirmBookingService) { }
+  constructor(private dialog: MatDialog,private listConfirmBookingService:ListConfirmBookingService,private datePipe:DatePipe) { }
 
   ngOnInit(): void {
     this.onLoadListBookingConfirmed()
@@ -67,5 +71,15 @@ export class CurrentBookingComponent implements OnInit {
         console.log('confirmedReturnHS: '+response)
         this.refreshListBookingConfirmed.next(true)
       })
+  }
+
+  openDetailBooking(bookingDetailID: any) {
+    console.log('bookingDetailID: '+bookingDetailID)
+    this.bookingDetail = this.dialog.open(CurrentBookingDetailComponent,{
+      hasBackdrop:true
+    })
+  }
+  convertDate(date:string){
+    return this.datePipe.transform(date,'dd/MM/yyyy')
   }
 }

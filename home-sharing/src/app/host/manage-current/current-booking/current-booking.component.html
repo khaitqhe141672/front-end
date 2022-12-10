@@ -22,13 +22,13 @@
       </ng-container>
       <ng-container matColumnDef="startDate">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Ngày thuê phòng</th>
-        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.startDate}}</td>
+        <td *matCellDef="let row" mat-cell>{{this.convertDate(row.viewBookingDto.startDate)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="endDate">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày trả phòng</th>
         <td *matCellDef="let row" mat-cell>
-          {{row.viewBookingDto.endDate}}
+          {{this.convertDate(row.viewBookingDto.endDate)}}
         </td>
       </ng-container>
       <ng-container matColumnDef="totalPerson">
@@ -51,21 +51,15 @@
       </ng-container>
       <ng-container matColumnDef="note">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Ghi chú</th>
-        <td *matCellDef="let row" mat-cell>
+        <td *matCellDef="let row" mat-cell (click)="openDetailBooking(row.viewBookingDto.bookingDetailID)">
           {{row.viewBookingDto.note}}
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Xác nhận trả phòng</th>
         <td *matCellDef="let row" mat-cell>
-            <button class="btn-confirm d-flex justify-content-center" type="button" (click)="confirmReturnHS(row.viewBookingDto.bookingID)">
-              <div class="d-flex justify-content-center align-items-center p-2">
-                <div style="color: #367E18">Xác nhận</div>
-                <div>
-                  <mat-icon style="color: #367E18">check</mat-icon>
-                </div>
-              </div>
-            </button>
+          <button style="color: #367E18"  (click)="confirmReturnHS(row.viewBookingDto.bookingID)" mat-raised-button>
+            <mat-icon style="color: #367E18">check</mat-icon>Xác nhận</button>
         </td>
       </ng-container>
 

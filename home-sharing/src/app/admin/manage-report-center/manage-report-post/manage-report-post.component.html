@@ -38,7 +38,7 @@
       <ng-container matColumnDef="statusPost">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái bài đăng</th>
         <td *matCellDef="let row" [ngSwitch]="row.statusPost" mat-cell>
-          <button #menuTrigger [matMenuTriggerFor]="menu" mat-button disabled="{{row.statusPost==2}}">
+          <button #menuTrigger [matMenuTriggerFor]="menu" mat-button disabled="{{row.statusReportPost==2}}">
             <div *ngSwitchCase="0" style="color: #B01E68">
               <div class="d-flex flex-row align-items-center justify-content-center text-center">
                 <mat-icon style="fill: #B01E68">

@@ -23,6 +23,7 @@ export interface HistoryBooking {
   statusBooking: number
   statusRate: number
   statusReportPost: number
+  mobileHost:string
   viewRateCustomerDto?: ViewRateCustomerDto
   listReportPostCustomer?: ReportPostCustomer[]
 }

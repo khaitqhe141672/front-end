@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient, HttpEventType, HttpHeaders, HttpResponse} from "@angular/common/http";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {TestService} from "./test.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {API_PUSH_IMG_POST, API_PUSH_SINGLE_IMG_POST} from "../constant/api.constant";
-import {PostEditService} from "../posts/post-edit/post-edit.service";
-import {FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
-import {$e} from "@angular/compiler/src/chars";
 
 @Component({
   selector: 'app-test',
@@ -22,7 +17,8 @@ export class TestComponent implements OnInit {
   previews: string[] = [];
   imageInfos?: Observable<any>;
 
-  constructor(private uploadService: TestService) {}
+  constructor(private uploadService: TestService) {
+  }
 
   ngOnInit(): void {
     // this.imageInfos = this.uploadService.getFiles();
@@ -49,7 +45,7 @@ export class TestComponent implements OnInit {
   }
 
   upload(idx: number, file: File): void {
-    this.progressInfos[idx] = { value: 0, fileName: file.name };
+    this.progressInfos[idx] = {value: 0, fileName: file.name};
 
     if (file) {
       this.uploadService.upload(file).subscribe(

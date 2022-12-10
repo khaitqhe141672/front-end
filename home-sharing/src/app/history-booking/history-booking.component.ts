@@ -8,6 +8,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import Swal from "sweetalert2";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-history-booking',
@@ -27,7 +28,7 @@ export class HistoryBookingComponent implements OnInit {
   subLoadHistory:Subscription
   refreshListHistoryBehaviorSub = new BehaviorSubject<boolean>(true)
 
-  constructor(private historyBookingService: HistoryBookingService, private dialog: MatDialog) {
+  constructor( private datePipe:DatePipe,private historyBookingService: HistoryBookingService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -93,22 +94,40 @@ export class HistoryBookingComponent implements OnInit {
   }
 
   onCancelBooking(postID: number) {
-    this.historyBookingService.cancelBooking(postID).subscribe(
-      ()=>{
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn huỷ đặt phòng?',
+      icon:'question',
+      showCancelButton: true,
+      confirmButtonText: 'Huỷ đặt phòng',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.historyBookingService.cancelBooking(postID).subscribe(
+          ()=>{
 
-      },()=>{
-        Swal.fire({
-          icon:'error',
-          title:'Huỷ phòng không thành công',
-          text:'Vui lòng thử lại sau giây lát'
-        })
-      },()=>{
-        Swal.fire({
-          icon:'success',
-          title:'Huỷ phòng thành công',
-        })
+          },()=>{
+            Swal.fire({
+              icon:'error',
+              title:'Huỷ phòng không thành công',
+              text:'Vui lòng thử lại sau giây lát'
+            })
+          },()=>{
+            Swal.fire({
+              icon:'success',
+              title:'Huỷ phòng thành công',
+            })
+            this.refreshListHistoryBehaviorSub.next(true)
+          }
+        )
       }
-    )
+    })
+
   }
+
+  goToLink(number: string){
+    let url = 'https://zalo.me/'+number
+    window.open(url, "_blank");
+  }
+
 }
 

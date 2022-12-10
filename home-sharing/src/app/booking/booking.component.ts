@@ -102,7 +102,8 @@ export class BookingComponent implements OnInit {
       fullNameCtrl:['',[Validators.required]],
       phoneNumberCtrl:['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(10)]],
       emailCtrl:['',[Validators.required,Validators.email]],
-      confirmCtrl:['']
+      confirmCtrl:[''],
+      noteCtrl:['']
     })
     this.getUserInfo()
     this.getPostService()
@@ -221,7 +222,7 @@ export class BookingComponent implements OnInit {
     let bookingBody:BookingBody = new BookingBody()
     bookingBody.startDate = startDateBookingBody
     bookingBody.endDate = endDateBookingBody
-    bookingBody.note = 'note'
+    bookingBody.note = this.formGroupBooking.controls.noteCtrl.value
     bookingBody.totalMoney = this.totalBillAfterDiscount
     bookingBody.totalPerson = this.guestNumber
     bookingBody.postServices = this.selectedServicePost.map(service=>service.postServiceID)
@@ -255,7 +256,6 @@ export class BookingComponent implements OnInit {
 
     console.log('full name: '+bookingBody.fullName)
 
-    return
     // console.log('emailL '+bookingBody.email)
     // console.log('mobile: '+bookingBody.mobile)
     this.isBooking = true

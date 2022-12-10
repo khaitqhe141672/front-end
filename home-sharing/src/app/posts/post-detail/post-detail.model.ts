@@ -29,6 +29,7 @@ export class PostDetail {
   latitude: string
   longitude: string
   bookingDate?: string[]
+  typeAccountHost: number
 }
 
 export class ServiceDetailDtoList {

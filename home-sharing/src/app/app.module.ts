@@ -61,8 +61,7 @@ import {BookingComponent} from './booking/booking.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {TestComponent} from './test/test.component';
-import {NgxDropzoneModule} from "ngx-dropzone";
-import {NgxFileDropModule} from "ngx-file-drop";
+
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
 import {DatePickerComponent} from './date-picker/date-picker.component';
@@ -73,7 +72,6 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {CheckOutBookingComponent} from './host/check-out-booking/check-out-booking.component';
 import {CurrentBookingDetailComponent} from './host/current-booking-detail/current-booking-detail.component';
 import {ComingBookingDetailComponent} from './host/coming-booking-detail/coming-booking-detail.component';
-import {ConfirmBookingComponent} from './host/confirm-booking/confirm-booking.component';
 import {WaitBookingDetailComponent} from './host/wait-booking-detail/wait-booking-detail.component';
 import {ComplaintReportComponent} from './host/complaint-report/complaint-report.component';
 import {ManageVoucherComponent} from './host/manage-voucher/manage-voucher.component';
@@ -126,9 +124,10 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import {ShowMoreDialogComponent} from "./shared/dialog/show-more-dialog/show-more-dialog.component";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
-import {PieChartModule} from "@swimlane/ngx-charts";
+import {NgxChartsModule, PieChartModule} from "@swimlane/ngx-charts";
 import { InputRestrictionDirective } from './shared/directive/input-restriction.directive';
 import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.directive';
+
 
 @NgModule({
   declarations: [
@@ -164,7 +163,6 @@ import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.dire
     CheckOutBookingComponent,
     CurrentBookingDetailComponent,
     ComingBookingDetailComponent,
-    ConfirmBookingComponent,
     WaitBookingDetailComponent,
     ComplaintReportComponent,
     ManageVoucherComponent,
@@ -234,8 +232,6 @@ import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.dire
     MatSnackBarModule,
     NgxStarRatingModule, MatCheckboxModule,
     NgMultiSelectDropDownModule.forRoot(),
-    NgxDropzoneModule,
-    NgxFileDropModule,
     MatPaginatorModule,
     MatCardModule, MatDialogModule,
     MatNativeDateModule, FormsModule,

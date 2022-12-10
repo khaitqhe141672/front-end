@@ -18,7 +18,7 @@
             </div>
             <div class="row mt-4">
               <div class="col-6">
-               <p><strong>Ngày sinh:</strong> <br> {{data.dob}}</p>
+               <p><strong>Ngày sinh:</strong> <br> {{data.dob|date:'dd/MM/yyyy'}}</p>
               </div>
               <div class="col-6">
                 <p><strong>Số điện thoại:</strong><br>  {{data.mobile}}</p>
@@ -55,12 +55,12 @@
                 <mat-radio-group formControlName="radioVerifyCtrl">
                   <div class=" row">
                     <div class="me-3 col">
-                      <mat-radio-button [checked]="data.status==1" value="1">
+                      <mat-radio-button [checked]="data.typeAccountHost==1" value="1">
                         Bật
                       </mat-radio-button>
                     </div>
                     <div class="col">
-                      <mat-radio-button [checked]="data.status==2" value="2">
+                      <mat-radio-button [checked]="data.typeAccountHost==2" value="2">
                         Tắt
                       </mat-radio-button>
                     </div>

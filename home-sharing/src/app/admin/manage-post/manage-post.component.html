@@ -22,7 +22,7 @@
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày gia hạn - Ngày hết hạn</th>
         <td *matCellDef="let row" mat-cell>
           <ng-template [ngIf]="row.startDate&&row.endDate">
-            Từ {{row.startDate}} đến {{row.endDate}}
+            Từ {{row.startDate|date:'dd/MM/yyyy'}} đến {{row.endDate|date:'dd/MM/yyyy'}}
           </ng-template>
           <ng-template [ngIf]="!row.startDate||!row.endDate">
             Chưa gia hạn

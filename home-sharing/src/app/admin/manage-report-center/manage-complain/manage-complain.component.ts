@@ -40,6 +40,7 @@ export class ManageComplainComponent implements OnInit {
     if(this.subLoadComplain) this.subLoadComplain.unsubscribe()
     this.loadComplainObs.subscribe(data=>{
       this.dataSource = new MatTableDataSource<ListComplaint>(data)
+      console.log(data)
     })
   }
 

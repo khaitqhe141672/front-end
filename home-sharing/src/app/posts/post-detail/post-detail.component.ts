@@ -101,19 +101,6 @@ export class PostDetailComponent implements OnInit {
     })
   }
 
-  datediff(first, second) {
-    return Math.round((second - first) / (1000 * 60 * 60 * 24));
-  }
-
-
-  addStartDate(date: Date) {
-    this.startDate = date
-  }
-
-  addEndDate(date: Date) {
-    this.endDate = date
-  }
-
   onBooking() {
     console.log('formatStartDate: '+this.formatStartDate)
     console.log('formatEndDate: '+this.formatEndDate)
@@ -194,6 +181,20 @@ export class PostDetailComponent implements OnInit {
       })
     }
 
+  }
+
+  goToLink(number: string){
+    let url = 'https://zalo.me/'+number
+    window.open(url, "_blank");
+  }
+
+  scrollToElement(element) {
+    console.log(element);
+    element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+  scrollPoint1(el: HTMLElement) {
+    // el.scrollIntoView({behavior: "smooth"});
+    el.scrollIntoView();
   }
 }
 
