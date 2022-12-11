@@ -55,7 +55,7 @@
           </div>
         </button>
         <mat-menu #menu="matMenu">
-          <button (click)="updateStatusPost(element.postID,1)" mat-menu-item>Hiển thị</button>
+          <button *ngIf="element.statusPost==3" (click)="updateStatusPost(element.complaintPostID,2,1)" mat-menu-item>Hiển thị</button>
         </mat-menu>
 
       </td>

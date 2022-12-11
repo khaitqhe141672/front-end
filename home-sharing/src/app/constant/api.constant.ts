@@ -83,7 +83,9 @@ export const API_ADMIN_UPDATE_STATUS_REPORT_POST = 'http://localhost:8080/api/re
 export const API_ADMIN_UPDATE_STATUS_REPORT_RATE = 'http://localhost:8080/api/report/update-status-report-rate?'
 export const API_HISTORY_HANDLE_REPORT_POST  = 'http://localhost:8080/api/report/all-history-report-post?'
 export const API_HISTORY_DETAIL_REPORT = 'http://localhost:8080/api/report/all-detail-history-report-post?'
+
 export const API_ADMIN_GET_COMPLAIN = 'http://localhost:8080/api/report/all-complaint-post?index-page='
+export const API_ADMIN_RESOLVE_COMPLAIN = 'http://localhost:8080/api/report/resolve-complaintPost?'
 
 export const API_ADMIN_DASH_BOARD = 'http://localhost:8080/api/dashboard/admin'
 

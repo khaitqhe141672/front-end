@@ -58,7 +58,7 @@ export class BookingComponent implements OnInit {
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   voucherPickerDialogRef:MatDialogRef<VoucherComponent>
   postVoucherID = null
-
+  tempVoucherID= null
   userInfo:UserInfo
   userInfoResponse:UserInfoResponse
 
@@ -231,6 +231,8 @@ export class BookingComponent implements OnInit {
     bookingBody.totalPriceService = this.servicePrice
     bookingBody.discount = this.totalDiscount
     bookingBody.fullName = fullName
+    console.log('post voucher id: '+bookingBody.postVoucherID)
+    // return
     if(fullName.length<=0) {
       Swal.fire({
         icon:'error',
@@ -287,8 +289,10 @@ export class BookingComponent implements OnInit {
       data:this.postID
     })
     this.voucherPickerDialogRef.afterClosed().subscribe(response=>{
-      if(response)
-      this.formCheckVoucher.controls.codeVoucherCtrl.patchValue(response.data)
+      if(response){
+        this.formCheckVoucher.controls.codeVoucherCtrl.patchValue(response.data.codeVoucher)
+        this.postVoucherID = response.data.voucherID
+      }
     })
   }
 
@@ -307,7 +311,7 @@ export class BookingComponent implements OnInit {
         // console.log('totalBillAfterDiscount: '+this.totalBillAfterDiscount)
         // console.log('response voucher: '+response.object)
         this.displayData()
-      }
+      }else{this.postVoucherID = null}
     })
 
   }

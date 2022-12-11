@@ -50,9 +50,14 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="note">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Ghi chú</th>
-        <td *matCellDef="let row" mat-cell (click)="openDetailBooking(row.viewBookingDto.bookingDetailID)">
-          {{row.viewBookingDto.note}}
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Xem thêm</th>
+        <td *matCellDef="let row" mat-cell >
+          <button
+            (click)="openDetailBooking(row.bookingServiceDtos,row.viewBookingDto.note,row.bookingPostVoucherDto)"
+            style="color:#F36B08;"
+            mat-icon-button aria-label="Example icon button with a menu icon">
+            <mat-icon>expand_circle_down</mat-icon>
+          </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="action">

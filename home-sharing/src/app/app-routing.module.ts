@@ -23,7 +23,7 @@ import {PaymentComponent} from "./payment/payment.component";
 import {PaymentSuccessComponent} from "./payment-success/payment-success.component";
 import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 import {CurrentBookingComponent} from "./host/manage-current/current-booking/current-booking.component";
-import {CurrentBookingDetailComponent} from "./host/current-booking-detail/current-booking-detail.component";
+import {BookingDetailComponent} from "./host/booking-detail/booking-detail.component";
 
 
 const appRoute: Routes = [
@@ -38,7 +38,7 @@ const appRoute: Routes = [
 
   },
   {path: 'booking/:id', component: BookingComponent},
-  {path: 'test', component: CurrentBookingDetailComponent},
+  {path: 'test', component: BookingDetailComponent},
   {path: 'home', component: HomeComponent},
   // , canActivate: [HasRoleCusGuard]
   {

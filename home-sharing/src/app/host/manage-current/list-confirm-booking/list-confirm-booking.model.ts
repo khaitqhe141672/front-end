@@ -11,7 +11,8 @@ export interface ListConfirmBookingData {
 export class ListBooking {
   viewBookingDto: ViewBookingDto
   userBookingDto: UserBookingDto
-  bookingServiceDtos: BookingServiceDto[]
+  bookingServiceDtos?: BookingServiceDto[]
+  bookingPostVoucherDto?: BookingPostVoucherDto
 }
 
 export class ViewBookingDto {
@@ -27,13 +28,6 @@ export class ViewBookingDto {
   note: string
   status: number
 }
-export class BookingServiceDto {
-  bookingID: number
-  postServiceID: number
-  priceService: number
-  iconService: string
-  nameService: string
-}
 export class UserBookingDto {
   userID: number
   customerID: number
@@ -41,3 +35,19 @@ export class UserBookingDto {
   fullName: string
   urlImage: string
 }
+
+export class BookingServiceDto {
+  bookingID: number
+  postServiceID: number
+  priceService: number
+  iconService: string
+  nameService: string
+}
+export class BookingPostVoucherDto {
+  postVoucherID: number
+  voucherID: number
+  code: string
+  percent: number
+  status: number
+}
+

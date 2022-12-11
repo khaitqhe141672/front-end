@@ -44,21 +44,21 @@ export class ManageComplainComponent implements OnInit {
     })
   }
 
-  updateStatusPost(postID: number,status:number) {
-    this.hostPostListService.updateStatusPost(postID,status).subscribe(response=>{
+  updateStatusPost(complainID: number,statusComplain:number,statusPost:number) {
+    this.manageComplainService.resolveComplain(complainID,statusComplain,statusPost).subscribe(response=>{
         console.log(response)
       },()=>{
         Swal.fire({
           icon: 'error',
-          title: 'Cập nhập trạng thái bài đăng thành công',
+          title: 'Cập nhập trạng thái bài đăng không thành công',
         })
       },()=>{
+      this.refreshComplain.next(true)
         Swal.fire({
           icon: 'success',
           title: 'Cập nhập trạng thái bài đăng thành công',
         })
       }
-
     )
   }
 

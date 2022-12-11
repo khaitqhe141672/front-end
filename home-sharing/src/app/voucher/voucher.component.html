@@ -13,7 +13,7 @@
             <div class="col">
               <mat-chip-list aria-label="Fish selection" *ngFor="let voucher of listVoucher">
                 <mat-chip style="background-color: #F36B08;color: #FFFFFF" (click)="onCopyVoucherName(voucher.code)">
-                  <button mat-button mat-dialog-close (click)="onChooseVoucher(voucher.code)">
+                  <button mat-button mat-dialog-close (click)="onChooseVoucher(voucher.postVoucherID,voucher.code)">
                     {{voucher.code}}-{{voucher.description}}-Giảm: {{voucher.percent}}%
                   </button>
 

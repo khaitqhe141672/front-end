@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
-import {ListBooking} from "./list-confirm-booking.model";
+import {BookingPostVoucherDto, BookingServiceDto, ListBooking} from "./list-confirm-booking.model";
 import {ListConfirmBookingService} from "./list-confirm-booking.service";
 import {map, switchMap} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {PageEvent} from "@angular/material/paginator";
+import {BookingDetailComponent} from "../../booking-detail/booking-detail.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list-confirm-booking',
@@ -13,7 +15,7 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./list-confirm-booking.component.css']
 })
 export class ListConfirmBookingComponent implements OnInit {
-
+  bookingDetail: MatDialogRef<BookingDetailComponent>
   displayedColumns: string[] = ['id', 'title', 'userBooking', 'startDate', 'endDate', 'totalPerson', 'totalMoney', 'totalService', 'note', 'action'];
   dataSource: MatTableDataSource<ListBooking>
   pageIndex = 1
@@ -32,7 +34,7 @@ export class ListConfirmBookingComponent implements OnInit {
   refreshListPending = new BehaviorSubject<boolean>(true)
   isLoading = false;
 
-  constructor(private listConfirmBookingService: ListConfirmBookingService) {
+  constructor(private dialog: MatDialog,private listConfirmBookingService: ListConfirmBookingService) {
   }
 
   ngOnInit(): void {
@@ -83,6 +85,17 @@ export class ListConfirmBookingComponent implements OnInit {
         icon: 'success',
         title: type==1?'Đã xác nhận đặt phòng':'Đã từ chối đặt phòng'
       })
+    })
+  }
+
+  openDetailBooking(bookingServiceDtos: BookingServiceDto[],note:string,bookingPostVoucherDto:BookingPostVoucherDto) {
+    this.bookingDetail = this.dialog.open(BookingDetailComponent,{
+      data:{
+        bookingServiceDtos:bookingServiceDtos,
+        bookingPostVoucherDto:bookingPostVoucherDto,
+        note:note
+      },
+      hasBackdrop:true
     })
   }
 }

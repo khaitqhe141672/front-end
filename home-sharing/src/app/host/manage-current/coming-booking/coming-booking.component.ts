@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {CustomerDetail} from "../../../shared/model/account-customer.model";
-import {ListBooking} from "../list-confirm-booking/list-confirm-booking.model";
+import {
+  BookingPostVoucherDto,
+  BookingServiceDto,
+  ListBooking
+} from "../list-confirm-booking/list-confirm-booking.model";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {ListConfirmBookingService} from "../list-confirm-booking/list-confirm-booking.service";
 import {map, switchMap} from "rxjs/operators";
 import {PageEvent} from "@angular/material/paginator";
+import {BookingDetailComponent} from "../../booking-detail/booking-detail.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-coming-booking',
@@ -26,17 +32,26 @@ export class ComingBookingComponent implements OnInit {
   * 5:cancel booking
   * */
 
-
+  bookingDetail: MatDialogRef<BookingDetailComponent>
   loadListBookComing:Observable<ListBooking[]>
   subLoadListBookComing:Subscription
   refreshListBookComing = new BehaviorSubject<boolean>(true)
 
-  constructor(private listConfirmBookingService:ListConfirmBookingService) { }
+  constructor(private dialog: MatDialog,private listConfirmBookingService:ListConfirmBookingService) { }
 
   ngOnInit(): void {
     this.onLoadListBookingConfirmed()
   }
-
+  openDetailBooking(bookingServiceDtos: BookingServiceDto[],note:string,bookingPostVoucherDto:BookingPostVoucherDto) {
+    this.bookingDetail = this.dialog.open(BookingDetailComponent,{
+      data:{
+        bookingServiceDtos:bookingServiceDtos,
+        bookingPostVoucherDto:BookingPostVoucherDto,
+        note:note
+      },
+      hasBackdrop:true
+    })
+  }
   onLoadListBookingConfirmed(){
     this.loadListBookComing = this.refreshListBookComing.pipe(switchMap(_=>
       this.listConfirmBookingService.getListPostPending(2,this.pageIndex).pipe(map(response=>{

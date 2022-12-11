@@ -11,6 +11,8 @@ export class BookingService{
   }
   bookingRequest(booking:BookingBody,postID:number):Observable<any>{
     console.log('booking data: '+booking.startDate)
+    console.log('post voucher id2: '+booking.postVoucherID)
+
     return this.http.post(API_BOOKING+postID,
       {
         startDate:booking.startDate,

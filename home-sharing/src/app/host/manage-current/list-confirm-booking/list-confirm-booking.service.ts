@@ -14,6 +14,8 @@ export class ListConfirmBookingService {
   }
 
   getListPostPending(status: number, indexPage: number): Observable<ListConfirmBookingResponse> {
+    //1:list confirm booking
+    //2:list coming booking
     let params = new HttpParams({fromString: 'index-page=' + indexPage + '&status=' + status})
     let api = API_HOST_LIST_PENDING_CONFIRM_BOOKING
     if(status===3){

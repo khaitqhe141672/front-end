@@ -100,11 +100,22 @@ export class HistoryBookingComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Huỷ đặt phòng',
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.historyBookingService.cancelBooking(postID).subscribe(
-          ()=>{
-
+          (response)=>{
+              if(response.status == 113){
+                Swal.fire({
+                  icon:'error',
+                  title:'Huỷ phòng không thành công',
+                  text:'Đã quá hạn huỷ phòng cho phép'
+                })
+              }else{
+                Swal.fire({
+                  icon:'success',
+                  title:'Huỷ phòng thành công',
+                })
+                this.refreshListHistoryBehaviorSub.next(true)
+              }
           },()=>{
             Swal.fire({
               icon:'error',
@@ -112,11 +123,7 @@ export class HistoryBookingComponent implements OnInit {
               text:'Vui lòng thử lại sau giây lát'
             })
           },()=>{
-            Swal.fire({
-              icon:'success',
-              title:'Huỷ phòng thành công',
-            })
-            this.refreshListHistoryBehaviorSub.next(true)
+
           }
         )
       }

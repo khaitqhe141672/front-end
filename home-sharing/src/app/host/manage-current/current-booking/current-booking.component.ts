@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {CustomerDetail} from "../../../shared/model/account-customer.model";
-import {ListBooking} from "../list-confirm-booking/list-confirm-booking.model";
+import {
+  BookingPostVoucherDto,
+  BookingServiceDto,
+  ListBooking
+} from "../list-confirm-booking/list-confirm-booking.model";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {ListConfirmBookingService} from "../list-confirm-booking/list-confirm-booking.service";
 import {map, switchMap} from "rxjs/operators";
 import {PageEvent} from "@angular/material/paginator";
 import {DatePipe} from "@angular/common";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {CurrentBookingDetailComponent} from "../../current-booking-detail/current-booking-detail.component";
+import {BookingDetailComponent} from "../../booking-detail/booking-detail.component";
 
 @Component({
   selector: 'app-current-booking',
@@ -29,7 +33,7 @@ export class CurrentBookingComponent implements OnInit {
   * 5:cancel booking
   * */
 
-  bookingDetail: MatDialogRef<CurrentBookingDetailComponent>
+  bookingDetail: MatDialogRef<BookingDetailComponent>
 
   loadListBookConfirmedObs:Observable<ListBooking[]>
   subLoadListBookingConfirmed:Subscription
@@ -73,9 +77,13 @@ export class CurrentBookingComponent implements OnInit {
       })
   }
 
-  openDetailBooking(bookingDetailID: any) {
-    console.log('bookingDetailID: '+bookingDetailID)
-    this.bookingDetail = this.dialog.open(CurrentBookingDetailComponent,{
+  openDetailBooking(bookingServiceDtos: BookingServiceDto[],note:string,bookingPostVoucherDto:BookingPostVoucherDto) {
+    this.bookingDetail = this.dialog.open(BookingDetailComponent,{
+      data:{
+        bookingServiceDtos:bookingServiceDtos,
+        bookingPostVoucherDto:bookingPostVoucherDto,
+        note:note
+      },
       hasBackdrop:true
     })
   }

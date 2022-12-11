@@ -28,8 +28,8 @@ export class VoucherComponent implements OnInit {
     console.log(this.data)
   }
 
-  onChooseVoucher(codeVoucher: string) {
-    this.voucherDialogRef.close({data:codeVoucher})
+  onChooseVoucher(voucherID:number,codeVoucher: string) {
+    this.voucherDialogRef.close({data:{voucherID:voucherID,codeVoucher:codeVoucher}})
   }
 
   onCopyVoucherName(nameVoucher: string) {

@@ -69,10 +69,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
 import {ReportHsComponent} from './report-hs/report-hs.component';
 import {VoucherComponent} from './voucher/voucher.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import {CheckOutBookingComponent} from './host/check-out-booking/check-out-booking.component';
-import {CurrentBookingDetailComponent} from './host/current-booking-detail/current-booking-detail.component';
-import {ComingBookingDetailComponent} from './host/coming-booking-detail/coming-booking-detail.component';
-import {WaitBookingDetailComponent} from './host/wait-booking-detail/wait-booking-detail.component';
+import {BookingDetailComponent} from './host/booking-detail/booking-detail.component';
 import {ComplaintReportComponent} from './host/complaint-report/complaint-report.component';
 import {ManageVoucherComponent} from './host/manage-voucher/manage-voucher.component';
 import {MatTableModule} from "@angular/material/table";
@@ -160,10 +157,7 @@ import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.dire
     DatePickerComponent,
     ReportHsComponent,
     VoucherComponent,
-    CheckOutBookingComponent,
-    CurrentBookingDetailComponent,
-    ComingBookingDetailComponent,
-    WaitBookingDetailComponent,
+    BookingDetailComponent,
     ComplaintReportComponent,
     ManageVoucherComponent,
     CreateVoucherComponent,
