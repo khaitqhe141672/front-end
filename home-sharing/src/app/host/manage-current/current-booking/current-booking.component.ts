@@ -80,6 +80,7 @@ export class CurrentBookingComponent implements OnInit {
     })
   }
   convertDate(date:string){
+    //test
     return this.datePipe.transform(date,'dd/MM/yyyy')
   }
 }
