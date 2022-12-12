@@ -31,11 +31,13 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   listPost:ListPostSearched[]=[]
   @ViewChild('owl')owl:ElementRef;
   @ViewChild('divSearched') divSearched:ElementRef
+  @ViewChild('searchFilter') searchFilter:ElementRef
+
   token = JSON.parse(localStorage.getItem("userData"));
   formSearch:FormGroup
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    this.isOpen = !!this.eRef.nativeElement.contains(event.target);
+    this.isOpen = !!this.searchFilter.nativeElement.contains(event.target);
   }
   constructor(private eRef: ElementRef,private router:Router,private auth:AuthService,private fb:FormBuilder,private headerService:HeaderService) { }
   private readonly searchSubject = new Subject<string | undefined>();

@@ -17,12 +17,12 @@
           </svg>
         </a>
       </div>
-      <div *ngIf="showSearch == true"></div>
+<!--      <div *ngIf="showSearch == true"></div>-->
       <div class="filter" *ngIf="showSearch == false">
         <form (ngSubmit)="onSearchMore()" [formGroup]="formSearch">
           <div class="wrap">
             <div class="search">
-              <input (input)="onSearching($event)" class="searchTerm" formControlName="searchCtrl" placeholder="Tìm theo địa điểm / tên home stay"
+              <input #searchFilter (click)="isOpen = true" id="searchFilter"  (input)="onSearching($event)" class="searchTerm" formControlName="searchCtrl" placeholder="Tìm theo địa điểm / tên home stay"
                      type="text">
               <button class="searchButton" type="submit">
                 <svg fill="none" height="26" viewBox="0 0 29 26" width="29"
@@ -36,9 +36,9 @@
           </div>
         </form>
       </div>
-      <div class="profile">
+      <div (click)="closeSearch()" class="profile">
         <div></div>
-        <div  (click)="isOpen=false" class="dropdown">
+        <div   class="dropdown">
           <div class="menu" id="menu">
             <div class="icon-menu">
               <div class="icon">
@@ -167,7 +167,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isOpen==true">
+    <ng-container class="search-content" *ngIf="isOpen==true">
       <div #divSearched *ngIf="listPost.length>0||listProvince.length>0"
            class="container w-100 search-div">
         <div class="detail-search d-flex justify-content-center align-items-center">
@@ -213,7 +213,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
   <hr>
