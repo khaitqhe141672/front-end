@@ -125,7 +125,7 @@ import {NgxChartsModule, PieChartModule} from "@swimlane/ngx-charts";
 import { InputRestrictionDirective } from './shared/directive/input-restriction.directive';
 import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.directive';
 
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     AppComponent,
@@ -218,7 +218,7 @@ import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.dire
     MatIconModule,
     MatMenuModule,
     NgbPaginationModule, NgbAlertModule, NgbModule,
-
+    CarouselModule,
     MatChipsModule, MatListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzZjzi7HqlyEKfmqTRNLge9TtMPDaI7VM'
