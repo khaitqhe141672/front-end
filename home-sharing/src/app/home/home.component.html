@@ -1,4 +1,4 @@
-<div class="row">
+<div class="">
   <div class="slider">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -31,146 +31,162 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-<!--    <div class="button_now">-->
-<!--      <button type="button" class="btn btn-primary">Đặt phòng ngay</button>-->
-<!--    </div>-->
+    <!--    <div class="button_now">-->
+    <!--      <button type="button" class="btn btn-primary">Đặt phòng ngay</button>-->
+    <!--    </div>-->
   </div>
 </div>
-<div class="container-home">
-  <div class="welcome" *ngIf="role === null">
-    <h2><span class="span-welcome-0">Chào mừng bạn </span> <span class="span-welcome-1">đến với</span> <span
-      class="span-welcome-2"> HomeSharing</span></h2>
-    <p style="padding: 10px; line-height: 35px;">để có được những trải nghiệm tốt nhất trên <br> HomeSharing <a
-      routerLink="/auth/login">Đăng nhập</a> hoặc <a routerLink="/auth/register">Đăng ký</a></p>
-  </div>
-
-  <div class="experience_place">
-    <div class="title">
-      <h2>Địa điểm đáng trải nghiệm</h2>
+<div class="section_home">
+  <div class="container-home">
+    <div class="welcome" *ngIf="role === null">
+      <h2><span class="span-welcome-0">Chào mừng bạn </span> <span class="span-welcome-1">đến với</span> <span
+        class="span-welcome-2"> HomeSharing</span></h2>
+      <p style="padding: 10px; line-height: 35px;">để có được những trải nghiệm tốt nhất trên <br> HomeSharing <a
+        routerLink="/auth/login">Đăng nhập</a> hoặc <a routerLink="/auth/register">Đăng ký</a></p>
     </div>
-    <div class="card_experience_place">
+
+    <div class="experience_place">
+      <div class="title">
+        <h2>Địa điểm đáng trải nghiệm</h2>
+        <p>Những địa điểm lưu trú phổ biến được nhiều khách du lịch quan tâm và thường xuyên ghé thăm.</p>
+      </div>
+      <div class="card_experience_place">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let slide of recommendedPlace">
+              <ng-template carouselSlide>
+                <a routerLink="/posts/post-detail/{{slide.provinceID}}">
+                  <div class="image_slide">
+                    <img [src]="slide.imageUrl">
+                  </div>
+                  <div class="title_province">
+                    <h2>{{slide.provinceName}}</h2>
+                  </div>
+                </a>
+              </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
     </div>
+
+    <div class="experience_place">
+      <div class="title">
+        <h2>Địa điểm dành cho bạn</h2>
+      </div>
+
+    </div>
+
+
+    <!--  <div class="interesting_place">-->
+    <!--    <div class="title">-->
+    <!--      <h2>Địa điểm thú vị mà có thể bạn chưa biết tới</h2>-->
+    <!--    </div>-->
+    <!--    <div class="card_interesting_place">-->
+    <!--      <div *ngFor="let i of interestingPlace" class="card_item">-->
+    <!--        <a routerLink="/posts/post-detail/{{i.postID}}">-->
+    <!--          <div class="card_item_image">-->
+    <!--            <img src="{{i.urlImage}}">-->
+    <!--          </div>-->
+    <!--          <div class="card_item_content">-->
+    <!--            <h3>{{i.title}}</h3>-->
+    <!--          </div>-->
+    <!--        </a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <!--  <div class="experience_place">-->
+    <!--    <div class="title">-->
+    <!--      <h2>Địa điểm đáng trải nghiệm</h2>-->
+    <!--    </div>-->
+    <!--    <div class="card_experience_place">-->
+    <!--      <ngb-carousel>-->
+    <!--        <ng-template ngbSlide>-->
+    <!--          <div class="carousel-wap">-->
+    <!--            <div *ngFor="let i of recommendedPlace | slice:0:4" class="item">-->
+    <!--              <a routerLink="/{{i.provinceID}}">-->
+    <!--                <div class="item_image">-->
+    <!--                  <img src="{{i.imageUrl}}">-->
+    <!--                </div>-->
+    <!--                <div class="item-title">-->
+    <!--                  <h4>{{i.provinceName}}</h4>-->
+    <!--                </div>-->
+    <!--              </a>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template ngbSlide>-->
+    <!--          <div class="carousel-wap">-->
+    <!--            <div *ngFor="let i of recommendedPlace | slice:4:8" class="item">-->
+    <!--              <a routerLink="/{{i.provinceID}}">-->
+    <!--                <div class="item_image">-->
+    <!--                  <img src="{{i.imageUrl}}">-->
+    <!--                </div>-->
+    <!--                <div class="item-title">-->
+    <!--                  <h4>{{i.provinceName}}</h4>-->
+    <!--                </div>-->
+    <!--              </a>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </ngb-carousel>-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <!--  <div class="top_room">-->
+    <!--    <div class="title">-->
+    <!--      <h2>Top Phòng ở được đánh giá cao nhất</h2>-->
+    <!--    </div>-->
+    <!--    <div class="card_top_room">-->
+    <!--      <ngb-carousel>-->
+    <!--        <ng-template ngbSlide>-->
+    <!--          <div class="carousel-wap">-->
+    <!--            <div class="item" *ngFor="let i of postTopRate | slice: 0:4">-->
+    <!--              <a routerLink="/posts/post-detail/{{i.postID}}">-->
+    <!--                <div class="item_image">-->
+    <!--                  <img src="{{i.urlImage}}">-->
+    <!--                </div>-->
+    <!--                <div class="item-title">-->
+    <!--                  <h4>{{i.title}}</h4>-->
+    <!--                </div>-->
+    <!--                <div class="item_star">-->
+    <!--                <span> {{i.star}}-->
+    <!--                  <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+    <!--                  <path-->
+    <!--                    d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+    <!--                    fill="#F36B08"/>-->
+    <!--                  </svg>-->
+    <!--                </span>-->
+    <!--                </div>-->
+    <!--              </a>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template ngbSlide>-->
+    <!--          <div class="carousel-wap">-->
+    <!--            <div class="item" *ngFor="let i of postTopRate | slice: 4:8">-->
+    <!--              <a routerLink="/posts/post-detail/{{i.postID}}">-->
+    <!--                <div class="item_image">-->
+    <!--                  <img src="{{i.urlImage}}">-->
+    <!--                </div>-->
+    <!--                <div class="item-title">-->
+    <!--                  <h4>{{i.title}}</h4>-->
+    <!--                </div>-->
+    <!--                <div class="item_star">-->
+    <!--              <span> {{i.star}}-->
+    <!--                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+    <!--                <path-->
+    <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
+    <!--                  fill="#F36B08"/>-->
+    <!--                </svg>-->
+    <!--                </span>-->
+    <!--                </div>-->
+    <!--              </a>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </ngb-carousel>-->
+    <!--    </div>-->
+    <!--  </div>-->
   </div>
-
-  <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let slide of slides">
-      <ng-template carouselSlide>
-        <img [src]="slide.img">
-      </ng-template>
-    </ng-container>
-  </owl-carousel-o>
-
-
-  <!--  <div class="interesting_place">-->
-  <!--    <div class="title">-->
-  <!--      <h2>Địa điểm thú vị mà có thể bạn chưa biết tới</h2>-->
-  <!--    </div>-->
-  <!--    <div class="card_interesting_place">-->
-  <!--      <div *ngFor="let i of interestingPlace" class="card_item">-->
-  <!--        <a routerLink="/posts/post-detail/{{i.postID}}">-->
-  <!--          <div class="card_item_image">-->
-  <!--            <img src="{{i.urlImage}}">-->
-  <!--          </div>-->
-  <!--          <div class="card_item_content">-->
-  <!--            <h3>{{i.title}}</h3>-->
-  <!--          </div>-->
-  <!--        </a>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div class="experience_place">-->
-  <!--    <div class="title">-->
-  <!--      <h2>Địa điểm đáng trải nghiệm</h2>-->
-  <!--    </div>-->
-  <!--    <div class="card_experience_place">-->
-  <!--      <ngb-carousel>-->
-  <!--        <ng-template ngbSlide>-->
-  <!--          <div class="carousel-wap">-->
-  <!--            <div *ngFor="let i of recommendedPlace | slice:0:4" class="item">-->
-  <!--              <a routerLink="/{{i.provinceID}}">-->
-  <!--                <div class="item_image">-->
-  <!--                  <img src="{{i.imageUrl}}">-->
-  <!--                </div>-->
-  <!--                <div class="item-title">-->
-  <!--                  <h4>{{i.provinceName}}</h4>-->
-  <!--                </div>-->
-  <!--              </a>-->
-  <!--            </div>-->
-  <!--          </div>-->
-  <!--        </ng-template>-->
-  <!--        <ng-template ngbSlide>-->
-  <!--          <div class="carousel-wap">-->
-  <!--            <div *ngFor="let i of recommendedPlace | slice:4:8" class="item">-->
-  <!--              <a routerLink="/{{i.provinceID}}">-->
-  <!--                <div class="item_image">-->
-  <!--                  <img src="{{i.imageUrl}}">-->
-  <!--                </div>-->
-  <!--                <div class="item-title">-->
-  <!--                  <h4>{{i.provinceName}}</h4>-->
-  <!--                </div>-->
-  <!--              </a>-->
-  <!--            </div>-->
-  <!--          </div>-->
-  <!--        </ng-template>-->
-  <!--      </ngb-carousel>-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div class="top_room">-->
-  <!--    <div class="title">-->
-  <!--      <h2>Top Phòng ở được đánh giá cao nhất</h2>-->
-  <!--    </div>-->
-  <!--    <div class="card_top_room">-->
-  <!--      <ngb-carousel>-->
-  <!--        <ng-template ngbSlide>-->
-  <!--          <div class="carousel-wap">-->
-  <!--            <div class="item" *ngFor="let i of postTopRate | slice: 0:4">-->
-  <!--              <a routerLink="/posts/post-detail/{{i.postID}}">-->
-  <!--                <div class="item_image">-->
-  <!--                  <img src="{{i.urlImage}}">-->
-  <!--                </div>-->
-  <!--                <div class="item-title">-->
-  <!--                  <h4>{{i.title}}</h4>-->
-  <!--                </div>-->
-  <!--                <div class="item_star">-->
-  <!--                <span> {{i.star}}-->
-  <!--                  <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-  <!--                  <path-->
-  <!--                    d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-  <!--                    fill="#F36B08"/>-->
-  <!--                  </svg>-->
-  <!--                </span>-->
-  <!--                </div>-->
-  <!--              </a>-->
-  <!--            </div>-->
-  <!--          </div>-->
-  <!--        </ng-template>-->
-  <!--        <ng-template ngbSlide>-->
-  <!--          <div class="carousel-wap">-->
-  <!--            <div class="item" *ngFor="let i of postTopRate | slice: 4:8">-->
-  <!--              <a routerLink="/posts/post-detail/{{i.postID}}">-->
-  <!--                <div class="item_image">-->
-  <!--                  <img src="{{i.urlImage}}">-->
-  <!--                </div>-->
-  <!--                <div class="item-title">-->
-  <!--                  <h4>{{i.title}}</h4>-->
-  <!--                </div>-->
-  <!--                <div class="item_star">-->
-  <!--              <span> {{i.star}}-->
-  <!--                <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-  <!--                <path-->
-  <!--                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"-->
-  <!--                  fill="#F36B08"/>-->
-  <!--                </svg>-->
-  <!--                </span>-->
-  <!--                </div>-->
-  <!--              </a>-->
-  <!--            </div>-->
-  <!--          </div>-->
-  <!--        </ng-template>-->
-  <!--      </ngb-carousel>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </div>
 

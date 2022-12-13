@@ -4,11 +4,11 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, hr {
   padding: 0;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -17,6 +17,7 @@ a{
   margin: auto;
   width: 100%;
   /*padding-top: 30px;*/
+
 }
 
 .container-home a {
@@ -54,8 +55,12 @@ img {
 /*  background-color: #F4B689;*/
 /*}*/
 
+.section_home{
+  background-color: #f5f5f5;
+}
+
 .container-home .welcome {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .container-home .welcome .span-welcome-0 {
@@ -88,15 +93,58 @@ img {
   background-color: #F4B689;
 }
 
-.container-home .interesting_place {
+.container-home .interesting_place,
+.container-home .experience_place {
   padding-top: 25px;
+}
+
+.container-home .experience_place .title {
+  text-align: center;
+  padding-bottom: 25px;
 }
 
 .container-home .interesting_place .title h2,
 .container-home .experience_place .title h2,
 .container-home .top_room .title h2 {
   font-size: 32px;
-  font-family: 'Baloo';
+  font-family: "Inder";
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.container-home .experience_place .title p{
+  font-size: 18px;
+  padding-bottom: 10px;
+  font-family: "Inder";
+}
+
+.container-home .experience_place
+.card_experience_place .image_slide{
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+}
+
+.container-home .experience_place
+.card_experience_place .image_slide img{
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.container-home .experience_place
+.card_experience_place .title_province{
+  position: absolute;
+  top: 85%;
+  left: 35%;
+}
+
+.container-home .experience_place
+.card_experience_place .title_province h2{
+  color: #FFFFFF;
+}
+
+owl-carousel-o .owl-nav{
+  position: absolute;
 }
 
 /*.container-home .interesting_place .card_interesting_place {*/
