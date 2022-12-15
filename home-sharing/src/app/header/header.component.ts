@@ -37,7 +37,14 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   formSearch:FormGroup
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    this.isOpen = !!this.searchFilter.nativeElement.contains(event.target);
+    // try {
+    //   this.isOpen = !!this.searchFilter.nativeElement.contains(event.target);
+    // }catch (e){
+    //
+    // }
+    if(this.searchFilter){
+      this.isOpen = !!this.searchFilter.nativeElement.contains(event.target);
+    }
   }
   constructor(private eRef: ElementRef,private router:Router,private auth:AuthService,private fb:FormBuilder,private headerService:HeaderService) { }
   private readonly searchSubject = new Subject<string | undefined>();
