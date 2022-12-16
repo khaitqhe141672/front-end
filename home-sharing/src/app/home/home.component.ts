@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getDataInterestingPlace()
     this.getDataPostTopRate()
     console.log(this.authService.getToken())
+
   }
 
   getDataRecommendedPlace() {
@@ -69,6 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
   }
 
   logout() {
@@ -82,7 +84,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+    navText: ['<i class="fa fa-chevron-left"></i>',
+      '<i class="fa fa-chevron-right"></i>'],
     autoplay: true,
     margin: 10,
     responsive: {
@@ -100,7 +103,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     },
     nav: true,
+  }
 
+  counter(i: number) {
+    return new Array(i);
   }
 
 }

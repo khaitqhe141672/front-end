@@ -8,4 +8,6 @@ export class PostTopRate{
   urlImage: string
   title: string
   star: number
+  price: number
+  address: string
 }

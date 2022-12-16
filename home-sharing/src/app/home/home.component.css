@@ -55,7 +55,7 @@ img {
 /*  background-color: #F4B689;*/
 /*}*/
 
-.section_home{
+.section_home {
   background-color: #f5f5f5;
 }
 
@@ -111,40 +111,103 @@ img {
   font-weight: bold;
   padding-bottom: 10px;
 }
-.container-home .experience_place .title p{
+
+.container-home .experience_place .title p {
   font-size: 18px;
   padding-bottom: 10px;
   font-family: "Inder";
 }
 
 .container-home .experience_place
-.card_experience_place .image_slide{
-    width: 100%;
-    height: 280px;
-    border-radius: 10px;
+.card_experience_place .image_slide {
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
 }
 
 .container-home .experience_place
-.card_experience_place .image_slide img{
+.card_experience_place .image_slide img {
   border-radius: 10px;
   width: 100%;
   height: 100%;
 }
 
 .container-home .experience_place
-.card_experience_place .title_province{
+.card_experience_place .title_province {
   position: absolute;
   top: 85%;
   left: 35%;
 }
 
 .container-home .experience_place
-.card_experience_place .title_province h2{
+.card_experience_place .title_province h2 {
   color: #FFFFFF;
 }
 
-owl-carousel-o .owl-nav{
+.container-home .experience_place
+.experience_place_card .card_item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 15px;
+  row-gap: 25px;
+}
+
+.container-home .experience_place
+.experience_place_card .card_item a:hover {
+  border: 1px solid #F36B08;
+  border-radius: 5px;
+}
+
+.container-home .experience_place
+.experience_place_card .card_item .image_post {
+  width: 295px;
+  height: 200px;
+}
+
+.container-home .experience_place h3 {
+  color: #F36B08;
+  text-align: end;
+  font-weight: bold;
+}
+
+.container-home .experience_place
+.other_post {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.container-home .experience_place
+.other_post button {
+  padding: 7px 60px 7px 60px;
+  font-size: 22px;
+  color: #F36B08;
+  border: 1px solid #F36B08;
+}
+
+::ng-deep .owl-nav {
+  opacity: 0.6;
+}
+
+::ng-deep .owl-nav .owl-prev,
+::ng-deep .owl-nav .owl-next {
   position: absolute;
+  top: 40%;
+  padding: 17px 17px !important;
+}
+
+::ng-deep .owl-nav .owl-prev {
+  left: 15px;
+}
+
+::ng-deep .owl-nav .owl-next {
+  right: 15px;
+}
+
+::ng-deep .owl-nav .owl-prev i,
+::ng-deep .owl-nav .owl-next i{
+  font-size: 24px;
+  color: #FFFFFF;
 }
 
 /*.container-home .interesting_place .card_interesting_place {*/

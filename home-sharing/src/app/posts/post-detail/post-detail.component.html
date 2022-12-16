@@ -1,16 +1,16 @@
 <div class="container-detail">
   <div class="title">
-    <div #target>Your target</div>
+    <div #target style="display: none;">Your target</div>
 
     <h2 #point_1>{{postDetail.title}}
 
       <span class="star_detail">
       <svg fill="none" height="35" viewBox="0 0 36 35" width="36" xmlns="http://www.w3.org/2000/svg">
 <!--      <g filter="url(#filter0_d_116_116)">-->
-<!--      <path-->
-<!--        d="M9.49165 26.25L11.5583 17.5L4.58331 11.5L13.8833 10.75L17.5 2.5L21.1166 10.75L30.4166 11.5L26.2833 15H25.25C24.3458 15 23.4416 15.125 22.5375 15.5L25.3791 13.125L19.6958 12.625L17.5 7.625L15.3041 12.625L9.62081 13.125L13.8833 16.75L12.5916 22.125L17.5 19.25L18.1458 19.625C17.8875 20.25 17.6291 21 17.6291 21.625L9.49165 26.25ZM24.9916 26.5L21.375 22.75L22.925 21.25L24.9916 23.25L29.6416 18.75L31.1916 20.5L24.9916 26.5Z"-->
-<!--        fill="#F3420A"/>-->
-<!--      </g>-->
+        <!--      <path-->
+        <!--        d="M9.49165 26.25L11.5583 17.5L4.58331 11.5L13.8833 10.75L17.5 2.5L21.1166 10.75L30.4166 11.5L26.2833 15H25.25C24.3458 15 23.4416 15.125 22.5375 15.5L25.3791 13.125L19.6958 12.625L17.5 7.625L15.3041 12.625L9.62081 13.125L13.8833 16.75L12.5916 22.125L17.5 19.25L18.1458 19.625C17.8875 20.25 17.6291 21 17.6291 21.625L9.49165 26.25ZM24.9916 26.5L21.375 22.75L22.925 21.25L24.9916 23.25L29.6416 18.75L31.1916 20.5L24.9916 26.5Z"-->
+        <!--        fill="#F3420A"/>-->
+        <!--      </g>-->
       <defs>
       <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="38" id="filter0_d_116_116"
               width="39" x="-2"
@@ -77,13 +77,14 @@
           </div>
           <div class="utility-content">
             <ul>
-              <li *ngFor="let p of postDetail.postUtilityDtoList;let i = index" >
+              <li *ngFor="let p of postDetail.postUtilityDtoList;let i = index">
                 <div *ngIf="i<=3">
                   <svg height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"
-                          fill-rule="evenodd"></path>
+                    <path
+                      d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"
+                      fill-rule="evenodd"></path>
                   </svg>
-                  {{p.nameUtility.length>9?(p.nameUtility|slice:0:9)+'...':(p.nameUtility)}}
+                  {{p.nameUtility.length > 9 ? (p.nameUtility|slice:0:9) + '...' : (p.nameUtility)}}
                 </div>
 
               </li>
@@ -101,8 +102,9 @@
                 {{postDetail.hostName}}
                 <span *ngIf="postDetail.typeAccountHost==1" class="ms-2" style="margin: 0">
                   <svg fill="none" height="24" viewBox="0 0 23 24" width="23" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.8819 23.3056H10.6918L7.89247 20.3208H3.75221L2.86381 19.4532V15.2536L0.0310059 12.2688V11.0368L2.86381 8.05197V3.8351L3.75221 2.96743H7.89247L10.6918 0H11.8819L14.765 2.96743H18.8382L19.6763 3.81775V8.05197L22.5426 11.0368V12.2688L19.626 15.2536V19.4532L18.7879 20.3208H14.765L11.8819 23.3056ZM9.11611 15.9478H10.3062L16.6256 9.40554L15.4354 8.17345L9.71954 14.1083L7.40636 11.7135L6.21625 12.9456L9.11611 15.9478Z"
-                    fill="black"/>
+                    <path
+                      d="M11.8819 23.3056H10.6918L7.89247 20.3208H3.75221L2.86381 19.4532V15.2536L0.0310059 12.2688V11.0368L2.86381 8.05197V3.8351L3.75221 2.96743H7.89247L10.6918 0H11.8819L14.765 2.96743H18.8382L19.6763 3.81775V8.05197L22.5426 11.0368V12.2688L19.626 15.2536V19.4532L18.7879 20.3208H14.765L11.8819 23.3056ZM9.11611 15.9478H10.3062L16.6256 9.40554L15.4354 8.17345L9.71954 14.1083L7.40636 11.7135L6.21625 12.9456L9.11611 15.9478Z"
+                      fill="black"/>
                 </svg>
             </span>
               </h2>
@@ -117,7 +119,10 @@
 
 
       <div class="div-contact d-flex flex-row">
-        <button class="btn-mess" mat-raised-button (click)="goToLink(postDetail.mobileHost)"><mat-icon>forum</mat-icon>Liên hệ</button>
+        <button class="btn-mess" mat-raised-button (click)="goToLink(postDetail.mobileHost)">
+          <mat-icon>forum</mat-icon>
+          Liên hệ
+        </button>
       </div>
       <div class="div-scroll">
         <button style="background-color: #367E18" mat-mini-fab (click)="scrollToElement(target)">
@@ -198,11 +203,13 @@
                   <p>{{rate.dateRate}}</p>
                 </div>
                 <div>
-                  <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon" color="warn" mat-icon-button
+                  <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                          color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_up_off</mat-icon>
                   </button>
-                  <button (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon" color="warn" mat-icon-button
+                  <button (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                          color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_down</mat-icon>
                   </button>

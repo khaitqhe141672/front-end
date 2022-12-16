@@ -53,16 +53,16 @@
       <div class="card_experience_place">
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let slide of recommendedPlace">
-              <ng-template carouselSlide>
-                <a routerLink="/posts/post-detail/{{slide.provinceID}}">
-                  <div class="image_slide">
-                    <img [src]="slide.imageUrl">
-                  </div>
-                  <div class="title_province">
-                    <h2>{{slide.provinceName}}</h2>
-                  </div>
-                </a>
-              </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/posts/post-detail/{{slide.provinceID}}">
+                <div class="image_slide">
+                  <img [src]="slide.imageUrl">
+                </div>
+                <div class="title_province">
+                  <h2>{{slide.provinceName}}</h2>
+                </div>
+              </a>
+            </ng-template>
           </ng-container>
         </owl-carousel-o>
       </div>
@@ -72,7 +72,32 @@
       <div class="title">
         <h2>Địa điểm dành cho bạn</h2>
       </div>
-
+      <div class="experience_place_card">
+        <div class="card_item">
+          <a routerLink="/posts/post-detail/{{i.postID}}" *ngFor="let i of postTopRate">
+            <div class="card" style="width: 100%;">
+              <div class="image_post">
+                <img [src]="i.urlImage" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h2 class="card-title">{{i.title}}</h2>
+                <p style="font-size: 12px; color: #D9D9D9" *ngIf="i.star === 0.0">Chưa đánh giá</p>
+                <p>
+                  <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>
+                </p>
+                <p>
+                  <mat-icon style="color: red;">location_on</mat-icon>
+                  {{i.address}}
+                </p>
+                <h3>{{i.price | currency: "VND"}} /Đêm</h3>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="other_post">
+        <button mat-stroked-button color="warn">Xem thêm</button>
+      </div>
     </div>
 
 
