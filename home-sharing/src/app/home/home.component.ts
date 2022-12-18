@@ -8,6 +8,8 @@ import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
 import {PostTopRate, ResponsePostTopRate} from "../shared/model/PostYopRate.model";
 import {OwlOptions} from 'ngx-owl-carousel-o';
 
+declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getDataInterestingPlace()
     this.getDataPostTopRate()
     console.log(this.authService.getToken())
+
   }
 
   getDataRecommendedPlace() {
@@ -67,6 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
   }
 
   logout() {
@@ -80,8 +84,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['ư', 'ư'],
+    navText: ['<i class="fa fa-chevron-left"></i>',
+      '<i class="fa fa-chevron-right"></i>'],
     autoplay: true,
+    margin: 10,
     responsive: {
       0: {
         items: 1
@@ -96,16 +102,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
         items: 4
       }
     },
-    nav: true
+    nav: true,
   }
 
-  slides = [
-    {id: 1, img: "https://dummyimage.com/350x150/423b42/fff"},
-    {id: 2, img: "https://dummyimage.com/350x150/2a2b7a/fff"},
-    {id: 3, img: "https://dummyimage.com/350x150/1a2b7a/fff"},
-    {id: 4, img: "https://dummyimage.com/350x150/7a2b7a/fff"},
-    {id: 5, img: "https://dummyimage.com/350x150/9a2b7a/fff"},
-    {id: 6, img: "https://dummyimage.com/350x150/5a2b7a/fff"},
-    {id: 6, img: "https://dummyimage.com/350x150/4a2b7a/fff"}
-  ];
+  counter(i: number) {
+    return new Array(i);
+  }
+
 }
