@@ -95,10 +95,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       400: {
         items: 2
       },
-      740: {
+      750: {
+        items: 2
+      },
+      800: {
         items: 3
       },
-      940: {
+      1200: {
         items: 4
       }
     },

@@ -1,35 +1,36 @@
-.footer-content .container-footer{
+.footer-content .container-footer {
   max-width: 1230px;
   margin: auto;
   width: 100%;
   padding-top: 0px;
 }
-ul, li, h1, h2, h4, h5, p, span{
+
+ul, li, h1, h2, h4, h5, p, span {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-content .container-footer .footer-info{
+.footer-content .container-footer .footer-info {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
 }
 
-.footer-content .container-footer .footer-info li{
+.footer-content .container-footer .footer-info li {
   line-height: 30px;
   color: black;
 }
 
-.footer-content{
+.footer-content {
   background-color: #E4975E;
 }
 
-footer .footer-final{
+footer .footer-final {
   background-color: #F36B08;
 }
 
-footer .footer-final .footer-final-content{
+footer .footer-final .footer-final-content {
   max-width: 1230px;
   margin: auto;
   width: 100%;
@@ -40,15 +41,149 @@ footer .footer-final .footer-final-content{
   align-items: center;
 }
 
-footer .footer-final .footer-final-content .ul-one{
+footer .footer-final .footer-final-content .ul-one {
   display: grid;
   grid-template-columns: 1fr 120px 150px 150px;
   align-items: center;
 }
 
-footer .footer-final .footer-final-content .ul-two{
+footer .footer-final .footer-final-content .ul-two {
   justify-items: right;
   display: grid;
   grid-template-columns: 1fr 50px 150px 50px;
   align-items: center;
+}
+
+@media (max-width: 1190px) {
+  .footer-content .container-footer {
+    max-width: 1000px;
+    margin: auto;
+    width: 100%;
+  }
+
+  footer .footer-final .footer-final-content {
+    max-width: 1000px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .footer-content .container-footer {
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .footer-content .container-footer .footer-info {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 1fr;
+  }
+
+  footer .footer-final .footer-final-content {
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media (max-width: 920px) {
+  .footer-content .container-footer {
+    max-width: 700px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .footer-content .container-footer .footer-info {
+    padding-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .footer-final .footer-final-content {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  footer .footer-final .footer-final-content .ul-two {
+    justify-items: center;
+    display: grid;
+    /*grid-template-columns: 1fr 50px 150px 50px;*/
+    grid-template-columns: 180px 50px 150px 50px;
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 770px) {
+  .footer-content .container-footer {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .footer-content .container-footer .footer-info {
+    padding-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .footer-final .footer-final-content {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  footer .footer-final .footer-final-content .ul-two {
+    justify-items: center;
+    display: grid;
+    /*grid-template-columns: 1fr 50px 150px 50px;*/
+    grid-template-columns: 180px 50px 150px 50px;
+    padding-top: 15px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .footer-content .container-footer {
+    max-width: 300px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .footer-content .container-footer .footer-info {
+    padding-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  footer .footer-final .footer-final-content .ul-one {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+
+  footer .footer-final .footer-final-content {
+    max-width: 300px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  footer .footer-final .footer-final-content .ul-two {
+    display: grid;
+    /*grid-template-columns: 1fr 50px 150px 50px;*/
+    grid-template-columns: 1fr;
+    padding-top: 15px;
+  }
 }

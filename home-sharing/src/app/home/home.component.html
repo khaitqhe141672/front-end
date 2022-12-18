@@ -75,12 +75,12 @@
       <div class="experience_place_card">
         <div class="card_item">
           <a routerLink="/posts/post-detail/{{i.postID}}" *ngFor="let i of postTopRate">
-            <div class="card" style="width: 100%;">
+            <div class="card_post" style="width: 100%;">
               <div class="image_post">
-                <img [src]="i.urlImage" class="card-img-top" alt="...">
+                <img [src]="i.urlImage" style="border-radius: 10px 10px 0 0;">
               </div>
-              <div class="card-body">
-                <h2 class="card-title">{{i.title}}</h2>
+              <div class="card_body">
+                <h2 class="card_title">{{i.title}}</h2>
                 <p style="font-size: 12px; color: #D9D9D9" *ngIf="i.star === 0.0">Chưa đánh giá</p>
                 <p>
                   <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>
