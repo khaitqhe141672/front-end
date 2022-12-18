@@ -314,27 +314,29 @@
             </div>
           </div>
         </div>
-
-
         <div class="list_card_search">
           <div class="card_search"  *ngFor="let post of listSearchByTitle" [routerLink]="'../posts/post-detail/'+post.postID">
             <div class="image_search">
               <img alt="" [src]="post.imageUrl">
             </div>
-            <div class="info_post">
-              <div class="left">
-                <h3>{{post.title}}</h3>
-                <h4>{{post.price}}<sup>đ</sup></h4>
-              </div>
-              <div class="right">
-              <span>
-                <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
-                  fill="#F36B08"/>
-                </svg>
-                {{post.avgStar}}
-              </span>
+            <div class="">
+              <div class="row p-2">
+                <div class="col-12">
+                  <h3 matTooltip="{{post.title}}">{{(post.title.length>30)?(post.title|slice:0:30)+'...':(post.title)}}</h3>
+                </div>
+                <div class="col-12 pt-0 info_post">
+                  <span *ngIf="post.avgStar">
+                    <svg fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
+                      fill="#F36B08"/>
+                  </svg>
+                    {{post.avgStar|number:'1.0-1'}}
+                  </span>
+                </div>
+                <div class="col-12">
+                  <h4>{{post.price|currency}}</h4>
+                </div>
               </div>
             </div>
           </div>
@@ -345,12 +347,7 @@
           </div>
         </div>
         <div class="page_item w-100 d-flex justify-content-end align-items-end" style="padding-top: 10px;">
-          <mat-paginator [length]="100"
-                         [pageSizeOptions]="[5, 10, 25, 100]"
-                         [pageSize]="10"
-                         aria-label="Select page"
-                         hidePageSize>
-          </mat-paginator>
+          <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPage==0?1:10*totalPage" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
         </div>
       </div>
     </div>

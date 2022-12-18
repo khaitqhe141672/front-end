@@ -1,6 +1,6 @@
 <div class="container-detail">
   <div class="title">
-    <div #target>Your target</div>
+    <div style="visibility: hidden" #target></div>
 
     <h2 #point_1>{{postDetail.title}}
 
@@ -171,7 +171,7 @@
       <div class="title-rate">
         <h2 style="font-size: 36px;">Đánh giá</h2>
       </div>
-      <div class="title-rate-detail">
+      <div *ngIf="rates.length<=0" class="title-rate-detail">
         <p>Chưa có đánh giá nào</p>
       </div>
       <div *ngIf="rates.length>0">

@@ -14,6 +14,7 @@ import {Province} from "../shared/model/district.model";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProvincePickerComponent} from "../shared/dialog/province-picker/province-picker.component";
 import Swal from "sweetalert2";
+import {PageEvent} from "@angular/material/paginator";
 
 declare var $: any;
 
@@ -23,14 +24,14 @@ declare var $: any;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit, AfterViewInit {
-
+  typeSearch:number = 0
   savedService = []
   savedRoomType = []
   savedRate = []
   isDiscout = 0
   savedProvinceID = 0
 
-  title
+  title = ''
   pageIndex = 1
   totalPage = 1
 
@@ -52,16 +53,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    //1: title
+    //2: province
     this.route.queryParams.subscribe(params => {
       console.log('title: ' + params['title'])
-      this.title = params['title']
-      if (this.title) {
-        this.searchService.searchMoreByTitle(this.title, this.pageIndex).subscribe(response => {
-          this.totalPage = response.data.sizePage
-          this.listSearchByTitle = response.data.searchList
-          this.totalPage = response.data.sizePage
-        })
-      }
+      this.title = params['title']?params['title']:''
+      this.typeSearch = params['type'] as number
+      console.log('type: '+this.typeSearch)
+      // if (this.title) {
+        this.getData()
+      // }
     })
     this.formFilterData = this._formBuilder.group({
       optionPriceCtrl: [''],
@@ -78,6 +79,22 @@ export class SearchComponent implements OnInit, AfterViewInit {
     })
     this.initDataFilter()
     this.initProvince()
+  }
+
+  getData(){
+    if(this.typeSearch==1){
+      this.searchService.searchMoreByTitle(this.title, this.pageIndex).subscribe(response => {
+        this.totalPage = response.data.sizePage
+        this.listSearchByTitle = response.data.searchList
+        this.totalPage = response.data.sizePage
+      })
+    }else{
+      this.searchService.searchMoreByProvince(this.title, this.pageIndex).subscribe(response => {
+        this.totalPage = response.data.sizePage
+        this.listSearchByTitle = response.data.listPost
+        this.totalPage = response.data.sizePage
+      })
+    }
   }
 
   onSelectProvince() {
@@ -179,7 +196,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return
     }
 
-    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
+    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.title,this.typeSearch,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage
       this.listSearchByTitle = response.data.searchList.slice()
     },()=>{
@@ -267,6 +284,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   resetProvince() {
     this.formFilterData.controls.provinceCtrl.patchValue('')
     this.savedProvinceID = 0
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex = ++e.pageIndex
+    this.onFilterData()
   }
 }
 

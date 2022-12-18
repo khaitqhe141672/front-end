@@ -17,111 +17,94 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card radius-10 border-start border-0 border-3 border-info-2">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div>
-              <p class="mb-0 text-secondary">Tổng số bài viết đang hoạt động</p>
-              <h4 class="my-1 text-info">{{hostDashBoardData.totalPostActive}}</h4>
-              <p class="mb-0 font-13"></p>
-            </div>
-            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter-2 text-white ms-auto"><i class="fa fa-newspaper"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card radius-10 border-start border-0 border-3 border-info-3">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div>
-              <p class="mb-0 text-secondary">Tổng số bài viết dừng hoạt động</p>
-              <h4 class="my-1 text-info">{{hostDashBoardData.totalPostDeActive}}</h4>
-              <p class="mb-0 font-13"></p>
-            </div>
-            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter-3 text-white ms-auto"><i class="fa fa-newspaper"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 <!--    <div class="col">-->
-<!--      <div class="card radius-10 border-start border-0 border-3 border-danger">-->
+<!--      <div class="card radius-10 border-start border-0 border-3 border-info-2">-->
 <!--        <div class="card-body">-->
 <!--          <div class="d-flex align-items-center">-->
 <!--            <div>-->
-<!--              <p class="mb-0 text-secondary">Tổng lượt đặt phòng</p>-->
-<!--              <h4 class="my-1 text-danger">{{hostDashBoardData.totalBooking}}</h4>-->
+<!--              <p class="mb-0 text-secondary">Tổng số bài viết đang hoạt động</p>-->
+<!--              <h4 class="my-1 text-info">{{hostDashBoardData.post[0]?hostDashBoardData.post[0].value:0}}</h4>-->
 <!--              <p class="mb-0 font-13"></p>-->
 <!--            </div>-->
-<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-dollar"></i>-->
+<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter-2 text-white ms-auto"><i class="fa fa-newspaper"></i>-->
 <!--            </div>-->
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
 <!--    <div class="col">-->
-<!--      <div class="card radius-10 border-start border-0 border-3 border-warning-2">-->
+<!--      <div class="card radius-10 border-start border-0 border-3 border-info-3">-->
 <!--        <div class="card-body">-->
 <!--          <div class="d-flex align-items-center">-->
 <!--            <div>-->
-<!--              <p class="mb-0 text-secondary">Tổng tài khoản chủ nhà</p>-->
-<!--              <h4 class="my-1 text-warning">{{adminDashBoardData.totalHost}}</h4>-->
+<!--              <p class="mb-0 text-secondary">Tổng số bài viết dừng hoạt động</p>-->
+<!--              <h4 class="my-1 text-info">{{hostDashBoardData.post[1]?hostDashBoardData.post[1].value:0}}</h4>-->
 <!--              <p class="mb-0 font-13"></p>-->
 <!--            </div>-->
-<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-host text-white ms-auto"><i class="fa fa-users"></i>-->
+<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter-3 text-white ms-auto"><i class="fa fa-newspaper"></i>-->
 <!--            </div>-->
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--    <div class="col">-->
-<!--      <div class="card radius-10 border-start border-0 border-3 border-warning">-->
-<!--        <div class="card-body">-->
-<!--          <div class="d-flex align-items-center">-->
-<!--            <div>-->
-<!--              <p class="mb-0 text-secondary">Tổng tài khoản chủ nhà bị cấm</p>-->
-<!--              <h4 class="my-1 text-warning">{{hostDashBoardData.totalHostDeActive}}</h4>-->
-<!--              <p class="mb-0 font-13"></p>-->
-<!--            </div>-->
-<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-customer text-white ms-auto"><i class="fa fa-users"></i>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col">-->
-<!--      <div class="card radius-10 border-start border-0 border-3 border-success">-->
-<!--        <div class="card-body">-->
-<!--          <div class="d-flex align-items-center">-->
-<!--            <div>-->
-<!--              <p class="mb-0 text-secondary">Tổng tài khoản người dùng</p>-->
-<!--              <h4 class="my-1 text-success">{{adminDashBoardData.totalCustomer}}</h4>-->
-<!--              <p class="mb-0 font-13"></p>-->
-<!--            </div>-->
-<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-bar-chart"></i>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+  </div>
+  <hr>
 
-<!--    <div class="col">-->
-<!--      <div class="card radius-10 border-start border-0 border-3 border-warning">-->
-<!--        <div class="card-body">-->
-<!--          <div class="d-flex align-items-center">-->
-<!--            <div>-->
-<!--              <p class="mb-0 text-secondary">Tổng tài khoản người dùng đã bị cấm</p>-->
-<!--              <h4 class="my-1 text-warning">{{adminDashBoardData.totalCustomerDeActive}}</h4>-->
-<!--              <p class="mb-0 font-13"></p>-->
-<!--            </div>-->
-<!--            <div class="widgets-icons-2 rounded-circle bg-gradient-customer text-white ms-auto"><i class="fa fa-users"></i>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+  <div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+      <h1>Thống kê bài đăng</h1>
+    </div>
+    <div class="row mb-5 row-cols-1 row-cols-md-2 row-cols-xl-4">
+      <div class="col">
+        <div class="container-fluid mt-3">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+            <div class="col">
+              <ngx-charts-pie-chart
+                [doughnut]="isDoughnut"
+                [gradient]="gradient"
+                [labels]="showLabels"
+                [legendPosition]="legendPosition"
+                [legendTitle]="legendTitle"
+                [legend]="showLegend"
+                [results]="this.hostDashBoardData.post"
+                [scheme]="colorScheme"
+                [view]="view"
+              >
+              </ngx-charts-pie-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 80px">
+    <hr>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+      <h1>Lượt khách đã đón theo từng Homestay</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+      <div class="col">
+        <div class="container-fluid mt-3">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+            <div class="col">
+              <ngx-charts-bar-vertical
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="this.totalPriceByPost"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

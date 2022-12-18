@@ -120,8 +120,9 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
   onSearchMore() {
-    this.router.navigate(['../search'])
-    this.isOpen = false
+    // this.router.navigate(['../search'])
+    // this.isOpen = false
+    this.showMore(1)
   }
 
 
@@ -130,7 +131,11 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     //2: province
     if(type==1){
       let title = this.formSearch.controls.searchCtrl.value
-      this.router.navigate(['../search'],{queryParams:{title:title}})
+      this.router.navigate(['../search'],{queryParams:{title:title, type:type}})
+    }
+    else if(type==2){
+      let province = this.formSearch.controls.searchCtrl.value
+      this.router.navigate(['../search'],{queryParams:{title:province,type:type}})
     }
 
     this.isOpen = false

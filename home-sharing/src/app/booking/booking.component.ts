@@ -99,7 +99,7 @@ export class BookingComponent implements OnInit {
 
   initForm(){
     this.formGroupBooking = this.fb.group({
-      fullNameCtrl:['',[Validators.required]],
+      fullNameCtrl:['',[Validators.required,Validators.pattern("^\\D*\\s*$")]],
       phoneNumberCtrl:['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(10)]],
       emailCtrl:['',[Validators.required,Validators.email]],
       confirmCtrl:[''],

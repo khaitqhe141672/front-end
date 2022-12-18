@@ -98,3 +98,5 @@ export const API_CUS_REPORT_RATE_TYPE = 'http://localhost:8080/api/report-type/a
 export const API_SEARCH_FAST = 'http://localhost:8080/api/search/fill-search'
 export const API_SEARCH_DETAIL = 'http://localhost:8080/api/search/filter-search?index-page='
 export const API_SEARCH_MORE_BY_TITLE = 'http://localhost:8080/api/search?index-page='
+export const API_SEARCH_MORE_BY_PROVINCE = 'http://localhost:8080/api/search/search-by-province?index-page='
+

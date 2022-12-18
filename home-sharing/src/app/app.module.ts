@@ -230,7 +230,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MatCardModule, MatDialogModule,
     MatNativeDateModule, FormsModule,
     MatTabsModule, MatTableModule, MatSidenavModule, MatExpansionModule, MatTreeModule, MatSortModule, MatRadioModule, MatTooltipModule,
-    SweetAlert2Module.forRoot(), PieChartModule,
+    SweetAlert2Module.forRoot(), PieChartModule, NgxChartsModule,
   ],
   providers: [
     DatePipe,
