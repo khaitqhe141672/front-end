@@ -87,7 +87,7 @@ export class AuthService {
     if (!errorResponse.error || !errorResponse.error.status) {
       return throwError(() => new Error(errorMessage))
     }
-    console.log(errorResponse)
+    console.log(errorResponse.error.message)
     // console.log(errorResponse.error.status)
     switch (errorResponse.error.status) {
       case 'EXPECTATION_FAILED':
@@ -102,7 +102,7 @@ export class AuthService {
     }
     Swal.fire({
       icon:'error',
-      title:errorMessage
+      title:errorResponse.error.message
     })
     // console.log(errorMessage)
     return throwError(() => new Error(errorMessage))
