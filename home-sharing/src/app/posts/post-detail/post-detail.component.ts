@@ -53,6 +53,7 @@ export class PostDetailComponent implements OnInit {
       this.id = +params['id']
       this.postDetail = this.postDetailService.postDetail
       console.log('date range: '+this.postDetail)
+      if(this.postDetail.avgRate)
       this.postDetail.avgRate = +this.postDetail.avgRate.toFixed(1)
     })
     this.getRate()
@@ -189,12 +190,7 @@ export class PostDetailComponent implements OnInit {
   }
 
   scrollToElement(element) {
-    console.log(element);
     element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-  }
-  scrollPoint1(el: HTMLElement) {
-    // el.scrollIntoView({behavior: "smooth"});
-    el.scrollIntoView();
   }
 }
 

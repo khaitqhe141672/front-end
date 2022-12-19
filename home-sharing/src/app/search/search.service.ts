@@ -2,7 +2,12 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SearchTitleResponse} from "../shared/model/search-title.model";
-import {API_PROVINCE, API_SEARCH_DETAIL, API_SEARCH_MORE_BY_TITLE} from "../constant/api.constant";
+import {
+  API_PROVINCE,
+  API_SEARCH_DETAIL,
+  API_SEARCH_MORE_BY_PROVINCE,
+  API_SEARCH_MORE_BY_TITLE
+} from "../constant/api.constant";
 import {ResponseProvince} from "../shared/model/district.model";
 
 @Injectable({providedIn:'root'})
@@ -14,9 +19,14 @@ export class SearchService{
       searchText:data
     })
   }
+  searchMoreByProvince(data:string,pageIndex:number):Observable<SearchTitleResponse>{
+    return this.http.post<SearchTitleResponse>(API_SEARCH_MORE_BY_PROVINCE+pageIndex,{
+      searchText:data
+    })
+  }
   searchByFilter(statusVoucher:number,service:number[],roomTypeID:number,startDate:string,
                  minPrice:number,maxPrice:number,statusStar:number,statusSortPrice:number,
-                 numberOfGuest:number,provinceID:number,indexPage:number):Observable<SearchTitleResponse>{
+                 numberOfGuest:number,provinceID:number, textSearch: string, typeSearch: number,indexPage:number):Observable<SearchTitleResponse>{
     console.log('------------------------------------')
     console.log('minPrice: '+minPrice)
     console.log('maxPriceCtrl: '+maxPrice)

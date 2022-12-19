@@ -4,7 +4,8 @@ export interface SearchTitleResponse {
 }
 
 export interface SearchTitleData {
-  searchList: SearchListByTitle[]
+  searchList?: SearchListByTitle[]
+  listPost?:SearchListByTitle[]
   sizePage: number
 }
 

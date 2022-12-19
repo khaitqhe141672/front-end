@@ -74,7 +74,8 @@ export class UserInfoComponent implements OnInit {
         icon: 'success',
         title: 'Cập nhập thông tin thành công',
       })
-    },()=>{
+    },(response)=>{
+      console.log(response)
       Swal.fire({
         icon: 'error',
         title: 'Cập nhập thông tin thất bại!',

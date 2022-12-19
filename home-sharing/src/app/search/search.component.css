@@ -358,3 +358,6 @@ img, iframe {
 .list_card_search{
   min-height: 800px;
 }
+.list_card_search:hover{
+  cursor: pointer;
+}
