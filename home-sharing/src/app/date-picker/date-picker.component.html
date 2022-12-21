@@ -7,8 +7,8 @@
         <mat-form-field appearance="outline" color="warn">
           <mat-label>Chọn ngày bạn muốn thuê</mat-label>
           <mat-date-range-input restoreFocus [dateFilter]="bookedDateFilter"  [min]="minDate" [formGroup]="formDatePicker" [max]="maxDate" [rangePicker]="picker">
-            <input #dateRangeStart (dateChange)="limitDateRange(dateRangeStart)"  formControlName="startDate" matStartDate placeholder="Ngày bắt đầu">
-            <input #dateRangeEnd (dateChange)="resetMaxDate(dateRangeEnd)" formControlName="endDate" matEndDate placeholder="Ngày kết thúc"
+            <input readonly #dateRangeStart (dateChange)="limitDateRange(dateRangeStart)"  formControlName="startDate" matStartDate placeholder="Ngày bắt đầu">
+            <input readonly #dateRangeEnd (dateChange)="resetMaxDate(dateRangeEnd)" formControlName="endDate" matEndDate placeholder="Ngày kết thúc"
             >
           </mat-date-range-input>
           <mat-hint>Ngày/Tháng/Năm - Ngày/Tháng/Năm</mat-hint>
