@@ -169,7 +169,7 @@
                 </div>
                 <div class="col-12 text-start">
                   <mat-form-field appearance="outline">
-                    <mat-label>Nhập để tìm tiện ích</mat-label>
+                    <mat-label>Chọn tiện ích</mat-label>
                     <mat-chip-list #chipList aria-label="">
                       <mat-chip (removed)="removeUtilitys(utility)"
                                 *ngFor="let utility of saveUtilities"
@@ -187,7 +187,7 @@
                         [matChipInputFor]="chipList"
                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                         formControlName="utilitys"
-                        placeholder="Chọn tiện ích">
+                        placeholder="Nhập để tìm tiện ích">
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUtility($event)"
                                       [displayWith]="displayUtility">
@@ -306,7 +306,7 @@
                             [matChipInputFor]="chipListVoucher"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             formControlName="vouchers"
-                            placeholder="Chọn mã giảm giá">
+                            placeholder="Nhập để tìm mã giảm giá">
                         </mat-chip-list>
                         <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedVoucher($event)"
                                           [displayWith]="displayVoucher">

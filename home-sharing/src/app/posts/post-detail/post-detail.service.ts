@@ -31,8 +31,11 @@ export class PostDetailService {
     return this.postDetail
   }
 
-  getRatesByPostID(id: number): Observable<RateResponse> {
-    return this.http.get<RateResponse>(API_RATE_BY_POST_ID + id)
+  getRatesByPostID(id: number,indexPage:number): Observable<RateResponse> {
+    const httpParams =new HttpParams({fromString:'post_id='+id+'&index-page='+indexPage})
+    return this.http.get<RateResponse>(API_RATE_BY_POST_ID ,{
+      params:httpParams
+    })
   }
 
   getPostDetail(id:number):Observable<ResponsePostDetail>{

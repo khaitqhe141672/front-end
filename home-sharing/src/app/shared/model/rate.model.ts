@@ -1,6 +1,10 @@
-export class RateResponse {
-  status: string
-  object: Rate[]
+export interface RateResponse {
+  message: string
+  data: RateResponseData
+}
+export class RateResponseData {
+  sizePage: number
+  listRate: Rate[]
 }
 
 export class Rate {

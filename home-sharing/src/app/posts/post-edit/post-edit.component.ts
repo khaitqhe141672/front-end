@@ -383,6 +383,14 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
         icon:'error',
         title:'Tên Homestay không được bỏ trống'
       })
+      return;
+    }
+    if(description.trim() == ''){
+      Swal.fire({
+        icon:'error',
+        title:'Mô tả không được bỏ trống'
+      })
+      return;
     }
     // let servicePost2 = servicePost as {serviceID:number,serviceName:string,servicePrice:number}[]
     this.saveService = servicePost.map(service => {

@@ -23,7 +23,7 @@ export class PostDetailComponent implements OnInit {
   role = ''
   isShowRate =  false
   isShowBooking = false
-
+  pageIndex = 1
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   showMoreDialogRef:MatDialogRef<ShowMoreDialogComponent>
 
@@ -74,10 +74,10 @@ export class PostDetailComponent implements OnInit {
   }
 
   getRate() {
-    this.postDetailService.getRatesByPostID(this.id).subscribe(
+    this.postDetailService.getRatesByPostID(this.id,this.pageIndex).subscribe(
       responseRate => {
         this.rateResponse = responseRate
-        this.rates = responseRate.object
+        this.rates = responseRate.data.listRate
         console.log(this.rates)
       },
       error => console.log(error)

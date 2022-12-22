@@ -18,7 +18,7 @@ export class ConfirmAccountComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       let otp = params['otp']
       if(otp){
-        this.confirmAccount().subscribe(res=>{
+        this.confirmAccount(otp).subscribe(res=>{
           console.log(res.data.response)
           //400:false
           //200:success
@@ -34,8 +34,8 @@ export class ConfirmAccountComponent implements OnInit {
     })
   }
 
-  confirmAccount():Observable<any>{
-    return this.http.get(API_CONFIRM_ACCOUNT)
+  confirmAccount(otp:string):Observable<any>{
+    return this.http.get(API_CONFIRM_ACCOUNT+otp)
   }
 
   goToHome() {
