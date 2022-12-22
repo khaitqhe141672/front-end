@@ -208,6 +208,7 @@ export class BookingComponent implements OnInit {
         let differenceInTime = this.datePicked.endDate.getTime() - this.datePicked.startDate.getTime();
         this.daysBetween = Math.ceil(differenceInTime / (1000 * 3600 * 24)) + 1;
         console.log('daysBetween: '+this.daysBetween)
+        this.refreshPrice()
       }
     })
   }
