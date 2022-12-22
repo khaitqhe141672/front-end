@@ -26,14 +26,14 @@
                            id="username"
                            type="text">
                     <span *ngIf="!formRegister.get('userName').valid&&formRegister.get('userName').touched">
-                    <span *ngIf="formRegister.get('userName').errors['required']" class="text-danger">
-                        Hãy điền tên đăng nhập
-                    </span>
-                       <span *ngIf="formRegister.get('userName').errors['minLength']" class="text-danger">
-                        Tên đăng nhâp cần có ít nhất 6 ký tự
+                        <span *ngIf="formRegister.get('userName').errors['required']" class="text-danger">
+                            Hãy điền tên đăng nhập
                         </span>
-                      <span *ngIf="formRegister.get('userName').errors['pattern']" class="text-danger">
-                        Tên đăng nhâp cần có cả chữ và số
+                        <span *ngIf="formRegister.get('userName').errors?.minlength" class="text-danger">
+                            Tên đăng nhâp cần có ít nhất 6 ký tự
+                         </span>
+                        <span *ngIf="formRegister.get('userName').errors['pattern']" class="text-danger">
+                            Tên đăng nhâp cần có cả chữ không chứa dấu và số
                         </span>
                    </span>
                   </div>
@@ -91,7 +91,7 @@
                         Hãy nhập lại mật khẩu
                     </span>
                     <span *ngIf="formRegister.get('confirmPassword').errors['passwordMismatch']"
-                    class="text-danger">
+                          class="text-danger">
                         Mật khẩu không khớp
                     </span>
                     </span>
@@ -107,8 +107,8 @@
                            id="fullName"
                            type="text"
                     >
-                    <span class="text-danger"
-                      *ngIf="!formRegister.get('fullName').valid&&formRegister.get('fullName').touched">
+                    <span *ngIf="!formRegister.get('fullName').valid&&formRegister.get('fullName').touched"
+                          class="text-danger">
                       Hãy nhập tên
                     </span>
                   </div>
@@ -128,7 +128,7 @@
                       <span *ngIf="formRegister.get('dob').errors['required']" class="text-danger">
                         Hãy chọn ngày sinh
                     </span>
-                    <span class="text-danger" *ngIf="formRegister.get('dob').errors['errorDate']">
+                    <span *ngIf="formRegister.get('dob').errors['errorDate']" class="text-danger">
                       Ngày sinh không hợp lệ
                     </span>
                     </span>
@@ -190,12 +190,14 @@
                 </div>
               </div>
 
-              <button id="btn-submit" [disabled]="!formRegister.valid||isLoading==true" class="btn text-white btn-lg px-5" style="cursor: pointer"
+              <button [disabled]="!formRegister.valid||isLoading==true" class="btn text-white btn-lg px-5"
+                      id="btn-submit" style="cursor: pointer"
                       type="submit">Đăng Ký
               </button>
             </div>
             <div class="main-text-color">
-              <p class="">Bạn đã có tài khoản? <a class="main-text-color fw-bold" routerLink="/auth/login">Vui lòng đăng nhập</a>
+              <p class="">Bạn đã có tài khoản? <a class="main-text-color fw-bold" routerLink="/auth/login">Vui lòng đăng
+                nhập</a>
               </p>
             </div>
           </form>

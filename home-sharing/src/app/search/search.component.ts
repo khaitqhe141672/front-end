@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   savedRate = []
   isDiscout = 0
   savedProvinceID = 0
-
+  isShowTitleSearch = true
   title = ''
   pageIndex = 1
   totalPage = 1
@@ -163,7 +163,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     let roomTypeCtrl = this.formFilterData.controls.roomTypeCtrl.value
     let rateCtrl = this.formFilterData.controls.rateCtrl.value
 
-    let statusSortPrice = 1
+    // let statusSortPrice = 1
     let provinceId = 0
 
     if(!minPrice) minPrice = 0
@@ -195,8 +195,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
       })
       return
     }
-
-    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,statusSortPrice,guestNumberCtrl,this.savedProvinceID,this.title,this.typeSearch,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
+    if(this.typeSearch==2&&this.savedProvinceID!=0){
+      this.isShowTitleSearch = false
+    }
+    this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,optionPriceCtrl,guestNumberCtrl,this.savedProvinceID,this.title,this.typeSearch,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage
       this.listSearchByTitle = response.data.searchList.slice()
     },()=>{
@@ -289,6 +291,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   handlePageEvent(e: PageEvent) {
     this.pageIndex = ++e.pageIndex
     this.onFilterData()
+  }
+
+  onRemoveTitleToSearch() {
+    this.title = ''
+
   }
 }
 

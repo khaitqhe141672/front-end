@@ -120,7 +120,8 @@ export class PostDetailComponent implements OnInit {
               guestNumber: numberGuest,
               rootGuestNumber:this.postDetail.guestNumber,
               standardPrice: this.standardPrice,
-              listBookedDate:this.postDetail.bookingDate
+              listBookedDate:this.postDetail.bookingDate,
+              daysBetween:this.daysBetween
             }
           }
         )

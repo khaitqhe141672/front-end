@@ -32,11 +32,11 @@ export class RegisterComponent implements OnInit {
     this.formRegister = new FormGroup({
 
         'userName': new FormControl(null,
-          Validators.compose([
+          [
             Validators.required,
             Validators.minLength(6),
             Validators.pattern(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/),
-          ]),),
+          ],),
         'passWord': new FormControl(
           null,
           Validators.compose([
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
             // Validators.pattern(this.PASSWORD_PATTERN),
           ]),
         ),
-        'phoneNumber': new FormControl(null, [Validators.required, Validators.pattern(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/)]),
+        'phoneNumber': new FormControl(null, [Validators.required, Validators.pattern(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{7})\b/)]),
         'address': new FormControl(null, [Validators.required,Validators.minLength(10)]),
         'email': new FormControl(null,
           Validators.compose([Validators.required,

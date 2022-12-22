@@ -1,4 +1,13 @@
 <div class="container-search">
+  <div class="row">
+    <div class="col">
+      <h2 *ngIf="isShowTitleSearch">Kết quả tìm kiếm cho <span style="color: #F36B08">{{typeSearch==1?'Homestay':'địa điểm'}}</span> có từ khoá "{{title}}"
+<!--        <button mat-icon-button color="warn" (click)="onRemoveTitleToSearch()">-->
+<!--          <mat-icon>close</mat-icon>-->
+<!--        </button>-->
+      </h2>
+    </div>
+  </div>
   <form (ngSubmit)="onFilterData()" [formGroup]="formFilterData">
     <div class="content-search" style="padding-top: 20px;">
       <div class="menu-type">

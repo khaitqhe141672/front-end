@@ -28,16 +28,18 @@ export class SearchService{
                  minPrice:number,maxPrice:number,statusStar:number,statusSortPrice:number,
                  numberOfGuest:number,provinceID:number, textSearch: string, typeSearch: number,indexPage:number):Observable<SearchTitleResponse>{
     console.log('------------------------------------')
+    console.log('statusVoucher: '+statusVoucher)
+    console.log('service: '+service)
+    console.log('roomTypeID: '+roomTypeID)
+    console.log('startDate: '+startDate)
     console.log('minPrice: '+minPrice)
     console.log('maxPriceCtrl: '+maxPrice)
-    console.log('optionPriceCtrl: '+statusSortPrice)
-    console.log('date: '+startDate)
-    console.log('guestNumberCtrl: '+numberOfGuest)
-    console.log('statusVoucher: '+statusVoucher)
-    console.log('roomTypeCtrl: '+roomTypeID)
-    console.log('rateCtrl: '+statusStar)
-    console.log('service: '+service)
+    console.log('statusStar: '+statusStar)
+    console.log('statusSortPrice: '+statusSortPrice)
+    console.log('numberOfGuest: '+numberOfGuest)
     console.log('provinceID: '+provinceID)
+    console.log('textSearch: '+textSearch)
+    console.log('typeSearch: '+typeSearch)
     return this.http.post<SearchTitleResponse>(API_SEARCH_DETAIL+indexPage,{
       statusVoucher:statusVoucher,
       service:service.length==0?[]:service,
