@@ -62,12 +62,30 @@ export class UserInfoComponent implements OnInit {
   }
 
   onSaveProfile() {
-    const name = this.infoFormGroup.controls.fullName.value
+    const name = this.infoFormGroup.controls.fullName.value.replace(/  +/g, ' ').trim();
     const phoneNumber = this.infoFormGroup.controls.phoneNumber.value
     const address = this.infoFormGroup.controls.address.value
     console.log('name: '+name)
     console.log('phoneNumber: '+phoneNumber)
     console.log('address: '+address)
+
+    if(name.trim()==''){
+      Swal.fire({
+        icon:'error',
+        title:'Tên không hợp lệ'
+      })
+      return
+    }
+    // a          a              a                 a                  a         a              a
+    if(name.trim().length<6){
+      console.log('name trim: '+name.trim())
+      console.log(name.trim().length)
+      Swal.fire({
+        icon:'error',
+        title:'Tên cần ít nhất 6 ký tự'
+      })
+      return;
+    }
     this.profileService.updateProfile(name.trim(),phoneNumber.trim(),address.trim()).subscribe(response=>{
       console.log(response)
       Swal.fire({

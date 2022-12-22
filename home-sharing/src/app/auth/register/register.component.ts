@@ -53,15 +53,16 @@ export class RegisterComponent implements OnInit {
           ]),
         ),
         'phoneNumber': new FormControl(null, [Validators.required, Validators.pattern(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/)]),
-        'address': new FormControl(null, [Validators.required,Validators.minLength(10)]),
+        'address': new FormControl(null, [Validators.required,Validators.minLength(6)]),
         'email': new FormControl(null,
           Validators.compose([Validators.required,
+            Validators.email
             // Validators.apply(this.validateUserNameFromApi(this.registerService))
           ])
         ),
         'role': new FormControl(null, [Validators.required]),
         'dob': new FormControl(null, [Validators.required]),
-        'fullName': new FormControl(null, [Validators.required,])
+        'fullName': new FormControl(null, [Validators.required,Validators.minLength(10)])
       },
       {
         validators: [
@@ -95,18 +96,32 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.formRegister.invalid) return
-    this.isLoading = true
     const mobile = this.formRegister.get('phoneNumber').value
     const username = this.formRegister.get('userName').value
     const password = this.formRegister.get('passWord').value
-    const address = this.formRegister.get('address').value
+    const address = this.formRegister.get('address').value.replace(/  +/g, ' ').trim();
     const email = this.formRegister.get('email').value
     let role = this.formRegister.get('role').value
     if(role==='Người thuê') role = 'customer'
     else if(role==='Chủ hộ') role = 'host'
     console.log('role register: '+role)
     const dob = this.formRegister.get('dob').value
-    const fullName = this.formRegister.get('fullName').value
+    const fullName = this.formRegister.get('fullName').value.replace(/  +/g, ' ').trim();
+    if(fullName.length<6){
+      Swal.fire({
+        icon:'error',
+        title:'Họ và tên không hợp lệ'
+      })
+      return;
+    }
+    if(address.length<10){
+      Swal.fire({
+        icon:'error',
+        title:'Địa chỉ không hợp lệ'
+      })
+      return;
+    }
+    this.isLoading = true
     // console.log(username+' '+password+' '+address+' '+email+' '+role+' '+dob)
     let registerObservable: Observable<RegisterResponse> = this.authService.register(username, password, mobile, address, email, role, dob, fullName)
 

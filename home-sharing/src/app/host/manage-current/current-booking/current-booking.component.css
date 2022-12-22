@@ -10,3 +10,12 @@
   height: 30px;
   width: auto
 }
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+  text-align: center;
+}
+::ng-deep .mat-sort-header-arrow {
+  /*color: #fff;*/
+
+}

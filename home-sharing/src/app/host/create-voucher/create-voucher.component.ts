@@ -15,9 +15,10 @@ export class CreateVoucherComponent implements OnInit {
 
   ngOnInit(): void {
     this.formCreateVoucher =this.fb.group({
-      voucherNameCtrl:['',Validators.required],
+      voucherNameCtrl:['',Validators.compose([Validators.required])],
       pctCtrl:['',Validators.required],
-      descriptionCtrl:['',Validators.required],
+      descriptionCtrl:['',Validators.compose([Validators.required,
+      Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)])],
       dueDayCtrl:['',Validators.required]
     })
   }
@@ -30,14 +31,23 @@ export class CreateVoucherComponent implements OnInit {
     let description = this.formCreateVoucher.controls.descriptionCtrl.value
     let dueDay = this.formCreateVoucher.controls.dueDayCtrl.value
 
+
     if(!voucherName||!pct||!description||!dueDay){
       Swal.fire({
         icon:'error',
         title:'Hãy điền đầy đủ thông tin mã khuyến mại'
       })
+      return
+    }
+    if(pct>100||pct<1){
+      Swal.fire({
+        icon:'error',
+        title:'Phần trăm giảm giá không hợp lệ!'
+      })
+      return
     }
 
-    this.createVoucherService.createVoucher(voucherName,description,pct,dueDay).subscribe(
+    this.createVoucherService.createVoucher(voucherName.trim(),description.trim(),pct.trim(),dueDay.trim()).subscribe(
       response =>console.log(response.message),
       (response)=>{
         console.log(response)

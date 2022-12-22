@@ -21,7 +21,7 @@
                 <div class="col-lg-6">
                   <div class="form-group mb-4 text-start">
                     <label class="mb-2 main-text-color" for="username">Tên đăng nhập</label>
-                    <input class="form-control"
+                    <input appInputRestriction="noSpecialChars" class="form-control"
                            formControlName="userName"
                            id="username"
                            type="text">
@@ -105,11 +105,16 @@
                     <input class="form-control"
                            formControlName="fullName"
                            id="fullName"
-                           type="text"
-                    >
+                           type="text">
                     <span *ngIf="!formRegister.get('fullName').valid&&formRegister.get('fullName').touched"
                           class="text-danger">
-                      Hãy nhập tên
+                      <span *ngIf="formRegister.get('fullName').errors['required']" class="text-danger">
+                         Hãy nhập tên
+                       </span>
+
+                      <span *ngIf="formRegister.get('fullName').errors?.minlength" class="text-danger">
+                            Họ và Tên cần ít nhất 6 ký tự
+                         </span>
                     </span>
                   </div>
                 </div>
@@ -163,11 +168,13 @@
                     <input class="form-control"
                            formControlName="email"
                            id="email"
-                           type="text"
-                    >
+                           type="email">
                     <span
                       *ngIf="!formRegister.get('email').valid&&formRegister.get('email').touched">
                     <span *ngIf="formRegister.get('email').errors['required']" class="text-danger">
+                        Địa chỉ email không hợp lệ
+                    </span>
+                      <span *ngIf="formRegister.get('email').errors['email']" class="text-danger">
                         Địa chỉ email không hợp lệ
                     </span>
                     </span>

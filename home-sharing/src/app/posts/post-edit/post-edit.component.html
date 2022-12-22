@@ -38,10 +38,16 @@
                   <ng-template matStepLabel>Giới thiệu</ng-template>
                   <mat-form-field appearance="outline">
                     <mat-label>Nhập tên homestay</mat-label>
-                    <input [errorStateMatcher]="matcher" formControlName="name" matInput placeholder="">
+                    <input type="text" [errorStateMatcher]="matcher" formControlName="name" matInput placeholder="">
                     <mat-error *ngIf="formGroupPost.controls.name.valueChanges">
                       <mat-error *ngIf="formGroupPost.controls.name.hasError('required')">
-                        Phần này không được bỏ trống
+                        Tên không được bỏ trống
+                      </mat-error>
+                      <mat-error *ngIf="formGroupPost.controls.name.hasError('pattern')">
+                       Tên không được bỏ trống
+                      </mat-error>
+                      <mat-error *ngIf="formGroupPost.controls['name'].hasError('minlength')">
+                        Tên phải có ít nhất 8 ký tự
                       </mat-error>
                     </mat-error>
                   </mat-form-field>

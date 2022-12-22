@@ -5,7 +5,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+    <table [dataSource]="dataSource" class="w-100" mat-table matSort>
 
       <ng-container matColumnDef="id">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
@@ -22,41 +22,58 @@
       </ng-container>
       <ng-container matColumnDef="startDate">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Ngày thuê phòng</th>
-        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.startDate|date:'dd/MM/yyyy'}}</td>
+        <td *matCellDef="let row" mat-cell>
+          <div class="text-center d-flex justify-content-center">
+            {{row.viewBookingDto.startDate|date:'dd/MM/yyyy'}}
+          </div>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="endDate">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Ngày trả phòng</th>
         <td *matCellDef="let row" mat-cell>
-          {{row.viewBookingDto.endDate|date:'dd/MM/yyyy'}}
+          <div class="text-center d-flex justify-content-center">
+            {{row.viewBookingDto.endDate|date:'dd/MM/yyyy'}}
+          </div>
         </td>
       </ng-container>
       <ng-container matColumnDef="totalPerson">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Tổng số khách</th>
         <td *matCellDef="let row" mat-cell>
-          {{row.viewBookingDto.totalPerson}}
+          <div class="text-center d-flex justify-content-center">
+            {{row.viewBookingDto.totalPerson}}
+          </div>
         </td>
-      </ng-container><ng-container matColumnDef="totalMoney">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng thanh toán</th>
-      <td *matCellDef="let row" mat-cell>
-        {{row.viewBookingDto.totalMoney}}
-      </td>
-    </ng-container><ng-container matColumnDef="totalService">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng phí dịch vụ</th>
-      <td *matCellDef="let row" mat-cell>
-        {{row.viewBookingDto.totalService}}
-      </td>
-    </ng-container><ng-container matColumnDef="note">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> Thêm</th>
-      <td *matCellDef="let row" mat-cell>
-        <button
-          (click)="openDetailBooking(row.bookingServiceDtos,row.viewBookingDto.note,row.bookingPostVoucherDto)"
-          style="color:#F36B08;"
-          mat-icon-button aria-label="Example icon button with a menu icon">
-          <mat-icon>expand_circle_down</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      </ng-container>
+      <ng-container matColumnDef="totalMoney">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng thanh toán</th>
+        <td *matCellDef="let row" mat-cell>
+          <div class="text-center d-flex justify-content-center">
+            {{row.viewBookingDto.totalMoney|currency}}
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalService">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Tổng phí dịch vụ</th>
+        <td *matCellDef="let row" mat-cell>
+          <div class="text-center d-flex justify-content-center">
+            {{row.viewBookingDto.totalService|currency}}
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="note">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Thêm</th>
+        <td *matCellDef="let row" mat-cell>
+          <div class="text-center d-flex justify-content-center">
+            <button
+              (click)="openDetailBooking(row.bookingServiceDtos,row.viewBookingDto.note,row.bookingPostVoucherDto)"
+              aria-label="Example icon button with a menu icon"
+              mat-icon-button style="color:#F36B08;">
+              <mat-icon>expand_circle_down</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
 
 
       <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
@@ -64,7 +81,8 @@
 
     </table>
 
-    <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPagePagination==0?1:10*totalPagePagination" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
+    <mat-paginator (page)="handlePageEvent($event)" [length]="10*totalPagePagination==0?1:10*totalPagePagination"
+                   [pageSize]="10" aria-label="Select page of users" hidePageSize></mat-paginator>
   </div>
 
 </div>

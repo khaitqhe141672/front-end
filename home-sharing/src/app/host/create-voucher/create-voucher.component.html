@@ -9,15 +9,25 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Phần trăm giảm</label>
-      <input formControlName="pctCtrl" type="number" class="form-control">
+      <input
+        appCheckInputNumber
+        formControlName="pctCtrl" type="number" class="form-control">
     </div>
     <div class="mb-3">
       <label class="form-label">Nội dung</label>
-      <input formControlName="descriptionCtrl" type="text" class="form-control">
+      <input
+        formControlName="descriptionCtrl" type="text" class="form-control"
+      >
+      <span
+        *ngIf="!formCreateVoucher.get('descriptionCtrl').valid&&formCreateVoucher.get('descriptionCtrl').touched">
+        <span *ngIf="formCreateVoucher.get('descriptionCtrl').errors['pattern']" class="text-danger">
+                        Nội dung không hợp lệ
+        </span>
+      </span>
     </div>
     <div class="mb-3">
       <label class="form-label">Số ngày có hiệu lực</label>
-      <input formControlName="dueDayCtrl" type="number" class="form-control">
+      <input appCheckInputNumber formControlName="dueDayCtrl" type="number" class="form-control">
     </div>
   </div>
   <div mat-dialog-actions class="btn_voucher">

@@ -101,7 +101,8 @@ export class BookingComponent implements OnInit {
 
   initForm() {
     this.formGroupBooking = this.fb.group({
-      fullNameCtrl: ['', [Validators.required, Validators.pattern("^\\D*\\s*$")]],
+      fullNameCtrl: ['', [Validators.required, Validators.pattern("^\\D*\\s*$"),
+      Validators.minLength(6)]],
       phoneNumberCtrl: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
       emailCtrl: ['', [Validators.required, Validators.email]],
       confirmCtrl: [''],
@@ -137,7 +138,7 @@ export class BookingComponent implements OnInit {
 
   onSelectedService(selected) {
     this.servicePrice = 0
-    if (!selected[0]) {
+    if (!selected) {
       console.log('this is empty')
       this.servicePrice = 0
       this.refreshPrice()
@@ -151,11 +152,11 @@ export class BookingComponent implements OnInit {
   }
 
   refreshPrice() {
-    console.log('this.daysBetween: '+this.daysBetween)
     this.priceHS = this.standardPrice * this.daysBetween
     if (this.selectedServicePost.length > 0) {
       this.servicePrice = this.guestNumber * this.selectedServicePost.reduce((sum, current) => sum + current.price, 0)
-      console.log('servicePrice: ' + this.servicePrice)
+    }else{
+      this.servicePrice=0
     }
     this.totalBill = Math.floor(+this.servicePrice + +this.priceHS)
     this.totalDiscount = Math.floor(+this.totalBill * +this.pctDiscount)
@@ -238,7 +239,7 @@ export class BookingComponent implements OnInit {
     bookingBody.fullName = fullName
     console.log('post voucher id: ' + bookingBody.postVoucherID)
     // return
-    if (fullName.length <= 0) {
+    if (fullName.length <= 6) {
       Swal.fire({
         icon: 'error',
         title: 'Họ và Tên không hợp lệ'

@@ -140,6 +140,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log(this.toLowerCaseNonAccentVietnamese(arrAddress[arrAddress.length - 2]).replace(/\s\d+/g, ''))
         arrAddress[arrAddress.length - 2] = arrAddress[arrAddress.length - 2].replace(/\s\d+/g, '')
         this.address = arrAddress.join(',')
+        this.address = this.address.replace(/,,+/g, ',')
       }
       console.log('this is address post edit: ' + this.address)
       this.isNewLoad = false
@@ -173,10 +174,12 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formGroupPost = this.fb.group({
       name: ['', Validators.compose([
         Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
       ])],
       address: ['', Validators.required],
       type: [-1],
-      description: ['', [Validators.required, Validators.minLength(20)]],
+      description: ['', [Validators.required, Validators.minLength(20),Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       priceHS: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       vouchers: [''],
       selectServiceCtrl: [''],
@@ -364,7 +367,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
     }
     console.log('clicked')
-    let postName = this.formGroupPost.controls['name'].value
+    let postName = this.formGroupPost.controls['name'].value.replace(/  +/g, ' ').trim()
     let address = this.formGroupPost.controls['address'].value
     // let district = this.formGroupPost.controls['district'].value
     // let province = this.formGroupPost.controls['province'].value
