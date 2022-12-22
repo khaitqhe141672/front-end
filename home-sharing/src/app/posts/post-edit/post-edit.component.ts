@@ -377,6 +377,13 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
     let guestNumber = this.formGroupPost.controls['guestNumber'].value
 
     let servicePost = this.formGroupPost.controls['servicePost'].value as { serviceID: number, serviceName: string, servicePrice: number }[]
+
+    if(postName.trim() == ''){
+      Swal.fire({
+        icon:'error',
+        title:'Tên Homestay không được bỏ trống'
+      })
+    }
     // let servicePost2 = servicePost as {serviceID:number,serviceName:string,servicePrice:number}[]
     this.saveService = servicePost.map(service => {
       return {serviceID: service.serviceID, price: service.servicePrice}
