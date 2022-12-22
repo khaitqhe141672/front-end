@@ -225,6 +225,7 @@
           </div>
           <hr class="mt-3">
         </div>
+        <mat-paginator (page)="handlePageEvent($event)" [length]="10*sizePageRate==0?1:10*sizePageRate" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
       </div>
     </div>
     <div *ngIf="isShowBooking" class="detail-content-four">

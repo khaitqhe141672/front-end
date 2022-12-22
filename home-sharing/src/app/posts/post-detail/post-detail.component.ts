@@ -24,6 +24,7 @@ export class PostDetailComponent implements OnInit {
   isShowRate =  false
   isShowBooking = false
   pageIndex = 1
+  sizePageRate = 1
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   showMoreDialogRef:MatDialogRef<ShowMoreDialogComponent>
 
@@ -78,6 +79,7 @@ export class PostDetailComponent implements OnInit {
       responseRate => {
         this.rateResponse = responseRate
         this.rates = responseRate.data.listRate
+        this.sizePageRate = responseRate.data.sizePage
         console.log(this.rates)
       },
       error => console.log(error)
@@ -198,6 +200,12 @@ export class PostDetailComponent implements OnInit {
 
   scrollToElement(element) {
     element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+
+  handlePageEvent(e) {
+    this.pageIndex = ++e.pageIndex
+    this.getRate()
+
   }
 }
 
