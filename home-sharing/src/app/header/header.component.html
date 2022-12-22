@@ -215,7 +215,11 @@
       </div>
     </ng-container>
   </div>
-
   <hr>
+  <div *ngIf="role === 'ROLE_PENDING'"  class="container-fluid p-0">
+    <div class="alert alert-warning d-flex justify-content-center" role="alert">
+      Vui lòng kiểm tra mail để xác minh tài khoản
+    </div>
+  </div>
 </header>
 

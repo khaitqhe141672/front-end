@@ -20,8 +20,10 @@ import Swal from "sweetalert2";
 export class PostDetailComponent implements OnInit {
   @ViewChild('date1') startDateCalendar: HTMLInputElement
   @ViewChild('date2') endDateCalendar: HTMLInputElement
+  role = ''
+  isShowRate =  false
+  isShowBooking = false
 
-  isRoleUser = false
   datePickerDialogRef: MatDialogRef<DatePickerComponent>
   showMoreDialogRef:MatDialogRef<ShowMoreDialogComponent>
 
@@ -63,8 +65,12 @@ export class PostDetailComponent implements OnInit {
       guestNumber: ['']
     })
     this.standardPrice = this.postDetail.price
-    const role = localStorage.getItem('role')
-    if(role=='"ROLE_CUSTOMER"') this.isRoleUser = true
+    this.role = JSON.parse(localStorage.getItem('role'))
+    console.log('role: '+this.role)
+    if(this.role=='ROLE_CUSTOMER'||this.role=='ROLE_PENDING') this.isShowRate = true
+    if(this.role==null) this.isShowRate = true
+    if(this.role=='ROLE_CUSTOMER') this.isShowBooking = true
+    if(this.role=='ROLE_PENDING') this.isShowBooking =true
   }
 
   getRate() {

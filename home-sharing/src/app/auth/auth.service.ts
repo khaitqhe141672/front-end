@@ -60,7 +60,7 @@ export class AuthService {
       return;
     }
     console.log(userData.username + ' ' + userData.role)
-    const loadUser = new User(userData.id, userData.username, userData.role, userData.token)
+    const loadUser = new User(userData.id, userData.username, userData.role, userData.token,userData.status)
     if (loadUser.token) {
       this.user.next(loadUser)
     }
@@ -74,10 +74,10 @@ export class AuthService {
     message: string, customerID: number, userID: number, username: string, email: string, role: string, status: number,
     token: string
   ) {
-    const user = new User(userID, username, role, token)
-    console.log("user info: " + user)
+    const user = new User(userID, username, role, token,status)
+    console.log("user status: " + user.role)
     this.user.next(user)
-    localStorage.setItem('role', JSON.stringify(user.role))
+    localStorage.setItem('role', user.status!=0?JSON.stringify(user.role):JSON.stringify('ROLE_PENDING'))
     localStorage.setItem('userData', JSON.stringify(user))
     localStorage.setItem('token', JSON.stringify(user.token))
   }
