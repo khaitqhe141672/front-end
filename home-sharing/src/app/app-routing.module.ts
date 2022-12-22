@@ -24,6 +24,7 @@ import {PaymentSuccessComponent} from "./payment-success/payment-success.compone
 import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 import {CurrentBookingComponent} from "./host/manage-current/current-booking/current-booking.component";
 import {BookingDetailComponent} from "./host/booking-detail/booking-detail.component";
+import {ConfirmAccountComponent} from "./auth/confirm-account/confirm-account.component";
 
 
 const appRoute: Routes = [
@@ -33,7 +34,8 @@ const appRoute: Routes = [
       {path: '', component: LoginComponent},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'forgot-password', component: ForgotPasswordComponent}
+      {path: 'forgot-password', component: ForgotPasswordComponent},
+      {path: 'confirm-account',component: ConfirmAccountComponent}
     ]
 
   },

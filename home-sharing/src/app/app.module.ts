@@ -126,6 +126,7 @@ import { InputRestrictionDirective } from './shared/directive/input-restriction.
 import { DisallowSpacesDirective } from './shared/directive/disallow-spaces.directive';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ConfirmAccountComponent } from './auth/confirm-account/confirm-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -195,7 +196,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     AdminDashboardComponent,
     HostDashboardComponent,
     InputRestrictionDirective,
-    DisallowSpacesDirective
+    DisallowSpacesDirective,
+    ConfirmAccountComponent
   ],
   imports: [
     BrowserModule,
