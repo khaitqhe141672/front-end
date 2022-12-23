@@ -6,7 +6,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+    <table matSortDisabled class="w-100" [dataSource]="dataSource" mat-table matSort>
 
       <ng-container matColumnDef="postID">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Mã bài đăng</th>

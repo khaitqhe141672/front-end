@@ -1,33 +1,39 @@
 
-    <table [dataSource]="dataSource" class="w-100" mat-table matSort>
+    <table matSortDisabled [dataSource]="dataSource" class="w-100" mat-table matSort>
 
       <ng-container matColumnDef="historyHandleReportPostID">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Mã lịch sử xử lý</th>
-        <td *matCellDef="let row" mat-cell> {{row.historyHandleReportPostID}} </td>
+        <td *matCellDef="let row" mat-cell>
+          <div class="d-flex justify-content-center">
+            {{row.historyHandleReportPostID}}
+          </div>
+        </td>
       </ng-container>
       <ng-container matColumnDef="statusPost">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái báo cáo</th>
         <td *matCellDef="let row" [ngSwitch]="row.statusReportPost" mat-cell>
-          <div *ngSwitchCase="2" style="color: #F36B08">
-            <div class="d-flex flex-row align-items-start justify-content-start text-start">
-              <mat-icon style="fill: #F36B08">
+          <div class="ps-2 pe-2 d-flex justify-content-center">
+            <div *ngSwitchCase="2" style="color: #F36B08">
+              <div class="d-flex flex-row align-items-start justify-content-start text-start">
+                <mat-icon style="fill: #F36B08">
                   <span class="material-symbols-outlined">
                     fiber_manual_record
                   </span>
-              </mat-icon>
-              <div>
-                Đã ẩn bài viết bị báo cáo
+                </mat-icon>
+                <div>
+                  Đã ẩn bài viết bị báo cáo
+                </div>
               </div>
             </div>
-          </div>
-          <div *ngSwitchCase="1" class="d-flex" style="color: #367E18">
-            <div class="d-flex flex-row align-items-center justify-content-center text-center">
-              <mat-icon style="fill: #367E18">
+            <div *ngSwitchCase="1" class="d-flex" style="color: #367E18">
+              <div class="d-flex flex-row align-items-center justify-content-center text-center">
+                <mat-icon style="fill: #367E18">
                    <span class="material-symbols-outlined">
                       fiber_manual_record
                    </span>
-              </mat-icon>
-              <div>Chưa ẩn bài viết bị báo cáo</div>
+                </mat-icon>
+                <div>Chưa ẩn bài viết bị báo cáo</div>
+              </div>
             </div>
           </div>
         </td>
@@ -35,7 +41,9 @@
       <ng-container matColumnDef="totalReportPost">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái xử lý</th>
         <td *matCellDef="let row" mat-cell>
-         {{row.totalReportPost}}
+        <div class="d-flex justify-content-center">
+          {{row.totalReportPost}}
+        </div>
         </td>
       </ng-container>
 

@@ -24,7 +24,7 @@
       <td *matCellDef="let element" [ngSwitch]="element.statusPost" mat-cell>
         <button #menuTrigger [matMenuTriggerFor]="menu" disabled="{{element.statusComplaint==2}}" mat-button>
           <div style="color:#367E18;" class="d-flex flex-row justify-content-center align-items-center" *ngSwitchCase="1">
-            <div>
+            <div class="d-flex align-items-center justify-content-center">
               <mat-icon >
                 circle
               </mat-icon>

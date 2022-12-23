@@ -1,0 +1,7 @@
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}

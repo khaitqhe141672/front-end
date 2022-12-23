@@ -1,3 +1,8 @@
 .main-content{
   height: 600px!important;
 }
+/*::ng-deep .mat-sort-header-container {*/
+/*  display:flex;*/
+/*  justify-content:center;*/
+/*  text-align: center;*/
+/*}*/
