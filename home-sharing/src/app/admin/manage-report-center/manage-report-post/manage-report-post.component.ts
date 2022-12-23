@@ -94,6 +94,7 @@ export class ManageReportPostComponent implements OnInit {
 
   viewHistory(postID: number) {
     this.historyDialogRef = this.dialog.open(HistoryHandleReportComponent,{
+      width:'900px',
       hasBackdrop:true,
       data:postID
     })

@@ -141,8 +141,10 @@
       <ng-container matColumnDef="history">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Lịch sử xử lý</th>
         <td *matCellDef="let row" mat-cell>
-          <div class="ps-4">
-            <mat-icon (click)="viewHistory(row.postID)">history</mat-icon>
+          <div class="ps-2">
+            <button (click)="viewHistory(row.postID)" type="button" class="btn">
+              <mat-icon >history</mat-icon>
+            </button>
           </div>
         </td>
       </ng-container>
