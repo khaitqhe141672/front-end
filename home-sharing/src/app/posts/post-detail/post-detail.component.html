@@ -47,24 +47,24 @@
     <div class="detail-content-one">
       <div (click)="showMore(1)" class="detail-card-img">
         <div class="detail-card-img-first">
-          <div class="detail-card-img-item" style="width: 450px; height: 345px;">
-            <img alt="" src="{{postDetail.imageDtoList[0].imageUrl}}" style="border-top-left-radius: 28px;">
+          <div class="detail-card-img-item" style="width: 450px; height: 345px; cursor: pointer;">
+            <img alt="" src="{{postDetail.imageDtoList[0].imageUrl}}" style="border-top-left-radius: 10px;">
           </div>
           <div class="detail-card-img-item-childs">
-            <div class="detail-card-img-item-child" style="width: 235px; height: 170px;">
-              <img alt="" src="{{postDetail.imageDtoList[1].imageUrl}}" style="border-top-right-radius: 28px;">
+            <div class="detail-card-img-item-child" style="width: 235px; height: 170px; cursor: pointer;">
+              <img alt="" src="{{postDetail.imageDtoList[1].imageUrl}}" style="border-top-right-radius: 10px;">
             </div>
-            <div class="detail-card-img-item-child" style="width: 235px; height: 170px;">
+            <div class="detail-card-img-item-child" style="width: 235px; height: 170px; cursor: pointer;">
               <img alt="" src="{{postDetail.imageDtoList[2].imageUrl}}">
             </div>
           </div>
         </div>
         <div class="detail-card-img-second">
-          <div class="detail-card-img-item" style="width: 240px; height: 335px;">
-            <img alt="" src="{{postDetail.imageDtoList[3].imageUrl}}" style="border-bottom-left-radius: 28px;">
+          <div class="detail-card-img-item" style="width: 240px; height: 335px; cursor: pointer;">
+            <img alt="" src="{{postDetail.imageDtoList[3].imageUrl}}" style="border-bottom-left-radius: 10px;">
           </div>
-          <div class="detail-card-img-item" style="width: 445px; height: 335px;">
-            <img alt="" src="{{postDetail.imageDtoList[4].imageUrl}}" style="border-bottom-right-radius: 28px;">
+          <div class="detail-card-img-item" style="width: 445px; height: 335px; cursor: pointer;">
+            <img alt="" src="{{postDetail.imageDtoList[4].imageUrl}}" style="border-bottom-right-radius: 10px;">
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@
       <div class="title-rate">
         <h2 style="font-size: 36px;">Đánh giá</h2>
       </div>
-      <div *ngIf="rates.length<=0" class="title-rate-detail">
+      <div *ngIf="rates.length<=0" class="title-rate-detail" style="padding-top: 25px;">
         <p>Chưa có đánh giá nào</p>
       </div>
       <div *ngIf="rates.length>0">

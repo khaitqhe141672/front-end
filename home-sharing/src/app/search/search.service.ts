@@ -24,6 +24,9 @@ export class SearchService{
       searchText:data
     })
   }
+
+
+
   searchByFilter(statusVoucher:number,service:number[],roomTypeID:number,startDate:string,
                  minPrice:number,maxPrice:number,statusStar:number,statusSortPrice:number,
                  numberOfGuest:number,provinceID:number, textSearch: string, typeSearch: number,indexPage:number):Observable<SearchTitleResponse>{
