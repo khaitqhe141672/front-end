@@ -13,10 +13,11 @@ img {
 }
 
 .box_complaint h1 {
-  font-family: 'Baloo';
+  font-family: Helvetica;
   text-align: center;
   font-size: 32px;
   color: #F36B08;
+  font-weight: bold;
 }
 
 .box_complaint .box_list_report {

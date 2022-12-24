@@ -153,17 +153,17 @@
           <span>{{postDetail.mobileHost}}</span>
         </div>
         <hr>
-        <div class="desription">
+        <div class="desription" style="padding-top: 5px; padding-bottom: 5px;">
           <p>{{(postDetail.description.length > 500) ? (postDetail.description|slice:0:500) + '...' : (postDetail.description)}}
             <span (click)="showMore(3)" class="span__read-more">xem thêm</span>
           </p>
         </div>
         <hr>
-        <div class="map" style="height: 265px;overflow: hidden;border-radius: 16px">
+        <div class="map" style="height: 260px;overflow: hidden;border-radius: 10px">
           <div class="title-mapp">
             <h3 class="h4-ultility">Bản đồ</h3>
           </div>
-          <div class="image-map" style="height: 100%;border-radius: 16px">
+          <div class="image-map" style="height: 100%;border-radius: 10px">
 
             <app-map [isDetailMode]="true" [lat]="+postDetail.latitude" [lng]="+postDetail.longitude"></app-map>
 
@@ -174,7 +174,7 @@
     </div>
     <div *ngIf="isShowRate" class="detail-content-third">
       <div class="title-rate">
-        <h2 style="font-size: 36px;">Đánh giá</h2>
+        <h2 style="font-size: 32px; font-family: Helvetica;">Đánh giá</h2>
       </div>
       <div *ngIf="rates.length<=0" class="title-rate-detail" style="padding-top: 25px;">
         <p>Chưa có đánh giá nào</p>
@@ -201,8 +201,6 @@
                 </div>
                 <div class="rate-date">
                   <p>{{rate.dateRate}}</p>
-                </div>
-                <div>
                   <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
                           color="warn" mat-icon-button
                           type="button">
@@ -213,6 +211,9 @@
                           type="button">
                     <mat-icon layout-fill="0">thumb_down</mat-icon>
                   </button>
+                </div>
+                <div>
+
                   <!--                  <button type="button" (click)="onReportRate(rate.rateID,rate.username)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">-->
                   <!--                    <mat-icon  layout-fill="0">flag</mat-icon>-->
                   <!--                  </button>-->

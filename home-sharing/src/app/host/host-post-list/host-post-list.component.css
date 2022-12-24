@@ -81,7 +81,8 @@ hr, ul, li {
 
 .container_manage_post .function_btn .btn_new_post button{
   border: none;
-  font-family: Baloo;
+  font-family: Helvetica;
+  font-weight: bold;
   font-size: 24px;
   display: flex;
   align-items: center;

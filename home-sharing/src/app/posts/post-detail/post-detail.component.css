@@ -29,11 +29,11 @@ img, iframe {
 
 .container-detail .title h2 {
   font-size: 36px;
-  font-family: 'Abhaya Libre';
+  font-family: 'Helvetica';
 }
 
 .container-detail .title p {
-  font-family: 'Actor';
+  font-family: 'Helvetica';
   font-size: 16px;
   padding-top: 10px;
   padding-left: 10px;
@@ -135,7 +135,7 @@ img, iframe {
 
 .container-detail .detail-content .detail-content-two
 .detail-content-intro .info-host .host .host-name h2 {
-  font-family: 'actor';
+  font-family: 'Helvetica';
   font-size: 24px;
 }
 
@@ -182,14 +182,14 @@ img, iframe {
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 55px 1fr;
   column-gap: 10px;
 }
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first .rate-item-image {
-  width: 80px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
 }
 
 .container-detail .detail-content .detail-content-third
@@ -206,27 +206,35 @@ img, iframe {
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first .info-rate .customer-name h2 {
-  font-family: Actor;
-  font-size: 32px;
+  font-family: Helvetica;
+  font-size: 28px;
 }
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first .info-rate .customer-name svg {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+}
+
+
+.container-detail .detail-content .detail-content-third
+.rate .rate-item .rate-item-first .info-rate .rate-date{
+  display: grid;
+  grid-template-columns: 70px 40px 40px 1fr;
+  align-items: center;
 }
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-first .info-rate .rate-date p {
   font-size: 12px;
-  font-family: Actor;
+  font-family: Helvetica;
 }
 
 .container-detail .detail-content .detail-content-third
 .rate .rate-item .rate-item-second {
   padding-top: 10px;
-  font-family: Actor;
-  font-size: 20px;
+  font-family: Helvetica;
+  font-size: 16px;
 }
 
 .container-detail .detail-content .detail-content-four,
@@ -239,7 +247,7 @@ img, iframe {
 
 .container-detail .detail-content .detail-content-four
 .detail-card-price .detail-card-price-title h3 {
-  font-family: Actor;
+  font-family: Helvetica;
   font-size: 24px;
 }
 
@@ -272,7 +280,7 @@ img, iframe {
 .container-detail .detail-content .detail-content-four
 .detail-card-price .detail-card-price-type span {
   font-size: 17px;
-  font-family: Actor;
+  font-family: Helvetica;
 }
 
 .container-detail .detail-content .detail-content-four
@@ -282,14 +290,14 @@ img, iframe {
 
 .container-detail .detail-content .detail-content-four
 .detail-card-price .info-price h3 {
-  font-family: Actor;
+  font-family: Helvetica;
   font-size: 24px;
   padding-bottom: 15px;
 }
 
 .container-detail .detail-content .detail-content-four
 .detail-card-price .info-price h4 {
-  font-family: Actor;
+  font-family: Helvetica;
   font-size: 20px;
   padding-bottom: 15px;
 }
@@ -322,7 +330,7 @@ img, iframe {
   background-color: #24E589;
   color: #FFFFFF;
   font-size: 30px;
-  font-family: Actor;
+  font-family: Helvetica;
 }
 
 /* Chrome, Safari, Edge, Opera */

@@ -3,8 +3,9 @@
 }
 
 .box_popup_new_voucher h1{
-  font-family: Baloo;
+  font-family: Helvetica;
   font-size: 28px;
+  font-weight: bold;
 }
 
 .box_popup_new_voucher .btn_voucher{

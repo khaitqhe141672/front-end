@@ -122,9 +122,10 @@ img, iframe {
 .container-search .content-search .menu-type .type_place .type_place_title h3,
 .container-search .content-search .menu-type .voucher .voucher_title h3,
 .container-search .content-search .menu-type .map_center .map_center_title h3 {
-  font-family: Actor;
+  font-family: Helvetica;
   font-size: 20px;
   color: #7A7676;
+  font-weight: bold;
 }
 
 .container-search .content-search .menu-type .services .services_checkbox,
@@ -263,8 +264,9 @@ img, iframe {
 
 .container-search .box_search .filter_function
 .filter .dropdown_date .dropdown_content_date .list_content .title_date h3 {
-  font-family: 'Baloo';
+  font-family: Helvetica;
   color: #F36B08;
+  font-weight: bold;
 }
 
 .dropdown_date {
@@ -332,9 +334,10 @@ img, iframe {
 
 .container-search .content-search .box_search
 .list_card_search .card_search .info_post .left h3{
-  font-family: Inder;
+  font-family: Helvetica;
   font-size: 24px;
   padding-bottom: 5px;
+  font-weight: bold;
 }
 .input-price{
   width: 124px;

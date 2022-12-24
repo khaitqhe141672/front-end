@@ -46,7 +46,7 @@ hr, ul, li {
 
 .container-manage-rate .title h2 {
   font-size: 28px;
-  font-family: Actor;
+  font-family: Helvetica;
 }
 
 .container-manage-rate .title svg {
@@ -99,7 +99,7 @@ hr, ul, li {
 .title_rate .span_title {
   text-decoration: underline;
   font-size: 32px;
-  font-family: Inder;
+  font-family: Helvetica;
 }
 .container-manage-rate .box_list_rate .box_rate{
   max-width: 1100px;

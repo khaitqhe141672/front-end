@@ -65,25 +65,27 @@ img {
 
 .container-home .welcome .span-welcome-0 {
   font-size: 36px;
-  font-family: 'Baloo';
+  font-family: 'Helvetica';
+  font-weight: bold;
 }
 
 .container-home .welcome .span-welcome-1,
 .container-home .welcome p {
   font-size: 20px;
-  font-family: "Inder";
+  font-family: "Helvetica";
 }
 
 .container-home .welcome .span-welcome-2 {
   font-size: 36px;
-  font-family: "Inder";
+  font-family: "Helvetica";
+  font-weight: bold;
   color: #F36B08;
 }
 
 .container-home .welcome p a {
   background-color: #F36B08;
   color: #ffffff;
-  font-family: "Inder";
+  font-family: "Helvetica";
   padding: 5px 25px 5px 25px;
   border-radius: 20px;
   box-shadow: 0px 0px 7px #909090;
@@ -107,7 +109,7 @@ img {
 .container-home .experience_place .title h2,
 .container-home .top_room .title h2 {
   font-size: 32px;
-  font-family: "Inder";
+  font-family: "Helvetica";
   font-weight: bold;
   padding-bottom: 10px;
 }
@@ -115,7 +117,7 @@ img {
 .container-home .experience_place .title p {
   font-size: 18px;
   padding-bottom: 10px;
-  font-family: "Inder";
+  font-family: "Helvetica";
 }
 
 .container-home .experience_place
