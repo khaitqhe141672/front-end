@@ -1,4 +1,4 @@
-.div-img {
+.div-img{
   width: 250px;
   height: 250px;
   position: relative;
@@ -6,50 +6,43 @@
   border-radius: 50%;
   border: 2px solid #F36B08;
 }
-
-.img-avata {
+.img-avata{
   display: inline;
   margin: 0 auto;
   height: 100%;
   width: auto;
 }
-
-.btn-save-img {
+.btn-save-img{
   color: #F36B08;
   border-color: #F36B08
 }
-
-.btn-save-img:hover {
+.btn-save-img:hover{
   background-color: #F36B08;
   color: #FFFFFF;
 }
-
-.div-history {
+.div-history{
   box-sizing: border-box;
   width: 100%;
   height: 150px;
   background: rgba(189, 189, 189, 0.2);
   border-radius: 20px;
 }
-
-.div-history:hover {
+.div-history:hover{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.div-history-item {
+.div-history-item{
   border-radius: 20px;
-  width: 216px;
-  height: 216px;
+  width:238px;
+  height: 238px;
   padding-left: 0;
 }
-
-.img-history {
+.img-history{
   width: 100%;
   height: 100%;
   border-radius: 24px;
+  object-fit: cover;
 }
-
-.div-img-history-host-avatar {
+.div-img-history-host-avatar{
   min-width: 50px;
   max-width: 50px;
   height: 50px;
@@ -57,36 +50,30 @@
   border-radius: 50%;
   border: 1px solid #F36B08;
 }
-
 .img-history-host-avatar {
   display: inline;
   margin: 0 auto;
   height: 100%;
   width: auto;
 }
-
-.img-host {
+.img-host{
   width: 60px;
   height: 60px;
   min-width: 50px;
 }
-
-.item-host {
+.item-host{
   background: rgba(217, 217, 217, 0.25);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
   height: 35%;
 }
-
-.text-color-orange {
-  color: #F36B08;
+.text-color-orange{
+  color:#F36B08;
 
 }
-
-.warn-text-color {
+.warn-text-color{
   color: #CC3636
 }
-
-.success-text-color {
+.success-text-color{
   color: #e8401d;
 }
