@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.homeService.getPostTopRateData().subscribe(i => {
       this.responsePostTopRate = i
       this.postTopRate = this.responsePostTopRate.object
-      console.log(this.postTopRate)
+      console.log('post top rate: '+JSON.stringify(this.postTopRate))
     })
   }
 
@@ -112,4 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return new Array(i);
   }
 
+  showMore(province:string) {
+    this.router.navigate(['../search'],{queryParams:{title:province,type:2}})
+  }
 }

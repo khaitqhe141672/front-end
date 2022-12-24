@@ -53,15 +53,15 @@
       <div class="card_experience_place">
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let slide of recommendedPlace">
-            <ng-template carouselSlide>
-              <a routerLink="/posts/post-detail/{{slide.provinceID}}">
-                <div class="image_slide">
+            <ng-template carouselSlide >
+<!--              <a >-->
+                <div (click)="showMore(slide.provinceName)" class="image_slide">
                   <img [src]="slide.imageUrl">
                 </div>
                 <div class="title_province">
                   <h2>{{slide.provinceName}}</h2>
                 </div>
-              </a>
+<!--              </a>-->
             </ng-template>
           </ng-container>
         </owl-carousel-o>
@@ -81,15 +81,19 @@
               </div>
               <div class="card_body">
                 <h2 class="card_title">{{i.title}}</h2>
-                <p style="font-size: 12px; color: #D9D9D9" *ngIf="i.star === 0.0">Chưa đánh giá</p>
-                <p>
-                  <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>
+                <p style="font-size: 12px; color: #3f8502" *ngIf="i.star === 0.0">Chưa có đánh giá</p>
+<!--                <p>-->
+<!--                  <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>-->
+<!--                </p>-->
+                <p *ngIf="i.star>0" class="d-flex justify-content-start align-items-center text-center">
+                  <mat-icon style="color: #F36B08;">star</mat-icon>
+                  {{i.star|number:'1.0-1'}}
                 </p>
                 <p>
                   <mat-icon style="color: red;">location_on</mat-icon>
                   {{i.address}}
                 </p>
-                <h3>{{i.price | currency: "VND"}} /Đêm</h3>
+                <h3>{{i.price | currency: "VND"}} VND/ngày</h3>
               </div>
             </div>
           </a>
