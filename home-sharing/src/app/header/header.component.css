@@ -119,30 +119,10 @@ header .container-header .nav-header .profile .menu .icon-menu .icon svg {
   height: 25px;
 }
 
-.icon-menu .icon svg {
-  width: 20px;
-  height: 25px;
-}
-
 header .container-header .nav-header .profile .menu .icon-menu {
   display: grid;
   grid-template-columns: 25px 1fr;
   align-items: center;
-}
-
-.icon-menu {
-  display: grid;
-  grid-template-columns: 25px 1fr;
-  align-items: center;
-  width: 100%;
-}
-
-.icon-menu{
-/* border: 1px solid #7A7676; */
-  border-radius: 20px;
-  padding: 3px;
-  box-shadow: 0px 0px 7px #909090;
-  cursor: pointer;
 }
 
 
@@ -220,11 +200,6 @@ header .container-header .nav-header .profile .menu:hover {
 .dropdown-content button svg {
   width: 20px;
   height: 20px;
-}
-
-::ng-deep .mat-menu-item svg {
-  width: 25px;
-  height: 25px;
 }
 
 .dropdown-content a:hover,
