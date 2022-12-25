@@ -55,7 +55,7 @@
           <ng-container *ngFor="let slide of recommendedPlace">
             <ng-template carouselSlide >
 <!--              <a >-->
-                <div (click)="showMore(slide.provinceName)" class="image_slide">
+                <div (click)="showMore(slide.provinceName)" class="image_slide" style="cursor: pointer;">
                   <img [src]="slide.imageUrl">
                 </div>
                 <div class="title_province">
