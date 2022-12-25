@@ -1,12 +1,15 @@
 <h1 mat-dialog-title >Mã giảm giá có thể sử dụng</h1>
-<div style="width: 400px;min-height: 200px" mat-dialog-content>
+<div style="width: auto;min-height: 200px" mat-dialog-content>
   <div class="modal-body">
     <div class="row main-content">
       <div class="d-flex justify-content-center w-100">
         <div class="col-12 h-auto">
             <div class="row mt-4">
-              <div class="col-12">
+              <div class="col-12" *ngIf="listVoucher.length>0">
                 <h3>Chọn mã giảm giá</h3>
+              </div>
+              <div class="col-12" *ngIf="listVoucher.length<=0">
+                <h3>Không có mã giảm giá</h3>
               </div>
             </div>
           <div class="row">

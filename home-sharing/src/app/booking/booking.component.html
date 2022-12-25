@@ -210,7 +210,15 @@
             <h3>Tổng hoá đơn đặt phòng</h3>
           </div>
           <div class="col-6 text-end">
-            <h3 style="font-weight: bold">{{totalBillAfterDiscount|currency}}</h3>
+            <h3>{{totalBillAfterDiscount|currency}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <h3>Tổng hoá đơn đặt phòng sau thuế (10% VAT)</h3>
+          </div>
+          <div class="col-6 text-end">
+            <h3 style="font-weight: bold">{{totalBillAfterDiscount*tax|currency}}</h3>
           </div>
         </div>
         <div class="row">

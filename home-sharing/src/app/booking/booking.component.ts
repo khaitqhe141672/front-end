@@ -31,6 +31,7 @@ export class BookingComponent implements OnInit {
   totalBillAfterDiscount: number = 0
   priceHS: number = 0
   daysBetween:number = 1
+  tax = 0.9
   postID: number
   startDateBooking: string
   endDateBooking: string
@@ -229,7 +230,7 @@ export class BookingComponent implements OnInit {
     bookingBody.startDate = startDateBookingBody
     bookingBody.endDate = endDateBookingBody
     bookingBody.note = this.formGroupBooking.controls.noteCtrl.value
-    bookingBody.totalMoney = this.totalBillAfterDiscount
+    bookingBody.totalMoney = this.totalBillAfterDiscount*this.tax
     bookingBody.totalPerson = this.guestNumber
     bookingBody.postServices = this.selectedServicePost.map(service => service.postServiceID)
     bookingBody.postVoucherID = this.postVoucherID
@@ -306,7 +307,13 @@ export class BookingComponent implements OnInit {
 
   checkVoucherExist() {
     let codeVoucher = this.formCheckVoucher.controls.codeVoucherCtrl.value
-    if (codeVoucher == '') return
+    if (codeVoucher == '') {
+      Swal.fire({
+        icon:'error',
+        title:'Vui lòng nhập mã giảm giá'
+      })
+      return
+    }
     // console.log(this.formCheckVoucher.controls.codeVoucherCtrl.value)
     this.bookingService.checkVoucherExist(this.postID, codeVoucher).subscribe(response => {
       console.log('response: ' + JSON.stringify(response))
