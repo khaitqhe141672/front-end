@@ -5,7 +5,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+    <table [dataSource]="dataSource" class="w-100" mat-table matSort>
 
       <ng-container matColumnDef="id">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
@@ -27,47 +27,43 @@
         <td *matCellDef="let row" [ngSwitch]="row.status" mat-cell>
 
           <div *ngSwitchCase="0" class="d-flex" style="color: #5E7FDC">
-            <div><p> Chưa xác minh địa chỉ email</p></div>
             <div>
               <mat-icon style="fill: #5E7FDC">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
+                fiber_manual_record
               </mat-icon>
             </div>
+            <div><p> Chưa xác minh địa chỉ email</p></div>
+
           </div>
 
           <div *ngSwitchCase="1" class="d-flex" style="color: #367E18">
-            <div><p> Đã kích hoạt</p></div>
             <div>
               <mat-icon style="fill: #367E18">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
+                fiber_manual_record
               </mat-icon>
             </div>
+            <div><p> Đã kích hoạt</p></div>
+
           </div>
 
           <div *ngSwitchCase="2" class="d-flex" style="color: #F36B08">
-            <div><p> Tạm dừng</p></div>
             <div>
               <mat-icon style="fill: #F36B08">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
+                fiber_manual_record
               </mat-icon>
             </div>
+            <div><p> Tạm dừng</p></div>
+
           </div>
 
           <div *ngSwitchCase="3" class="d-flex" style="color: red">
-            <div><p>Đã bị khoá</p></div>
             <div>
               <mat-icon style="fill: red">
-              <span class="material-symbols-outlined">
-                  fiber_manual_record
-              </span>
+                fiber_manual_record
               </mat-icon>
             </div>
+            <div><p>Đã bị khoá</p></div>
+
           </div>
 
 
@@ -94,7 +90,7 @@
       </tr>
     </table>
 
-    <mat-paginator hidePageSize  aria-label="Select page of users"></mat-paginator>
+    <mat-paginator aria-label="Select page of users" hidePageSize></mat-paginator>
   </div>
 
 </div>
