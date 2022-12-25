@@ -71,4 +71,7 @@ export class AdminDashboardComponent implements OnInit {
       })
     })
   }
+  countPostPayed():number{
+    return  this.adminDashBoardData.paymentDtoList.reduce((accum,item) => accum + item.totalPost, 0)
+  }
 }

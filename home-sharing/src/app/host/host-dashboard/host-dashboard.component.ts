@@ -80,5 +80,7 @@ export class HostDashboardComponent implements OnInit {
       })
     })
   }
-
+  countPostPayed():number{
+    return  this.hostDashBoardData.totalPostPayment.reduce((accum,item) => accum + item.totalPost, 0)
+  }
 }

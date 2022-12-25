@@ -66,6 +66,12 @@
                   </svg>
                  Đã bị ẩn bởi quản trị viên
               </span>
+                <span *ngIf="row.status == 4" style="color: #FF9A01;">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="6.97127" cy="5" rx="6.22224" ry="5" fill="#FF9A01"/>
+                </svg>
+                 Hết hạn gói trả phí đang bài
+              </span>
               </div>
             </button>
             <mat-menu #menu="matMenu">
