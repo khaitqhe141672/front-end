@@ -268,10 +268,11 @@
                 <h3 style="text-align: right;">{{totalPriceInDays ? (totalPriceInDays | currency: "VND") : "" }}</h3>
               </div>
               <div class="total-vat">
-                <h3>Tổng thanh toán sau thuế(10%VAT)</h3>
+                <h3>Tổng thanh toán sau thuế(10%VAT) </h3>
                 <h3
                   style="text-align: right;">{{totalPriceInDaysAfterTax ? (totalPriceInDaysAfterTax | currency: "VND") : ""}}</h3>
               </div>
+              <h5>(Chưa bao gồm thuế dịch vụ)</h5>
             </div>
           </div>
           <div *ngIf="role=='ROLE_CUSTOMER'" class="price-button">
