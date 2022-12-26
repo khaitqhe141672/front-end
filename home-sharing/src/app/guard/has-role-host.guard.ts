@@ -11,8 +11,8 @@ export class HasRoleHostGuard{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     console.log("guard host rol: " + JSON.stringify(localStorage.getItem('role')))
     console.log("guard host rol: " + localStorage.getItem('role'))
-    let role = JSON.stringify(localStorage.getItem('role'))
-    if (role.indexOf('HOST')>0) {
+    // let role = JSON.stringify(localStorage.getItem('role'))
+    if (this.authService.getRole().indexOf('HOST')>0) {
       return true
     } else {
       this.router.navigate(['/error'])

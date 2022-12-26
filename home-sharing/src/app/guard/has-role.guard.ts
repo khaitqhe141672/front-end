@@ -11,7 +11,7 @@ export class HasRoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     console.log("guard host rol: " + this.authService.role)
-    if (this.authService.role === 'ROLE_HOST'||this.authService.role==='ROLE_CUSTOMER') {
+    if (this.authService.getRole().indexOf('HOST')>0||this.authService.getRole().indexOf('CUSTOMER')>0) {
       return true
     } else {
       this.router.navigate(['/error'])
