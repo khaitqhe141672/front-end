@@ -24,7 +24,8 @@
       </svg>
     </span></h2>
     <p>{{postDetail.avgRate ? postDetail.avgRate : "Chưa có đánh giá"}}
-      <svg *ngIf="postDetail.avgRate" fill="none" height="30" viewBox="0 0 36 30" width="36" xmlns="http://www.w3.org/2000/svg">
+      <svg *ngIf="postDetail.avgRate" fill="none" height="30" viewBox="0 0 36 30" width="36"
+           xmlns="http://www.w3.org/2000/svg">
         <path
           d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
           fill="#F36B08"/>
@@ -163,7 +164,7 @@
 
       </div>
     </div>
-    <div *ngIf="isShowRate" class="detail-content-third">
+    <div *ngIf="isShowRate" class="detail-content-third" style="position: relative">
       <div class="title-rate">
         <h2 style="font-size: 32px; font-family: Helvetica;">Đánh giá</h2>
       </div>
@@ -192,13 +193,15 @@
                 </div>
                 <div class="rate-date">
                   <p>{{rate.dateRate}}</p>
-                  <button class="ms-2" (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                  <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                          class="ms-2"
                           color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_up_off</mat-icon>
-                   {{rate.countLike}}
+                    {{rate.countLike}}
                   </button>
-                  <button class="ms-3" (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                  <button (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                          class="ms-3"
                           color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_down</mat-icon>
@@ -215,7 +218,11 @@
           </div>
           <hr class="mt-3">
         </div>
-        <mat-paginator (page)="handlePageEvent($event)" [length]="10*sizePageRate==0?1:10*sizePageRate" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
+
+      </div>
+      <div style="position: absolute;bottom: 0; right: 0">
+        <mat-paginator (page)="handlePageEvent($event)" [length]="10*sizePageRate==0?1:10*sizePageRate" [pageSize]="10"
+                       aria-label="Select page of users" hidePageSize></mat-paginator>
       </div>
     </div>
     <div *ngIf="isShowBooking" class="detail-content-four">
@@ -268,7 +275,7 @@
             <button (click)="onBooking()" type="button">Đặt ngay</button>
           </div>
           <div *ngIf="role == 'ROLE_PENDING'" class="price-button">
-            <button disabled (click)="onBooking()" type="button">Tài khoản chưa được xác minh</button>
+            <button (click)="onBooking()" disabled type="button">Tài khoản chưa được xác minh</button>
           </div>
         </div>
       </form>
