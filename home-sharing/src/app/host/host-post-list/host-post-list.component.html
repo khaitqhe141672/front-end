@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="function_btn">
       <div class="btn_new_post">
-        <button  [routerLink]="'/posts/post-edit'">
+        <button (click)="goToPostEdit()"  type="button" >
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="30" cy="30" r="30" fill="#F36B08" fill-opacity="0.41"/>
             <path d="M30.666 20V38.6364" stroke="#F36B08" stroke-width="2" stroke-linecap="round"

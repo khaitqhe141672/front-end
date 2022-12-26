@@ -170,4 +170,8 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   showSearchByProvince(provinceName: string) {
     this.router.navigate(['../search'],{queryParams:{title:provinceName,type:2}})
   }
+
+  goToHostManage() {
+    this.router.navigate(['/host/manage-current/confirm-booking'])
+  }
 }

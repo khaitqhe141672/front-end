@@ -7,20 +7,20 @@
         Hôm nay
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="/host/manage-voucher" class="left-bar-list" routerLinkActive="active">
+      <mat-list-item [routerLink]="'/host/manage-voucher'" class="left-bar-list" routerLinkActive="active">
         <mat-icon class="me-2">feed</mat-icon>
         Khuyến mại
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="/host/host-post-list" class="left-bar-list" routerLinkActive="active">
+      <mat-list-item [routerLink]="'/host/host-post-list'" class="left-bar-list" routerLinkActive="active">
         <mat-icon class="me-2">payments</mat-icon>
         Quản lý bài đăng
       </mat-list-item>
-      <mat-list-item routerLink="/host/manage-rate" class="left-bar-list" routerLinkActive="active">
+      <mat-list-item [routerLink]="'/host/manage-rate'" class="left-bar-list" routerLinkActive="active">
         <mat-icon class="me-2">flag</mat-icon>
         Đánh giá
       </mat-list-item>
-      <mat-list-item class="left-bar-list" routerLink="/host/dashboard" routerLinkActive="active">
+      <mat-list-item class="left-bar-list" [routerLink]="'/host/dashboard'" routerLinkActive="active">
         <mat-icon class="me-2">bar_chart</mat-icon>
         Thống kê
       </mat-list-item>

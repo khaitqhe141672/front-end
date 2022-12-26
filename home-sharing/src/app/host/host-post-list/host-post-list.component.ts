@@ -126,4 +126,8 @@ export class HostPostListComponent implements OnInit {
     this.pageIndex = ++e.pageIndex
     this.onLoadData()
   }
+
+  goToPostEdit() {
+    this.router.navigate(['/posts/post-edit'])
+  }
 }
