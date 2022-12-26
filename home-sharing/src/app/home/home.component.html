@@ -56,7 +56,7 @@
             <ng-template carouselSlide >
 <!--              <a >-->
                 <div (click)="showMore(slide.provinceName)" class="image_slide" style="cursor: pointer;">
-                  <img [src]="slide.imageUrl">
+                  <img [src]="slide.imageUrl?slide.imageUrl:'assets/images/bg-create-post/bg-item-home.jpg'">
                 </div>
                 <div class="title_province">
                   <h2>{{slide.provinceName}}</h2>
@@ -77,11 +77,11 @@
           <a routerLink="/posts/post-detail/{{i.postID}}" *ngFor="let i of postTopRate">
             <div class="card_post" style="width: 100%;">
               <div class="image_post">
-                <img [src]="i.urlImage" style="border-radius: 10px 10px 0 0;">
+                <img [src]="i.urlImage?i.urlImage:'assets/images/bg-create-post/loading2.png'" style="border-radius: 10px 10px 0 0;">
               </div>
               <div class="card_body">
                 <h2 class="card_title">{{i.title}}</h2>
-                <p style="font-size: 12px; color: #3f8502" *ngIf="i.star === 0.0">Chưa có đánh giá</p>
+                <p style="font-size: 12px; color: #3f8502;" *ngIf="i.star === 0.0">Chưa có đánh giá</p>
 <!--                <p>-->
 <!--                  <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>-->
 <!--                </p>-->
