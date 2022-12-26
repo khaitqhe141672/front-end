@@ -24,14 +24,16 @@ export class CreateVoucherComponent implements OnInit {
   }
 
   onCreateVoucher() {
-    let voucherName = this.formCreateVoucher.controls.voucherNameCtrl.value
+    let voucherName = this.formCreateVoucher.controls.voucherNameCtrl.value.toString().trim()
 
-    let pct = this.formCreateVoucher.controls.pctCtrl.value
+    let pct = this.formCreateVoucher.controls.pctCtrl.value.toString().trim()
 
-    let description = this.formCreateVoucher.controls.descriptionCtrl.value
-    let dueDay = this.formCreateVoucher.controls.dueDayCtrl.value
-
-
+    let description = this.formCreateVoucher.controls.descriptionCtrl.value.toString().replace(/  +/g, ' ').trim();
+    let dueDay = this.formCreateVoucher.controls.dueDayCtrl.value.toString().trim()
+    console.log('voucher name: '+voucherName)
+    console.log('voucher pct: '+pct)
+    console.log('voucher description: '+description)
+    console.log('voucher dueDay: '+dueDay)
     if(!voucherName||!pct||!description||!dueDay){
       Swal.fire({
         icon:'error',
@@ -47,7 +49,8 @@ export class CreateVoucherComponent implements OnInit {
       return
     }
 
-    this.createVoucherService.createVoucher(voucherName.trim(),description.trim(),pct.trim(),dueDay.trim()).subscribe(
+
+    this.createVoucherService.createVoucher(voucherName,description,pct,dueDay).subscribe(
       response =>console.log(response.message),
       (response)=>{
         console.log(response)
