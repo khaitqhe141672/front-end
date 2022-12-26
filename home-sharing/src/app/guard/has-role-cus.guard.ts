@@ -8,7 +8,6 @@ export class HasRoleCusGuard implements CanActivate{
   constructor(private authService:AuthService) {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     return this.authService.role === 'ROLE_CUSTOMER';
   }
 

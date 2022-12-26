@@ -69,7 +69,9 @@ export class AuthService {
   getToken(): string {
     return JSON.parse(localStorage.getItem('token'))
   }
-
+  getRoleLocal(): string {
+    return JSON.parse(localStorage.getItem('role'))
+  }
   private handleAuthentication(
     message: string, customerID: number, userID: number, username: string, email: string, role: string, status: number,
     token: string
