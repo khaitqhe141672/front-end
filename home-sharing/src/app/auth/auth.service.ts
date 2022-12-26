@@ -155,7 +155,7 @@ export class AuthService {
   }
 
   getRole() {
-    // if(!this)
+    if(!this.role) return localStorage.getItem('role')
     return this.role
   }
 
