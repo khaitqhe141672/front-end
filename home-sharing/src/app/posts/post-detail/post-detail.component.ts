@@ -145,13 +145,13 @@ export class PostDetailComponent implements OnInit {
 
 
   onLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID, 2).subscribe(
+    this.postDetailService.likeRate(rateID, 1).subscribe(
       response => console.log(response)
     )
   }
 
   onDisLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID, 1).subscribe(
+    this.postDetailService.likeRate(rateID, 2).subscribe(
       response => console.log(response)
     )
   }

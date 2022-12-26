@@ -71,6 +71,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
           this.listPost = results.data.listPost
           this.isOpen = true
           console.log( this.listPost)
+          console.log(this.listProvince)
         },()=>{
           console.log('error')
         }
@@ -166,5 +167,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
 
-
+  showSearchByProvince(provinceName: string) {
+    this.router.navigate(['../search'],{queryParams:{title:provinceName,type:2}})
+  }
 }

@@ -204,11 +204,13 @@
               </div>
               <div class="row">
                 <div *ngFor="let place of listProvince" class="col post-search">
-                  <div class="div-img-2">
-                    <img alt="" class="img-post" [src]="place.imageUrl">
-                  </div>
-                  <div>
-                    <h4>{{place.name}}</h4>
+                  <div (click)="showSearchByProvince(place.name)">
+                    <div class="div-img-2">
+                      <img alt="" class="img-post" [src]="place.imageUrl?place.imageUrl:'assets/images/bg-create-post/bg-item-home.jpg'">
+                    </div>
+                    <div>
+                      <h4>{{place.name}}</h4>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -192,22 +192,20 @@
                 </div>
                 <div class="rate-date">
                   <p>{{rate.dateRate}}</p>
-                  <button (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                  <button class="ms-2" (click)="onLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
                           color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_up_off</mat-icon>
+                   {{rate.countLike}}
                   </button>
-                  <button (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
+                  <button class="ms-3" (click)="onDisLikeRate(rate.rateID)" aria-label="Example icon button with a heart icon"
                           color="warn" mat-icon-button
                           type="button">
                     <mat-icon layout-fill="0">thumb_down</mat-icon>
+                    {{rate.countDislike}}
                   </button>
                 </div>
                 <div>
-
-                  <!--                  <button type="button" (click)="onReportRate(rate.rateID,rate.username)"  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">-->
-                  <!--                    <mat-icon  layout-fill="0">flag</mat-icon>-->
-                  <!--                  </button>-->
                 </div>
               </div>
             </div>

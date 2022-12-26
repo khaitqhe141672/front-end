@@ -198,6 +198,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if(this.typeSearch==2&&this.savedProvinceID!=0){
       this.isShowTitleSearch = false
     }
+    if(this.savedProvinceID!=0){
+      this.title = ''
+    }
     this.searchService.searchByFilter(this.isDiscout,this.savedService,roomTypeCtrl,startDate,minPrice,maxPriceCtrl,rateCtrl,optionPriceCtrl,guestNumberCtrl,this.savedProvinceID,this.title,this.typeSearch,this.pageIndex).pipe(catchError(this.handleError)).subscribe(response=>{
       this.totalPage = response.data.sizePage
       this.listSearchByTitle = response.data.searchList.slice()
