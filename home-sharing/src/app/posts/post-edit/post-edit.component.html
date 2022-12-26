@@ -133,21 +133,15 @@
                 <mat-label>Mô tả</mat-label>
                 <textarea [errorStateMatcher]="matcher" formControlName="description" matInput placeholder="" rows="18">
                 </textarea>
-                <mat-error>
-                  <span *ngIf="!formGroupPost.controls.description.valid">
-                       Cần ít nhất 20 ký tự
-                  </span>
+                <mat-error *ngIf="formGroupPost.controls.description.valueChanges">
+                  <mat-error *ngIf="formGroupPost.controls.description.hasError('required')">
+                    Mô tả được bỏ trống
+                  </mat-error>
+                  <mat-error *ngIf="formGroupPost.controls['description'].hasError('minlength')">
+                    Mô tả phải có ít nhất 20 ký tự
+                  </mat-error>
                 </mat-error>
               </mat-form-field>
-<!--              <mat-form-field class="form-element">-->
-<!--                <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="description"></textarea>-->
-<!--                <mat-error *ngIf="!formGroupPost.controls['description'].hasError('minLength') && formGroupPost.controls['description'].touched">-->
-
-<!--                </mat-error>-->
-<!--                <span  *ngIf="formGroupPost.controls['description'].hasError('minLength')">-->
-<!--                    Required field, must be between 5 and 10 characters.-->
-<!--                </span>-->
-<!--              </mat-form-field>-->
             </div>
           </mat-step>
 

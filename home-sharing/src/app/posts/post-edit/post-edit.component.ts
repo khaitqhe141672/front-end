@@ -179,7 +179,7 @@ export class PostEditComponent implements OnInit, AfterViewInit, OnDestroy {
       ])],
       address: ['', Validators.required],
       type: [-1],
-      description: ['', [Validators.required, Validators.minLength(20),Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      description: ['', [Validators.required, Validators.minLength(20)]],
       priceHS: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       vouchers: [''],
       selectServiceCtrl: [''],

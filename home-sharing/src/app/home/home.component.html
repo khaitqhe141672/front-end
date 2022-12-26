@@ -82,9 +82,6 @@
               <div class="card_body">
                 <h2 class="card_title">{{i.title}}</h2>
                 <p style="font-size: 12px; color: #3f8502;" *ngIf="i.star === 0.0">Chưa có đánh giá</p>
-<!--                <p>-->
-<!--                  <mat-icon *ngFor="let s of counter(i.star)" style="color: #F36B08;">star</mat-icon>-->
-<!--                </p>-->
                 <p *ngIf="i.star>0" class="d-flex justify-content-start align-items-center text-center">
                   <mat-icon style="color: #F36B08;">star</mat-icon>
                   {{i.star|number:'1.0-1'}}
