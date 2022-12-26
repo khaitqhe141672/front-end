@@ -12,7 +12,7 @@ export class HasRoleHostGuard{
     console.log("guard host rol: " + JSON.stringify(localStorage.getItem('role')))
     console.log("guard host rol: " + localStorage.getItem('role'))
     let role = JSON.stringify(localStorage.getItem('role'))
-    if (role === 'ROLE_HOST') {
+    if (role === '"ROLE_HOST"') {
       return true
     } else {
       this.router.navigate(['/error'])

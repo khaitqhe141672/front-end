@@ -155,6 +155,7 @@ export class AuthService {
   }
 
   getRole() {
+    // if(!this)
     return this.role
   }
 
