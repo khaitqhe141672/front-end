@@ -147,7 +147,12 @@ export class PostDetailComponent implements OnInit {
   onLikeRate(rateID: number) {
     this.postDetailService.likeRate(rateID,this.postDetail.postID, 1).subscribe(
       response => console.log(response),
-      ()=>{},
+      ()=>{
+        Swal.fire({
+          icon:'error',
+          title:'Bạn chưa từng thuê Homestay này!'
+        })
+      },
       ()=>{
         this.getRate()
       }
@@ -157,7 +162,12 @@ export class PostDetailComponent implements OnInit {
   onDisLikeRate(rateID: number) {
     this.postDetailService.likeRate(rateID,this.postDetail.postID, 2).subscribe(
       response => console.log(response),
-      ()=>{},
+      ()=>{
+        Swal.fire({
+          icon:'error',
+          title:'Bạn chưa từng thuê Homestay này!'
+        })
+      },
       ()=>{
         this.getRate()
       }
