@@ -8,8 +8,11 @@
     <table [dataSource]="dataSource" mat-table matSort>
 
       <ng-container matColumnDef="id">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-        <td *matCellDef="let row" mat-cell> {{row.hostID}} </td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> STT</th>
+        <td *matCellDef="let row;let i = index" mat-cell>
+
+          {{i+1}}
+         </td>
       </ng-container>
 
       <ng-container matColumnDef="userName">
@@ -51,7 +54,7 @@
                   fiber_manual_record
               </mat-icon>
             </div>
-            <div><p> Tạm dừng</p></div>
+            <div><p> Bị cấm</p></div>
 
           </div>
 

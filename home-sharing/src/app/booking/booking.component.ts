@@ -31,7 +31,7 @@ export class BookingComponent implements OnInit {
   totalBillAfterDiscount: number = 0
   priceHS: number = 0
   daysBetween:number = 1
-  tax = 0.9
+  tax = 1.1
   postID: number
   startDateBooking: string
   endDateBooking: string
@@ -217,7 +217,7 @@ export class BookingComponent implements OnInit {
 
   onCreateBooking() {
     console.log(this.isConfirm)
-    let fullName = this.formGroupBooking.controls.fullNameCtrl.value.replace(/  +/g, ' ').trim();
+    let fullName = this.formGroupBooking.controls.fullNameCtrl.value.toString().replace(/  +/g, ' ').trim();
     let newDate = new Date(this.startDateBooking)
     console.log('Date booking: ' + this.startDateBooking)
     console.log(this.bookingService.convertDate(this.startDateBooking))
@@ -246,8 +246,8 @@ export class BookingComponent implements OnInit {
         title: 'Họ và Tên không hợp lệ'
       })
     }
-    bookingBody.email = this.formGroupBooking.controls.emailCtrl.value.trim()
-    bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value.trim()
+    bookingBody.email = this.formGroupBooking.controls.emailCtrl.value.toString().trim()
+    bookingBody.mobile = this.formGroupBooking.controls.phoneNumberCtrl.value.toString().trim()
     // console.log('postID:  '+this.postID)
     // console.log('startDate:  '+startDateBookingBody)
     // console.log('endDate: '+bookingBody.endDate)

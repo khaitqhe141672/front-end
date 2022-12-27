@@ -13,6 +13,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {DatePipe} from "@angular/common";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BookingDetailComponent} from "../../booking-detail/booking-detail.component";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-current-booking',
@@ -74,6 +75,17 @@ export class CurrentBookingComponent implements OnInit {
       this.listConfirmBookingService.confirmedReturnHS(bookingID).subscribe(response=>{
         console.log('confirmedReturnHS: '+response)
         this.refreshListBookingConfirmed.next(true)
+      },()=>{
+        Swal.fire({
+          icon:'error',
+          title:'Xác nhận trả phòng thất bại',
+          text:'Vui lòng thử lại trong giây lát'
+        })
+      },()=>{
+        Swal.fire({
+          icon:'success',
+          title:'Xác nhận trả phòng thành công',
+        })
       })
   }
 

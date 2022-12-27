@@ -23,12 +23,12 @@
     </div>
 
     <div class="mat-elevation-z8">
-      <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+      <table matSortDisabled class="w-100" [dataSource]="dataSource" mat-table matSort>
 
         <ng-container matColumnDef="id">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-          <td  *matCellDef="let row" mat-cell>
-            <div class="d-flex justify-content-center">{{row.postID}}</div>
+          <th *matHeaderCellDef mat-header-cell mat-sort-header> STT</th>
+          <td  *matCellDef="let row;let i =index" mat-cell>
+            <div class="d-flex justify-content-center">{{i+1}}</div>
           </td>
         </ng-container>
 

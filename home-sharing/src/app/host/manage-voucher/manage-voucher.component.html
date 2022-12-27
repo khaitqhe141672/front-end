@@ -22,36 +22,56 @@
     </div>
 
     <div class="mat-elevation-z8">
-      <table class="w-100" [dataSource]="dataSource" mat-table matSort>
+      <table matSortDisabled class="w-100" [dataSource]="dataSource" mat-table matSort>
 
         <ng-container matColumnDef="id">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-          <td  *matCellDef="let row" mat-cell>
-            <div class="d-flex text-center">{{row.idVoucher}}</div></td>
+          <th *matHeaderCellDef mat-header-cell mat-sort-header> STT</th>
+          <td  *matCellDef="let row;let i = index" mat-cell>
+            <div class="d-flex justify-content-center">
+              {{i+1}}
+            </div>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header> Tên khuyến mại</th>
-          <td *matCellDef="let row" mat-cell>{{row.nameVoucher}}</td>
+          <th *matHeaderCellDef mat-header-cell mat-sort-header> Mã khuyến mại</th>
+          <td *matCellDef="let row" mat-cell>
+            <div class="d-flex justify-content-center">
+              {{row.nameVoucher}}
+            </div>
+          </td>
+
         </ng-container>
 
         <ng-container matColumnDef="percent">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Phần trăm giảm</th>
-          <td *matCellDef="let row" mat-cell>{{row.percent}}</td>
+          <td *matCellDef="let row" mat-cell>
+            <div class="d-flex justify-content-center">
+            {{row.percent}}
+            </div>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="description">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Nội dung</th>
-          <td *matCellDef="let row" mat-cell>{{row.description}}</td>
+          <td *matCellDef="let row" mat-cell>
+            <div class="d-flex justify-content-center">
+              {{row.description}}</div>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="date">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Thời gian</th>
-          <td *matCellDef="let row" mat-cell>{{row.dueDate}} ngày</td>
+          <td *matCellDef="let row" mat-cell>
+            <div class="d-flex justify-content-center">
+            {{row.dueDate}} ngày
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="status">
           <th *matHeaderCellDef mat-header-cell mat-sort-header> Trạng thái</th>
           <td *matCellDef="let row" mat-cell [ngSwitch]="row.status">
+            <div class="d-flex justify-content-center">
 
             <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>
               <div  *ngSwitchCase="1" class="d-flex justify-content-start text-center align-items-center" style="color: #367E18">
@@ -73,7 +93,7 @@
               <button   mat-menu-item (click)="openDialog(3,row.idVoucher)">Dừng</button>
 
             </mat-menu>
-
+            </div>
           </td>
         </ng-container>
 

@@ -10,7 +10,7 @@ import {ListHistoryReportPost} from "./history-handle-report-post.model";
   styleUrls: ['./history-handle-report.component.css']
 })
 export class HistoryHandleReportComponent implements OnInit {
-  displayedColumns: string[] = ['historyHandleReportPostID','statusPost','statusReportPost','totalReportPost' ];
+  displayedColumns: string[] = ['historyHandleReportPostID','statusPost','totalReportPost' ];
   dataSource:MatTableDataSource<ListHistoryReportPost>
   constructor(@Inject(MAT_DIALOG_DATA) public data:number,private manageReportPostService:ManageReportPostService) { }
   pageIndex = 1
@@ -25,7 +25,7 @@ export class HistoryHandleReportComponent implements OnInit {
       this.dataSource = new MatTableDataSource<ListHistoryReportPost>(this.listHistoryHandlePost)
     })
   }
-  applyFilter($event: KeyboardEvent) {
+  applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

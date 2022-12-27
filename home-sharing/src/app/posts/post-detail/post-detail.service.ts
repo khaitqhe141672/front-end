@@ -63,9 +63,9 @@ export class PostDetailService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  likeRate(rateID:number,type:number):Observable<any>{
+  likeRate(rateID:number,postID:number,type:number):Observable<any>{
     // type=2&rate-id=1
-    let params = new HttpParams({fromString: 'type='+type+'&'+'rate-id='+rateID});
+    let params = new HttpParams({fromString:'rate-id='+rateID+'&post-id='+postID+'&type='+type});
     // params.append('type',type+"")
     // params.append('rate-id',rateID+"")
 

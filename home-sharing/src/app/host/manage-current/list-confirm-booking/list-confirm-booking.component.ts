@@ -79,6 +79,11 @@ export class ListConfirmBookingComponent implements OnInit {
       this.refreshListPending.next(true)
     }, () => {
       this.isLoading = false
+      Swal.fire({
+        icon:'error',
+        title:'Quá thời gian xử lý',
+        text:'Vui lòng kiểm tra lại kết nối mạng!'
+      })
     }, () => {
       this.isLoading = false
       Swal.fire({
@@ -89,6 +94,7 @@ export class ListConfirmBookingComponent implements OnInit {
   }
 
   openDetailBooking(bookingServiceDtos: BookingServiceDto[],note:string,bookingPostVoucherDto:BookingPostVoucherDto) {
+    console.log('note: '+note)
     this.bookingDetail = this.dialog.open(BookingDetailComponent,{
       data:{
         bookingServiceDtos:bookingServiceDtos,

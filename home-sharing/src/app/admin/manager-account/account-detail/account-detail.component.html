@@ -35,10 +35,10 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Trạng thái tài khoản</mat-label>
                   <mat-select formControlName="statusCtrl" [value]="data.status">
-                    <mat-option [value]="1" style="color: #367E18">
-                      Đã kích hoạt
+                    <mat-option *ngIf="data.status!==0" [value]="1" style="color: #367E18">
+                      Kích hoạt
                     </mat-option>
-                    <mat-option [value]="2" style="color: red">
+                    <mat-option *ngIf="data.status!==0" [value]="2" style="color: red">
                       Bị cấm
                     </mat-option>
                     <mat-option style="color: #5E7FDC" [value]="0" [disabled]="data.status===1||data.status===2">
@@ -48,26 +48,26 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <label id="vertifi-radio">Tích xanh</label>
-                <br>
-                <mat-radio-group formControlName="radioVerifyCtrl">
-                  <div class=" row">
-                    <div class="me-3 col">
-                      <mat-radio-button [checked]="data.typeAccountHost==1" value="1">
-                        Bật
-                      </mat-radio-button>
-                    </div>
-                    <div class="col">
-                      <mat-radio-button [checked]="data.typeAccountHost==2" value="2">
-                        Tắt
-                      </mat-radio-button>
-                    </div>
-                  </div>
-                </mat-radio-group>
-              </div>
-            </div>
+<!--            <div class="row">-->
+<!--              <div class="col-6">-->
+<!--                <label id="vertifi-radio">Tích xanh</label>-->
+<!--                <br>-->
+<!--                <mat-radio-group formControlName="radioVerifyCtrl">-->
+<!--                  <div class=" row">-->
+<!--                    <div class="me-3 col">-->
+<!--                      <mat-radio-button [checked]="data.typeAccountHost==1" value="1">-->
+<!--                        Bật-->
+<!--                      </mat-radio-button>-->
+<!--                    </div>-->
+<!--                    <div class="col">-->
+<!--                      <mat-radio-button [checked]="data.typeAccountHost==2" value="2">-->
+<!--                        Tắt-->
+<!--                      </mat-radio-button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </mat-radio-group>-->
+<!--              </div>-->
+<!--            </div>-->
           </form>
           <div class="row">
               <div class="col-12">

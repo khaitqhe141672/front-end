@@ -32,13 +32,13 @@
           <div class="col-2  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Tên tài khoản</mat-label>
-              <input formControlName="userName" matInput readonly>
+              <input type="text" formControlName="userName" matInput readonly>
             </mat-form-field>
           </div>
           <div class="col-3  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Họ và Tên</mat-label>
-              <input formControlName="fullName" matInput
+              <input type="text" formControlName="fullName" matInput
                      placeholder="">
               <mat-error>
                 Tên cần tối thiểu 6 ký tự
@@ -51,7 +51,7 @@
           <div class="col-3  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Số điện thoại</mat-label>
-              <input appCheckInputNumber formControlName="phoneNumber" matInput
+              <input type="text" appCheckInputNumber formControlName="phoneNumber" matInput
                      placeholder="">
               <mat-error>
                 Số điện thoại không hợp lệ
@@ -61,7 +61,7 @@
           <div class="col-2  w-50">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Địa chỉ email</mat-label>
-              <input formControlName="email" matInput placeholder=""
+              <input type="text" formControlName="email" matInput placeholder=""
                      readonly>
             </mat-form-field>
           </div>
@@ -75,7 +75,7 @@
           <div class="col-5 w-100">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Địa chỉ</mat-label>
-              <input formControlName="address" matInput
+              <input type="text" formControlName="address" matInput
                      placeholder="">
               <mat-error >
 <!--                *ngIf="infoFormGroup.controls.address.hasError('minLength')"-->

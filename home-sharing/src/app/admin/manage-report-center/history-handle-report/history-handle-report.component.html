@@ -32,7 +32,7 @@
       </div>
     </td>
   </ng-container>
-    <ng-container matColumnDef="statusReportPost">
+    <ng-container matColumnDef="totalReportPost">
     <th *matHeaderCellDef mat-header-cell mat-sort-header>Số lần bị báo cáo</th>
     <td *matCellDef="let row" mat-cell>
       <div class="ps-4">
@@ -41,29 +41,29 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="totalReportPost">
-  <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái xử lý</th>
-    <td *matCellDef="let row" [ngSwitch]="row.totalReportPost" mat-cell>
-      <div *ngSwitchCase="1" style="color: #F36B08">
-        <div class="d-flex flex-row align-items-start justify-content-start text-start">
-          <mat-icon style="fill: #F36B08">
-                    fiber_manual_record
-          </mat-icon>
-          <div>
-            Chưa xử lý
-          </div>
-        </div>
-      </div>
-      <div *ngSwitchCase="2" class="d-flex" style="color: #367E18">
-        <div class="d-flex flex-row align-items-center justify-content-center text-center">
-          <mat-icon style="fill: #367E18">
-                      fiber_manual_record
-          </mat-icon>
-          <div>Đã xử lý</div>
-        </div>
-      </div>
-    </td>
-  </ng-container>
+<!--  <ng-container matColumnDef="totalReportPost">-->
+<!--  <th *matHeaderCellDef mat-header-cell mat-sort-header>Trạng thái xử lý</th>-->
+<!--    <td *matCellDef="let row" [ngSwitch]="row.totalReportPost" mat-cell>-->
+<!--      <div *ngSwitchCase="1" style="color: #F36B08">-->
+<!--        <div class="d-flex flex-row align-items-start justify-content-start text-start">-->
+<!--          <mat-icon style="fill: #F36B08">-->
+<!--                    fiber_manual_record-->
+<!--          </mat-icon>-->
+<!--          <div>-->
+<!--            Chưa xử lý-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div *ngSwitchCase="2" class="d-flex" style="color: #367E18">-->
+<!--        <div class="d-flex flex-row align-items-center justify-content-center text-center">-->
+<!--          <mat-icon style="fill: #367E18">-->
+<!--                      fiber_manual_record-->
+<!--          </mat-icon>-->
+<!--          <div>Đã xử lý</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </td>-->
+<!--  </ng-container>-->
 
 
   <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>

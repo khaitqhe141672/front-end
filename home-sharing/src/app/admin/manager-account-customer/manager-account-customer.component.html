@@ -8,8 +8,8 @@
     <table [dataSource]="dataSource" class="w-100" mat-table matSort>
 
       <ng-container matColumnDef="id">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-        <td *matCellDef="let row" mat-cell> {{row.customerID}} </td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> STT</th>
+        <td *matCellDef="let row;let i =index" mat-cell>   {{i+1}} </td>
       </ng-container>
 
       <ng-container matColumnDef="userName">

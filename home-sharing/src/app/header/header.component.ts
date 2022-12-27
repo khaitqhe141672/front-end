@@ -131,11 +131,11 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     //1: title
     //2: province
     if(type==1){
-      let title = this.formSearch.controls.searchCtrl.value
+      let title = this.formSearch.controls.searchCtrl.value.toString().replace(/  +/g, ' ').trim();
       this.router.navigate(['../search'],{queryParams:{title:title, type:type}})
     }
     else if(type==2){
-      let province = this.formSearch.controls.searchCtrl.value
+      let province = this.formSearch.controls.searchCtrl.value.toString().replace(/  +/g, ' ').trim();
       this.router.navigate(['../search'],{queryParams:{title:province,type:type}})
     }
 

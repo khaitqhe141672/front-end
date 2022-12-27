@@ -24,7 +24,8 @@ export class BookingDetailComponent implements OnInit {
   ngOnInit(): void {
     this.listBookingService = this.data.bookingServiceDtos as BookingServiceDto[]
     // this.bookingPostVoucherDto = this.data.bookingPostVoucherDto
-    // this.note = this.data.note
+    this.note = this.data.note
+    console.log('note: '+this.note)
     console.log('this.listBookingService:'+JSON.stringify(this.listBookingService))
   }
 

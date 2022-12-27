@@ -62,9 +62,9 @@ export class UserInfoComponent implements OnInit {
   }
 
   onSaveProfile() {
-    const name = this.infoFormGroup.controls.fullName.value.replace(/  +/g, ' ').trim();
-    const phoneNumber = this.infoFormGroup.controls.phoneNumber.value
-    const address = this.infoFormGroup.controls.address.value
+    const name = this.infoFormGroup.controls.fullName.value.toString().replace(/  +/g, ' ').trim();
+    const phoneNumber = this.infoFormGroup.controls.phoneNumber.value.toString()
+    const address = this.infoFormGroup.controls.address.value.toString()
     console.log('name: '+name)
     console.log('phoneNumber: '+phoneNumber)
     console.log('address: '+address)
@@ -102,15 +102,6 @@ export class UserInfoComponent implements OnInit {
     },()=>{
       this.getUserInfo()
     })
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: 'Cập nhập thông tin thành công',
-    // })
-    // Swal.fire({
-    //   icon: 'error',
-    //   title: 'Cập nhập thông tin thất bại!',
-    //   text:'Vui lòng thử lại trong giây lát'
-    // })
   }
 
   selectFiles(event:any) {

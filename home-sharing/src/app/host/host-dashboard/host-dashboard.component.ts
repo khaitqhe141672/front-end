@@ -56,7 +56,7 @@ export class HostDashboardComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'Tên Homestay';
   showYAxisLabel = true;
-  yAxisLabel = 'Lượt khách đón';
+  yAxisLabel = 'Lượt đặt phòng';
   totalPriceByPost: { name: string, value: number }[] = [{name: '', value: 0}]
 
   //init data api

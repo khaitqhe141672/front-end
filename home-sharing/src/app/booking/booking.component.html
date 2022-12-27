@@ -92,7 +92,7 @@
           <div class="col-xl-6 col-md-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Họ và tên</mat-label>
-              <input type="text" #fullName formControlName="fullNameCtrl" matInput placeholder="" value="{{name}}">
+              <input readonly type="text" #fullName formControlName="fullNameCtrl" matInput placeholder="" value="{{name}}">
               <mat-error *ngIf="formGroupBooking.controls['fullNameCtrl'].hasError('pattern')">
                 Tên không hợp lệ
               </mat-error>
@@ -104,7 +104,7 @@
           <div class="col-xl-6 col-md-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Số điện thoại</mat-label>
-              <input #phoneNumber formControlName="phoneNumberCtrl" matInput placeholder="" value="{{phoneNumber}}">
+              <input type="text" #phoneNumber formControlName="phoneNumberCtrl" matInput placeholder="" value="{{phoneNumber}}">
               <mat-error>
                 Số điện thoại không hợp lệ
               </mat-error>
@@ -113,13 +113,13 @@
           <div class="col-xl-6 col-md-12 mt-2">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Địa chỉ email</mat-label>
-              <input readonly #email formControlName="emailCtrl" matInput placeholder="" value="{{email}}">
+              <input type="text" readonly #email formControlName="emailCtrl" matInput placeholder="" value="{{email}}">
             </mat-form-field>
           </div>
           <div class="col-xl-6 col-md-12 mt-2">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Ghi chú</mat-label>
-              <input #note formControlName="noteCtrl" matInput placeholder="" value="{{note}}">
+              <input  type="text" #note formControlName="noteCtrl" matInput placeholder="" value="{{note}}">
             </mat-form-field>
           </div>
         </div>

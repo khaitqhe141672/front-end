@@ -10,8 +10,12 @@
     <table class="w-100" matSortDisabled [dataSource]="dataSource" mat-table matSort>
 
       <ng-container matColumnDef="id">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
-        <td *matCellDef="let row" mat-cell>{{row.viewBookingDto.bookingID}}</td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> STT</th>
+        <td *matCellDef="let row;let i = index" mat-cell>
+          <div class="d-flex m-auto justify-content-center">
+            {{i+1}}
+          </div>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="title">

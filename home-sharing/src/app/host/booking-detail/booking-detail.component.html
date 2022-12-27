@@ -73,28 +73,38 @@
 <div mat-dialog-content>
   <h2>Dịch vụ - Giá</h2>
   <div class="row">
-    <div class="col" *ngIf="listBookingService">
+    <div *ngIf="listBookingService" class="col">
       <mat-chip-list aria-label="Dog selection">
-        <mat-chip style="background-color: #F36B08;color: white" *ngFor="let service of listBookingService">
+        <mat-chip *ngFor="let service of listBookingService" style="background-color: #F36B08;color: white">
           {{service.nameService}}-{{service.priceService|currency}}
         </mat-chip>
       </mat-chip-list>
     </div>
-    <div class="col" *ngIf="!listBookingService">
+    <div *ngIf="!listBookingService" class="col">
       Khách hàng không chọn dịch vụ kèm theo
     </div>
   </div>
+  <hr>
   <h2 class="mt-3">Mã khuyến mại</h2>
   <div class="row">
-    <div class="col" *ngIf="bookingPostVoucherDto">
+    <div *ngIf="bookingPostVoucherDto" class="col">
       <mat-chip-list aria-label="Dog selection">
-        <mat-chip >
+        <mat-chip>
           Mã:{{bookingPostVoucherDto.code}}-Giảm:{{bookingPostVoucherDto.percent}}
         </mat-chip>
       </mat-chip-list>
     </div>
-    <div class="col" *ngIf="!bookingPostVoucherDto">
+    <div *ngIf="!bookingPostVoucherDto" class="col">
       Không có khuyến mại được áp dụng
+    </div>
+  </div>
+  <hr>
+  <div *ngIf="note!=''">
+    <h2 class="mt-3">Ghi chú của khách</h2>
+    <div class="row">
+      <div class="col">
+        <h3>{{note}}</h3>
+      </div>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@
           <form [formGroup]="formRate">
             <div class="row d-flex ">
               <div class="col-12">
-                <h3>Vui lòng đánh giá Homestay</h3>
+                <h3 *ngIf="data.statusRate!=1">Vui lòng đánh giá Homestay</h3>
               </div>
             </div>
             <div class="row">
@@ -50,6 +50,9 @@
               <div class="col-12">
                 <h3 *ngIf="data.statusRate!=1">
                   *Bạn hay đánh giá thật lòng để Chủ nhà có thể cải thiện và làm kinh nghiệm cho khách sau
+                </h3>
+                <h3 *ngIf="data.statusRate!=1">
+                  *Lưu ý: sau khi đánh giá bạn sẽ không thể sửa để đảm bảo nếu đánh giá của bạn là bị báo sai sự thật hoặc có từ ngữ xúc phạm,... chúng tôi sẽ có căn cứ để xử lý
                 </h3>
                 <h3 *ngIf="data.statusRate==1">
                   *Cảm ơn đóng góp đánh giá của bạn của bạn

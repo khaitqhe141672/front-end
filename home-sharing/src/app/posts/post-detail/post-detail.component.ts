@@ -145,7 +145,7 @@ export class PostDetailComponent implements OnInit {
 
 
   onLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID, 1).subscribe(
+    this.postDetailService.likeRate(rateID,this.postDetail.postID, 1).subscribe(
       response => console.log(response),
       ()=>{},
       ()=>{
@@ -155,7 +155,7 @@ export class PostDetailComponent implements OnInit {
   }
 
   onDisLikeRate(rateID: number) {
-    this.postDetailService.likeRate(rateID, 2).subscribe(
+    this.postDetailService.likeRate(rateID,this.postDetail.postID, 2).subscribe(
       response => console.log(response),
       ()=>{},
       ()=>{
