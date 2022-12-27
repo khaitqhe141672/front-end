@@ -51,7 +51,7 @@ export class RateComponent implements OnInit {
   }
 
   onSubmitRate() {
-    this.comment = this.formRate.get('commentCtrl').value
+    this.comment = this.formRate.get('commentCtrl').value.toString().trim().replace(/  +/g, ' ')
     console.log('show rate: '+this.formRate.get('rating').value)
     console.log('show rate: '+ this.comment)
     this.rateService.pushRate(this.data.id,this.comment,this.currentRate).subscribe({

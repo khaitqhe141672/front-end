@@ -64,7 +64,7 @@ export class ReportHsComponent implements OnInit {
   onReport() {
     console.log('submited')
     console.log('id report: ' + this.data.id)
-    let description = this.formReportHS.controls.descriptionCtrl.value
+    let description = this.formReportHS.controls.descriptionCtrl.value.toString().trim().replace(/  +/g, ' ')
     console.log('description: ' + description)
 
     this.reportHsService.pushReportHS(this.data.id, this.data.bookingID, this.selectedReportChips.id, description, this.data.type).subscribe({
