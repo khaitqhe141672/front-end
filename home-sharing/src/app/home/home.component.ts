@@ -115,4 +115,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   showMore(province:string) {
     this.router.navigate(['../search'],{queryParams:{title:province,type:2}})
   }
+  showMorePost() {
+    this.router.navigate(['../search'])
+  }
 }
