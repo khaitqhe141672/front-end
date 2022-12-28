@@ -20,6 +20,8 @@ import {
   ListDetailHistoryReportPost
 } from "../../admin/manage-report-center/manage-report-post/report-post-detail-dialog/history-report-detail.model";
 import {CreateComplaintReportComponent} from "./create-complaint-report/create-complaint-report.component";
+import Swal from "sweetalert2";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-complaint-report',
@@ -31,11 +33,13 @@ export class ComplaintReportComponent implements OnInit {
   postID:number = 0
   historyHandleReportPostID:number = 0
 
-  totalPaginator: number
+  totalPaginator1: number = 1
+  totalPaginator2:number = 1
   pageIndex: number = 1
+  pageIndex2 = 1
   pageIndexDetail:number = 1
-  displayedColumns: string[] = ['postID', 'title', 'statusPost', 'totalReportPost','function'];
-  displayedColumnsDetail: string[] = [ 'username', 'reportTypeName', 'description','function'];
+  displayedColumns: string[] = ['postID', 'title', 'statusPost', 'totalReportPost','function','appeal'];
+  displayedColumnsDetail: string[] = [ 'username', 'reportTypeName', 'description'];
 
   dataSource: MatTableDataSource<ListHistoryReportPost>
   dataSourceDetail:MatTableDataSource<ListDetailHistoryReportPost>
@@ -66,6 +70,7 @@ export class ComplaintReportComponent implements OnInit {
     this.loadListHistoryReportObs = this.refreshListHistoryReport.pipe(
       switchMap(_=>this.manageReportPostService.getHistoryReport(this.data.postID,this.pageIndex).pipe(
         map(data=>{
+          this.totalPaginator1 = data.data.sizePage
           return data.data.listHistoryReportPost
         }))))
     if(this.subLoadListHistoryReport) this.subLoadListHistoryReport.unsubscribe()
@@ -83,6 +88,7 @@ export class ComplaintReportComponent implements OnInit {
     this.loadListDetailReportObs = this.refreshListDetailReport.pipe(
       switchMap(_=>this.reportPostDetailService.getDetailListReport(historyHandleReportPostID,this.pageIndexDetail).pipe(
           map(data=>{
+            this.totalPaginator2 = data.data.sizePage
             console.log(data.data.listDetailHistoryReportPost)
             return data.data.listDetailHistoryReportPost
           })
@@ -100,10 +106,30 @@ export class ComplaintReportComponent implements OnInit {
     console.log('history: '+this.historyHandleReportPostID)
     if(this.postID==0) {
       console.log('onComplainHandling postID: '+this.postID )
+      // return
     }
     this.appealComplainRef = this.dialog.open(CreateComplaintReportComponent,{
       hasBackdrop:true,
       data:{postID:this.postID,historyHandleReportPostID:this.historyHandleReportPostID}
     })
+  }
+  onShowAppeal(des:string){
+    console.log(des)
+    Swal.fire({
+      icon:'warning',
+      title:'Bạn đã kháng cáo',
+      text:'Nội dung: '+des
+    })
+  }
+
+  handlePageEvent2(e: PageEvent) {
+    console.log('page index: '+e.pageIndex)
+    this.pageIndex = ++e.pageIndex
+    this.onLoadHistoryBeReported()
+  }
+  handlePageEvent1(e: PageEvent) {
+    console.log('page index: '+e.pageIndex)
+    this.pageIndex2 = ++e.pageIndex
+    this.onLoadHistoryBeReported()
   }
 }

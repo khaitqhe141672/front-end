@@ -30,6 +30,7 @@ export class PostDetail {
   longitude: string
   bookingDate?: string[]
   typeAccountHost: number
+  countBooking?:number
 }
 
 export class ServiceDetailDtoList {

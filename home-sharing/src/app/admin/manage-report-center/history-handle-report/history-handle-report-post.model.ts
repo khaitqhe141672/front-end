@@ -16,4 +16,6 @@ export interface ListHistoryReportPost {
   statusPost: number
   statusReportPost: number
   totalReportPost: number
+  complaintStatus?:number
+  description?:string
 }

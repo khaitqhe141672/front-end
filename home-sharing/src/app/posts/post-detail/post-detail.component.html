@@ -30,7 +30,8 @@
           d="M17.935 0L13.5318 10.9091H0.322266L11.3302 18.1819L6.92704 29.091L17.935 21.8183L28.943 29.091L24.5398 18.1819L35.5477 10.9091H22.3382L17.935 0Z"
           fill="#F36B08"/>
       </svg>
-      |{{postDetail.guestNumber}} khách - {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
+       - {{postDetail.countBooking?'Lượt đặt: '+postDetail.countBooking:''}}
+      | {{postDetail.guestNumber}} khách - {{postDetail.numberOfBedrooms}} phòng ngủ - {{postDetail.numberOfBeds}} giường
       - {{postDetail.numberOfBathrooms}} vệ sinh
     </p>
 

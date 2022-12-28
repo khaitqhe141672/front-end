@@ -21,7 +21,7 @@ export class CreateComplaintReportComponent implements OnInit {
   }
 
   onCreateComplain(){
-    let des = this.formAppeal.controls.description.value
+    let des = this.formAppeal.controls.description.value.toString().replace(/  +/g, ' ').trim();
     if(!des) return
     console.log('post id: '+this.data.postID)
     console.log('history id: '+this.data.historyHandleReportPostID)

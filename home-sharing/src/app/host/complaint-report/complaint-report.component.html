@@ -2,18 +2,20 @@
   <h1 mat-dialog-title>Danh sách báo cáo từ người dùng đã được xử lý</h1>
   <hr>
 
-    <div *ngIf="dataSource.data.length<=0" class="d-flex justify-content-center text-center">
+    <div *ngIf="dataSource?.data.length<=0" class="d-flex justify-content-center text-center">
       <h2>Chưa có báo nào về bài đăng này</h2>
     </div>
-  <div  *ngIf="dataSource.data.length>0" class="box_list_report">
+  <div  *ngIf="dataSource?.data.length>0" class="box_list_report">
     <div class="table_list">
       <div class="mat-elevation-z8">
-        <table [dataSource]="dataSource" class="w-100" mat-table matSort>
+        <table matSortDisabled [dataSource]="dataSource" class="w-100" mat-table matSort>
 
           <ng-container matColumnDef="postID">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Mã bài viết</th>
             <td *matCellDef="let row" mat-cell>
-              {{row.postID}}
+              <div class="d-flex justify-content-center">
+                {{row.postID}}
+              </div>
             </td>
           </ng-container>
 
@@ -39,12 +41,14 @@
           <ng-container matColumnDef="totalReportPost">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Số lần bị báo cáo</th>
             <td *matCellDef="let row" mat-cell>
-              {{row.totalReportPost}}
+              <div class="d-flex justify-content-center">
+                {{row.totalReportPost}}
+              </div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="function">
-            <th *matHeaderCellDef mat-header-cell mat-sort-header> Xem thêm</th>
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Chi tiết</th>
             <td *matCellDef="let row" mat-cell>
               <div class="card_function">
                 <div class="edit">
@@ -67,14 +71,28 @@
               </div>
             </td>
           </ng-container>
+          <ng-container matColumnDef="appeal">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Kháng cáo</th>
+            <td *matCellDef="let row" mat-cell>
+              <div  style="width: 160px"  class="card_function text-center">
+                <div class="edit">
+                  <button *ngIf="row.complaintStatus==0" (click)="onComplainHandling()">
+                    <mat-icon>flag</mat-icon>
+                  </button>
+                  <button *ngIf="row.complaintStatus==1" (click)="onShowAppeal(row.description)">
+                    <mat-icon>flag</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </ng-container>
 
           <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
           <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"
-                       hidePageSize></mat-paginator>
+        <mat-paginator (page)="handlePageEvent1($event)" [length]="10*totalPaginator1==0?1:10*totalPaginator1" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
       </div>
     </div>
     <div style="border-right: 1px solid #F36B08;"></div>
@@ -114,26 +132,25 @@
             </ng-container>
 
 
-            <ng-container matColumnDef="function">
-              <th *matHeaderCellDef mat-header-cell mat-sort-header> Kháng cáo</th>
-              <td *matCellDef="let row" mat-cell>
-                <div  style="width: 160px"  class="card_function text-center">
-                  <div class="edit">
-                    <button (click)="onComplainHandling()">
-                      <mat-icon>flag</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </td>
-            </ng-container>
+<!--            <ng-container matColumnDef="function">-->
+<!--              <th *matHeaderCellDef mat-header-cell mat-sort-header> Kháng cáo</th>-->
+<!--              <td *matCellDef="let row" mat-cell>-->
+<!--                <div  style="width: 160px"  class="card_function text-center">-->
+<!--                  <div class="edit">-->
+<!--                    <button (click)="onComplainHandling()">-->
+<!--                      <mat-icon>flag</mat-icon>-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </td>-->
+<!--            </ng-container>-->
 
             <tr *matHeaderRowDef="displayedColumnsDetail; sticky: true" mat-header-row></tr>
             <tr *matRowDef="let row; columns: displayedColumnsDetail;" mat-row></tr>
 
           </table>
 
-          <mat-paginator [pageSizeOptions]="[5,15, 25, 100]" aria-label="Select page of users"
-                         hidePageSize></mat-paginator>
+          <mat-paginator (page)="handlePageEvent2($event)" [length]="10*totalPaginator2==0?1:10*totalPaginator2" hidePageSize [pageSize]="10"  aria-label="Select page of users"></mat-paginator>
         </div>
       </div>
     </div>

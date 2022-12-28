@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ReportHsComponent} from "../../report-hs/report-hs.component";
 import {PageEvent} from "@angular/material/paginator";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-rate-detail',
@@ -81,5 +82,13 @@ export class RateDetailComponent implements OnInit {
     console.log('page index: '+e.pageIndex)
     this.pageIndex = ++e.pageIndex
     this.onLoadListRateDetail(this.postID)
+  }
+
+  onShowReportRate(descriptionReport: string,reportTypeName:string) {
+    Swal.fire({
+      title: 'Bạn đã báo cáo đánh giá này',
+      text: "Loại báo cáo: "+reportTypeName+"\n"+"Nội dung: "+descriptionReport,
+      icon: 'warning',
+    })
   }
 }
