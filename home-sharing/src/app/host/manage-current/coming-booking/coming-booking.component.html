@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <mat-form-field appearance="standard">
-    <mat-label>Tìm kiếm</mat-label>
-    <input matInput placeholder="">
+  <mat-form-field appearance="none">
+    <mat-label></mat-label>
+    <input style="visibility: hidden" matInput placeholder="">
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -76,6 +76,27 @@
               <mat-icon>expand_circle_down</mat-icon>
             </button>
           </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="checkin">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Xác nhận nhận phòng</th>
+        <td *matCellDef="let row" mat-cell>
+          <div class="text-center d-flex justify-content-center">
+            <button (click)="confirmCheckInHS(row.viewBookingDto.bookingID,3)" mat-raised-button style="color: #367E18">
+              <mat-icon style="color: #367E18">check</mat-icon>
+              <!--              Xác nhận-->
+            </button>
+            <button (click)="confirmCheckInHS(row.viewBookingDto.bookingID,6)" mat-raised-button style="color: red">
+              <mat-icon style="color: red">close</mat-icon>
+              <!--                           Huỷ-->
+            </button>
+          </div>
+<!--          <div *ngIf="row.viewBookingDto.status==3" class="text-center d-flex justify-content-center">-->
+<!--            <mat-icon style="color: #367E18">check</mat-icon>-->
+<!--          </div>-->
+<!--          <div *ngIf="row.viewBookingDto.status==6" class="text-center d-flex justify-content-center">-->
+<!--            <mat-icon style="color: red">close</mat-icon>-->
+<!--          </div>-->
         </td>
       </ng-container>
 

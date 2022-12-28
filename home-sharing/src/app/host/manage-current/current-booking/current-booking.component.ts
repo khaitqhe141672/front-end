@@ -22,7 +22,7 @@ import Swal from "sweetalert2";
 })
 export class CurrentBookingComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title','userBooking','startDate','endDate','totalPerson','totalMoney','totalService','note','checkin','action'];
+  displayedColumns: string[] = ['id', 'title','userBooking','startDate','endDate','totalPerson','totalMoney','totalService','note','action'];
   dataSource: MatTableDataSource<ListBooking>
   pageIndex = 1
   totalPagePagination:number = 1
@@ -90,25 +90,7 @@ export class CurrentBookingComponent implements OnInit {
       })
   }
 
-  confirmCheckInHS(bookingID:number,status:number){
-      this.listConfirmBookingService.checkInBooking(bookingID,status).subscribe(
-        response=>{
-          console.log(response)
-        },()=>{
-          Swal.fire({
-            icon:'error',
-            title:status==3?'Xác nhận nhận phòng thất bại':'Xác nhận huỷ nhận phòng thất bại',
-            text:'Vui lòng thử lại trong giây lát'
-          })
-        },()=>{
-          Swal.fire({
-            icon:'success',
-            title:status==3?'Xác nhận nhận phòng thành công':'Xác nhận huỷ nhận phòng thành công',
-          })
-          this.onLoadListBookingConfirmed()
-        }
-      )
-  }
+
 
   openDetailBooking(bookingServiceDtos: BookingServiceDto[],note:string,bookingPostVoucherDto:BookingPostVoucherDto) {
     this.bookingDetail = this.dialog.open(BookingDetailComponent,{
