@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {
+  API_HOST_CHECKIN,
   API_HOST_CHECKOUT,
   API_HOST_CONFIRM_BOOKING, API_HOST_LIST_CURRENT_BOOKING,
   API_HOST_LIST_PENDING_CONFIRM_BOOKING
@@ -37,5 +38,11 @@ export class ListConfirmBookingService {
   confirmedReturnHS(bookingID:number):Observable<any>
   {
     return  this.http.put(API_HOST_CHECKOUT+bookingID,{})
+  }
+  checkInBooking(bookingID:number,status:number):Observable<any>
+  {
+    // booking-id=1&status=3
+    const httpParams = new HttpParams({fromString:'booking-id='+bookingID+'&status='+status})
+    return this.http.put(API_HOST_CHECKIN,{},{params:httpParams})
   }
 }

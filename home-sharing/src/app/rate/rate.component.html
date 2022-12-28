@@ -1,4 +1,4 @@
-<h1 mat-dialog-title >Đánh giá</h1>
+<h1 mat-dialog-title>Đánh giá</h1>
 <div mat-dialog-content>
   <div class="modal-body">
     <div class="row main-content">
@@ -10,9 +10,9 @@
                 <h3 *ngIf="data.statusRate!=1">Vui lòng đánh giá Homestay</h3>
               </div>
             </div>
-            <div class="row">
-              <div  class="col-12">
-                <ng-template  #t let-fill="fill">
+            <div *ngIf="data.statusRate!=1" class="row">
+              <div class="col-12">
+                <ng-template #t let-fill="fill">
                           <span>
                             <ng-container *ngIf="fill > 0;">
                                <svg height="24" style="fill: #F36B08" viewBox="0 0 24 24" width="24"
@@ -32,6 +32,23 @@
                             [starTemplate]="t" formControlName="rating"></ngb-rating>
               </div>
             </div>
+
+            <div *ngIf="data.statusRate==1" class="row">
+              <div class="col-12 d-flex justify-content-start align-items-center">
+                <div>
+                  <span>
+                    <svg height="24" style="fill: #F36B08" viewBox="0 0 24 24" width="24"
+                         xmlns="http://www.w3.org/2000/svg"><path
+                      d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"
+                      fill-rule="evenodd"></path></svg>
+                  </span>
+                </div>
+                <div class="ps-1">
+                  {{this.pointRate}}
+                </div>
+
+              </div>
+            </div>
             <div class="row h-100 mt-4">
               <div class="col-12">
                 <h3>Mô tả trải nghiệm của bạn</h3>
@@ -41,7 +58,8 @@
               <div class="col-12 ">
                 <mat-form-field appearance="outline" class="example-full-width w-100 h-100">
                   <mat-label>Nhận xét</mat-label>
-                  <textarea [readonly]="data.statusRate==1" formControlName="commentCtrl" matInput placeholder="Để lại nhận xét của bạn ở đây" rows="10"></textarea>
+                  <textarea [readonly]="data.statusRate==1" formControlName="commentCtrl" matInput
+                            placeholder="Để lại nhận xét của bạn ở đây" rows="10"></textarea>
                 </mat-form-field>
               </div>
             </div>
@@ -52,7 +70,8 @@
                   *Bạn hay đánh giá thật lòng để Chủ nhà có thể cải thiện và làm kinh nghiệm cho khách sau
                 </h3>
                 <h3 *ngIf="data.statusRate!=1">
-                  *Lưu ý: sau khi đánh giá bạn sẽ không thể sửa để đảm bảo nếu đánh giá của bạn là bị báo sai sự thật hoặc có từ ngữ xúc phạm,... chúng tôi sẽ có căn cứ để xử lý
+                  *Lưu ý: sau khi đánh giá bạn sẽ không thể sửa để đảm bảo nếu đánh giá của bạn là bị báo sai sự thật
+                  hoặc có từ ngữ xúc phạm,... chúng tôi sẽ có căn cứ để xử lý
                 </h3>
                 <h3 *ngIf="data.statusRate==1">
                   *Cảm ơn đóng góp đánh giá của bạn của bạn
@@ -71,8 +90,11 @@
     <div class="d-flex justify-content-end">
       <div class="row">
         <div class="col">
-          <button class="btn btn-back" type="button" mat-button mat-dialog-close>Trở lại</button>
-          <button *ngIf="data.statusRate!=1" class=" ms-1 btn btn-submit" mat-dialog-close [disabled]="!formRate.valid" type="button" mat-button (click)="onSubmitRate()">Hoàn thành</button>
+          <button class="btn btn-back" mat-button mat-dialog-close type="button">Trở lại</button>
+          <button (click)="onSubmitRate()" *ngIf="data.statusRate!=1" [disabled]="!formRate.valid"
+                  class=" ms-1 btn btn-submit"
+                  mat-button mat-dialog-close type="button">Hoàn thành
+          </button>
         </div>
       </div>
     </div>

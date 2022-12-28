@@ -78,6 +78,7 @@
           <h2 style="color: #3CCF4E" *ngSwitchCase="3">Đang thuê</h2>
           <h2 style="color: #367E18" *ngSwitchCase="4">Hoàn tất thuê</h2>
           <h2 style="color: #CC3636" *ngSwitchCase="5">Đã huỷ</h2>
+          <h2 style="color: #CC3636" *ngSwitchCase="6">Bị huỷ do không nhận phòng</h2>
           <div *ngIf="i.statusBooking==1">
             <button type="button" (click)="onCancelBooking(i.bookingID)" class="btn btn-danger">
               Huỷ đặt phòng
