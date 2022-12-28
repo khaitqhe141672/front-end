@@ -77,3 +77,7 @@
 .success-text-color{
   color: #e8401d;
 }
+.title:hover{
+  color: #F36B08;
+  cursor: pointer;
+}

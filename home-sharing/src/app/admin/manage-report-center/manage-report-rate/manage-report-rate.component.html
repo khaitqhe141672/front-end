@@ -20,7 +20,13 @@
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Kiểu báo cáo</th>
         <td *matCellDef="let row" mat-cell> {{row.nameReportType}} </td>
       </ng-container>
-      <ng-container matColumnDef="description">
+      <ng-container matColumnDef="rateDescription">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Nội dung đánh giá</th>
+        <td *matCellDef="let row" mat-cell>
+          {{row.descriptionRate}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="rpRateDescription">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Chi tiết lý do</th>
         <td *matCellDef="let row" mat-cell>
           {{row.description}}

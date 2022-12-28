@@ -16,7 +16,7 @@ import {HandleStatusDialogComponent} from "../manage-report-post/handle-status-d
 })
 export class ManageReportRateComponent implements OnInit {
 
-  displayedColumns: string[] = ['reportID', 'username', 'nameReportType', 'description', 'status'];
+  displayedColumns: string[] = ['reportID', 'username', 'nameReportType','rateDescription', 'rpRateDescription', 'status'];
   dataSource: MatTableDataSource<ReportRate>
   pageIndex = 1;
   totalPageIndex = 1;

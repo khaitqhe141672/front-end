@@ -16,4 +16,5 @@ export interface ReportRate {
   reportTypeID: number;
   nameReportType: string;
   status: number;
+  descriptionRate:string;
 }

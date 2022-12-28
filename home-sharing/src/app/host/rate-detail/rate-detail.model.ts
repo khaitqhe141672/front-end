@@ -28,4 +28,6 @@ export class DetailRateDtoList {
   comment: string
   dateRate: string
   statusRate: number
+  descriptionReport: number
+  statusReportRate: number
 }

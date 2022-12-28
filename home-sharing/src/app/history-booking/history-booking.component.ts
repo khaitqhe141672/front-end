@@ -9,6 +9,7 @@ import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {DatePipe} from "@angular/common";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-history-booking',
@@ -28,7 +29,7 @@ export class HistoryBookingComponent implements OnInit {
   subLoadHistory:Subscription
   refreshListHistoryBehaviorSub = new BehaviorSubject<boolean>(true)
 
-  constructor( private datePipe:DatePipe,private historyBookingService: HistoryBookingService, private dialog: MatDialog) {
+  constructor( private router:Router,private datePipe:DatePipe,private historyBookingService: HistoryBookingService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -136,5 +137,8 @@ export class HistoryBookingComponent implements OnInit {
     window.open(url, "_blank");
   }
 
+  goToPostDetail(postID: number) {
+    this.router.navigate(['/posts/post-detail/'+postID])
+  }
 }
 
