@@ -48,3 +48,6 @@
   background: rgba(217, 217, 217, 0.35);
 }
 
+.rules:hover{
+  cursor: pointer;
+}

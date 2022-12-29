@@ -337,4 +337,20 @@ export class BookingComponent implements OnInit {
     console.log($event)
   }
 
+  onOpenRule() {
+    Swal.fire({
+      icon:'warning',
+      title:'Nội quy',
+      text:'Quý khách vui lòng xuất trình hộ chiếu hoặc chứng minh nhân dân để làm thủ tục nhận phòng tại Lễ tân.\n' +
+        '\n' +
+        '\n' +
+        '  Homestay chỉ chịu trách nhiệm với những tài sản hoặc tiền được gửi tại quầy Lễ tân\n' +
+        '\n' +
+        '\n' +
+        ' Không mang súng đạn, chất cháy nổ, chất độc hại, các chất gây nghiện, vật nuôi hoặc thực phẩm có mùi, đồ uống có cồn vào phòng nghỉ. Không nấu nướng, ăn uống tiệc trong phòng nghỉ.\n' +
+        '\n' +
+        '\n' +
+        'Không thay đổi, di chuyển đồ đạc trong phòng hoặc từ phòng này sang phòng khác. Trường hợp tài sản, đồ dùng trong phòng bị mất, hỏng do chủ quan Quý khách sẽ phải bồi thường.'
+    })
+  }
 }

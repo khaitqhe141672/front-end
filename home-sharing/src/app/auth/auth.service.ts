@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 
 export interface AuthResponseData {
   message: string,
+  status?:number
   data: {
     customerID: number,
     userID: number,
@@ -37,15 +38,16 @@ export class AuthService {
     const urlLogin = 'http://localhost:8080/api/auth/signin'
     return this.http.post<AuthResponseData>(urlLogin, {username: username, password: password})
       .pipe(catchError(this.handleError), tap(responseData => {
+        console.log('response Data: '+JSON.stringify(responseData))
           this.handleAuthentication(
             responseData.message,
-            responseData.data.customerID,
-            responseData.data.userID,
-            responseData.data.user.username,
-            responseData.data.user.email,
-            responseData.data.user.role,
-            responseData.data.user.status,
-            responseData.data.token,
+            responseData.data?.customerID,
+            responseData.data?.userID,
+            responseData.data?.user.username,
+            responseData.data?.user.email,
+            responseData.data?.user.role,
+            responseData.data?.user.status,
+            responseData.data?.token,
           )
         }
       ))
@@ -76,19 +78,25 @@ export class AuthService {
     message: string, customerID: number, userID: number, username: string, email: string, role: string, status: number,
     token: string
   ) {
-    const user = new User(userID, username, role, token,status)
-    console.log("user status: " + user.role)
-    this.user.next(user)
-    localStorage.setItem('role', user.status!=0?JSON.stringify(user.role):JSON.stringify('ROLE_PENDING'))
-    localStorage.setItem('userData', JSON.stringify(user))
-    localStorage.setItem('token', JSON.stringify(user.token))
+    console.log(message)
+    if(userID&&username&&email&&role&&token) {
+      console.log('handle auth')
+      const user = new User(userID, username, role, token, status)
+      console.log("user status: " + user.role)
+      this.user.next(user)
+      localStorage.setItem('role', user.status != 0 ? JSON.stringify(user.role) : JSON.stringify('ROLE_PENDING'))
+      localStorage.setItem('userData', JSON.stringify(user))
+      localStorage.setItem('token', JSON.stringify(user.token))
+    }
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
+    console.log('error handle')
     let errorMessage = 'An unknown error occurred!'
     if (!errorResponse.error || !errorResponse.error.status) {
       return throwError(() => new Error(errorMessage))
     }
+    console.log(errorResponse)
     console.log(errorResponse.error.message)
     // console.log(errorResponse.error.status)
     switch (errorResponse.error.status) {

@@ -223,14 +223,16 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p>
-              <mat-checkbox #confirm (change)="changeValue($event)" formControlName="confirmCtrl" [ngModel]="isConfirm" [color]="'warn'">
-                Bằng việc chọn nút bên dưới, tôi đồng ý với <span style="color: #F36B08">Nội quy nhà của Chủ nhà</span>,
-                Chính sách đặt lại và hoàn tiền của Chủ nhà, và đồng ý rằng Chủ nhà
-                có thể tính phí vào phương thức thanh toán của tôi nếu tôi phải chịu
-                trách nhiệm về thiệt hại..
-              </mat-checkbox>
+
+            <p class="p-0 m-0">
+              Bằng việc chọn nút bên dưới, tôi đồng ý với <span class="rules" (click)="onOpenRule()" style="color: #F36B08">Nội quy nhà của Chủ nhà</span>,
+              Chính sách đặt lại và hoàn tiền của Chủ nhà, và đồng ý rằng Chủ nhà
+              có thể tính phí vào phương thức thanh toán của tôi nếu tôi phải chịu
+              trách nhiệm về thiệt hại..
             </p>
+            <mat-checkbox class="mb-2" #confirm (change)="changeValue($event)" formControlName="confirmCtrl" [ngModel]="isConfirm" [color]="'warn'">
+                Đồng ý
+            </mat-checkbox>
           </div>
         </div>
         <div class="row" style="height: 60px">

@@ -44,6 +44,21 @@ export class LoginComponent implements OnInit {
     authObservable.subscribe({
       next:responseData=>{
         console.log(responseData)
+        if(responseData.status === 11){
+            Swal.fire({
+              icon:'error',
+              title:'Tài khoản bị chặn khỏi hệ thống do vi phạm quy định'
+            })
+          return
+        }
+        if(responseData.status === 101||responseData.status===12){
+          Swal.fire({
+            icon:'error',
+            title:'Tài khoản hoặc mật khẩu không đúng'
+          })
+          return
+        }
+
         console.log("auth interceptor token2: "+responseData.data.token)
         console.log('role: '+responseData.data.user.role)
         let role = responseData.data.user.role
@@ -60,7 +75,8 @@ export class LoginComponent implements OnInit {
 
       },
       error:errorMessageResponse=>{
-        this.error = errorMessageResponse
+        console.log(errorMessageResponse)
+        // this.error = errorMessageResponse
         Swal.fire({
           icon: 'error',
           title: 'Tài khoản hoặc mật khẩu không đúng',
